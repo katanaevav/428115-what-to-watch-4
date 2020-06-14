@@ -17,6 +17,7 @@ it(`Should Main component render correctly`, () => {
         promoMovieGenre = {PromoMovie.genre}
         promoMovieYear = {PromoMovie.year}
         movies = {movieTitles}
+        onMovieTitleClick = {() => {}}
       />
   ).toJSON();
 
