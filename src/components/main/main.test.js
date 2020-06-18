@@ -8,7 +8,20 @@ const PromoMovie = {
   year: 2014,
 };
 
-const movieTitles = [`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`];
+const Movies = [
+  {
+    title: `Aviator`,
+    smallPoster: `img/aviator.jpg`,
+    genre: `Drama`,
+    year: 2014,
+  },
+  {
+    title: `Bohemian rhapsody`,
+    smallPoster: `img/bohemian-rhapsody.jpg`,
+    genre: `Drama`,
+    year: 2014,
+  },
+];
 
 it(`Should Main component render correctly`, () => {
   const tree = renderer.create(
@@ -16,7 +29,8 @@ it(`Should Main component render correctly`, () => {
         promoMovieTitle = {PromoMovie.title}
         promoMovieGenre = {PromoMovie.genre}
         promoMovieYear = {PromoMovie.year}
-        movies = {movieTitles}
+        movies = {Movies}
+        onMovieMouseOver = {() => {}}
         onMovieTitleClick = {() => {}}
       />
   ).toJSON();
