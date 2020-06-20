@@ -1,12 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app.jsx";
-
-const PromoMovie = {
-  title: `The Grand Budapest Hotel`,
-  genre: `Drama`,
-  year: 2014,
-};
+import MoviesList from "./movies-list.jsx";
 
 const Movies = [
   {
@@ -25,11 +19,10 @@ const Movies = [
 
 it(`Render App`, () => {
   const tree = renderer.create(
-      <App
-        promoMovieTitle = {PromoMovie.title}
-        promoMovieGenre = {PromoMovie.genre}
-        promoMovieYear = {PromoMovie.year}
+      <MoviesList
         movies = {Movies}
+        onMovieMouseOver = {() => {}}
+        onMovieTitleClick = {() => {}}
       />
   ).toJSON();
 

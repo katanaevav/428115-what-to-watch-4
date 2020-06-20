@@ -9,21 +9,36 @@ const PromoMovie = {
   year: 2014,
 };
 
-const movieTitles = [`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`];
+const Movies = [
+  {
+    title: `Aviator`,
+    smallPoster: `img/aviator.jpg`,
+    genre: `Drama`,
+    year: 2014,
+  },
+  {
+    title: `Bohemian rhapsody`,
+    smallPoster: `img/bohemian-rhapsody.jpg`,
+    genre: `Drama`,
+    year: 2014,
+  },
+];
 
 Enzyme.configure({
   adapter: new Adapter(),
 });
 
-it(`Should movie header be pressed for each movie in list`, () => {
+it(`Should movie header be pressed and mouse over for each movie in list`, () => {
   const onMovieTitleClick = jest.fn();
+  const onMovieMouseOver = jest.fn();
 
   const main = shallow(
       <Main
         promoMovieTitle = {PromoMovie.title}
         promoMovieGenre = {PromoMovie.genre}
         promoMovieYear = {PromoMovie.year}
-        movies = {movieTitles}
+        movies = {Movies}
+        onMovieMouseOver = {onMovieMouseOver}
         onMovieTitleClick = {onMovieTitleClick}
       />
   );
