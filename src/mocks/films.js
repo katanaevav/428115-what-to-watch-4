@@ -1,3 +1,9 @@
+export const PromoMovie = {
+  title: `The Grand Budapest Hotel`,
+  genre: `Drama`,
+  year: 2014,
+};
+
 export default [
   {
     title: `Aviator`,
