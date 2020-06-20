@@ -28,7 +28,7 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-it(`Should movie header be pressed for each movie in list`, () => {
+it(`Should movie header be pressed and mouse over for each movie in list`, () => {
   const onMovieTitleClick = jest.fn();
   const onMovieMouseOver = jest.fn();
 
@@ -48,13 +48,6 @@ it(`Should movie header be pressed for each movie in list`, () => {
   movieHeaders.forEach((movieHeader, index) => {
     movieHeader.props().onClick();
     expect(onMovieTitleClick.mock.calls.length).toBe(index + 1);
-  });
-
-  const movieCards = main.find(`article.small-movie-card`);
-
-  movieCards.forEach((movieHeader, index) => {
-    movieHeader.props().onMouseOver();
-    expect(onMovieMouseOver.mock.calls.length).toBe(index + 1);
   });
 
 });

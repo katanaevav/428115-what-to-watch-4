@@ -9,8 +9,6 @@ const PromoMovie = {
   year: 2014,
 };
 
-// const movieTitles = [`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`];
-
 ReactDOM.render(
     <App
       promoMovieTitle = {PromoMovie.title}

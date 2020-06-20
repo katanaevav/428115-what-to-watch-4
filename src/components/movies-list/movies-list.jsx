@@ -1,26 +1,44 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import SmallMovieCard from "../small-movie-card/small-movie-card.jsx";
 
-const MoviesList = (props) => {
-  const {movies, onMovieMouseOver, onMovieTitleClick} = props;
+class MoviesList extends PureComponent {
+  constructor(props) {
+    super(props);
 
-  const movieCards = movies.map((movie) => (
-    <SmallMovieCard
-      key={movie.title}
-      movieTitle={movie.title}
-      movieSmallPoster={movie.smallPoster}
-      onMovieMouseOver={onMovieMouseOver}
-      onMovieTitleClick={onMovieTitleClick}
-    />
-  ));
+    this._movieCardMouseOverHandler = this._movieCardMouseOverHandler.bind(this);
 
-  return (
-    <div className="catalog__movies-list">
-      {movieCards}
-    </div>
-  );
-};
+    this.state = {
+      activeMovieTitle: ``,
+    };
+  }
+
+  _movieCardMouseOverHandler(key) {
+    this.setState({
+      activeMovieTitle: key,
+    });
+  }
+
+  render() {
+    const {movies, onMovieTitleClick} = this.props;
+
+    const movieCards = movies.map((movie) => (
+      <SmallMovieCard
+        key={movie.title}
+        movieTitle={movie.title}
+        movieSmallPoster={movie.smallPoster}
+        onMovieMouseOver={this._movieCardMouseOverHandler}
+        onMovieTitleClick={onMovieTitleClick}
+      />
+    ));
+
+    return (
+      <div className="catalog__movies-list">
+        {movieCards}
+      </div>
+    );
+  }
+}
 
 MoviesList.propTypes = {
   movies: PropTypes.arrayOf(

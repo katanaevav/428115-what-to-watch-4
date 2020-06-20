@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 
 const movieTitleClickHandler = () => {};
+
 const movieCardMouseOverHandler = () => {};
 
 const App = (props) => {

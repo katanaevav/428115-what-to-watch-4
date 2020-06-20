@@ -6,10 +6,11 @@ exports[`Render App 1`] = `
 >
   <article
     className="small-movie-card catalog__movies-card"
-    onMouseOver={[Function]}
+    data-key="Aviator"
   >
     <div
       className="small-movie-card__image"
+      onMouseOver={[Function]}
     >
       <img
         alt="Aviator"
@@ -32,10 +33,11 @@ exports[`Render App 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
-    onMouseOver={[Function]}
+    data-key="Bohemian rhapsody"
   >
     <div
       className="small-movie-card__image"
+      onMouseOver={[Function]}
     >
       <img
         alt="Bohemian rhapsody"

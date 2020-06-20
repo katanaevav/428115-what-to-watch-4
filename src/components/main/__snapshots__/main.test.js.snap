@@ -259,10 +259,11 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
-          onMouseOver={[Function]}
+          data-key="Aviator"
         >
           <div
             className="small-movie-card__image"
+            onMouseOver={[Function]}
           >
             <img
               alt="Aviator"
@@ -285,10 +286,11 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
-          onMouseOver={[Function]}
+          data-key="Bohemian rhapsody"
         >
           <div
             className="small-movie-card__image"
+            onMouseOver={[Function]}
           >
             <img
               alt="Bohemian rhapsody"
