@@ -1,25 +1,49 @@
-import React from "react";
+import React, {PureComponent} from "react";
+import {Switch, Route, BrowserRouter} from "react-router-dom";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
+import MoviePage from "../movie-page/movie-page.jsx";
 
 const movieTitleClickHandler = () => {};
 
 const movieCardMouseOverHandler = () => {};
 
-const App = (props) => {
-  const {promoMovieTitle, promoMovieGenre, promoMovieYear, movies} = props;
+class App extends PureComponent {
+  constructor(props) {
+    super(props);
+  }
 
-  return (
-    <Main
-      promoMovieTitle = {promoMovieTitle}
-      promoMovieGenre = {promoMovieGenre}
-      promoMovieYear = {promoMovieYear}
-      movies = {movies}
-      onMovieMouseOver = {movieCardMouseOverHandler}
-      onMovieTitleClick = {movieTitleClickHandler}
-    />
-  );
-};
+  _renderApp() {
+    const {promoMovieTitle, promoMovieGenre, promoMovieYear, movies} = this.props;
+
+    return (
+      <Main
+        promoMovieTitle = {promoMovieTitle}
+        promoMovieGenre = {promoMovieGenre}
+        promoMovieYear = {promoMovieYear}
+        movies = {movies}
+        onMovieMouseOver = {movieCardMouseOverHandler}
+        onMovieTitleClick = {movieTitleClickHandler}
+      />
+    );
+  }
+
+  render() {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            {this._renderApp()}
+          </Route>
+          <Route exact path="/dev-film">
+            <MoviePage />
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
+
+}
 
 App.propTypes = {
   promoMovieTitle: PropTypes.string.isRequired,
