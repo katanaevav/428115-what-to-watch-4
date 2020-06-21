@@ -7,14 +7,35 @@ class MoviePage extends PureComponent {
   }
 
   render() {
-    // const {movieTitle, movieSmallPoster} = this.props;
+    const {title, genre, year, bigPoster, cover, ratingScore, ratingCount, director, starring, description} = this.props;
+
+    let ratingLevel;
+    switch (true) {
+      case ratingScore < 3:
+        ratingLevel = `Bad`;
+        break;
+      case ratingScore >= 3 && ratingScore < 5:
+        ratingLevel = `Normal`;
+        break;
+      case ratingScore >= 5 && ratingScore < 8:
+        ratingLevel = `Good`;
+        break;
+      case ratingScore >= 8 && ratingScore < 10:
+        ratingLevel = `Very good`;
+        break;
+      case 10:
+        ratingLevel = `Awesome`;
+        break;
+      default:
+        ratingLevel = `N/A`;
+    }
 
     return (
       <React.Fragment>
         <section className="movie-card movie-card--full">
           <div className="movie-card__hero">
             <div className="movie-card__bg">
-              <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+              <img src={cover} alt={title} />
             </div>
 
             <h1 className="visually-hidden">WTW</h1>
@@ -37,10 +58,10 @@ class MoviePage extends PureComponent {
 
             <div className="movie-card__wrap">
               <div className="movie-card__desc">
-                <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+                <h2 className="movie-card__title">{title}</h2>
                 <p className="movie-card__meta">
-                  <span className="movie-card__genre">Drama</span>
-                  <span className="movie-card__year">2014</span>
+                  <span className="movie-card__genre">{genre}</span>
+                  <span className="movie-card__year">{year}</span>
                 </p>
 
                 <div className="movie-card__buttons">
@@ -65,7 +86,7 @@ class MoviePage extends PureComponent {
           <div className="movie-card__wrap movie-card__translate-top">
             <div className="movie-card__info">
               <div className="movie-card__poster movie-card__poster--big">
-                <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+                <img src={bigPoster} alt={title} width="218" height="327" />
               </div>
 
               <div className="movie-card__desc">
@@ -84,21 +105,21 @@ class MoviePage extends PureComponent {
                 </nav>
 
                 <div className="movie-rating">
-                  <div className="movie-rating__score">8,9</div>
+                  <div className="movie-rating__score">{ratingScore}</div>
                   <p className="movie-rating__meta">
-                    <span className="movie-rating__level">Very good</span>
-                    <span className="movie-rating__count">240 ratings</span>
+                    <span className="movie-rating__level">{ratingLevel}</span>
+                    <span className="movie-rating__count">{ratingCount} ratings</span>
                   </p>
                 </div>
 
                 <div className="movie-card__text">
-                  <p>In the 1930s, the Grand Budapest Hotel is a popular European ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a junior lobby boy, becomes Gustave&apos;s friend and protege.</p>
+                  <p>{description}</p>
 
-                  <p>Gustave prides himself on providing first-class service to the hotel&apos;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&apos;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.</p>
+                  {/* <p>Gustave prides himself on providing first-class service to the hotel&apos;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&apos;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.</p> */}
 
-                  <p className="movie-card__director"><strong>Director: Wes Andreson</strong></p>
+                  <p className="movie-card__director"><strong>Director: {director}</strong></p>
 
-                  <p className="movie-card__starring"><strong>Starring: Bill Murray, Edward Norton, Jude Law, Willem Dafoe and other</strong></p>
+                  <p className="movie-card__starring"><strong>Starring: {starring}</strong></p>
                 </div>
               </div>
             </div>
@@ -168,7 +189,16 @@ class MoviePage extends PureComponent {
 }
 
 MoviePage.propTypes = {
-
+  title: PropTypes.string.isRequired,
+  genre: PropTypes.string.isRequired,
+  year: PropTypes.number.isRequired,
+  bigPoster: PropTypes.string.isRequired,
+  cover: PropTypes.string.isRequired,
+  ratingScore: PropTypes.number.isRequired,
+  ratingCount: PropTypes.number.isRequired,
+  director: PropTypes.string.isRequired,
+  starring: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
 };
 
 export default MoviePage;

@@ -3,6 +3,7 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
+import {PromoMovie} from "../../mocks/films.js";
 
 const movieTitleClickHandler = () => {};
 
@@ -36,7 +37,18 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-film">
-            <MoviePage />
+            <MoviePage
+              title = {PromoMovie.title}
+              genre = {PromoMovie.genre}
+              year = {PromoMovie.year}
+              bigPoster = {PromoMovie.bigPoster}
+              cover = {PromoMovie.cover}
+              ratingScore = {PromoMovie.ratingScore}
+              ratingCount = {PromoMovie.ratingCount}
+              director = {PromoMovie.director}
+              starring = {PromoMovie.starring}
+              description = {PromoMovie.description}
+            />
           </Route>
         </Switch>
       </BrowserRouter>
