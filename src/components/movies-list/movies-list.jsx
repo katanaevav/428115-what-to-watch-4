@@ -24,7 +24,8 @@ class MoviesList extends PureComponent {
 
     const movieCards = movies.map((movie) => (
       <SmallMovieCard
-        key={movie.title}
+        key={movie.id}
+        movieId={movie.id}
         movieTitle={movie.title}
         movieSmallPoster={movie.smallPoster}
         onMovieMouseOver={this._movieCardMouseOverHandler}

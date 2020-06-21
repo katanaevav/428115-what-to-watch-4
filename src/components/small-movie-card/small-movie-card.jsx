@@ -19,12 +19,12 @@ class SmallMovieCard extends PureComponent {
   }
 
   render() {
-    const {movieTitle, movieSmallPoster} = this.props;
+    const {movieId, movieTitle, movieSmallPoster} = this.props;
 
     return (
       <article
         className="small-movie-card catalog__movies-card"
-        data-key={movieTitle}
+        data-key={movieId}
       >
         <div
           className="small-movie-card__image"
@@ -47,6 +47,7 @@ class SmallMovieCard extends PureComponent {
 }
 
 SmallMovieCard.propTypes = {
+  movieId: PropTypes.number.isRequired,
   movieTitle: PropTypes.string.isRequired,
   movieSmallPoster: PropTypes.string.isRequired,
   onMovieMouseOver: PropTypes.func.isRequired,

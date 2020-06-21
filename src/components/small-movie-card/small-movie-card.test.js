@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 import SmallMovieCard from "./small-movie-card.jsx";
 
 const Movie = {
+  id: 0,
   title: `Aviator`,
   smallPoster: `img/aviator.jpg`,
   genre: `Drama`,
@@ -12,7 +13,8 @@ const Movie = {
 it(`Render small movie card`, () => {
   const tree = renderer.create(
       <SmallMovieCard
-        key = {Movie.title}
+        key = {Movie.id}
+        movieId={Movie.id}
         movieTitle = {Movie.title}
         movieSmallPoster = {Movie.smallPoster}
         onMovieMouseOver = {() => {}}

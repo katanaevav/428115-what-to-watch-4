@@ -4,6 +4,7 @@ exports[`Render App 1`] = `
 Array [
   <section
     className="movie-card movie-card--full"
+    data-key={0}
   >
     <div
       className="movie-card__hero"
@@ -198,7 +199,7 @@ Array [
             <div
               className="movie-rating__score"
             >
-              8.9
+              8,9
             </div>
             <p
               className="movie-rating__meta"

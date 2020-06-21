@@ -7,23 +7,25 @@ class MoviePage extends PureComponent {
   }
 
   render() {
-    const {title, genre, year, bigPoster, cover, ratingScore, ratingCount, director, starring, description} = this.props;
+    const {id, title, genre, year, bigPoster, cover, ratingScore, ratingCount, director, starring, description} = this.props;
 
     let ratingLevel;
+    const score = Number.parseFloat(ratingScore);
+
     switch (true) {
-      case ratingScore < 3:
+      case score < 3:
         ratingLevel = `Bad`;
         break;
-      case ratingScore >= 3 && ratingScore < 5:
+      case score >= 3 && score < 5:
         ratingLevel = `Normal`;
         break;
-      case ratingScore >= 5 && ratingScore < 8:
+      case score >= 5 && score < 8:
         ratingLevel = `Good`;
         break;
-      case ratingScore >= 8 && ratingScore < 10:
+      case score >= 8 && score < 10:
         ratingLevel = `Very good`;
         break;
-      case 10:
+      case score === 10:
         ratingLevel = `Awesome`;
         break;
       default:
@@ -32,7 +34,7 @@ class MoviePage extends PureComponent {
 
     return (
       <React.Fragment>
-        <section className="movie-card movie-card--full">
+        <section className="movie-card movie-card--full" data-key={id}>
           <div className="movie-card__hero">
             <div className="movie-card__bg">
               <img src={cover} alt={title} />
@@ -189,12 +191,13 @@ class MoviePage extends PureComponent {
 }
 
 MoviePage.propTypes = {
+  id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
   bigPoster: PropTypes.string.isRequired,
   cover: PropTypes.string.isRequired,
-  ratingScore: PropTypes.number.isRequired,
+  ratingScore: PropTypes.string.isRequired,
   ratingCount: PropTypes.number.isRequired,
   director: PropTypes.string.isRequired,
   starring: PropTypes.string.isRequired,
