@@ -3,7 +3,7 @@
 exports[`Render small movie card 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
-  data-key="Aviator"
+  data-key={0}
 >
   <div
     className="small-movie-card__image"

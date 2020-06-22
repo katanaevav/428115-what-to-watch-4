@@ -3,7 +3,8 @@ import Enzyme, {mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import SmallMovieCard from "./small-movie-card.jsx";
 
-const movie = {
+const Movie = {
+  id: 0,
   title: `Aviator`,
   smallPoster: `img/aviator.jpg`,
 };
@@ -12,16 +13,16 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-it(`Should mouse over work on movie card`, () => {
-  const onMovieTitleClick = jest.fn();
+it(`Should mouse over event work on movie card`, () => {
   const onMovieMouseOver = jest.fn();
 
   const smallMovieCard = mount(
       <SmallMovieCard
-        movieTitle={movie.title}
-        movieSmallPoster={movie.smallPoster}
+        movieId={Movie.id}
+        movieTitle={Movie.title}
+        movieSmallPoster={Movie.smallPoster}
         onMovieMouseOver={onMovieMouseOver}
-        onMovieTitleClick={onMovieTitleClick}
+        onMovieTitleClick={() => {}}
       />
   );
 
@@ -30,6 +31,28 @@ it(`Should mouse over work on movie card`, () => {
   movieCard.simulate(`mouseover`, {});
 
   expect(onMovieMouseOver.mock.calls.length).toBe(1);
-  expect(onMovieMouseOver.mock.calls[0][0]).toBe(movie.title);
+  expect(Number.parseInt(onMovieMouseOver.mock.calls[0][0], 10)).toBe(Movie.id);
+
+});
+
+it(`Should click event work on movie card`, () => {
+  const onMovieTitleClick = jest.fn();
+
+  const smallMovieCard = mount(
+      <SmallMovieCard
+        movieId={Movie.id}
+        movieTitle={Movie.title}
+        movieSmallPoster={Movie.smallPoster}
+        onMovieMouseOver={() => {}}
+        onMovieTitleClick={onMovieTitleClick}
+      />
+  );
+
+  const movieCard = smallMovieCard.find(`a.small-movie-card__link`);
+
+  movieCard.simulate(`click`, {});
+
+  expect(onMovieTitleClick.mock.calls.length).toBe(1);
+  expect(Number.parseInt(onMovieTitleClick.mock.calls[0][0], 10)).toBe(Movie.id);
 
 });

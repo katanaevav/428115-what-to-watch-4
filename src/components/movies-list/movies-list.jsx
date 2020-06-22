@@ -24,7 +24,8 @@ class MoviesList extends PureComponent {
 
     const movieCards = movies.map((movie) => (
       <SmallMovieCard
-        key={movie.title}
+        key={movie.id}
+        movieId={movie.id}
         movieTitle={movie.title}
         movieSmallPoster={movie.smallPoster}
         onMovieMouseOver={this._movieCardMouseOverHandler}
@@ -43,6 +44,7 @@ class MoviesList extends PureComponent {
 MoviesList.propTypes = {
   movies: PropTypes.arrayOf(
       PropTypes.shape({
+        id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
         smallPoster: PropTypes.string.isRequired,
         genre: PropTypes.string.isRequired,
