@@ -259,6 +259,7 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
+          data-key={0}
         >
           <div
             className="small-movie-card__image"
@@ -285,6 +286,7 @@ Array [
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          data-key={1}
         >
           <div
             className="small-movie-card__image"

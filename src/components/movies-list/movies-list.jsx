@@ -44,6 +44,7 @@ class MoviesList extends PureComponent {
 MoviesList.propTypes = {
   movies: PropTypes.arrayOf(
       PropTypes.shape({
+        id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
         smallPoster: PropTypes.string.isRequired,
         genre: PropTypes.string.isRequired,

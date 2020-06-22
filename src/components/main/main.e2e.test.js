@@ -11,12 +11,14 @@ const PromoMovie = {
 
 const Movies = [
   {
+    id: 0,
     title: `Aviator`,
     smallPoster: `img/aviator.jpg`,
     genre: `Drama`,
     year: 2014,
   },
   {
+    id: 1,
     title: `Bohemian rhapsody`,
     smallPoster: `img/bohemian-rhapsody.jpg`,
     genre: `Drama`,
