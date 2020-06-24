@@ -1,5 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import VideoPlayer from "../video-player/video-player.jsx";
 
 class SmallMovieCard extends PureComponent {
   constructor(props) {
@@ -19,7 +20,7 @@ class SmallMovieCard extends PureComponent {
   }
 
   render() {
-    const {movieId, movieTitle, movieSmallPoster} = this.props;
+    const {movieId, movieTitle, movieSmallPoster, previews} = this.props;
 
     return (
       <article
@@ -30,7 +31,11 @@ class SmallMovieCard extends PureComponent {
           className="small-movie-card__image"
           onMouseOver={this._movieCardMouseOverHandler}
         >
-          <img src={movieSmallPoster} alt={movieTitle} width="280" height="175"/>
+          {/* <img src={movieSmallPoster} alt={movieTitle} width="280" height="175"/> */}
+          <VideoPlayer
+            poster={movieSmallPoster}
+            previews={previews}
+          />
         </div>
         <h3 className="small-movie-card__title">
           <a
@@ -50,6 +55,7 @@ SmallMovieCard.propTypes = {
   movieId: PropTypes.number.isRequired,
   movieTitle: PropTypes.string.isRequired,
   movieSmallPoster: PropTypes.string.isRequired,
+  previews: PropTypes.array,
   onMovieMouseOver: PropTypes.func.isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
 };

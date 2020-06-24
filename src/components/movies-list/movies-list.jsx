@@ -28,6 +28,7 @@ class MoviesList extends PureComponent {
         movieId={movie.id}
         movieTitle={movie.title}
         movieSmallPoster={movie.smallPoster}
+        previews={movie.previews}
         onMovieMouseOver={this._movieCardMouseOverHandler}
         onMovieTitleClick={onMovieTitleClick}
       />

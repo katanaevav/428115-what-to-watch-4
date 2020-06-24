@@ -23,7 +23,12 @@ export default [
     cover: `img/aviator.jpg`,
     ratingScore: `7,5`,
     ratingCount: 121697,
-    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    previews: [
+      {
+        src: `https://vod-progressive.akamaized.net/exp=1593003483~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F3718%2F16%2F418590139%2F1805971054.mp4~hmac=ce4180247bd8c0e213d5fa9c683d31d657a71396a4f50c1ad469007f8dc94e79/vimeo-prod-skyfire-std-us/01/3718/16/418590139/1805971054.mp4?filename=Nature+-+38678.mp4`,
+        type: `video/mp4`,
+      }
+    ],
     director: `Мартин Скорсезе`,
     starring: `Леонардо ДиКаприо, Кейт Бланшетт, Мэтт Росс, Джон Си Райли, Алан Алда, Кейт Бекинсейл, Алек Болдуин, Иэн Холм, Адам Скотт, Дэнни Хьюстон и другие`,
     description: `Получив от отца небольшую фабрику, Говард Хьюз превратил ее в гигантское, фантастически прибыльное предприятие. Став владельцем огромной кинокомпании, он снял самый дорогой для своего времени фильм и покорил сердца прелестнейших голливудских актрис.
@@ -40,7 +45,12 @@ export default [
     cover: `img/bohemian-rhapsody.jpg`,
     ratingScore: `7,9`,
     ratingCount: 284651,
-    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    previews: [
+      {
+        src: `https://vod-progressive.akamaized.net/exp=1593004477~acl=%2Fvimeo-prod-skyfire-std-us%2F01%2F2166%2F13%2F335833141%2F1329319206.mp4~hmac=e7d12d09a0a139b2ef73c8f01d2509e53a74d2c9f421459828f71e8c7deb430e/vimeo-prod-skyfire-std-us/01/2166/13/335833141/1329319206.mp4?filename=Clouds+-+23567.mp4`,
+        type: `video/mp4`,
+      }
+    ],
     director: `Брайан Сингер`,
     starring: `Рами Малек, Люси Бойнтон, Гвилим Ли, Бен Харди, Джозеф Маццелло, Эйдан Гиллен, Аллен Лич, Том Холландер, Майк Майерс, Аарон МакКаскер и другие`,
     description: `Чествование группы Queen, их музыки и их выдающегося вокалиста Фредди Меркьюри, который бросил вызов стереотипам и победил условности, чтобы стать одним из самых любимых артистов на планете. Фильм прослеживает головокружительный путь группы к успеху благодаря их культовым песням и революционному звуку, практически распад коллектива, поскольку образ жизни Меркьюри выходит из-под контроля, и их триумфальное воссоединение накануне концерта Live Aid, ставшим одним из величайших выступлений в истории рок-музыки.`,
@@ -55,7 +65,16 @@ export default [
     cover: `img/johnny-english.jpg`,
     ratingScore: `6,5`,
     ratingCount: 34786,
-    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    previews: [
+      {
+        src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+        type: `video/webm`,
+      },
+      {
+        src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        type: `video/mp4`,
+      }
+    ],
     director: `Оливер Паркер`,
     starring: `Роуэн Эткинсон, Джиллиан Андерсон, Доминик Уэст, Розамунд Пайк, Дэниэл Калуя, Марк Иванир, Берн Горман, Жозефин де ла Буме, Тим Макиннерни, Пик Сен Лим и другие`,
     description: `Действие фильма разворачивается через 8 лет после событий предшествующего фильма и с тех пор карьера сэра Джонни Инглиша ухудшается. За 5 лет до начала фильма его направили с заданием в Мозамбик, но миссия пошла ужасно плохо. С тех пор он живёт в пещере в горах Тибета, прячась ото всех из-за стыда, сожалений и обвинений в провале миссии.
@@ -71,7 +90,16 @@ export default [
     cover: `img/moonrise-kingdom.jpg`,
     ratingScore: `8,9`,
     ratingCount: 240,
-    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    previews: [
+      {
+        src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+        type: `video/webm`,
+      },
+      {
+        src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        type: `video/mp4`,
+      }
+    ],
     director: `Уэс Андерсон`,
     starring: `Брюс Уиллис, Эдвард Нортон, Билл Мюррей, Фрэнсис МакДорманд, Джаред Гилман, Кара Хэйуорд, Боб Бэлабан, Тильда Суинтон, Джейсон Шварцман, Харви Кейтель и другие`,
     description: `60-е годы XX века. Пара влюблённых подростков, живущих на острове в Новой Англии, убегает из-под присмотра взрослых. Сэм Шакаски — бойскаут, сирота, от которого отказались приемные родители, из-за своего непростого характера ставший изгоем среди других бойскаутов, и Сьюзи Бишоп — замкнутая двенадцатилетняя неуравновешенная девочка, живущая мечтами о волшебных мирах. После обнаружения пропажи местный шериф начинает расследование, а вожатый лагеря бойскаутов организует поисковый отряд.`,
@@ -86,7 +114,16 @@ export default [
     cover: `img/no-country-for-old-men.jpg`,
     ratingScore: `7,7`,
     ratingCount: 139424,
-    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    previews: [
+      {
+        src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+        type: `video/webm`,
+      },
+      {
+        src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        type: `video/mp4`,
+      }
+    ],
     director: `Итан Коэн, Джоэл Коэн`,
     starring: `Томми Ли Джонс, Джош Бролин, Хавьер Бардем, Келли Макдоналд, Вуди Харрельсон, Бет Грант, Гаррет Диллахант, Тесс Харпер, Бэрри Корбин, Стивен Рут и другие`,
     description: `Обычный работяга обнаруживает в пустыне гору трупов, грузовик, набитый героином, и соблазнительную сумму в два миллиона долларов наличными. Он решает взять деньги себе, и результатом становится волна насилия, которую не может остановить вся полиция Западного Техаса.`,
@@ -101,7 +138,16 @@ export default [
     cover: `img/orlando.jpg`,
     ratingScore: `7,1`,
     ratingCount: 6058,
-    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    previews: [
+      {
+        src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+        type: `video/webm`,
+      },
+      {
+        src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        type: `video/mp4`,
+      }
+    ],
     director: `Салли Поттер`,
     starring: `Тильда Суинтон, Билли Зейн, Лотер Блюто, Джон Вуд, Шарлотт Валандре, Хиткоут Уильямс, Квентин Крисп, Джимми Соммервиль, Джон Ботт, Элейн Бенэм и другие`,
     description: `Основанный на романе Вирджинии Вулф, фильм начинается в Лондоне 17-го столетия. Орландо — юноша-аристократ, гермафродитный по моде того времени и серьезно настроенный превратить жизнь, о которой он знает так мало, в искусство, о котором он знает еще меньше.
@@ -118,7 +164,16 @@ export default [
     cover: `img/pulp-fiction.jpg`,
     ratingScore: `8,6`,
     ratingCount: 454261,
-    preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    previews: [
+      {
+        src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+        type: `video/webm`,
+      },
+      {
+        src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        type: `video/mp4`,
+      }
+    ],
     director: `Квентин Тарантино`,
     starring: `Джон Траволта, Сэмюэл Л. Джексон, Брюс Уиллис, Ума Турман, Винг Реймз, Тим Рот, Харви Кейтель, Квентин Тарантино, Питер Грин, Аманда Пламмер и другие`,
     description: `Двое бандитов Винсент Вега и Джулс Винфилд ведут философские беседы в перерывах между разборками и решением проблем с должниками криминального босса Марселласа Уоллеса.
@@ -134,7 +189,16 @@ export default [
     cover: `img/war-of-the-worlds.jpg`,
     ratingScore: `7,0`,
     ratingCount: 151728,
-    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    previews: [
+      {
+        src: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+        type: `video/webm`,
+      },
+      {
+        src: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+        type: `video/mp4`,
+      }
+    ],
     director: `Стивен Спилберг`,
     starring: `Том Круз, Дакота Фаннинг, Миранда Отто, Джастин Чатвин, Тим Роббинс, Рик Гонсалес, Юл Васкес, Ленни Венито, Лиза Энн Уолтер, Энн Робинсон и другие`,
     description: `Никто не поверил бы в начале 21 столетия, что за всем происходящим на Земле зорко и внимательно следят существа более развитые, чем человек; что в то время, как люди занимались своими делами, их исследовали и изучали.
