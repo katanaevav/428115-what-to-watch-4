@@ -20,23 +20,25 @@ class SmallMovieCard extends PureComponent {
   }
 
   render() {
-    const {movieId, movieTitle, movieSmallPoster, previews} = this.props;
+    const {movieId, movieTitle, movieSmallPoster, preview} = this.props;
 
     return (
       <article
         className="small-movie-card catalog__movies-card"
         data-key={movieId}
       >
-        <div
+        {/* <div
           className="small-movie-card__image"
           onMouseOver={this._movieCardMouseOverHandler}
-        >
-          {/* <img src={movieSmallPoster} alt={movieTitle} width="280" height="175"/> */}
-          <VideoPlayer
-            poster={movieSmallPoster}
-            previews={previews}
-          />
-        </div>
+        > */}
+        {/* <img src={movieSmallPoster} alt={movieTitle} width="280" height="175"/> */}
+        <VideoPlayer
+          poster={movieSmallPoster}
+          preview={preview}
+          volume={0.0}
+          delayBeforePlay={1000}
+        />
+        {/* </div> */}
         <h3 className="small-movie-card__title">
           <a
             className="small-movie-card__link"
@@ -55,7 +57,7 @@ SmallMovieCard.propTypes = {
   movieId: PropTypes.number.isRequired,
   movieTitle: PropTypes.string.isRequired,
   movieSmallPoster: PropTypes.string.isRequired,
-  previews: PropTypes.array,
+  preview: PropTypes.string.isRequired,
   onMovieMouseOver: PropTypes.func.isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
 };
