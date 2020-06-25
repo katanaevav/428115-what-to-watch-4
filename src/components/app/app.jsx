@@ -68,7 +68,6 @@ class App extends PureComponent {
             promoMovieGenre = {promoMovieGenre}
             promoMovieYear = {promoMovieYear}
             movies = {movies}
-            onMovieMouseOver = {this._movieCardMouseOverHandler}
             onMovieTitleClick = {this._movieTitleClickHandler}
           />
         );

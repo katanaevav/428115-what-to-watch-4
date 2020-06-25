@@ -1,6 +1,5 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-// import VideoPlayer from "../video-player/video-player.jsx";
 
 
 class SmallMovieCard extends PureComponent {
@@ -8,16 +7,11 @@ class SmallMovieCard extends PureComponent {
     super(props);
 
     this._movieTitleClickHandler = this._movieTitleClickHandler.bind(this);
-    this._movieCardMouseOverHandler = this._movieCardMouseOverHandler.bind(this);
   }
 
   _movieTitleClickHandler(evt) {
     evt.preventDefault();
     this.props.onMovieTitleClick(evt.currentTarget.parentElement.parentElement.dataset.key);
-  }
-
-  _movieCardMouseOverHandler(evt) {
-    this.props.onMovieMouseOver(evt.currentTarget.parentElement.dataset.key);
   }
 
   render() {
@@ -48,7 +42,6 @@ SmallMovieCard.propTypes = {
   movieTitle: PropTypes.string.isRequired,
   movieSmallPoster: PropTypes.string.isRequired,
   preview: PropTypes.string.isRequired,
-  onMovieMouseOver: PropTypes.func.isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
   renderPlayer: PropTypes.func.isRequired,
 };

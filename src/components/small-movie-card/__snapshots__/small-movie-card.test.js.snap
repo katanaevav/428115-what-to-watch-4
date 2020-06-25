@@ -5,17 +5,6 @@ exports[`Render small movie card 1`] = `
   className="small-movie-card catalog__movies-card"
   data-key={0}
 >
-  <div
-    className="small-movie-card__image"
-    onMouseOver={[Function]}
-  >
-    <img
-      alt="Aviator"
-      height="175"
-      src="img/aviator.jpg"
-      width="280"
-    />
-  </div>
   <h3
     className="small-movie-card__title"
   >

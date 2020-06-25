@@ -1,7 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import SmallMovieCard from "../small-movie-card/small-movie-card.jsx";
-
 import withVideoPlayer from "../../hoc/with-video-player/with-video-player.js";
 
 const SmallMovieCardWrapped = withVideoPlayer(SmallMovieCard);
@@ -10,17 +9,9 @@ class MoviesList extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._movieCardMouseOverHandler = this._movieCardMouseOverHandler.bind(this);
-
     this.state = {
       activeMovieTitle: ``,
     };
-  }
-
-  _movieCardMouseOverHandler(key) {
-    this.setState({
-      activeMovieTitle: key,
-    });
   }
 
   render() {
@@ -33,7 +24,6 @@ class MoviesList extends PureComponent {
         movieTitle={movie.title}
         movieSmallPoster={movie.smallPoster}
         preview={movie.preview}
-        onMovieMouseOver={this._movieCardMouseOverHandler}
         onMovieTitleClick={onMovieTitleClick}
       />
     ));
@@ -55,7 +45,6 @@ MoviesList.propTypes = {
         genre: PropTypes.string.isRequired,
         year: PropTypes.number.isRequired,
       })).isRequired,
-  onMovieMouseOver: PropTypes.func.isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
 };
 

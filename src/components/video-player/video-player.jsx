@@ -16,17 +16,19 @@ class VideoPlayer extends PureComponent {
   componentDidMount() {
     const video = this._videoRef.current;
 
-    video.onplay = () => {
-      this.setState({
-        isPlaying: true,
-        isPaused: false,
-      });
-    };
+    if (video) {
+      video.onplay = () => {
+        this.setState({
+          isPlaying: true,
+          isPaused: false,
+        });
+      };
 
-    video.onpause = () => this.setState({
-      isPlaying: false,
-      isPaused: true,
-    });
+      video.onpause = () => this.setState({
+        isPlaying: false,
+        isPaused: true,
+      });
+    }
   }
 
   componentWillUnmount() {
