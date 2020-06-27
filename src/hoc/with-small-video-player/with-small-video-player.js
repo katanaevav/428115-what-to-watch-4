@@ -10,7 +10,6 @@ const withSmallVideoPlayer = (Component) => {
 
       this.state = {
         isPlaying: false,
-        isPaused: false,
       };
     }
 
@@ -28,7 +27,6 @@ const withSmallVideoPlayer = (Component) => {
                 onMovieMouseOver(() => {
                   this.setState({
                     isPlaying: true,
-                    isPaused: false,
                   });
                 });
               }}
@@ -37,7 +35,6 @@ const withSmallVideoPlayer = (Component) => {
                 onMovieMouseOut(() => {
                   this.setState({
                     isPlaying: false,
-                    isPaused: false,
                   });
                 });
               }}
