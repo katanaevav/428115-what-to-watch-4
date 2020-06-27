@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import SmallMovieCard from "../small-movie-card/small-movie-card.jsx";
-import withVideoPlayer from "../../hoc/with-video-player/with-video-player.js";
+import withVideoPlayer from "../../hoc/with-small-video-player/with-small-video-player.js";
 
 const SmallMovieCardWrapped = withVideoPlayer(SmallMovieCard);
 
@@ -24,6 +24,8 @@ class MoviesList extends PureComponent {
         movieTitle={movie.title}
         movieSmallPoster={movie.smallPoster}
         preview={movie.preview}
+        onMovieMouseOver={() => {}}
+        onMovieMouseOut={() => {}}
         onMovieTitleClick={onMovieTitleClick}
       />
     ));

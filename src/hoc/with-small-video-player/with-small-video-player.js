@@ -1,11 +1,11 @@
 import React, {PureComponent} from 'react';
 import VideoPlayer from '../../components/video-player/video-player.jsx';
 
-const DELAY_BEFORE_START_PLAYING = 1000;
 const MIN_VOLUME = 0.0;
+const DELAY_BEFORE_START_PLAYING = 1000;
 
-const withActivePlayer = (Component) => {
-  class WithActivePlayer extends PureComponent {
+const withSmallVideoPlayer = (Component) => {
+  class WithSmallVideoPlayer extends PureComponent {
     constructor(props) {
       super(props);
 
@@ -18,36 +18,40 @@ const withActivePlayer = (Component) => {
     render() {
       return <Component
         {...this.props}
-        renderPlayer={(preview, poster) => {
-          let startPlaying = false;
+
+        renderPlayer={(preview, poster, height, width, onMovieMouseOver, onMovieMouseOut) => {
+          const {isPlaying, isPaused} = this.state;
+
           return (
             <div
               className="small-movie-card__image"
               onMouseOver={() => {
-                startPlaying = true;
-                setTimeout(() => {
-                  if (startPlaying) {
-                    this.setState({
-                      isPlaying: true,
-                      isPaused: false,
-                    });
-                  }
+                this._timer = setTimeout(() => {
+                  this.setState({
+                    isPlaying: true,
+                    isPaused: false,
+                  });
                 }, DELAY_BEFORE_START_PLAYING);
+                onMovieMouseOver(this.state);
               }}
+
               onMouseOut={() => {
+                clearTimeout(this._timer);
                 this.setState({
                   isPlaying: false,
                   isPaused: false,
                 });
-                startPlaying = false;
+                onMovieMouseOut(this.state);
               }}
             >
               <VideoPlayer
+                playerHeight={height}
+                playerWidth={width}
                 poster={poster}
                 preview={preview}
                 volume={MIN_VOLUME}
-                isPlaying={this.state.isPlaying}
-                isPaused={this.state.isPaused}
+                isPlaying={isPlaying}
+                isPaused={isPaused}
               />
             </div>
           );
@@ -56,9 +60,9 @@ const withActivePlayer = (Component) => {
     }
   }
 
-  WithActivePlayer.propTypes = {};
+  WithSmallVideoPlayer.propTypes = {};
 
-  return WithActivePlayer;
+  return WithSmallVideoPlayer;
 };
 
-export default withActivePlayer;
+export default withSmallVideoPlayer;

@@ -18,6 +18,7 @@ it(`Render small movie card`, () => {
         movieSmallPoster = {Movie.smallPoster}
         preview = {Movie.preview}
         onMovieMouseOver = {() => {}}
+        onMovieMouseOut = {() => {}}
         onMovieTitleClick = {() => {}}
         renderPlayer = {() => {}}
       />

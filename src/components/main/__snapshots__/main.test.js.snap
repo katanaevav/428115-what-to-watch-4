@@ -267,10 +267,10 @@ Array [
             onMouseOver={[Function]}
           >
             <video
-              height="100%"
+              height={175}
               poster="img/bohemian-rhapsody.jpg"
               preload="metadata"
-              width="auto"
+              width={280}
             />
           </div>
           <h3
@@ -295,10 +295,10 @@ Array [
             onMouseOver={[Function]}
           >
             <video
-              height="100%"
+              height={175}
               poster="img/moonrise-kingdom.jpg"
               preload="metadata"
-              width="auto"
+              width={280}
             />
           </div>
           <h3
