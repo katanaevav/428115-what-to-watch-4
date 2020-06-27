@@ -14,10 +14,10 @@ exports[`Render App 1`] = `
       onMouseOver={[Function]}
     >
       <video
-        height={175}
+        height="175"
         poster="img/bohemian-rhapsody.jpg"
         preload="metadata"
-        width={280}
+        width="280"
       />
     </div>
     <h3
@@ -42,10 +42,10 @@ exports[`Render App 1`] = `
       onMouseOver={[Function]}
     >
       <video
-        height={175}
+        height="175"
         poster="img/moonrise-kingdom.jpg"
         preload="metadata"
-        width={280}
+        width="280"
       />
     </div>
     <h3
