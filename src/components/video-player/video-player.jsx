@@ -9,7 +9,7 @@ class VideoPlayer extends PureComponent {
   }
 
   componentWillUnmount() {
-    this._videoRef.current.video.src = ``;
+    this._videoRef.current.src = ``;
   }
 
   componentDidUpdate() {
