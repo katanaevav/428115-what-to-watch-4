@@ -1,33 +1,16 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
-const SmallVideoPlayerSize = {
-  HEIGHT: 175,
-  WIDTH: 280,
-};
-
 class SmallMovieCard extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._timer = null;
-
     this._movieTitleClickHandler = this._movieTitleClickHandler.bind(this);
-    this._movieMouseOverHandler = this._movieMouseOverHandler.bind(this);
-    this._movieMouseOutHandler = this._movieMouseOutHandler.bind(this);
   }
 
   _movieTitleClickHandler(evt) {
     evt.preventDefault();
     this.props.onMovieTitleClick(evt.currentTarget.parentElement.parentElement.dataset.key);
-  }
-
-  _movieMouseOverHandler() {
-    this.props.onMovieMouseOver();
-  }
-
-  _movieMouseOutHandler() {
-    this.props.onMovieMouseOut();
   }
 
   render() {
@@ -38,7 +21,7 @@ class SmallMovieCard extends PureComponent {
         className="small-movie-card catalog__movies-card"
         data-key={movieId}
       >
-        {renderPlayer(preview, movieSmallPoster, SmallVideoPlayerSize.HEIGHT, SmallVideoPlayerSize.WIDTH, this._movieMouseOverHandler, this._movieMouseOutHandler)}
+        {renderPlayer(preview, movieSmallPoster, this.props.onMovieMouseOver, this.props.onMovieMouseOut)}
         <h3 className="small-movie-card__title">
           <a
             className="small-movie-card__link"

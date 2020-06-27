@@ -2,11 +2,6 @@ import React from "react";
 import renderer from "react-test-renderer";
 import VideoPlayer from "./video-player.jsx";
 
-const SmallVideoPlayerSize = {
-  HEIGHT: 175,
-  WIDTH: 280,
-};
-
 const playerState = {
   IS_PLAYING: true,
   IS_PAUSED: false,
@@ -21,8 +16,6 @@ const Movie = {
 it(`Render video player`, () => {
   const tree = renderer.create(
       <VideoPlayer
-        playerHeight = {SmallVideoPlayerSize.HEIGHT}
-        playerWidth={SmallVideoPlayerSize.WIDTH}
         poster = {Movie.smallPoster}
         preview = {Movie.preview}
         volume = {playerState.VOLUME}

@@ -55,12 +55,12 @@ class VideoPlayer extends PureComponent {
   }
 
   render() {
-    const {poster, playerHeight, playerWidth} = this.props;
+    const {poster} = this.props;
 
     return (
       <video
-        width={playerWidth}
-        height={playerHeight}
+        width="280"
+        height="175"
         poster={poster}
         preload="metadata"
         ref={this._videoRef}
@@ -71,8 +71,6 @@ class VideoPlayer extends PureComponent {
 }
 
 VideoPlayer.propTypes = {
-  playerHeight: PropTypes.number.isRequired,
-  playerWidth: PropTypes.number.isRequired,
   poster: PropTypes.string.isRequired,
   preview: PropTypes.string.isRequired,
   volume: PropTypes.number.isRequired,

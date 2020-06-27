@@ -3,15 +3,33 @@ import PropTypes from "prop-types";
 import SmallMovieCard from "../small-movie-card/small-movie-card.jsx";
 import withVideoPlayer from "../../hoc/with-small-video-player/with-small-video-player.js";
 
+const DELAY_BEFORE_START_PLAYING = 1000;
+
 const SmallMovieCardWrapped = withVideoPlayer(SmallMovieCard);
 
 class MoviesList extends PureComponent {
   constructor(props) {
     super(props);
 
+    this.timer = null;
+
+    this.movieMouseOverHandler = this.movieMouseOverHandler.bind(this);
+    this.movieMouseOutHandler = this.movieMouseOutHandler.bind(this);
+
     this.state = {
       activeMovieTitle: ``,
     };
+  }
+
+  movieMouseOverHandler(action) {
+    this._timer = setTimeout(() => {
+      action();
+    }, DELAY_BEFORE_START_PLAYING);
+  }
+
+  movieMouseOutHandler(action) {
+    clearTimeout(this._timer);
+    action();
   }
 
   render() {
@@ -24,8 +42,8 @@ class MoviesList extends PureComponent {
         movieTitle={movie.title}
         movieSmallPoster={movie.smallPoster}
         preview={movie.preview}
-        onMovieMouseOver={() => {}}
-        onMovieMouseOut={() => {}}
+        onMovieMouseOver={this.movieMouseOverHandler}
+        onMovieMouseOut={this.movieMouseOutHandler}
         onMovieTitleClick={onMovieTitleClick}
       />
     ));
