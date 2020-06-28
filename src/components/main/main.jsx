@@ -8,7 +8,7 @@ class Main extends PureComponent {
   }
 
   render() {
-    const {promoMovieTitle, promoMovieGenre, promoMovieYear, movies, onMovieMouseOver, onMovieTitleClick} = this.props;
+    const {promoMovieTitle, promoMovieGenre, promoMovieYear, movies, onMovieTitleClick} = this.props;
 
     return (
       <React.Fragment>
@@ -106,7 +106,6 @@ class Main extends PureComponent {
 
             <MoviesList
               movies = {movies}
-              onMovieMouseOver = {onMovieMouseOver}
               onMovieTitleClick = {onMovieTitleClick}
             />
 
@@ -145,7 +144,6 @@ Main.propTypes = {
         genre: PropTypes.string.isRequired,
         year: PropTypes.number.isRequired,
       })).isRequired,
-  onMovieMouseOver: PropTypes.func.isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
 };
 

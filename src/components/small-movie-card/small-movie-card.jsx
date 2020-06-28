@@ -6,7 +6,6 @@ class SmallMovieCard extends PureComponent {
     super(props);
 
     this._movieTitleClickHandler = this._movieTitleClickHandler.bind(this);
-    this._movieCardMouseOverHandler = this._movieCardMouseOverHandler.bind(this);
   }
 
   _movieTitleClickHandler(evt) {
@@ -14,24 +13,15 @@ class SmallMovieCard extends PureComponent {
     this.props.onMovieTitleClick(evt.currentTarget.parentElement.parentElement.dataset.key);
   }
 
-  _movieCardMouseOverHandler(evt) {
-    this.props.onMovieMouseOver(evt.currentTarget.parentElement.dataset.key);
-  }
-
   render() {
-    const {movieId, movieTitle, movieSmallPoster} = this.props;
+    const {movieId, movieTitle, renderPlayer, movieSmallPoster, preview} = this.props;
 
     return (
       <article
         className="small-movie-card catalog__movies-card"
         data-key={movieId}
       >
-        <div
-          className="small-movie-card__image"
-          onMouseOver={this._movieCardMouseOverHandler}
-        >
-          <img src={movieSmallPoster} alt={movieTitle} width="280" height="175"/>
-        </div>
+        {renderPlayer(preview, movieSmallPoster, this.props.onMovieMouseOver, this.props.onMovieMouseOut)}
         <h3 className="small-movie-card__title">
           <a
             className="small-movie-card__link"
@@ -50,8 +40,11 @@ SmallMovieCard.propTypes = {
   movieId: PropTypes.number.isRequired,
   movieTitle: PropTypes.string.isRequired,
   movieSmallPoster: PropTypes.string.isRequired,
-  onMovieMouseOver: PropTypes.func.isRequired,
+  preview: PropTypes.string.isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
+  onMovieMouseOver: PropTypes.func.isRequired,
+  onMovieMouseOut: PropTypes.func.isRequired,
+  renderPlayer: PropTypes.func.isRequired,
 };
 
 export default SmallMovieCard;

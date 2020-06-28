@@ -6,8 +6,7 @@ const Movie = {
   id: 0,
   title: `Aviator`,
   smallPoster: `img/aviator.jpg`,
-  genre: `Drama`,
-  year: 2014,
+  preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
 };
 
 it(`Render small movie card`, () => {
@@ -17,8 +16,11 @@ it(`Render small movie card`, () => {
         movieId={Movie.id}
         movieTitle = {Movie.title}
         movieSmallPoster = {Movie.smallPoster}
+        preview = {Movie.preview}
         onMovieMouseOver = {() => {}}
+        onMovieMouseOut = {() => {}}
         onMovieTitleClick = {() => {}}
+        renderPlayer = {() => {}}
       />
   ).toJSON();
 
