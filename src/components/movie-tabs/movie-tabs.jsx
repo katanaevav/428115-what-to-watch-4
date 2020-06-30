@@ -10,7 +10,7 @@ class MovieTabs extends PureComponent {
     this._movieTabClickHandler = this._movieTabClickHandler.bind(this);
 
     this.state = {
-      selectedMovieTab: 1,
+      selectedMovieTab: 0,
     };
   }
 

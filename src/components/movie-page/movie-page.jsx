@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import MovieTabs from "../movie-tabs/movie-tabs.jsx";
+import MovieOverview from "../movie-overview/movie-overview.jsx";
 
 class MoviePage extends PureComponent {
   constructor(props) {
@@ -9,29 +10,6 @@ class MoviePage extends PureComponent {
 
   render() {
     const {id, title, genre, year, bigPoster, cover, ratingScore, ratingCount, director, starring, description} = this.props;
-
-    let ratingLevel;
-    const score = Number.parseFloat(ratingScore);
-
-    switch (true) {
-      case score < 3:
-        ratingLevel = `Bad`;
-        break;
-      case score >= 3 && score < 5:
-        ratingLevel = `Normal`;
-        break;
-      case score >= 5 && score < 8:
-        ratingLevel = `Good`;
-        break;
-      case score >= 8 && score < 10:
-        ratingLevel = `Very good`;
-        break;
-      case score === 10:
-        ratingLevel = `Awesome`;
-        break;
-      default:
-        ratingLevel = `N/A`;
-    }
 
     return (
       <React.Fragment>
@@ -94,37 +72,15 @@ class MoviePage extends PureComponent {
 
               <div className="movie-card__desc">
                 <MovieTabs />
-                {/* <nav className="movie-nav movie-card__nav">
-                  <ul className="movie-nav__list">
-                    <li className="movie-nav__item movie-nav__item--active">
-                      <a href="#" className="movie-nav__link">Overview</a>
-                    </li>
-                    <li className="movie-nav__item">
-                      <a href="#" className="movie-nav__link">Details</a>
-                    </li>
-                    <li className="movie-nav__item">
-                      <a href="#" className="movie-nav__link">Reviews</a>
-                    </li>
-                  </ul>
-                </nav> */}
 
-                <div className="movie-rating">
-                  <div className="movie-rating__score">{ratingScore}</div>
-                  <p className="movie-rating__meta">
-                    <span className="movie-rating__level">{ratingLevel}</span>
-                    <span className="movie-rating__count">{ratingCount} ratings</span>
-                  </p>
-                </div>
+                <MovieOverview
+                  ratingScore = {ratingScore}
+                  ratingCount = {ratingCount}
+                  description = {description}
+                  director = {director}
+                  starring = {starring}
+                />
 
-                <div className="movie-card__text">
-                  <p>{description}</p>
-
-                  {/* <p>Gustave prides himself on providing first-class service to the hotel&apos;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&apos;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.</p> */}
-
-                  <p className="movie-card__director"><strong>Director: {director}</strong></p>
-
-                  <p className="movie-card__starring"><strong>Starring: {starring}</strong></p>
-                </div>
               </div>
             </div>
           </div>
