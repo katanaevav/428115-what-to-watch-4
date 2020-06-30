@@ -26,7 +26,7 @@ class MovieOverview extends PureComponent {
   }
 
   render() {
-    const {ratingScore, ratingCount, description, director, starring} = this.props;
+    const {ratingScore, ratingCount, descriptions, directors, starrings} = this.props;
     const ratingLevel = this._getRatingLevel(ratingScore);
 
     return (
@@ -40,11 +40,11 @@ class MovieOverview extends PureComponent {
         </div>
 
         <div className="movie-card__text">
-          <p>{description}</p>
+          {descriptions.map((description) => (<p key={description}>{description}</p>))}
 
-          <p className="movie-card__director"><strong>Director: {director}</strong></p>
+          <p className="movie-card__director"><strong>Director: {directors.join(`, `)}</strong></p>
 
-          <p className="movie-card__starring"><strong>Starring: {starring}</strong></p>
+          <p className="movie-card__starring"><strong>Starring: {starrings.slice(0, 4).join(`, `)} and others</strong></p>
         </div>
       </React.Fragment>
     );
@@ -52,11 +52,11 @@ class MovieOverview extends PureComponent {
 }
 
 MovieOverview.propTypes = {
-  ratingScore: PropTypes.string.isReqired,
-  ratingCount: PropTypes.string.isReqired,
-  description: PropTypes.string.isReqired,
-  director: PropTypes.string.isReqired,
-  starring: PropTypes.string.isReqired,
+  ratingScore: PropTypes.string.isRequired,
+  ratingCount: PropTypes.number.isRequired,
+  descriptions: PropTypes.array.isRequired,
+  directors: PropTypes.array.isRequired,
+  starrings: PropTypes.array.isRequired,
 };
 
 export default MovieOverview;

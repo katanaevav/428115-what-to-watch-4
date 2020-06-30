@@ -9,7 +9,7 @@ class MoviePage extends PureComponent {
   }
 
   render() {
-    const {id, title, genre, year, bigPoster, cover, ratingScore, ratingCount, director, starring, description} = this.props;
+    const {id, title, genre, year, bigPoster, cover, ratingScore, ratingCount, directors, starrings, descriptions} = this.props;
 
     return (
       <React.Fragment>
@@ -76,9 +76,9 @@ class MoviePage extends PureComponent {
                 <MovieOverview
                   ratingScore = {ratingScore}
                   ratingCount = {ratingCount}
-                  description = {description}
-                  director = {director}
-                  starring = {starring}
+                  descriptions = {descriptions}
+                  directors = {directors}
+                  starrings = {starrings}
                 />
 
               </div>
@@ -157,9 +157,9 @@ MoviePage.propTypes = {
   cover: PropTypes.string.isRequired,
   ratingScore: PropTypes.string.isRequired,
   ratingCount: PropTypes.number.isRequired,
-  director: PropTypes.string.isRequired,
-  starring: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  directors: PropTypes.array.isRequired,
+  starrings: PropTypes.array.isRequired,
+  descriptions: PropTypes.array.isRequired,
 };
 
 export default MoviePage;
