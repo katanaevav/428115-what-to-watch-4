@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import MovieTabs from "../movie-tabs/movie-tabs.jsx";
 import MovieOverview from "../movie-overview/movie-overview.jsx";
+import MovieDetails from "../movie-details/movie-details.jsx";
 
 class MoviePage extends PureComponent {
   constructor(props) {
@@ -9,7 +10,7 @@ class MoviePage extends PureComponent {
   }
 
   render() {
-    const {id, title, genre, year, bigPoster, cover, ratingScore, ratingCount, directors, starrings, descriptions} = this.props;
+    const {id, title, genre, year, runTime, bigPoster, cover, ratingScore, ratingCount, directors, starrings, descriptions} = this.props;
 
     return (
       <React.Fragment>
@@ -77,6 +78,14 @@ class MoviePage extends PureComponent {
                   ratingScore = {ratingScore}
                   ratingCount = {ratingCount}
                   descriptions = {descriptions}
+                  directors = {directors}
+                  starrings = {starrings}
+                />
+
+                <MovieDetails
+                  runTime = {runTime}
+                  genre = {genre}
+                  year = {year}
                   directors = {directors}
                   starrings = {starrings}
                 />
@@ -153,6 +162,7 @@ MoviePage.propTypes = {
   title: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
+  runTime: PropTypes.string.isRequired,
   bigPoster: PropTypes.string.isRequired,
   cover: PropTypes.string.isRequired,
   ratingScore: PropTypes.string.isRequired,

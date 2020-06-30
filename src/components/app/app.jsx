@@ -87,6 +87,7 @@ class App extends PureComponent {
               title = {PromoMovie.title}
               genre = {PromoMovie.genre}
               year = {PromoMovie.year}
+              runTime = {PromoMovie.runTime}
               bigPoster = {PromoMovie.bigPoster}
               cover = {PromoMovie.cover}
               ratingScore = {PromoMovie.ratingScore}

@@ -3,6 +3,7 @@ export const PromoMovie = {
   smallPoster: `img/the-grand-budapest-hotel-poster.jpg`,
   genre: `Drama`,
   year: 2014,
+  runTime: `1h 35m`,
   bigPoster: `img/the-grand-budapest-hotel-poster.jpg`,
   cover: `img/bg-the-grand-budapest-hotel.jpg`,
   ratingScore: `8,9`,
