@@ -157,9 +157,9 @@ MoviePage.propTypes = {
   cover: PropTypes.string.isRequired,
   ratingScore: PropTypes.string.isRequired,
   ratingCount: PropTypes.number.isRequired,
-  directors: PropTypes.array.isRequired,
-  starrings: PropTypes.array.isRequired,
-  descriptions: PropTypes.array.isRequired,
+  directors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  starrings: PropTypes.arrayOf(PropTypes.string).isRequired,
+  descriptions: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default MoviePage;

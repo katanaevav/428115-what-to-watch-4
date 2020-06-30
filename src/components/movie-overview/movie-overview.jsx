@@ -54,9 +54,9 @@ class MovieOverview extends PureComponent {
 MovieOverview.propTypes = {
   ratingScore: PropTypes.string.isRequired,
   ratingCount: PropTypes.number.isRequired,
-  descriptions: PropTypes.array.isRequired,
-  directors: PropTypes.array.isRequired,
-  starrings: PropTypes.array.isRequired,
+  descriptions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  directors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  starrings: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default MovieOverview;
