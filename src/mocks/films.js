@@ -16,18 +16,21 @@ export const PromoMovie = {
   ],
   reviews: [
     {
+      id: 0,
       text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
       author: `Kate Muir`,
       date: `December 24, 2016`,
       mark: `4`,
     },
     {
+      id: 1,
       text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
       author: `Paula Fleri-Soler`,
       date: `December 15, 2018`,
       mark: `5`,
     },
     {
+      id: 2,
       text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
       author: `Amanda Greever`,
       date: `November 18, 2015`,
@@ -56,6 +59,29 @@ export default [
       `Ему принадлежали самые престижные казино Лас-Вегаса и он установил рекорд скоростных полетов, приобрел вторую по величине коммерческую авиакомпанию…`,
       `Деньги жгут сердце Хьюза, они не дают ему покоя, а душа его рвется ввысь. Только там, на высоте нескольких тысяч метров он счастлив по-настоящему. Только там, где все решает лишь мастерство пилота и Бог, ничто не ценится так дорого, как верность и честь.`
     ],
+    reviews: [
+      {
+        id: 0,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `December 24, 2016`,
+        mark: `4`,
+      },
+      {
+        id: 1,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
+        author: `Paula Fleri-Soler`,
+        date: `December 15, 2018`,
+        mark: `5`,
+      },
+      {
+        id: 2,
+        text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
+        author: `Amanda Greever`,
+        date: `November 18, 2015`,
+        mark: `3`,
+      },
+    ],
   },
   {
     id: 1,
@@ -77,24 +103,28 @@ export default [
     ],
     reviews: [
       {
+        id: 0,
         text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
         author: `Kate Muir`,
         date: `May 24, 2020`,
         mark: `4`,
       },
       {
+        id: 1,
         text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
         author: `Paula Fleri-Soler`,
         date: `December 15, 2018`,
         mark: `5`,
       },
       {
+        id: 2,
         text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
         author: `Amanda Greever`,
         date: `November 18, 2019`,
         mark: `4`,
       },
       {
+        id: 3,
         text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
         author: `Amanda Greever`,
         date: `November 18, 2019`,
@@ -123,18 +153,21 @@ export default [
     ],
     reviews: [
       {
+        id: 0,
         text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
         author: `Kate Muir`,
         date: `June 3, 2019`,
         mark: `5`,
       },
       {
+        id: 1,
         text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
         author: `Paula Fleri-Soler`,
         date: `December 11, 2019`,
         mark: `5`,
       },
       {
+        id: 2,
         text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
         author: `Amanda Greever`,
         date: `November 6, 2019`,
@@ -162,30 +195,35 @@ export default [
     ],
     reviews: [
       {
+        id: 0,
         text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
         author: `Kate Muir`,
         date: `December 10, 2016`,
         mark: `4`,
       },
       {
+        id: 1,
         text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
         author: `Paula Fleri-Soler`,
         date: `May 11, 2018`,
         mark: `5`,
       },
       {
+        id: 2,
         text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
         author: `Amanda Greever`,
         date: `November 12, 2017`,
         mark: `3`,
       },
       {
+        id: 3,
         text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
         author: `Amanda Greever`,
         date: `November 12, 2017`,
         mark: `3`,
       },
       {
+        id: 4,
         text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
         author: `Amanda Greever`,
         date: `November 12, 2017`,
@@ -212,18 +250,21 @@ export default [
     ],
     reviews: [
       {
+        id: 0,
         text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
         author: `Kate Muir`,
         date: `December 24, 2016`,
         mark: `4`,
       },
       {
+        id: 1,
         text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
         author: `Paula Fleri-Soler`,
         date: `December 15, 2018`,
         mark: `5`,
       },
       {
+        id: 2,
         text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
         author: `Amanda Greever`,
         date: `November 18, 2017`,
@@ -252,24 +293,28 @@ export default [
     ],
     reviews: [
       {
+        id: 0,
         text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
         author: `Kate Stone`,
         date: `April 11, 2018`,
         mark: `5`,
       },
       {
+        id: 1,
         text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
         author: `Paula Fleri-Soler`,
         date: `December 15, 2018`,
         mark: `4`,
       },
       {
+        id: 2,
         text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
         author: `Amanda Greever`,
         date: `November 18, 2015`,
         mark: `3`,
       },
       {
+        id: 3,
         text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
         author: `Paula Fleri-Soler`,
         date: `December 15, 2018`,
@@ -297,36 +342,42 @@ export default [
     ],
     reviews: [
       {
+        id: 0,
         text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
         author: `Roanna Muir`,
         date: `December 24, 2019`,
         mark: `5`,
       },
       {
+        id: 1,
         text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
         author: `Paula Bush`,
         date: `March 10, 2010`,
         mark: `5`,
       },
       {
+        id: 2,
         text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
         author: `Ronna May`,
         date: `September 10, 2019`,
         mark: `3`,
       },
       {
+        id: 3,
         text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
         author: `Roanna Muir`,
         date: `December 24, 2019`,
         mark: `5`,
       },
       {
+        id: 4,
         text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
         author: `Roanna Muir`,
         date: `December 24, 2019`,
         mark: `4`,
       },
       {
+        id: 5,
         text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
         author: `Roanna Muir`,
         date: `December 24, 2019`,
@@ -354,24 +405,28 @@ export default [
     ],
     reviews: [
       {
+        id: 0,
         text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
         author: `Kate Rainbow`,
         date: `May 20, 2017`,
         mark: `4`,
       },
       {
+        id: 1,
         text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
         author: `John Kit`,
         date: `December 15, 2019`,
         mark: `4`,
       },
       {
+        id: 2,
         text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
         author: `Amanda Summerville`,
         date: `November 15, 2018`,
         mark: `4`,
       },
       {
+        id: 3,
         text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
         author: `John Kit`,
         date: `December 15, 2019`,

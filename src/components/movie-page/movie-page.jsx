@@ -4,25 +4,36 @@ import MovieTabs from "../movie-tabs/movie-tabs.jsx";
 import MovieOverview from "../movie-overview/movie-overview.jsx";
 import MovieDetails from "../movie-details/movie-details.jsx";
 import MovieReviews from "../movie-reviews/movie-reviews.jsx";
+import MoviesList from "../movies-list/movies-list.jsx";
 
 const Tabs = {
   OVERVIEW_TAB: 0,
   DETAILS_TAB: 1,
   REVIEWS_TAB: 2,
 };
+
 class MoviePage extends PureComponent {
   constructor(props) {
     super(props);
 
+    this._movieTabClickHandler = this._movieTabClickHandler.bind(this);
+    this._renderTab = this._renderTab.bind(this);
+
     this.state = {
-      currentTab: Tabs.REVIEWS_TAB,
+      currentTab: Tabs.OVERVIEW_TAB,
     };
   }
 
-  _renderTab(tabIndex) {
-    const {genre, year, runTime, ratingScore, ratingCount, directors, starrings, descriptions, reviews} = this.props;
-    switch (tabIndex) {
+  _movieTabClickHandler(tabIndex) {
+    this.setState({
+      currentTab: parseInt(tabIndex, 10),
+    });
+  }
 
+  _renderTab() {
+    const {genre, year, runTime, ratingScore, ratingCount, directors, starrings, descriptions, reviews} = this.props;
+    const tabIndex = this.state.currentTab;
+    switch (tabIndex) {
       case Tabs.DETAILS_TAB:
         return (
           <MovieDetails
@@ -55,7 +66,7 @@ class MoviePage extends PureComponent {
   }
 
   render() {
-    const {id, title, genre, year, bigPoster, cover} = this.props;
+    const {id, title, genre, year, bigPoster, cover, similarMovies, onMovieTitleClick} = this.props;
 
     return (
       <React.Fragment>
@@ -117,8 +128,12 @@ class MoviePage extends PureComponent {
               </div>
 
               <div className="movie-card__desc">
-                <MovieTabs />
-                {this._renderTab(this.state.currentTab)}
+                <MovieTabs
+                  currentTab = {this.state.currentTab}
+                  onMovieTabClick = {this._movieTabClickHandler}
+                />
+
+                {this._renderTab()}
               </div>
             </div>
           </div>
@@ -128,43 +143,11 @@ class MoviePage extends PureComponent {
           <section className="catalog catalog--like-this">
             <h2 className="catalog__title">More like this</h2>
 
-            <div className="catalog__movies-list">
-              <article className="small-movie-card catalog__movies-card">
-                <div className="small-movie-card__image">
-                  <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a className="small-movie-card__link" href="movie-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-                </h3>
-              </article>
+            <MoviesList
+              movies = {similarMovies}
+              onMovieTitleClick = {onMovieTitleClick}
+            />
 
-              <article className="small-movie-card catalog__movies-card">
-                <div className="small-movie-card__image">
-                  <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175" />
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a className="small-movie-card__link" href="movie-page.html">Bohemian Rhapsody</a>
-                </h3>
-              </article>
-
-              <article className="small-movie-card catalog__movies-card">
-                <div className="small-movie-card__image">
-                  <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175" />
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a className="small-movie-card__link" href="movie-page.html">Macbeth</a>
-                </h3>
-              </article>
-
-              <article className="small-movie-card catalog__movies-card">
-                <div className="small-movie-card__image">
-                  <img src="img/aviator.jpg" alt="Aviator" width="280" height="175" />
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a className="small-movie-card__link" href="movie-page.html">Aviator</a>
-                </h3>
-              </article>
-            </div>
           </section>
 
           <footer className="page-footer">
@@ -200,6 +183,8 @@ MoviePage.propTypes = {
   starrings: PropTypes.arrayOf(PropTypes.string).isRequired,
   descriptions: PropTypes.arrayOf(PropTypes.string).isRequired,
   reviews: PropTypes.array.isRequired,
+  similarMovies: PropTypes.array.isRequired,
+  onMovieTitleClick: PropTypes.func.isRequired,
 };
 
 export default MoviePage;

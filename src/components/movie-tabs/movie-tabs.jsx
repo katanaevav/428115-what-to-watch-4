@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 const TABS_NAMES = [`Overview`, `Details`, `Reviews`];
 
@@ -8,21 +8,15 @@ class MovieTabs extends PureComponent {
     super(props);
 
     this._movieTabClickHandler = this._movieTabClickHandler.bind(this);
-
-    this.state = {
-      selectedMovieTab: 0,
-    };
   }
 
   _movieTabClickHandler(evt) {
     evt.preventDefault();
-    this.setState({
-      selectedMovieTab: evt.currentTarget.dataset.key,
-    });
+    this.props.onMovieTabClick(evt.currentTarget.dataset.key);
   }
 
   render() {
-    const {selectedMovieTab} = this.state;
+    const {currentTab} = this.props;
 
     return (
       <nav className="movie-nav movie-card__nav">
@@ -31,7 +25,7 @@ class MovieTabs extends PureComponent {
             TABS_NAMES.map((movieTab, index) => {
               return (
                 <li key={movieTab}
-                  className={`movie-nav__item ${parseInt(selectedMovieTab, 10) === index ? `movie-nav__item--active` : ``}`}>
+                  className={`movie-nav__item ${currentTab === index ? `movie-nav__item--active` : ``}`}>
                   <a
                     data-key={index}
                     href="#"
@@ -50,6 +44,9 @@ class MovieTabs extends PureComponent {
   }
 }
 
-MovieTabs.propTypes = {};
+MovieTabs.propTypes = {
+  currentTab: PropTypes.number.isRequired,
+  onMovieTabClick: PropTypes.func.isRequired,
+};
 
 export default MovieTabs;
