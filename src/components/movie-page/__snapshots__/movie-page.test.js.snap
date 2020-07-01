@@ -13,8 +13,8 @@ Array [
         className="movie-card__bg"
       >
         <img
-          alt="The Grand Budapest Hotel"
-          src="img/bg-the-grand-budapest-hotel.jpg"
+          alt="Aviator"
+          src="img/aviator.jpg"
         />
       </div>
       <h1
@@ -73,7 +73,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            The Grand Budapest Hotel
+            Aviator
           </h2>
           <p
             className="movie-card__meta"
@@ -86,7 +86,7 @@ Array [
             <span
               className="movie-card__year"
             >
-              2014
+              2004
             </span>
           </p>
           <div
@@ -146,9 +146,9 @@ Array [
           className="movie-card__poster movie-card__poster--big"
         >
           <img
-            alt="The Grand Budapest Hotel"
+            alt="Aviator"
             height="327"
-            src="img/the-grand-budapest-hotel-poster.jpg"
+            src="img/aviator.jpg"
             width="218"
           />
         </div>
@@ -166,27 +166,33 @@ Array [
               >
                 <a
                   className="movie-nav__link"
+                  data-key={0}
                   href="#"
+                  onClick={[Function]}
                 >
                   Overview
                 </a>
               </li>
               <li
-                className="movie-nav__item"
+                className="movie-nav__item "
               >
                 <a
                   className="movie-nav__link"
+                  data-key={1}
                   href="#"
+                  onClick={[Function]}
                 >
                   Details
                 </a>
               </li>
               <li
-                className="movie-nav__item"
+                className="movie-nav__item "
               >
                 <a
                   className="movie-nav__link"
+                  data-key={2}
                   href="#"
+                  onClick={[Function]}
                 >
                   Reviews
                 </a>
@@ -199,7 +205,7 @@ Array [
             <div
               className="movie-rating__score"
             >
-              8,9
+              7,5
             </div>
             <p
               className="movie-rating__meta"
@@ -207,12 +213,12 @@ Array [
               <span
                 className="movie-rating__level"
               >
-                Very good
+                Good
               </span>
               <span
                 className="movie-rating__count"
               >
-                240
+                121697
                  ratings
               </span>
             </p>
@@ -221,14 +227,20 @@ Array [
             className="movie-card__text"
           >
             <p>
-              Фильм рассказывает об увлекательных приключениях легендарного консьержа Густава и его юного друга, портье Зеро Мустафы. Сотрудники гостиницы становятся свидетелями кражи и поисков бесценных картин эпохи Возрождения, борьбы за огромное состояние богатой семьи и… драматических изменений в Европе между двумя кровопролитными войнами XX века.
+              Получив от отца небольшую фабрику, Говард Хьюз превратил ее в гигантское, фантастически прибыльное предприятие. Став владельцем огромной кинокомпании, он снял самый дорогой для своего времени фильм и покорил сердца прелестнейших голливудских актрис.
+            </p>
+            <p>
+              Ему принадлежали самые престижные казино Лас-Вегаса и он установил рекорд скоростных полетов, приобрел вторую по величине коммерческую авиакомпанию…
+            </p>
+            <p>
+              Деньги жгут сердце Хьюза, они не дают ему покоя, а душа его рвется ввысь. Только там, на высоте нескольких тысяч метров он счастлив по-настоящему. Только там, где все решает лишь мастерство пилота и Бог, ничто не ценится так дорого, как верность и честь.
             </p>
             <p
               className="movie-card__director"
             >
               <strong>
                 Director: 
-                Уэс Андерсон
+                Мартин Скорсезе
               </strong>
             </p>
             <p
@@ -236,7 +248,8 @@ Array [
             >
               <strong>
                 Starring: 
-                Рэйф Файнс, Тони Револори, Сирша Ронан, Эдриан Броуди, Уиллем Дефо, Эдвард Нортон, Матьё Амальрик, Харви Кейтель, Ф. Мюррэй Абрахам, Тильда Суинтон и другие
+                Леонардо ДиКаприо, Кейт Бланшетт, Мэтт Росс, Джон Си Райли
+                 and others
               </strong>
             </p>
           </div>
@@ -260,14 +273,17 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
+          data-key={0}
         >
           <div
             className="small-movie-card__image"
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
           >
-            <img
-              alt="Fantastic Beasts: The Crimes of Grindelwald"
+            <video
               height="175"
-              src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+              poster="img/aviator.jpg"
+              preload="metadata"
               width="280"
             />
           </div>
@@ -277,80 +293,37 @@ Array [
             <a
               className="small-movie-card__link"
               href="movie-page.html"
-            >
-              Fantastic Beasts: The Crimes of Grindelwald
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Bohemian Rhapsody"
-              height="175"
-              src="img/bohemian-rhapsody.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Bohemian Rhapsody
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Macbeth"
-              height="175"
-              src="img/macbeth.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-            >
-              Macbeth
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Aviator"
-              height="175"
-              src="img/aviator.jpg"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
+              onClick={[Function]}
             >
               Aviator
+            </a>
+          </h3>
+        </article>
+        <article
+          className="small-movie-card catalog__movies-card"
+          data-key={1}
+        >
+          <div
+            className="small-movie-card__image"
+            onMouseOut={[Function]}
+            onMouseOver={[Function]}
+          >
+            <video
+              height="175"
+              poster="img/bohemian-rhapsody.jpg"
+              preload="metadata"
+              width="280"
+            />
+          </div>
+          <h3
+            className="small-movie-card__title"
+          >
+            <a
+              className="small-movie-card__link"
+              href="movie-page.html"
+              onClick={[Function]}
+            >
+              Bohemian rhapsody
             </a>
           </h3>
         </article>

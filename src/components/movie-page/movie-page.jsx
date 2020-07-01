@@ -1,36 +1,72 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import MovieTabs from "../movie-tabs/movie-tabs.jsx";
+import MovieOverview from "../movie-overview/movie-overview.jsx";
+import MovieDetails from "../movie-details/movie-details.jsx";
+import MovieReviews from "../movie-reviews/movie-reviews.jsx";
+import MoviesList from "../movies-list/movies-list.jsx";
+
+const Tabs = {
+  OVERVIEW_TAB: 0,
+  DETAILS_TAB: 1,
+  REVIEWS_TAB: 2,
+};
 
 class MoviePage extends PureComponent {
   constructor(props) {
     super(props);
+
+    this._movieTabClickHandler = this._movieTabClickHandler.bind(this);
+    this._renderTab = this._renderTab.bind(this);
+
+    this.state = {
+      currentTab: Tabs.OVERVIEW_TAB,
+    };
+  }
+
+  _movieTabClickHandler(tabIndex) {
+    this.setState({
+      currentTab: parseInt(tabIndex, 10),
+    });
+  }
+
+  _renderTab() {
+    const {genre, year, runTime, ratingScore, ratingCount, directors, starrings, descriptions, reviews} = this.props;
+    const tabIndex = this.state.currentTab;
+    switch (tabIndex) {
+      case Tabs.DETAILS_TAB:
+        return (
+          <MovieDetails
+            runTime = {runTime}
+            genre = {genre}
+            year = {year}
+            directors = {directors}
+            starrings = {starrings}
+          />
+        );
+
+      case Tabs.REVIEWS_TAB:
+        return (
+          <MovieReviews
+            reviews = {reviews}
+          />
+        );
+
+      default:
+        return (
+          <MovieOverview
+            ratingScore = {ratingScore}
+            ratingCount = {ratingCount}
+            descriptions = {descriptions}
+            directors = {directors}
+            starrings = {starrings}
+          />
+        );
+    }
   }
 
   render() {
-    const {id, title, genre, year, bigPoster, cover, ratingScore, ratingCount, director, starring, description} = this.props;
-
-    let ratingLevel;
-    const score = Number.parseFloat(ratingScore);
-
-    switch (true) {
-      case score < 3:
-        ratingLevel = `Bad`;
-        break;
-      case score >= 3 && score < 5:
-        ratingLevel = `Normal`;
-        break;
-      case score >= 5 && score < 8:
-        ratingLevel = `Good`;
-        break;
-      case score >= 8 && score < 10:
-        ratingLevel = `Very good`;
-        break;
-      case score === 10:
-        ratingLevel = `Awesome`;
-        break;
-      default:
-        ratingLevel = `N/A`;
-    }
+    const {id, title, genre, year, bigPoster, cover, similarMovies, onMovieTitleClick} = this.props;
 
     return (
       <React.Fragment>
@@ -92,37 +128,12 @@ class MoviePage extends PureComponent {
               </div>
 
               <div className="movie-card__desc">
-                <nav className="movie-nav movie-card__nav">
-                  <ul className="movie-nav__list">
-                    <li className="movie-nav__item movie-nav__item--active">
-                      <a href="#" className="movie-nav__link">Overview</a>
-                    </li>
-                    <li className="movie-nav__item">
-                      <a href="#" className="movie-nav__link">Details</a>
-                    </li>
-                    <li className="movie-nav__item">
-                      <a href="#" className="movie-nav__link">Reviews</a>
-                    </li>
-                  </ul>
-                </nav>
+                <MovieTabs
+                  currentTab = {this.state.currentTab}
+                  onMovieTabClick = {this._movieTabClickHandler}
+                />
 
-                <div className="movie-rating">
-                  <div className="movie-rating__score">{ratingScore}</div>
-                  <p className="movie-rating__meta">
-                    <span className="movie-rating__level">{ratingLevel}</span>
-                    <span className="movie-rating__count">{ratingCount} ratings</span>
-                  </p>
-                </div>
-
-                <div className="movie-card__text">
-                  <p>{description}</p>
-
-                  {/* <p>Gustave prides himself on providing first-class service to the hotel&apos;s guests, including satisfying the sexual needs of the many elderly women who stay there. When one of Gustave&apos;s lovers dies mysteriously, Gustave finds himself the recipient of a priceless painting and the chief suspect in her murder.</p> */}
-
-                  <p className="movie-card__director"><strong>Director: {director}</strong></p>
-
-                  <p className="movie-card__starring"><strong>Starring: {starring}</strong></p>
-                </div>
+                {this._renderTab()}
               </div>
             </div>
           </div>
@@ -132,43 +143,11 @@ class MoviePage extends PureComponent {
           <section className="catalog catalog--like-this">
             <h2 className="catalog__title">More like this</h2>
 
-            <div className="catalog__movies-list">
-              <article className="small-movie-card catalog__movies-card">
-                <div className="small-movie-card__image">
-                  <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a className="small-movie-card__link" href="movie-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-                </h3>
-              </article>
+            <MoviesList
+              movies = {similarMovies}
+              onMovieTitleClick = {onMovieTitleClick}
+            />
 
-              <article className="small-movie-card catalog__movies-card">
-                <div className="small-movie-card__image">
-                  <img src="img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175" />
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a className="small-movie-card__link" href="movie-page.html">Bohemian Rhapsody</a>
-                </h3>
-              </article>
-
-              <article className="small-movie-card catalog__movies-card">
-                <div className="small-movie-card__image">
-                  <img src="img/macbeth.jpg" alt="Macbeth" width="280" height="175" />
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a className="small-movie-card__link" href="movie-page.html">Macbeth</a>
-                </h3>
-              </article>
-
-              <article className="small-movie-card catalog__movies-card">
-                <div className="small-movie-card__image">
-                  <img src="img/aviator.jpg" alt="Aviator" width="280" height="175" />
-                </div>
-                <h3 className="small-movie-card__title">
-                  <a className="small-movie-card__link" href="movie-page.html">Aviator</a>
-                </h3>
-              </article>
-            </div>
           </section>
 
           <footer className="page-footer">
@@ -195,13 +174,17 @@ MoviePage.propTypes = {
   title: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
+  runTime: PropTypes.string.isRequired,
   bigPoster: PropTypes.string.isRequired,
   cover: PropTypes.string.isRequired,
   ratingScore: PropTypes.string.isRequired,
   ratingCount: PropTypes.number.isRequired,
-  director: PropTypes.string.isRequired,
-  starring: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
+  directors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  starrings: PropTypes.arrayOf(PropTypes.string).isRequired,
+  descriptions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  reviews: PropTypes.array.isRequired,
+  similarMovies: PropTypes.array.isRequired,
+  onMovieTitleClick: PropTypes.func.isRequired,
 };
 
 export default MoviePage;

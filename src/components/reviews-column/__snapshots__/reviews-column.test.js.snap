@@ -1,0 +1,107 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render App 1`] = `
+<div
+  className="movie-card__reviews-col"
+>
+  <div
+    className="review"
+  >
+    <blockquote
+      className="review__quote"
+    >
+      <p
+        className="review__text"
+      >
+        Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.
+      </p>
+      <footer
+        className="review__details"
+      >
+        <cite
+          className="review__author"
+        >
+          Kate Muir
+        </cite>
+        <time
+          className="review__date"
+          dateTime="2019-5-3T0:0"
+        >
+          June 3, 2019
+        </time>
+      </footer>
+    </blockquote>
+    <div
+      className="review__rating"
+    >
+      5
+    </div>
+  </div>
+  <div
+    className="review"
+  >
+    <blockquote
+      className="review__quote"
+    >
+      <p
+        className="review__text"
+      >
+        It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.
+      </p>
+      <footer
+        className="review__details"
+      >
+        <cite
+          className="review__author"
+        >
+          Paula Fleri-Soler
+        </cite>
+        <time
+          className="review__date"
+          dateTime="2019-11-11T0:0"
+        >
+          December 11, 2019
+        </time>
+      </footer>
+    </blockquote>
+    <div
+      className="review__rating"
+    >
+      5
+    </div>
+  </div>
+  <div
+    className="review"
+  >
+    <blockquote
+      className="review__quote"
+    >
+      <p
+        className="review__text"
+      >
+        I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.
+      </p>
+      <footer
+        className="review__details"
+      >
+        <cite
+          className="review__author"
+        >
+          Amanda Greever
+        </cite>
+        <time
+          className="review__date"
+          dateTime="2019-10-6T0:0"
+        >
+          November 6, 2019
+        </time>
+      </footer>
+    </blockquote>
+    <div
+      className="review__rating"
+    >
+      4
+    </div>
+  </div>
+</div>
+`;

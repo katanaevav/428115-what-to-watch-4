@@ -10,6 +10,8 @@ const Screens = {
   MOVIE_PAGE_SCREEN: 1,
 };
 
+const MAX_SIMILAR_MOVIES_COUNT = 4;
+
 class App extends PureComponent {
   constructor(props) {
     super(props);
@@ -44,20 +46,25 @@ class App extends PureComponent {
 
     switch (currentPage) {
       case Screens.MOVIE_PAGE_SCREEN:
-        const {id, title, genre, year, bigPoster, cover, ratingScore, ratingCount, director, starring, description} = this._getMovieById(selectedMovieId);
+        const {id, title, genre, year, bigPoster, cover, ratingScore, ratingCount, directors, starrings, descriptions, reviews} = this._getMovieById(selectedMovieId);
+        const similarMovies = movies.filter((movie) => (movie.genre === genre) && (movie.id !== id)).slice(0, MAX_SIMILAR_MOVIES_COUNT);
         return (
           <MoviePage
             id = {id}
             title = {title}
             genre = {genre}
             year = {year}
+            runTime = {PromoMovie.runTime}
             bigPoster = {bigPoster}
             cover = {cover}
             ratingScore = {ratingScore}
             ratingCount = {ratingCount}
-            director = {director}
-            starring = {starring}
-            description = {description}
+            directors = {directors}
+            starrings = {starrings}
+            descriptions = {descriptions}
+            reviews = {reviews}
+            similarMovies = {similarMovies}
+            onMovieTitleClick = {this._movieTitleClickHandler}
           />
         );
 
@@ -87,13 +94,17 @@ class App extends PureComponent {
               title = {PromoMovie.title}
               genre = {PromoMovie.genre}
               year = {PromoMovie.year}
+              runTime = {PromoMovie.runTime}
               bigPoster = {PromoMovie.bigPoster}
               cover = {PromoMovie.cover}
               ratingScore = {PromoMovie.ratingScore}
               ratingCount = {PromoMovie.ratingCount}
-              director = {PromoMovie.director}
-              starring = {PromoMovie.starring}
-              description = {PromoMovie.description}
+              directors = {PromoMovie.directors}
+              starrings = {PromoMovie.starrings}
+              descriptions = {PromoMovie.descriptions}
+              reviews = {PromoMovie.reviews}
+              similarMovies = {this.props.movies}
+              onMovieTitleClick = {this._movieTitleClickHandler}
             />
           </Route>
         </Switch>
