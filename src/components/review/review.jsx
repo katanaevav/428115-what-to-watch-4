@@ -1,9 +1,38 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
+export const MONTH_NAMES = [
+  `January`,
+  `February`,
+  `March`,
+  `April`,
+  `May`,
+  `June`,
+  `July`,
+  `August`,
+  `September`,
+  `October`,
+  `November`,
+  `December`,
+];
+
 class Review extends PureComponent {
   constructor(props) {
     super(props);
+  }
+
+  _setDateToHTMLFormat(dateInInt) {
+    const date = new Date(dateInInt);
+    return (
+      `${date.getFullYear()}-${date.getMonth()}-${date.getDate()}T${date.getHours()}:${date.getMinutes()}`
+    );
+  }
+
+  _setDateToMonthDDYYYYFormat(dateInInt) {
+    const date = new Date(dateInInt);
+    return (
+      `${MONTH_NAMES[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`
+    );
   }
 
   render() {
@@ -16,7 +45,7 @@ class Review extends PureComponent {
 
           <footer className="review__details">
             <cite className="review__author">{author}</cite>
-            <time className="review__date" dateTime="2016-12-24">{date}</time>
+            <time className="review__date" dateTime={this._setDateToHTMLFormat(date)}>{this._setDateToMonthDDYYYYFormat(date)}</time>
           </footer>
         </blockquote>
 
@@ -29,7 +58,7 @@ class Review extends PureComponent {
 Review.propTypes = {
   text: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
-  date: PropTypes.string.isRequired,
+  date: PropTypes.number.isRequired,
   mark: PropTypes.string.isRequired,
 };
 
