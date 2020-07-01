@@ -44,13 +44,14 @@ class App extends PureComponent {
 
     switch (currentPage) {
       case Screens.MOVIE_PAGE_SCREEN:
-        const {id, title, genre, year, bigPoster, cover, ratingScore, ratingCount, directors, starrings, descriptions} = this._getMovieById(selectedMovieId);
+        const {id, title, genre, year, bigPoster, cover, ratingScore, ratingCount, directors, starrings, descriptions, reviews} = this._getMovieById(selectedMovieId);
         return (
           <MoviePage
             id = {id}
             title = {title}
             genre = {genre}
             year = {year}
+            runTime = {PromoMovie.runTime}
             bigPoster = {bigPoster}
             cover = {cover}
             ratingScore = {ratingScore}
@@ -58,6 +59,7 @@ class App extends PureComponent {
             directors = {directors}
             starrings = {starrings}
             descriptions = {descriptions}
+            reviews = {reviews}
           />
         );
 
@@ -95,6 +97,7 @@ class App extends PureComponent {
               directors = {PromoMovie.directors}
               starrings = {PromoMovie.starrings}
               descriptions = {PromoMovie.descriptions}
+              reviews = {PromoMovie.reviews}
             />
           </Route>
         </Switch>

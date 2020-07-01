@@ -3,14 +3,59 @@ import PropTypes from "prop-types";
 import MovieTabs from "../movie-tabs/movie-tabs.jsx";
 import MovieOverview from "../movie-overview/movie-overview.jsx";
 import MovieDetails from "../movie-details/movie-details.jsx";
+import MovieReviews from "../movie-reviews/movie-reviews.jsx";
 
+const Tabs = {
+  OVERVIEW_TAB: 0,
+  DETAILS_TAB: 1,
+  REVIEWS_TAB: 2,
+};
 class MoviePage extends PureComponent {
   constructor(props) {
     super(props);
+
+    this.state = {
+      currentTab: Tabs.REVIEWS_TAB,
+    };
+  }
+
+  _renderTab(tabIndex) {
+    const {genre, year, runTime, ratingScore, ratingCount, directors, starrings, descriptions, reviews} = this.props;
+    switch (tabIndex) {
+
+      case Tabs.DETAILS_TAB:
+        return (
+          <MovieDetails
+            runTime = {runTime}
+            genre = {genre}
+            year = {year}
+            directors = {directors}
+            starrings = {starrings}
+          />
+        );
+
+      case Tabs.REVIEWS_TAB:
+        return (
+          <MovieReviews
+            reviews = {reviews}
+          />
+        );
+
+      default:
+        return (
+          <MovieOverview
+            ratingScore = {ratingScore}
+            ratingCount = {ratingCount}
+            descriptions = {descriptions}
+            directors = {directors}
+            starrings = {starrings}
+          />
+        );
+    }
   }
 
   render() {
-    const {id, title, genre, year, runTime, bigPoster, cover, ratingScore, ratingCount, directors, starrings, descriptions} = this.props;
+    const {id, title, genre, year, bigPoster, cover} = this.props;
 
     return (
       <React.Fragment>
@@ -73,23 +118,7 @@ class MoviePage extends PureComponent {
 
               <div className="movie-card__desc">
                 <MovieTabs />
-
-                <MovieOverview
-                  ratingScore = {ratingScore}
-                  ratingCount = {ratingCount}
-                  descriptions = {descriptions}
-                  directors = {directors}
-                  starrings = {starrings}
-                />
-
-                <MovieDetails
-                  runTime = {runTime}
-                  genre = {genre}
-                  year = {year}
-                  directors = {directors}
-                  starrings = {starrings}
-                />
-
+                {this._renderTab(this.state.currentTab)}
               </div>
             </div>
           </div>
@@ -170,6 +199,7 @@ MoviePage.propTypes = {
   directors: PropTypes.arrayOf(PropTypes.string).isRequired,
   starrings: PropTypes.arrayOf(PropTypes.string).isRequired,
   descriptions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  reviews: PropTypes.array.isRequired,
 };
 
 export default MoviePage;

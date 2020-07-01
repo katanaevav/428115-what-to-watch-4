@@ -14,6 +14,26 @@ export const PromoMovie = {
     `Фильм рассказывает об увлекательных приключениях легендарного консьержа Густава и его юного друга, портье Зеро Мустафы.`,
     `Сотрудники гостиницы становятся свидетелями кражи и поисков бесценных картин эпохи Возрождения, борьбы за огромное состояние богатой семьи и… драматических изменений в Европе между двумя кровопролитными войнами XX века.`
   ],
+  reviews: [
+    {
+      text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+      author: `Kate Muir`,
+      date: `December 24, 2016`,
+      mark: `4`,
+    },
+    {
+      text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
+      author: `Paula Fleri-Soler`,
+      date: `December 15, 2018`,
+      mark: `5`,
+    },
+    {
+      text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
+      author: `Amanda Greever`,
+      date: `November 18, 2015`,
+      mark: `3`,
+    },
+  ],
 };
 
 export default [
@@ -55,6 +75,32 @@ export default [
       `Чествование группы Queen, их музыки и их выдающегося вокалиста Фредди Меркьюри, который бросил вызов стереотипам и победил условности, чтобы стать одним из самых любимых артистов на планете.`,
       `Фильм прослеживает головокружительный путь группы к успеху благодаря их культовым песням и революционному звуку, практически распад коллектива, поскольку образ жизни Меркьюри выходит из-под контроля, и их триумфальное воссоединение накануне концерта Live Aid, ставшим одним из величайших выступлений в истории рок-музыки.`,
     ],
+    reviews: [
+      {
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `May 24, 2020`,
+        mark: `4`,
+      },
+      {
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
+        author: `Paula Fleri-Soler`,
+        date: `December 15, 2018`,
+        mark: `5`,
+      },
+      {
+        text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
+        author: `Amanda Greever`,
+        date: `November 18, 2019`,
+        mark: `4`,
+      },
+      {
+        text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
+        author: `Amanda Greever`,
+        date: `November 18, 2019`,
+        mark: `4`,
+      },
+    ],
   },
   {
     id: 2,
@@ -75,6 +121,26 @@ export default [
       `За 5 лет до начала фильма его направили с заданием в Мозамбик, но миссия пошла ужасно плохо. С тех пор он живёт в пещере в горах Тибета, прячась ото всех из-за стыда, сожалений и обвинений в провале миссии.`,
       `Фильм начинается, когда герой находится на крайне низком моральном уровне, пока ему не дают ещё один шанс. Британская разведка МИ-7 снова нуждается в нём и ей надо вернуть агента, чтобы тот сорвал заговор группы киллеров, планирующих убить китайского премьер-министра.`,
     ],
+    reviews: [
+      {
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `June 3, 2019`,
+        mark: `5`,
+      },
+      {
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
+        author: `Paula Fleri-Soler`,
+        date: `December 11, 2019`,
+        mark: `5`,
+      },
+      {
+        text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
+        author: `Amanda Greever`,
+        date: `November 6, 2019`,
+        mark: `4`,
+      },
+    ],
   },
   {
     id: 3,
@@ -94,6 +160,38 @@ export default [
       `60-е годы XX века. Пара влюблённых подростков, живущих на острове в Новой Англии, убегает из-под присмотра взрослых.`,
       `Сэм Шакаски — бойскаут, сирота, от которого отказались приемные родители, из-за своего непростого характера ставший изгоем среди других бойскаутов, и Сьюзи Бишоп — замкнутая двенадцатилетняя неуравновешенная девочка, живущая мечтами о волшебных мирах. После обнаружения пропажи местный шериф начинает расследование, а вожатый лагеря бойскаутов организует поисковый отряд.`,
     ],
+    reviews: [
+      {
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `December 10, 2016`,
+        mark: `4`,
+      },
+      {
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
+        author: `Paula Fleri-Soler`,
+        date: `May 11, 2018`,
+        mark: `5`,
+      },
+      {
+        text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
+        author: `Amanda Greever`,
+        date: `November 12, 2017`,
+        mark: `3`,
+      },
+      {
+        text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
+        author: `Amanda Greever`,
+        date: `November 12, 2017`,
+        mark: `3`,
+      },
+      {
+        text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
+        author: `Amanda Greever`,
+        date: `November 12, 2017`,
+        mark: `5`,
+      },
+    ],
   },
   {
     id: 4,
@@ -111,6 +209,26 @@ export default [
     starrings: [`Томми Ли Джонс`, `Джош Бролин`, `Хавьер Бардем`, `Келли Макдоналд`, `Вуди Харрельсон`, `Бет Грант`, `Гаррет Диллахант`, `Тесс Харпер`, `Бэри Корбинр`, `Стивен Рут`],
     descriptions: [
       `Обычный работяга обнаруживает в пустыне гору трупов, грузовик, набитый героином, и соблазнительную сумму в два миллиона долларов наличными. Он решает взять деньги себе, и результатом становится волна насилия, которую не может остановить вся полиция Западного Техаса.`,
+    ],
+    reviews: [
+      {
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: `December 24, 2016`,
+        mark: `4`,
+      },
+      {
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
+        author: `Paula Fleri-Soler`,
+        date: `December 15, 2018`,
+        mark: `5`,
+      },
+      {
+        text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
+        author: `Amanda Greever`,
+        date: `November 18, 2017`,
+        mark: `2`,
+      },
     ],
   },
   {
@@ -132,6 +250,32 @@ export default [
       `Орландо привлекает внимание стареющей королевы Елизаветы I, и ее величество приказывает ему не взрослеть и не стареть. Орландо подчиняется, необъяснимым образом оставаясь розовощеким красавцем, несмотря на то, что проходят века. Романтик до мозга костей, Орландо мучительно страдает от безответной любви к очаровательной русской княжне Саше; когда он находит ее фальшивой, то выпрашивает на долгий срок должность посла Англии в Аравии.`,
       `В один прекрасный день Орландо засыпает глубоким сном, а когда просыпается, то обнаруживает в себе чудесным образом произошедшую перемену пола. Приключения Орландо продолжаются, и она провожает столетия в развлечениях, отказываясь вести себя иначе, так как теперь он — женщина.`,
     ],
+    reviews: [
+      {
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        author: `Kate Stone`,
+        date: `April 11, 2018`,
+        mark: `5`,
+      },
+      {
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
+        author: `Paula Fleri-Soler`,
+        date: `December 15, 2018`,
+        mark: `4`,
+      },
+      {
+        text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
+        author: `Amanda Greever`,
+        date: `November 18, 2015`,
+        mark: `3`,
+      },
+      {
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
+        author: `Paula Fleri-Soler`,
+        date: `December 15, 2018`,
+        mark: `4`,
+      },
+    ],
   },
   {
     id: 6,
@@ -151,6 +295,44 @@ export default [
       `Двое бандитов Винсент Вега и Джулс Винфилд ведут философские беседы в перерывах между разборками и решением проблем с должниками криминального босса Марселласа Уоллеса.`,
       `В первой истории Винсент проводит незабываемый вечер с женой Марселласа Мией. Во второй рассказывается о боксёре Бутче Кулидже, купленном Уоллесом, чтобы сдать бой. В третьей истории Винсент и Джулс по нелепой случайности попадают в неприятности.`,
     ],
+    reviews: [
+      {
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        author: `Roanna Muir`,
+        date: `December 24, 2019`,
+        mark: `5`,
+      },
+      {
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
+        author: `Paula Bush`,
+        date: `March 10, 2010`,
+        mark: `5`,
+      },
+      {
+        text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
+        author: `Ronna May`,
+        date: `September 10, 2019`,
+        mark: `3`,
+      },
+      {
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        author: `Roanna Muir`,
+        date: `December 24, 2019`,
+        mark: `5`,
+      },
+      {
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        author: `Roanna Muir`,
+        date: `December 24, 2019`,
+        mark: `4`,
+      },
+      {
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        author: `Roanna Muir`,
+        date: `December 24, 2019`,
+        mark: `5`,
+      },
+    ],
   },
   {
     id: 7,
@@ -169,6 +351,32 @@ export default [
     descriptions: [
       `Никто не поверил бы в начале 21 столетия, что за всем происходящим на Земле зорко и внимательно следят существа более развитые, чем человек; что в то время, как люди занимались своими делами, их исследовали и изучали.`,
       `С бесконечным самодовольством сновали люди по всему земному шару, занятые своими делишками, уверенные в своей власти над материей. А между тем через бездну пространства на Землю смотрели глазами полными зависти, существа с высокоразвитым, холодным, бесчувственным интеллектом, и медленно, но верно вырабатывали свои враждебные нам планы…`,
+    ],
+    reviews: [
+      {
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        author: `Kate Rainbow`,
+        date: `May 20, 2017`,
+        mark: `4`,
+      },
+      {
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
+        author: `John Kit`,
+        date: `December 15, 2019`,
+        mark: `4`,
+      },
+      {
+        text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
+        author: `Amanda Summerville`,
+        date: `November 15, 2018`,
+        mark: `4`,
+      },
+      {
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
+        author: `John Kit`,
+        date: `December 15, 2019`,
+        mark: `4`,
+      },
     ],
   }
 ];
