@@ -3,7 +3,7 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
-import {PromoMovie} from "../../mocks/films.js";
+import {connect} from "react-redux";
 
 const Screens = {
   MAIN_SCREEN: 0,
@@ -41,12 +41,13 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {promoMovieTitle, promoMovieGenre, promoMovieYear, movies} = this.props;
+    const {promoMovie, movies} = this.props;
+    const {title: promoMovieTitle, genre: promoMovieGenre, year: promoMovieYear} = promoMovie;
     const {selectedMovieId, currentPage} = this.state;
 
     switch (currentPage) {
       case Screens.MOVIE_PAGE_SCREEN:
-        const {id, title, genre, year, bigPoster, cover, ratingScore, ratingCount, directors, starrings, descriptions, reviews} = this._getMovieById(selectedMovieId);
+        const {id, title, genre, year, runTime, bigPoster, cover, ratingScore, ratingCount, directors, starrings, descriptions, reviews} = this._getMovieById(selectedMovieId);
         const similarMovies = movies.filter((movie) => (movie.genre === genre) && (movie.id !== id)).slice(0, MAX_SIMILAR_MOVIES_COUNT);
         return (
           <MoviePage
@@ -54,7 +55,7 @@ class App extends PureComponent {
             title = {title}
             genre = {genre}
             year = {year}
-            runTime = {PromoMovie.runTime}
+            runTime = {runTime}
             bigPoster = {bigPoster}
             cover = {cover}
             ratingScore = {ratingScore}
@@ -82,6 +83,7 @@ class App extends PureComponent {
   }
 
   render() {
+    const {promoMovie} = this.props;
     return (
       <BrowserRouter>
         <Switch>
@@ -91,18 +93,18 @@ class App extends PureComponent {
           <Route exact path="/dev-film">
             <MoviePage
               id = {0}
-              title = {PromoMovie.title}
-              genre = {PromoMovie.genre}
-              year = {PromoMovie.year}
-              runTime = {PromoMovie.runTime}
-              bigPoster = {PromoMovie.bigPoster}
-              cover = {PromoMovie.cover}
-              ratingScore = {PromoMovie.ratingScore}
-              ratingCount = {PromoMovie.ratingCount}
-              directors = {PromoMovie.directors}
-              starrings = {PromoMovie.starrings}
-              descriptions = {PromoMovie.descriptions}
-              reviews = {PromoMovie.reviews}
+              title = {promoMovie.title}
+              genre = {promoMovie.genre}
+              year = {promoMovie.year}
+              runTime = {promoMovie.runTime}
+              bigPoster = {promoMovie.bigPoster}
+              cover = {promoMovie.cover}
+              ratingScore = {promoMovie.ratingScore}
+              ratingCount = {promoMovie.ratingCount}
+              directors = {promoMovie.directors}
+              starrings = {promoMovie.starrings}
+              descriptions = {promoMovie.descriptions}
+              reviews = {promoMovie.reviews}
               similarMovies = {this.props.movies}
               onMovieTitleClick = {this._movieTitleClickHandler}
             />
@@ -115,9 +117,7 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
-  promoMovieTitle: PropTypes.string.isRequired,
-  promoMovieGenre: PropTypes.string.isRequired,
-  promoMovieYear: PropTypes.number.isRequired,
+  promoMovie: PropTypes.shape().isRequired,
   movies: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string.isRequired,
@@ -125,6 +125,14 @@ App.propTypes = {
         genre: PropTypes.string.isRequired,
         year: PropTypes.number.isRequired,
       })).isRequired,
+  genres: PropTypes.array.isRequired,
 };
 
-export default App;
+const mapStateToProps = (state) => ({
+  promoMovie: state.PromoMovie,
+  movies: state.movies,
+  genres: state.genres,
+});
+
+export {App};
+export default connect(mapStateToProps)(App);
