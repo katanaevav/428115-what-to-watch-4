@@ -1,14 +1,28 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import MoviesList from "../movies-list/movies-list.jsx";
+import GenreList from "../genre-list/genre-list.jsx";
+import {NO_FILTER} from "../../const.js";
 
 class Main extends PureComponent {
   constructor(props) {
     super(props);
+
+    this._genreClickHandler = this._genreClickHandler.bind(this);
+
+    this.state = {
+      currentGenre: NO_FILTER,
+    };
+  }
+
+  _genreClickHandler(genreName) {
+    this.setState({
+      currentGenre: genreName,
+    });
   }
 
   render() {
-    const {promoMovieTitle, promoMovieGenre, promoMovieYear, movies, onMovieTitleClick} = this.props;
+    const {promoMovieTitle, promoMovieGenre, promoMovieYear, genres, movies, onMovieTitleClick} = this.props;
 
     return (
       <React.Fragment>
@@ -71,38 +85,11 @@ class Main extends PureComponent {
           <section className="catalog">
             <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-            <ul className="catalog__genres-list">
-              <li className="catalog__genres-item catalog__genres-item--active">
-                <a href="#" className="catalog__genres-link">All genres</a>
-              </li>
-              <li className="catalog__genres-item">
-                <a href="#" className="catalog__genres-link">Comedies</a>
-              </li>
-              <li className="catalog__genres-item">
-                <a href="#" className="catalog__genres-link">Crime</a>
-              </li>
-              <li className="catalog__genres-item">
-                <a href="#" className="catalog__genres-link">Documentary</a>
-              </li>
-              <li className="catalog__genres-item">
-                <a href="#" className="catalog__genres-link">Dramas</a>
-              </li>
-              <li className="catalog__genres-item">
-                <a href="#" className="catalog__genres-link">Horror</a>
-              </li>
-              <li className="catalog__genres-item">
-                <a href="#" className="catalog__genres-link">Kids & Family</a>
-              </li>
-              <li className="catalog__genres-item">
-                <a href="#" className="catalog__genres-link">Romance</a>
-              </li>
-              <li className="catalog__genres-item">
-                <a href="#" className="catalog__genres-link">Sci-Fi</a>
-              </li>
-              <li className="catalog__genres-item">
-                <a href="#" className="catalog__genres-link">Thrillers</a>
-              </li>
-            </ul>
+            <GenreList
+              currentGenre = {`All genres`}
+              genres = {genres}
+              onGenreClick = {this._genreClickHandler}
+            />
 
             <MoviesList
               movies = {movies}
@@ -137,6 +124,7 @@ Main.propTypes = {
   promoMovieTitle: PropTypes.string.isRequired,
   promoMovieGenre: PropTypes.string.isRequired,
   promoMovieYear: PropTypes.number.isRequired,
+  genres: PropTypes.array.isRequired,
   movies: PropTypes.arrayOf(
       PropTypes.shape({
         title: PropTypes.string.isRequired,

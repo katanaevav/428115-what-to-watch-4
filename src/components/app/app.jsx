@@ -41,7 +41,7 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {promoMovie, movies} = this.props;
+    const {promoMovie, movies, genres} = this.props;
     const {title: promoMovieTitle, genre: promoMovieGenre, year: promoMovieYear} = promoMovie;
     const {selectedMovieId, currentPage} = this.state;
 
@@ -75,6 +75,7 @@ class App extends PureComponent {
             promoMovieTitle = {promoMovieTitle}
             promoMovieGenre = {promoMovieGenre}
             promoMovieYear = {promoMovieYear}
+            genres = {genres}
             movies = {movies}
             onMovieTitleClick = {this._movieTitleClickHandler}
           />
