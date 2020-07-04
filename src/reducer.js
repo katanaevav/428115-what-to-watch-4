@@ -15,7 +15,7 @@ const getGenres = (allMovies) => {
 };
 
 const initialState = {
-  currentGenreFilter: `NO_FILTER`,
+  currentGenreFilter: NO_FILTER,
   PromoMovie,
   movies,
   genres: getGenres(movies),
@@ -23,25 +23,32 @@ const initialState = {
 
 const ActionType = {
   SET_GENRE_FILTER: `SET_GENRE_FILTER`,
-  GET_FILTERED_MOVIES: `GET_FILTERED_MOVIES`,
+};
+
+const ActionCreator = {
+  setCurrentFilter: (filterName) => {
+    return {
+      type: ActionType.SET_GENRE_FILTER,
+      payload: filterName,
+    };
+  },
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.SET_GENRE_FILTER:
-      return Object.assign({}, state, {currentGenreFilter: action.payload});
-
-    case ActionType.GET_FILTERED_MOVIES:
       let filteredMovies;
-      if (state.currentGenreFilter === NO_FILTER) {
+      if (action.payload === NO_FILTER) {
         filteredMovies = initialState.movies.slice();
       } else {
-        filteredMovies = initialState.movies.slice().filter((movie) => movie.genre === state.currentGenreFilter);
+        filteredMovies = initialState.movies.slice().filter((movie) => movie.genre === action.payload);
       }
-      return Object.assign({}, state, {movies: filteredMovies});
+      return Object.assign({}, state, {
+        currentGenreFilter: action.payload,
+        movies: filteredMovies});
   }
 
   return state;
 };
 
-export {reducer, ActionType};
+export {reducer, ActionType, ActionCreator};

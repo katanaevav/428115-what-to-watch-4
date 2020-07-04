@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import {connect} from "react-redux";
+import {ActionCreator} from "../../reducer.js";
 
 const Screens = {
   MAIN_SCREEN: 0,
@@ -41,7 +42,7 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {promoMovie, movies, genres} = this.props;
+    const {promoMovie, movies, genres, currentGenreFilter, onMovieFilterClick} = this.props;
     const {title: promoMovieTitle, genre: promoMovieGenre, year: promoMovieYear} = promoMovie;
     const {selectedMovieId, currentPage} = this.state;
 
@@ -77,7 +78,9 @@ class App extends PureComponent {
             promoMovieYear = {promoMovieYear}
             genres = {genres}
             movies = {movies}
+            currentGenreFilter = {currentGenreFilter}
             onMovieTitleClick = {this._movieTitleClickHandler}
+            onMovieFilterClick = {onMovieFilterClick}
           />
         );
     }
@@ -127,13 +130,23 @@ App.propTypes = {
         year: PropTypes.number.isRequired,
       })).isRequired,
   genres: PropTypes.array.isRequired,
+  currentGenreFilter: PropTypes.string.isRequired,
+  onMovieFilterClick: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
+  currentGenreFilter: state.currentGenreFilter,
   promoMovie: state.PromoMovie,
   movies: state.movies,
   genres: state.genres,
 });
 
+const mapDispatchToProps = (dispatch) => ({
+  onMovieFilterClick(filterName) {
+    dispatch(ActionCreator.setCurrentFilter(filterName));
+  },
+});
+
+
 export {App};
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

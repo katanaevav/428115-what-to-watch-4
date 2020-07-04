@@ -16,13 +16,14 @@ class Main extends PureComponent {
   }
 
   _genreClickHandler(genreName) {
+    console.log(genreName);
     this.setState({
       currentGenre: genreName,
     });
   }
 
   render() {
-    const {promoMovieTitle, promoMovieGenre, promoMovieYear, genres, movies, onMovieTitleClick} = this.props;
+    const {promoMovieTitle, promoMovieGenre, promoMovieYear, genres, movies, currentGenreFilter, onMovieTitleClick, onMovieFilterClick} = this.props;
 
     return (
       <React.Fragment>
@@ -86,9 +87,9 @@ class Main extends PureComponent {
             <h2 className="catalog__title visually-hidden">Catalog</h2>
 
             <GenreList
-              currentGenre = {`All genres`}
+              currentGenre = {currentGenreFilter}
               genres = {genres}
-              onGenreClick = {this._genreClickHandler}
+              onGenreClick = {onMovieFilterClick}
             />
 
             <MoviesList
@@ -132,7 +133,9 @@ Main.propTypes = {
         genre: PropTypes.string.isRequired,
         year: PropTypes.number.isRequired,
       })).isRequired,
+  currentGenreFilter: PropTypes.string.isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
+  onMovieFilterClick: PropTypes.func.isRequired,
 };
 
 export default Main;
