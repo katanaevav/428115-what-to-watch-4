@@ -5,6 +5,7 @@ import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer.js";
+import {getFilteredMovies} from "../../selectors.js";
 
 const Screens = {
   MAIN_SCREEN: 0,
@@ -137,7 +138,7 @@ App.propTypes = {
 const mapStateToProps = (state) => ({
   currentGenreFilter: state.currentGenreFilter,
   promoMovie: state.PromoMovie,
-  movies: state.movies,
+  movies: getFilteredMovies(state.movies, state.currentGenreFilter),
   genres: state.genres,
 });
 
