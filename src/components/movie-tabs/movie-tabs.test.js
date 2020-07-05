@@ -4,7 +4,7 @@ import MovieTabs from "./movie-tabs.jsx";
 
 const CURRENT_TAB_INDEX = 0;
 
-it(`Render App`, () => {
+it(`Render movie tabs`, () => {
   const tree = renderer.create(
       <MovieTabs
         currentTab= {CURRENT_TAB_INDEX}

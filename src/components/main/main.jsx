@@ -16,7 +16,6 @@ class Main extends PureComponent {
   }
 
   _genreClickHandler(genreName) {
-    console.log(genreName);
     this.setState({
       currentGenre: genreName,
     });
