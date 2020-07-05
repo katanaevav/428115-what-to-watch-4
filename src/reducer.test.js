@@ -453,7 +453,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
   });
 });
 
-it(`Reducer with Drama filter and selected All genres should return all movies`, () => {
+it(`Reducer with Drama filter and selected All genres filter should return All geners filter`, () => {
   expect(reducer(
       {
         currentGenreFilter: `Drama`,
@@ -473,7 +473,7 @@ it(`Reducer with Drama filter and selected All genres should return all movies`,
   });
 });
 
-it(`Reducer with All movies filter and selected Drama should return movies with drama genre`, () => {
+it(`Reducer with All genres filter and selected Drama filter should return Drama filter`, () => {
   expect(reducer(
       {
         currentGenreFilter: NO_FILTER,
@@ -488,7 +488,7 @@ it(`Reducer with All movies filter and selected Drama should return movies with 
   )).toEqual({
     currentGenreFilter: `Drama`,
     PromoMovie,
-    movies: movies.slice().filter((movie) => movie.genre === `Drama`),
+    movies,
     genres: GENRES,
   });
 });

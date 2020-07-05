@@ -23,6 +23,7 @@ class Main extends PureComponent {
 
   render() {
     const {promoMovieTitle, promoMovieGenre, promoMovieYear, genres, movies, currentGenreFilter, onMovieTitleClick, onMovieFilterClick} = this.props;
+    const moviesToRender = currentGenreFilter === NO_FILTER ? movies : movies.slice().filter((movie) => movie.genre === currentGenreFilter);
 
     return (
       <React.Fragment>
@@ -92,7 +93,7 @@ class Main extends PureComponent {
             />
 
             <MoviesList
-              movies = {movies}
+              movies = {moviesToRender}
               onMovieTitleClick = {onMovieTitleClick}
             />
 

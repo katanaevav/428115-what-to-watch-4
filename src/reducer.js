@@ -37,15 +37,9 @@ const ActionCreator = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.SET_GENRE_FILTER:
-      let filteredMovies;
-      if (action.payload === NO_FILTER) {
-        filteredMovies = initialState.movies.slice();
-      } else {
-        filteredMovies = initialState.movies.slice().filter((movie) => movie.genre === action.payload);
-      }
       return Object.assign({}, state, {
         currentGenreFilter: action.payload,
-        movies: filteredMovies});
+      });
   }
 
   return state;
