@@ -1,12 +1,55 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import App from "./app.jsx";
+import {App} from "./app.jsx";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+
+const mockStore = configureStore([]);
 
 const PromoMovie = {
   title: `The Grand Budapest Hotel`,
+  smallPoster: `img/the-grand-budapest-hotel-poster.jpg`,
   genre: `Drama`,
   year: 2014,
+  runTime: `1h 35m`,
+  bigPoster: `img/the-grand-budapest-hotel-poster.jpg`,
+  cover: `img/bg-the-grand-budapest-hotel.jpg`,
+  ratingScore: `8,9`,
+  ratingCount: 240,
+  directors: [`Уэс Андерсон`],
+  starrings: [`Рэйф Файнс`, `Тони Револори`, `Сирша Ронан`, `Эдриан Броуди`, `Уиллем Дефо`, `Эдвард Нортон`, `Матьё Амальрик`, `Харви Кейтель`, `Ф. Мюррэй Абрахам`, `Тильда Суинтон`],
+  descriptions: [
+    `Фильм рассказывает об увлекательных приключениях легендарного консьержа Густава и его юного друга, портье Зеро Мустафы.`,
+    `Сотрудники гостиницы становятся свидетелями кражи и поисков бесценных картин эпохи Возрождения, борьбы за огромное состояние богатой семьи и… драматических изменений в Европе между двумя кровопролитными войнами XX века.`
+  ],
+  reviews: [
+    {
+      id: 0,
+      text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+      author: `Kate Muir`,
+      date: Date.parse(`December 24, 2016`),
+      mark: `4`,
+    },
+    {
+      id: 1,
+      text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
+      author: `Paula Fleri-Soler`,
+      date: Date.parse(`December 15, 2018`),
+      mark: `5`,
+    },
+    {
+      id: 2,
+      text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
+      author: `Amanda Greever`,
+      date: Date.parse(`November 18, 2015`),
+      mark: `3`,
+    },
+  ],
 };
+
+const NO_FILTER = `All genres`;
+
+const GENRES = [`Drama`, `Fantasy`];
 
 const Movies = [
   {
@@ -50,13 +93,19 @@ const Movies = [
 ];
 
 it(`Render App`, () => {
+
+  const store = mockStore({});
+
   const tree = renderer.create(
-      <App
-        promoMovieTitle = {PromoMovie.title}
-        promoMovieGenre = {PromoMovie.genre}
-        promoMovieYear = {PromoMovie.year}
-        movies = {Movies}
-      />
+      <Provider store={store}>
+        <App
+          promoMovie = {PromoMovie}
+          movies = {Movies}
+          genres = {GENRES}
+          currentGenreFilter = {NO_FILTER}
+          onMovieFilterClick = {() => {}}
+        />
+      </Provider>
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

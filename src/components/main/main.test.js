@@ -2,6 +2,10 @@ import React from "react";
 import renderer from "react-test-renderer";
 import Main from "./main.jsx";
 
+const NO_FILTER = `All genres`;
+
+const GENRES = [`Drama`, `Fantasy`];
+
 const PromoMovie = {
   title: `The Grand Budapest Hotel`,
   genre: `Drama`,
@@ -47,8 +51,11 @@ it(`Should Main component render correctly`, () => {
         promoMovieTitle = {PromoMovie.title}
         promoMovieGenre = {PromoMovie.genre}
         promoMovieYear = {PromoMovie.year}
+        genres = {GENRES}
         movies = {Movies}
         onMovieTitleClick = {() => {}}
+        currentGenreFilter = {NO_FILTER}
+        onMovieFilterClick = {() => {}}
       />
   ).toJSON();
 

@@ -3,6 +3,10 @@ import Enzyme, {shallow} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import Main from "./main.jsx";
 
+const NO_FILTER = `All genres`;
+
+const GENRES = [`Drama`, `Fantasy`];
+
 const PromoMovie = {
   title: `The Grand Budapest Hotel`,
   genre: `Drama`,
@@ -46,7 +50,7 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-it(`Should movie header be pressed and mouse over for each movie in list`, () => {
+it(`Should movie header be pressed`, () => {
   const onMovieTitleClick = jest.fn();
 
   const main = shallow(
@@ -54,8 +58,11 @@ it(`Should movie header be pressed and mouse over for each movie in list`, () =>
         promoMovieTitle = {PromoMovie.title}
         promoMovieGenre = {PromoMovie.genre}
         promoMovieYear = {PromoMovie.year}
+        genres = {GENRES}
         movies = {Movies}
         onMovieTitleClick = {onMovieTitleClick}
+        currentGenreFilter = {NO_FILTER}
+        onMovieFilterClick = {() => {}}
       />
   );
 
@@ -65,5 +72,29 @@ it(`Should movie header be pressed and mouse over for each movie in list`, () =>
     movieHeader.props().onClick();
     expect(onMovieTitleClick.mock.calls.length).toBe(index + 1);
   });
+});
 
+
+it(`Should filter be pressed`, () => {
+  const onMovieFilterClick = jest.fn();
+
+  const main = shallow(
+      <Main
+        promoMovieTitle = {PromoMovie.title}
+        promoMovieGenre = {PromoMovie.genre}
+        promoMovieYear = {PromoMovie.year}
+        genres = {GENRES}
+        movies = {Movies}
+        onMovieTitleClick = {() => {}}
+        currentGenreFilter = {NO_FILTER}
+        onMovieFilterClick = {onMovieFilterClick}
+      />
+  );
+
+  const filterButtons = main.find(`a.catalog__genres-link`);
+
+  filterButtons.forEach((filterButton, index) => {
+    filterButtons.props().onClick();
+    expect(onMovieFilterClick.mock.calls.length).toBe(index + 1);
+  });
 });
