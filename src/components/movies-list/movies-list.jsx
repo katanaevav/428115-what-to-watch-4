@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import SmallMovieCard from "../small-movie-card/small-movie-card.jsx";
 import withVideoPlayer from "../../hoc/with-small-video-player/with-small-video-player.js";
+import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 
 const DELAY_BEFORE_START_PLAYING = 1000;
 
@@ -15,6 +16,7 @@ class MoviesList extends PureComponent {
 
     this.movieMouseOverHandler = this.movieMouseOverHandler.bind(this);
     this.movieMouseOutHandler = this.movieMouseOutHandler.bind(this);
+    this.showMoreButtonClickHandler = this.showMoreButtonClickHandler.bind(this);
 
     this.state = {
       activeMovieTitle: ``,
@@ -30,6 +32,10 @@ class MoviesList extends PureComponent {
   movieMouseOutHandler(action) {
     clearTimeout(this._timer);
     action();
+  }
+
+  showMoreButtonClickHandler() {
+
   }
 
   render() {
@@ -54,9 +60,9 @@ class MoviesList extends PureComponent {
           {movieCards}
         </div>
 
-        <div className="catalog__more">
-          <button className="catalog__button" type="button">Show more</button>
-        </div>
+        <ShowMoreButton
+          onShowMoreButtonClick={this.showMoreButtonClickHandler}
+        />
       </React.Fragment>
     );
   }
