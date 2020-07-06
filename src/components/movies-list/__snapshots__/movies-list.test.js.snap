@@ -1,64 +1,76 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Render App 1`] = `
-<div
-  className="catalog__movies-list"
->
-  <article
-    className="small-movie-card catalog__movies-card"
-    data-key={0}
+Array [
+  <div
+    className="catalog__movies-list"
   >
-    <div
-      className="small-movie-card__image"
-      onMouseOut={[Function]}
-      onMouseOver={[Function]}
+    <article
+      className="small-movie-card catalog__movies-card"
+      data-key={0}
     >
-      <video
-        height="175"
-        poster="img/bohemian-rhapsody.jpg"
-        preload="metadata"
-        width="280"
-      />
-    </div>
-    <h3
-      className="small-movie-card__title"
-    >
-      <a
-        className="small-movie-card__link"
-        href="movie-page.html"
-        onClick={[Function]}
+      <div
+        className="small-movie-card__image"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
       >
-        Bohemian rhapsody
-      </a>
-    </h3>
-  </article>
-  <article
-    className="small-movie-card catalog__movies-card"
-    data-key={1}
+        <video
+          height="175"
+          poster="img/bohemian-rhapsody.jpg"
+          preload="metadata"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="movie-page.html"
+          onClick={[Function]}
+        >
+          Bohemian rhapsody
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+      data-key={1}
+    >
+      <div
+        className="small-movie-card__image"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <video
+          height="175"
+          poster="img/moonrise-kingdom.jpg"
+          preload="metadata"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="movie-page.html"
+          onClick={[Function]}
+        >
+          Moonrise kingdom
+        </a>
+      </h3>
+    </article>
+  </div>,
+  <div
+    className="catalog__more"
   >
-    <div
-      className="small-movie-card__image"
-      onMouseOut={[Function]}
-      onMouseOver={[Function]}
+    <button
+      className="catalog__button"
+      type="button"
     >
-      <video
-        height="175"
-        poster="img/moonrise-kingdom.jpg"
-        preload="metadata"
-        width="280"
-      />
-    </div>
-    <h3
-      className="small-movie-card__title"
-    >
-      <a
-        className="small-movie-card__link"
-        href="movie-page.html"
-        onClick={[Function]}
-      >
-        Moonrise kingdom
-      </a>
-    </h3>
-  </article>
-</div>
+      Show more
+    </button>
+  </div>,
+]
 `;

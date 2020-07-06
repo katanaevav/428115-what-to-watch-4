@@ -49,9 +49,15 @@ class MoviesList extends PureComponent {
     ));
 
     return (
-      <div className="catalog__movies-list">
-        {movieCards}
-      </div>
+      <React.Fragment>
+        <div className="catalog__movies-list">
+          {movieCards}
+        </div>
+
+        <div className="catalog__more">
+          <button className="catalog__button" type="button">Show more</button>
+        </div>
+      </React.Fragment>
     );
   }
 }
