@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render App 1`] = `
+exports[`Render MoviePage 1`] = `
 Array [
   <section
     className="movie-card movie-card--full"
@@ -328,17 +328,7 @@ Array [
           </h3>
         </article>
       </div>
-      <div
-        className="catalog__more"
-      >
-        <button
-          className="catalog__button"
-          onClick={[Function]}
-          type="button"
-        >
-          Show more
-        </button>
-      </div>
+      
     </section>
     <footer
       className="page-footer"

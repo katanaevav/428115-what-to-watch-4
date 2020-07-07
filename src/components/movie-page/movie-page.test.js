@@ -97,7 +97,7 @@ const Movies = [
   },
 ];
 
-it(`Render App`, () => {
+it(`Render MoviePage`, () => {
   const tree = renderer.create(
       <MoviePage
         id = {Movies[0].id}

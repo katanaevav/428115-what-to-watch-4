@@ -46,7 +46,7 @@ const Movie = {
   ],
 };
 
-it(`Render App`, () => {
+it(`Render MovieDetails`, () => {
   const tree = renderer.create(
       <MovieDetails
         runTime = {Movie.runTime}

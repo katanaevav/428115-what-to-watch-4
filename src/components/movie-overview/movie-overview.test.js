@@ -46,7 +46,7 @@ const Movie = {
   ],
 };
 
-it(`Render App`, () => {
+it(`Render MovieOverview`, () => {
   const tree = renderer.create(
       <MovieOverview
         ratingScore = {Movie.ratingScore}

@@ -440,6 +440,55 @@ const movies = [
         mark: `4`,
       },
     ],
+  },
+  {
+    id: 8,
+    title: `War of the worlds`,
+    smallPoster: `img/war-of-the-worlds.jpg`,
+    genre: `Fantasy`,
+    year: 2005,
+    runTime: `1h 28m`,
+    bigPoster: `img/war-of-the-worlds.jpg`,
+    cover: `img/war-of-the-worlds.jpg`,
+    ratingScore: `7,0`,
+    ratingCount: 151728,
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    directors: [`Стивен Спилберг`],
+    starrings: [`Том Круз`, `Дакота Фаннинг`, `Миранда Отто`, `Джастин Чатвин`, `Тим Роббинс`, `Рик Гонсалес`, `Юл Васкес`, `Ленни Венито`, `Лиза Энн Уолтер`, `Энн Робинсон`],
+    descriptions: [
+      `Никто не поверил бы в начале 21 столетия, что за всем происходящим на Земле зорко и внимательно следят существа более развитые, чем человек; что в то время, как люди занимались своими делами, их исследовали и изучали.`,
+      `С бесконечным самодовольством сновали люди по всему земному шару, занятые своими делишками, уверенные в своей власти над материей. А между тем через бездну пространства на Землю смотрели глазами полными зависти, существа с высокоразвитым, холодным, бесчувственным интеллектом, и медленно, но верно вырабатывали свои враждебные нам планы…`,
+    ],
+    reviews: [
+      {
+        id: 0,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        author: `Kate Rainbow`,
+        date: Date.parse(`May 20, 2017`),
+        mark: `4`,
+      },
+      {
+        id: 1,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
+        author: `John Kit`,
+        date: Date.parse(`December 15, 2019`),
+        mark: `4`,
+      },
+      {
+        id: 2,
+        text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
+        author: `Amanda Summerville`,
+        date: Date.parse(`November 15, 2018`),
+        mark: `4`,
+      },
+      {
+        id: 3,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
+        author: `John Kit`,
+        date: Date.parse(`December 15, 2019`),
+        mark: `4`,
+      },
+    ],
   }
 ];
 

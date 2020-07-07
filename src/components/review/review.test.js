@@ -10,7 +10,7 @@ const MovieReview = {
   mark: `5`,
 };
 
-it(`Render App`, () => {
+it(`Render MovieReview`, () => {
   const tree = renderer.create(
       <Review
         text = {MovieReview.text}

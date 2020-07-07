@@ -1,6 +1,72 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render App 1`] = `
+exports[`Render MoviesList with Show more button 1`] = `
+Array [
+  <div
+    className="catalog__movies-list"
+  >
+    <article
+      className="small-movie-card catalog__movies-card"
+      data-key={7}
+    >
+      <div
+        className="small-movie-card__image"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <video
+          height="175"
+          poster="img/war-of-the-worlds.jpg"
+          preload="metadata"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="movie-page.html"
+          onClick={[Function]}
+        >
+          War of the worlds
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+      data-key={8}
+    >
+      <div
+        className="small-movie-card__image"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <video
+          height="175"
+          poster="img/war-of-the-worlds.jpg"
+          preload="metadata"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="movie-page.html"
+          onClick={[Function]}
+        >
+          War of the worlds
+        </a>
+      </h3>
+    </article>
+  </div>,
+  "",
+]
+`;
+
+exports[`Render MoviesList without Show more button 1`] = `
 Array [
   <div
     className="catalog__movies-list"
@@ -8,6 +74,34 @@ Array [
     <article
       className="small-movie-card catalog__movies-card"
       data-key={0}
+    >
+      <div
+        className="small-movie-card__image"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <video
+          height="175"
+          poster="img/aviator.jpg"
+          preload="metadata"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="movie-page.html"
+          onClick={[Function]}
+        >
+          Aviator
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+      data-key={1}
     >
       <div
         className="small-movie-card__image"
@@ -35,7 +129,35 @@ Array [
     </article>
     <article
       className="small-movie-card catalog__movies-card"
-      data-key={1}
+      data-key={2}
+    >
+      <div
+        className="small-movie-card__image"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <video
+          height="175"
+          poster="img/johnny-english.jpg"
+          preload="metadata"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="movie-page.html"
+          onClick={[Function]}
+        >
+          Johnny english
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+      data-key={3}
     >
       <div
         className="small-movie-card__image"
@@ -61,17 +183,91 @@ Array [
         </a>
       </h3>
     </article>
-  </div>,
-  <div
-    className="catalog__more"
-  >
-    <button
-      className="catalog__button"
-      onClick={[Function]}
-      type="button"
+    <article
+      className="small-movie-card catalog__movies-card"
+      data-key={4}
     >
-      Show more
-    </button>
+      <div
+        className="small-movie-card__image"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <video
+          height="175"
+          poster="img/no-country-for-old-men.jpg"
+          preload="metadata"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="movie-page.html"
+          onClick={[Function]}
+        >
+          No country for old men
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+      data-key={5}
+    >
+      <div
+        className="small-movie-card__image"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <video
+          height="175"
+          poster="img/orlando.jpg"
+          preload="metadata"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="movie-page.html"
+          onClick={[Function]}
+        >
+          Orlando
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+      data-key={6}
+    >
+      <div
+        className="small-movie-card__image"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <video
+          height="175"
+          poster="img/pulp-fiction.jpg"
+          preload="metadata"
+          width="280"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="movie-page.html"
+          onClick={[Function]}
+        >
+          Pulp fiction
+        </a>
+      </h3>
+    </article>
   </div>,
+  "",
 ]
 `;
