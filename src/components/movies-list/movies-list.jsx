@@ -5,6 +5,7 @@ import withVideoPlayer from "../../hoc/with-small-video-player/with-small-video-
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 
 const DELAY_BEFORE_START_PLAYING = 1000;
+const MAX_RENDERED_MOVIES = 8;
 
 const SmallMovieCardWrapped = withVideoPlayer(SmallMovieCard);
 
@@ -17,9 +18,10 @@ class MoviesList extends PureComponent {
     this.movieMouseOverHandler = this.movieMouseOverHandler.bind(this);
     this.movieMouseOutHandler = this.movieMouseOutHandler.bind(this);
     this.showMoreButtonClickHandler = this.showMoreButtonClickHandler.bind(this);
+    this.renderShowMoreButton = this.renderShowMoreButton.bind(this);
 
     this.state = {
-      activeMovieTitle: ``,
+      renderedMovies: MAX_RENDERED_MOVIES,
     };
   }
 
@@ -34,14 +36,35 @@ class MoviesList extends PureComponent {
     action();
   }
 
-  showMoreButtonClickHandler() {
+  renderShowMoreButton() {
+    const {movies} = this.props;
+    const {renderedMovies} = this.state;
 
+    const buttonComponent = movies.length > (renderedMovies) ?
+      <ShowMoreButton
+        onShowMoreButtonClick={this.showMoreButtonClickHandler}
+      />
+      : ``;
+
+    return buttonComponent;
+  }
+
+  showMoreButtonClickHandler() {
+    const {movies} = this.props;
+    const {renderedMovies} = this.state;
+    let newMoviesCount = movies.length < (renderedMovies + MAX_RENDERED_MOVIES) ? movies.length : renderedMovies + MAX_RENDERED_MOVIES;
+
+    this.setState({
+      renderedMovies: newMoviesCount,
+    });
   }
 
   render() {
     const {movies, onMovieTitleClick} = this.props;
+    const {renderedMovies} = this.state;
 
-    const movieCards = movies.map((movie) => (
+    const moviesToRender = movies.slice(0, renderedMovies);
+    const movieCards = moviesToRender.map((movie) => (
       <SmallMovieCardWrapped
         key={movie.id}
         movieId={movie.id}
@@ -59,10 +82,7 @@ class MoviesList extends PureComponent {
         <div className="catalog__movies-list">
           {movieCards}
         </div>
-
-        <ShowMoreButton
-          onShowMoreButtonClick={this.showMoreButtonClickHandler}
-        />
+        {this.renderShowMoreButton()}
       </React.Fragment>
     );
   }
