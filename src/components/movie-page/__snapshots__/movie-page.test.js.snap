@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render App 1`] = `
+exports[`Render MoviePage 1`] = `
 Array [
   <section
     className="movie-card movie-card--full"
@@ -328,6 +328,7 @@ Array [
           </h3>
         </article>
       </div>
+      
     </section>
     <footer
       className="page-footer"

@@ -26,7 +26,7 @@ const Reviews = [
   },
 ];
 
-it(`Render App`, () => {
+it(`Render ReviewsColumn`, () => {
   const tree = renderer.create(
       <ReviewsColumn
         reviews = {Reviews}

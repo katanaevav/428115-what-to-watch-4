@@ -46,7 +46,7 @@ const Movie = {
   ],
 };
 
-it(`Render App`, () => {
+it(`Render MovieReviews`, () => {
   const tree = renderer.create(
       <MovieReviews
         reviews = {Movie.reviews}
