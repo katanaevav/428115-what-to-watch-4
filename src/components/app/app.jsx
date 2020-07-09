@@ -6,11 +6,7 @@ import MoviePage from "../movie-page/movie-page.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer.js";
 import {getFilteredMovies} from "../../selectors.js";
-
-const Screens = {
-  MAIN_SCREEN: 0,
-  MOVIE_PAGE_SCREEN: 1,
-};
+import {Screens} from "./const.js";
 
 const MAX_SIMILAR_MOVIES_COUNT = 4;
 
