@@ -6,7 +6,7 @@ import MoviePage from "../movie-page/movie-page.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer.js";
 import {getFilteredMovies} from "../../selectors.js";
-import {Screens} from "./const.js";
+import {Screens} from "../../const.js";
 
 const MAX_SIMILAR_MOVIES_COUNT = 4;
 
@@ -14,13 +14,7 @@ class App extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._movieTitleClickHandler = this._movieTitleClickHandler.bind(this);
     this._movieCardMouseOverHandler = this._movieCardMouseOverHandler.bind(this);
-
-    this.state = {
-      selectedMovieId: -1,
-      currentPage: Screens.MAIN_SCREEN,
-    };
   }
 
   _getMovieById(movieId) {
@@ -31,17 +25,10 @@ class App extends PureComponent {
 
   _movieCardMouseOverHandler() {}
 
-  _movieTitleClickHandler(key) {
-    this.setState({
-      selectedMovieId: key,
-      currentPage: Screens.MOVIE_PAGE_SCREEN,
-    });
-  }
 
   _renderApp() {
-    const {promoMovie, movies, genres, currentGenreFilter, onMovieFilterClick} = this.props;
+    const {promoMovie, movies, genres, currentGenreFilter, onMovieFilterClick, onMovieTitleClick, selectedMovieId, currentPage} = this.props;
     const {title: promoMovieTitle, genre: promoMovieGenre, year: promoMovieYear} = promoMovie;
-    const {selectedMovieId, currentPage} = this.state;
 
     switch (currentPage) {
       case Screens.MOVIE_PAGE_SCREEN:
@@ -63,7 +50,7 @@ class App extends PureComponent {
             descriptions = {descriptions}
             reviews = {reviews}
             similarMovies = {similarMovies}
-            onMovieTitleClick = {this._movieTitleClickHandler}
+            onMovieTitleClick = {onMovieTitleClick}
           />
         );
 
@@ -76,7 +63,7 @@ class App extends PureComponent {
             genres = {genres}
             movies = {movies}
             currentGenreFilter = {currentGenreFilter}
-            onMovieTitleClick = {this._movieTitleClickHandler}
+            onMovieTitleClick = {onMovieTitleClick}
             onMovieFilterClick = {onMovieFilterClick}
           />
         );
@@ -107,7 +94,7 @@ class App extends PureComponent {
               descriptions = {promoMovie.descriptions}
               reviews = {promoMovie.reviews}
               similarMovies = {this.props.movies}
-              onMovieTitleClick = {this._movieTitleClickHandler}
+              onMovieTitleClick = {() => {}}
             />
           </Route>
         </Switch>
@@ -129,6 +116,9 @@ App.propTypes = {
   genres: PropTypes.array.isRequired,
   currentGenreFilter: PropTypes.string.isRequired,
   onMovieFilterClick: PropTypes.func.isRequired,
+  onMovieTitleClick: PropTypes.func.isRequired,
+  selectedMovieId: PropTypes.number.isRequired,
+  currentPage: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -136,12 +126,18 @@ const mapStateToProps = (state) => ({
   promoMovie: state.PromoMovie,
   movies: getFilteredMovies(state.movies, state.currentGenreFilter),
   genres: state.genres,
+  selectedMovieId: state.selectedMovieId,
+  currentPage: state.currentPage,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onMovieFilterClick(filterName) {
     dispatch(ActionCreator.setCurrentFilter(filterName));
   },
+
+  onMovieTitleClick(movieId) {
+    dispatch(ActionCreator.openMovieScreen(movieId));
+  }
 });
 
 

@@ -3,6 +3,7 @@ import renderer from "react-test-renderer";
 import {App} from "./app.jsx";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
+import {Screens} from "../../const.js";
 
 const mockStore = configureStore([]);
 
@@ -70,6 +71,15 @@ const Movies = [
       `Чествование группы Queen, их музыки и их выдающегося вокалиста Фредди Меркьюри, который бросил вызов стереотипам и победил условности, чтобы стать одним из самых любимых артистов на планете.`,
       `Фильм прослеживает головокружительный путь группы к успеху благодаря их культовым песням и революционному звуку, практически распад коллектива, поскольку образ жизни Меркьюри выходит из-под контроля, и их триумфальное воссоединение накануне концерта Live Aid, ставшим одним из величайших выступлений в истории рок-музыки.`,
     ],
+    reviews: [
+      {
+        id: 0,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        author: `Kate Rainbow`,
+        date: Date.parse(`May 20, 2017`),
+        mark: `4`,
+      },
+    ],
   },
   {
     id: 1,
@@ -89,10 +99,26 @@ const Movies = [
       `60-е годы XX века. Пара влюблённых подростков, живущих на острове в Новой Англии, убегает из-под присмотра взрослых.`,
       `Сэм Шакаски — бойскаут, сирота, от которого отказались приемные родители, из-за своего непростого характера ставший изгоем среди других бойскаутов, и Сьюзи Бишоп — замкнутая двенадцатилетняя неуравновешенная девочка, живущая мечтами о волшебных мирах. После обнаружения пропажи местный шериф начинает расследование, а вожатый лагеря бойскаутов организует поисковый отряд.`,
     ],
+    reviews: [
+      {
+        id: 0,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        author: `Kate Rainbow`,
+        date: Date.parse(`May 20, 2017`),
+        mark: `4`,
+      },
+      {
+        id: 1,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
+        author: `John Kit`,
+        date: Date.parse(`December 15, 2019`),
+        mark: `4`,
+      },
+    ],
   },
 ];
 
-it(`Render App`, () => {
+it(`Render App with Main screen`, () => {
 
   const store = mockStore({});
 
@@ -104,6 +130,31 @@ it(`Render App`, () => {
           genres = {GENRES}
           currentGenreFilter = {NO_FILTER}
           onMovieFilterClick = {() => {}}
+          onMovieTitleClick = {() => {}}
+          selectedMovieId = {-1}
+          currentPage = {Screens.MAIN_SCREEN}
+        />
+      </Provider>
+  ).toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+
+it(`Render App with Movie page screen`, () => {
+
+  const store = mockStore({});
+
+  const tree = renderer.create(
+      <Provider store={store}>
+        <App
+          promoMovie = {PromoMovie}
+          movies = {Movies}
+          genres = {GENRES}
+          currentGenreFilter = {NO_FILTER}
+          onMovieFilterClick = {() => {}}
+          onMovieTitleClick = {() => {}}
+          selectedMovieId = {0}
+          currentPage = {Screens.MOVIE_PAGE_SCREEN}
         />
       </Provider>
   ).toJSON();

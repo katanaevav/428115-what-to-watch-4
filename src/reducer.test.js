@@ -1,4 +1,5 @@
 import {reducer, ActionType} from "./reducer.js";
+import {Screens} from "./const.js";
 
 const NO_FILTER = `All genres`;
 
@@ -499,6 +500,8 @@ it(`Reducer without additional parameters should return initial state`, () => {
     PromoMovie,
     movies,
     genres: GENRES,
+    currentPage: Screens.MAIN_SCREEN,
+    selectedMovieId: -1,
   });
 });
 
@@ -509,6 +512,8 @@ it(`Reducer with Drama filter and selected All genres filter should return All g
         PromoMovie,
         movies,
         genres: GENRES,
+        currentPage: Screens.MAIN_SCREEN,
+        selectedMovieId: -1,
       },
       {
         type: ActionType.SET_GENRE_FILTER,
@@ -519,6 +524,8 @@ it(`Reducer with Drama filter and selected All genres filter should return All g
     PromoMovie,
     movies,
     genres: GENRES,
+    currentPage: Screens.MAIN_SCREEN,
+    selectedMovieId: -1,
   });
 });
 
@@ -529,6 +536,8 @@ it(`Reducer with All genres filter and selected Drama filter should return Drama
         PromoMovie,
         movies,
         genres: GENRES,
+        currentPage: Screens.MAIN_SCREEN,
+        selectedMovieId: -1,
       },
       {
         type: ActionType.SET_GENRE_FILTER,
@@ -539,5 +548,7 @@ it(`Reducer with All genres filter and selected Drama filter should return Drama
     PromoMovie,
     movies,
     genres: GENRES,
+    currentPage: Screens.MAIN_SCREEN,
+    selectedMovieId: -1,
   });
 });
