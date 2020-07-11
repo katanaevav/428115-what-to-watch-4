@@ -115,6 +115,8 @@ it(`Render MoviePage`, () => {
         reviews = {Movies[0].reviews}
         similarMovies = {Movies}
         onMovieTitleClick = {() => {}}
+        currentTab = {0}
+        renderTabs = {() => {}}
       />
   ).toJSON();
 

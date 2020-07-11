@@ -1,20 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-
-export const MONTH_NAMES = [
-  `January`,
-  `February`,
-  `March`,
-  `April`,
-  `May`,
-  `June`,
-  `July`,
-  `August`,
-  `September`,
-  `October`,
-  `November`,
-  `December`,
-];
+import {MONTH_NAMES} from "../../const.js";
 
 class Review extends PureComponent {
   constructor(props) {

@@ -1,7 +1,6 @@
 import React, {PureComponent} from 'react';
 import VideoPlayer from '../../components/video-player/video-player.jsx';
-
-const MIN_VOLUME = 0.0;
+import {MIN_VOLUME} from "../../const.js";
 
 const withSmallVideoPlayer = (Component) => {
   class WithSmallVideoPlayer extends PureComponent {

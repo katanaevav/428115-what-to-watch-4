@@ -1,7 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-
-const TABS_NAMES = [`Overview`, `Details`, `Reviews`];
+import {TABS_NAMES} from "../../const.js";
 
 class MovieTabs extends PureComponent {
   constructor(props) {

@@ -453,6 +453,8 @@ it(`Render MoviesList without Show more button`, () => {
       <MoviesList
         movies = {Movies.splice(0, 7)}
         onMovieTitleClick = {() => {}}
+        renderedMoviesCount = {8}
+        onShowMoreButtonClick = {() => {}}
       />
   ).toJSON();
 
@@ -464,6 +466,8 @@ it(`Render MoviesList with Show more button`, () => {
       <MoviesList
         movies = {Movies}
         onMovieTitleClick = {() => {}}
+        renderedMoviesCount = {8}
+        onShowMoreButtonClick = {() => {}}
       />
   ).toJSON();
 

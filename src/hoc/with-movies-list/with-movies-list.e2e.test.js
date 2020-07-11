@@ -1,53 +1,10 @@
-import {reducer, ActionType} from "./reducer.js";
-import {Screens} from "./const.js";
+import React from "react";
+import {configure, mount} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import withMoviesList from "./with-movies-list.js";
+import MoviesList from "../../components/movies-list/movies-list.jsx";
 
-const NO_FILTER = `All genres`;
-
-
-const GENRES = [`All genres`, `Drama`, `Comedy`, `Fantasy`, `Action`];
-
-const PromoMovie = {
-  title: `The Grand Budapest Hotel`,
-  smallPoster: `img/the-grand-budapest-hotel-poster.jpg`,
-  genre: `Drama`,
-  year: 2014,
-  runTime: `1h 35m`,
-  bigPoster: `img/the-grand-budapest-hotel-poster.jpg`,
-  cover: `img/bg-the-grand-budapest-hotel.jpg`,
-  ratingScore: `8,9`,
-  ratingCount: 240,
-  directors: [`Уэс Андерсон`],
-  starrings: [`Рэйф Файнс`, `Тони Револори`, `Сирша Ронан`, `Эдриан Броуди`, `Уиллем Дефо`, `Эдвард Нортон`, `Матьё Амальрик`, `Харви Кейтель`, `Ф. Мюррэй Абрахам`, `Тильда Суинтон`],
-  descriptions: [
-    `Фильм рассказывает об увлекательных приключениях легендарного консьержа Густава и его юного друга, портье Зеро Мустафы.`,
-    `Сотрудники гостиницы становятся свидетелями кражи и поисков бесценных картин эпохи Возрождения, борьбы за огромное состояние богатой семьи и… драматических изменений в Европе между двумя кровопролитными войнами XX века.`
-  ],
-  reviews: [
-    {
-      id: 0,
-      text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
-      author: `Kate Muir`,
-      date: Date.parse(`December 24, 2016`),
-      mark: `4`,
-    },
-    {
-      id: 1,
-      text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
-      author: `Paula Fleri-Soler`,
-      date: Date.parse(`December 15, 2018`),
-      mark: `5`,
-    },
-    {
-      id: 2,
-      text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
-      author: `Amanda Greever`,
-      date: Date.parse(`November 18, 2015`),
-      mark: `3`,
-    },
-  ],
-};
-
-const movies = [
+const Movies = [
   {
     id: 0,
     title: `Aviator`,
@@ -494,61 +451,20 @@ const movies = [
 ];
 
 
-it(`Reducer without additional parameters should return initial state`, () => {
-  expect(reducer(void 0, {})).toEqual({
-    currentGenreFilter: NO_FILTER,
-    PromoMovie,
-    movies,
-    genres: GENRES,
-    currentPage: Screens.MAIN_SCREEN,
-    selectedMovieId: -1,
-  });
-});
+configure({adapter: new Adapter()});
 
-it(`Reducer with Drama filter and selected All genres filter should return All geners filter`, () => {
-  expect(reducer(
-      {
-        currentGenreFilter: `Drama`,
-        PromoMovie,
-        movies,
-        genres: GENRES,
-        currentPage: Screens.MAIN_SCREEN,
-        selectedMovieId: -1,
-      },
-      {
-        type: ActionType.SET_GENRE_FILTER,
-        payload: NO_FILTER,
-      }
-  )).toEqual({
-    currentGenreFilter: NO_FILTER,
-    PromoMovie,
-    movies,
-    genres: GENRES,
-    currentPage: Screens.MAIN_SCREEN,
-    selectedMovieId: -1,
-  });
-});
+const MockComponentWrapped = withMoviesList(MoviesList);
 
-it(`Reducer with All genres filter and selected Drama filter should return Drama filter`, () => {
-  expect(reducer(
-      {
-        currentGenreFilter: NO_FILTER,
-        PromoMovie,
-        movies,
-        genres: GENRES,
-        currentPage: Screens.MAIN_SCREEN,
-        selectedMovieId: -1,
-      },
-      {
-        type: ActionType.SET_GENRE_FILTER,
-        payload: `Drama`,
-      }
-  )).toEqual({
-    currentGenreFilter: `Drama`,
-    PromoMovie,
-    movies,
-    genres: GENRES,
-    currentPage: Screens.MAIN_SCREEN,
-    selectedMovieId: -1,
-  });
+it(`Should render 9 movies after pressing Show more button`, () => {
+
+  const wrapper = mount(
+      <MockComponentWrapped
+        movies = {Movies}
+        onMovieTitleClick = {() => {}}
+      />
+  );
+
+  const button = wrapper.find(`button.catalog__button`);
+  button.simulate(`click`, {});
+  expect(wrapper.instance().state.renderedMoviesCount).toBe(9);
 });

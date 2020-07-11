@@ -1,8 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import ReviewsColumn from "../reviews-column/reviews-column.jsx";
-
-const COLUMNS_COUNT = 2;
+import {REVIEWS_COLUMNS_COUNT} from "../../const.js";
 
 class MovieReviews extends PureComponent {
   constructor(props) {
@@ -11,7 +10,7 @@ class MovieReviews extends PureComponent {
 
   render() {
     const {reviews} = this.props;
-    const firsColumnReviews = Math.ceil(reviews.length / COLUMNS_COUNT);
+    const firsColumnReviews = Math.ceil(reviews.length / REVIEWS_COLUMNS_COUNT);
 
     return (
       <React.Fragment>

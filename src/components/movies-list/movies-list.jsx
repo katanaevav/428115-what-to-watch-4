@@ -1,13 +1,11 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import SmallMovieCard from "../small-movie-card/small-movie-card.jsx";
-import withVideoPlayer from "../../hoc/with-small-video-player/with-small-video-player.js";
+import withSmallVideoPlayer from "../../hoc/with-small-video-player/with-small-video-player.js";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
+import {DELAY_BEFORE_START_PREVIEW, MAX_RENDERED_MOVIES_AT_TIME} from "../../const.js";
 
-const DELAY_BEFORE_START_PLAYING = 1000;
-const MAX_RENDERED_MOVIES = 8;
-
-const SmallMovieCardWrapped = withVideoPlayer(SmallMovieCard);
+const SmallMovieCardWrapped = withSmallVideoPlayer(SmallMovieCard);
 
 class MoviesList extends PureComponent {
   constructor(props) {
@@ -19,16 +17,12 @@ class MoviesList extends PureComponent {
     this.movieMouseOutHandler = this.movieMouseOutHandler.bind(this);
     this.showMoreButtonClickHandler = this.showMoreButtonClickHandler.bind(this);
     this.renderShowMoreButton = this.renderShowMoreButton.bind(this);
-
-    this.state = {
-      renderedMovies: MAX_RENDERED_MOVIES,
-    };
   }
 
   movieMouseOverHandler(action) {
     this._timer = setTimeout(() => {
       action();
-    }, DELAY_BEFORE_START_PLAYING);
+    }, DELAY_BEFORE_START_PREVIEW);
   }
 
   movieMouseOutHandler(action) {
@@ -37,10 +31,9 @@ class MoviesList extends PureComponent {
   }
 
   renderShowMoreButton() {
-    const {movies} = this.props;
-    const {renderedMovies} = this.state;
+    const {movies, renderedMoviesCount} = this.props;
 
-    const buttonComponent = movies.length > (renderedMovies) ?
+    const buttonComponent = movies.length > (renderedMoviesCount) ?
       <ShowMoreButton
         onShowMoreButtonClick={this.showMoreButtonClickHandler}
       />
@@ -50,20 +43,16 @@ class MoviesList extends PureComponent {
   }
 
   showMoreButtonClickHandler() {
-    const {movies} = this.props;
-    const {renderedMovies} = this.state;
-    let newMoviesCount = movies.length < (renderedMovies + MAX_RENDERED_MOVIES) ? movies.length : renderedMovies + MAX_RENDERED_MOVIES;
+    const {movies, renderedMoviesCount, onShowMoreButtonClick} = this.props;
+    let newMoviesCount = movies.length < (renderedMoviesCount + MAX_RENDERED_MOVIES_AT_TIME) ? movies.length : renderedMoviesCount + MAX_RENDERED_MOVIES_AT_TIME;
 
-    this.setState({
-      renderedMovies: newMoviesCount,
-    });
+    onShowMoreButtonClick(newMoviesCount);
   }
 
   render() {
-    const {movies, onMovieTitleClick} = this.props;
-    const {renderedMovies} = this.state;
+    const {movies, onMovieTitleClick, renderedMoviesCount} = this.props;
 
-    const moviesToRender = movies.slice(0, renderedMovies);
+    const moviesToRender = movies.slice(0, renderedMoviesCount);
     const movieCards = moviesToRender.map((movie) => (
       <SmallMovieCardWrapped
         key={movie.id}
@@ -98,6 +87,8 @@ MoviesList.propTypes = {
         year: PropTypes.number.isRequired,
       })).isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
+  renderedMoviesCount: PropTypes.number.isRequired,
+  onShowMoreButtonClick: PropTypes.func.isRequired,
 };
 
 export default MoviesList;

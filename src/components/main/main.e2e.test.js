@@ -11,6 +11,8 @@ const PromoMovie = {
   title: `The Grand Budapest Hotel`,
   genre: `Drama`,
   year: 2014,
+  bigPoster: `img/the-grand-budapest-hotel-poster.jpg`,
+  cover: `img/bg-the-grand-budapest-hotel.jpg`,
 };
 
 const Movies = [
@@ -58,6 +60,8 @@ it(`Should movie header be pressed`, () => {
         promoMovieTitle = {PromoMovie.title}
         promoMovieGenre = {PromoMovie.genre}
         promoMovieYear = {PromoMovie.year}
+        promoMovieCover = {PromoMovie.cover}
+        promoMovieBigPoster = {PromoMovie.bigPoster}
         genres = {GENRES}
         movies = {Movies}
         onMovieTitleClick = {onMovieTitleClick}
@@ -83,6 +87,8 @@ it(`Should filter be pressed`, () => {
         promoMovieTitle = {PromoMovie.title}
         promoMovieGenre = {PromoMovie.genre}
         promoMovieYear = {PromoMovie.year}
+        promoMovieCover = {PromoMovie.cover}
+        promoMovieBigPoster = {PromoMovie.bigPoster}
         genres = {GENRES}
         movies = {Movies}
         onMovieTitleClick = {() => {}}
