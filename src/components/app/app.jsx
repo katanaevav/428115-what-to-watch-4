@@ -8,6 +8,7 @@ import {ActionCreator} from "../../reducer.js";
 import {getFilteredMovies} from "../../selectors.js";
 import {Screens, MAX_SIMILAR_MOVIES_COUNT} from "../../const.js";
 import withMovieTabs from "../../hoc/with-movie-tabs/with-movie-tabs.js";
+import CinemaScreen from "../cinema-screen/cinema-screen.jsx";
 
 const MoviePageWrapper = withMovieTabs(MoviePage);
 
@@ -99,6 +100,9 @@ class App extends PureComponent {
               similarMovies = {this.props.movies}
               onMovieTitleClick = {() => {}}
             />
+          </Route>
+          <Route exact path="/dev-player">
+            <CinemaScreen />
           </Route>
         </Switch>
       </BrowserRouter>
