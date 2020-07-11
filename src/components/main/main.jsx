@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import MoviesList from "../movies-list/movies-list.jsx";
 import GenreList from "../genre-list/genre-list.jsx";
 import withMoviesList from "../../hoc/with-movies-list/with-movies-list.js";
+import MoviePromo from "../movie-promo/movie-promo.jsx";
+import Logo from "../logo/logo.jsx";
 
 const MoviesListWrapper = withMoviesList(MoviesList);
 
@@ -12,64 +14,17 @@ class Main extends PureComponent {
   }
 
   render() {
-    const {promoMovieTitle, promoMovieGenre, promoMovieYear, genres, movies, currentGenreFilter, onMovieTitleClick, onMovieFilterClick} = this.props;
+    const {promoMovieTitle, promoMovieGenre, promoMovieYear, promoMovieCover, promoMovieBigPoster, genres, movies, currentGenreFilter, onMovieTitleClick, onMovieFilterClick} = this.props;
 
     return (
       <React.Fragment>
-        <section className="movie-card">
-          <div className="movie-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
-          </div>
-
-          <h1 className="visually-hidden">WTW</h1>
-
-          <header className="page-header movie-card__head">
-            <div className="logo">
-              <a className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </a>
-            </div>
-
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </div>
-          </header>
-
-          <div className="movie-card__wrap">
-            <div className="movie-card__info">
-              <div className="movie-card__poster">
-                <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
-              </div>
-
-              <div className="movie-card__desc">
-                <h2 className="movie-card__title">{promoMovieTitle}</h2>
-                <p className="movie-card__meta">
-                  <span className="movie-card__genre">{promoMovieGenre}</span>
-                  <span className="movie-card__year">{promoMovieYear}</span>
-                </p>
-
-                <div className="movie-card__buttons">
-                  <button className="btn btn--play movie-card__button" type="button">
-                    <svg viewBox="0 0 19 19" width="19" height="19">
-                      <use xlinkHref="/sprite.svg#play-s"></use>
-                    </svg>
-                    <span>Play</span>
-                  </button>
-                  <button className="btn btn--list movie-card__button" type="button">
-                    <svg viewBox="0 0 19 20" width="19" height="20">
-                      <use xlinkHref="/sprite.svg#add"></use>
-                    </svg>
-                    <span>My list</span>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <MoviePromo
+          promoMovieTitle = {promoMovieTitle}
+          promoMovieGenre = {promoMovieGenre}
+          promoMovieYear = {promoMovieYear}
+          cover = {promoMovieCover}
+          bigPoster = {promoMovieBigPoster}
+        />
 
         <div className="page-content">
           <section className="catalog">
@@ -88,13 +43,9 @@ class Main extends PureComponent {
           </section>
 
           <footer className="page-footer">
-            <div className="logo">
-              <a className="logo__link logo__link--light">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </a>
-            </div>
+            <Logo
+              light = {true}
+            />
 
             <div className="copyright">
               <p>© 2019 What to watch Ltd.</p>
@@ -110,6 +61,8 @@ Main.propTypes = {
   promoMovieTitle: PropTypes.string.isRequired,
   promoMovieGenre: PropTypes.string.isRequired,
   promoMovieYear: PropTypes.number.isRequired,
+  promoMovieCover: PropTypes.string.isRequired,
+  promoMovieBigPoster: PropTypes.string.isRequired,
   genres: PropTypes.array.isRequired,
   movies: PropTypes.arrayOf(
       PropTypes.shape({

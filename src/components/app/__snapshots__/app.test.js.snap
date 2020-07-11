@@ -25,7 +25,7 @@ Array [
         className="logo"
       >
         <a
-          className="logo__link"
+          className="logo__link "
         >
           <span
             className="logo__letter logo__letter--1"
@@ -69,7 +69,7 @@ Array [
           className="movie-card__poster"
         >
           <img
-            alt="The Grand Budapest Hotel poster"
+            alt="The Grand Budapest Hotel"
             height="327"
             src="img/the-grand-budapest-hotel-poster.jpg"
             width="218"
@@ -307,8 +307,7 @@ Array [
           className="logo"
         >
           <a
-            className="logo__link"
-            href="main.html"
+            className="logo__link "
           >
             <span
               className="logo__letter logo__letter--1"
@@ -556,7 +555,6 @@ Array [
       >
         <a
           className="logo__link logo__link--light"
-          href="main.html"
         >
           <span
             className="logo__letter logo__letter--1"

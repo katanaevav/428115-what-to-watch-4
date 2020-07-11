@@ -29,7 +29,7 @@ class App extends PureComponent {
 
   _renderApp() {
     const {promoMovie, movies, genres, currentGenreFilter, onMovieFilterClick, onMovieTitleClick, selectedMovieId, currentPage} = this.props;
-    const {title: promoMovieTitle, genre: promoMovieGenre, year: promoMovieYear} = promoMovie;
+    const {title: promoMovieTitle, genre: promoMovieGenre, year: promoMovieYear, bigPoster: promoMoviePoster, cover: promoMovieCover} = promoMovie;
 
     switch (currentPage) {
       case Screens.MOVIE_PAGE_SCREEN:
@@ -61,6 +61,8 @@ class App extends PureComponent {
             promoMovieTitle = {promoMovieTitle}
             promoMovieGenre = {promoMovieGenre}
             promoMovieYear = {promoMovieYear}
+            promoMovieCover = {promoMovieCover}
+            promoMovieBigPoster = {promoMoviePoster}
             genres = {genres}
             movies = {movies}
             currentGenreFilter = {currentGenreFilter}
