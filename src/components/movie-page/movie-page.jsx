@@ -1,10 +1,13 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import MovieTabs from "../movie-tabs/movie-tabs.jsx";
+// import MovieTabs from "../movie-tabs/movie-tabs.jsx";
 import MovieOverview from "../movie-overview/movie-overview.jsx";
 import MovieDetails from "../movie-details/movie-details.jsx";
 import MovieReviews from "../movie-reviews/movie-reviews.jsx";
 import MoviesList from "../movies-list/movies-list.jsx";
+import withMoviesList from "../../hoc/with-movies-list/with-movies-list.js";
+
+const MoviesListWrapper = withMoviesList(MoviesList);
 
 const Tabs = {
   OVERVIEW_TAB: 0,
@@ -16,24 +19,14 @@ class MoviePage extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._movieTabClickHandler = this._movieTabClickHandler.bind(this);
     this._renderTab = this._renderTab.bind(this);
-
-    this.state = {
-      currentTab: Tabs.OVERVIEW_TAB,
-    };
   }
 
-  _movieTabClickHandler(tabIndex) {
-    this.setState({
-      currentTab: parseInt(tabIndex, 10),
-    });
-  }
 
   _renderTab() {
-    const {genre, year, runTime, ratingScore, ratingCount, directors, starrings, descriptions, reviews} = this.props;
-    const tabIndex = this.state.currentTab;
-    switch (tabIndex) {
+    const {genre, year, runTime, ratingScore, ratingCount, directors, starrings, descriptions, reviews, currentTab} = this.props;
+
+    switch (currentTab) {
       case Tabs.DETAILS_TAB:
         return (
           <MovieDetails
@@ -66,7 +59,7 @@ class MoviePage extends PureComponent {
   }
 
   render() {
-    const {id, title, genre, year, bigPoster, cover, similarMovies, onMovieTitleClick} = this.props;
+    const {id, title, genre, year, bigPoster, cover, similarMovies, onMovieTitleClick, renderTabs} = this.props;
 
     return (
       <React.Fragment>
@@ -128,10 +121,7 @@ class MoviePage extends PureComponent {
               </div>
 
               <div className="movie-card__desc">
-                <MovieTabs
-                  currentTab = {this.state.currentTab}
-                  onMovieTabClick = {this._movieTabClickHandler}
-                />
+                {renderTabs()}
 
                 {this._renderTab()}
               </div>
@@ -143,7 +133,7 @@ class MoviePage extends PureComponent {
           <section className="catalog catalog--like-this">
             <h2 className="catalog__title">More like this</h2>
 
-            <MoviesList
+            <MoviesListWrapper
               movies = {similarMovies}
               onMovieTitleClick = {onMovieTitleClick}
             />
@@ -185,6 +175,8 @@ MoviePage.propTypes = {
   reviews: PropTypes.array.isRequired,
   similarMovies: PropTypes.array.isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
+  renderTabs: PropTypes.func.isRequired,
+  currentTab: PropTypes.number.isRequired,
 };
 
 export default MoviePage;

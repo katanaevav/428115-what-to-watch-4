@@ -6,9 +6,10 @@ import MoviePage from "../movie-page/movie-page.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer.js";
 import {getFilteredMovies} from "../../selectors.js";
-import {Screens} from "../../const.js";
+import {Screens, MAX_SIMILAR_MOVIES_COUNT} from "../../const.js";
+import withMovieTabs from "../../hoc/with-movie-tabs/with-movie-tabs.js";
 
-const MAX_SIMILAR_MOVIES_COUNT = 4;
+const MoviePageWrapper = withMovieTabs(MoviePage);
 
 class App extends PureComponent {
   constructor(props) {
@@ -35,7 +36,7 @@ class App extends PureComponent {
         const {id, title, genre, year, runTime, bigPoster, cover, ratingScore, ratingCount, directors, starrings, descriptions, reviews} = this._getMovieById(selectedMovieId);
         const similarMovies = movies.filter((movie) => (movie.genre === genre) && (movie.id !== id)).slice(0, MAX_SIMILAR_MOVIES_COUNT);
         return (
-          <MoviePage
+          <MoviePageWrapper
             id = {id}
             title = {title}
             genre = {genre}
@@ -79,7 +80,7 @@ class App extends PureComponent {
             {this._renderApp()}
           </Route>
           <Route exact path="/dev-film">
-            <MoviePage
+            <MoviePageWrapper
               id = {0}
               title = {promoMovie.title}
               genre = {promoMovie.genre}

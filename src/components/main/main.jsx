@@ -2,23 +2,13 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import MoviesList from "../movies-list/movies-list.jsx";
 import GenreList from "../genre-list/genre-list.jsx";
-import {NO_FILTER} from "../../const.js";
+import withMoviesList from "../../hoc/with-movies-list/with-movies-list.js";
+
+const MoviesListWrapper = withMoviesList(MoviesList);
 
 class Main extends PureComponent {
   constructor(props) {
     super(props);
-
-    this._genreClickHandler = this._genreClickHandler.bind(this);
-
-    this.state = {
-      currentGenre: NO_FILTER,
-    };
-  }
-
-  _genreClickHandler(genreName) {
-    this.setState({
-      currentGenre: genreName,
-    });
   }
 
   render() {
@@ -91,7 +81,7 @@ class Main extends PureComponent {
               onGenreClick = {onMovieFilterClick}
             />
 
-            <MoviesList
+            <MoviesListWrapper
               movies = {movies}
               onMovieTitleClick = {onMovieTitleClick}
             />

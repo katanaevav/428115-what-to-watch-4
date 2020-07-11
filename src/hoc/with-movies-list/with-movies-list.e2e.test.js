@@ -1,6 +1,8 @@
 import React from "react";
-import renderer from "react-test-renderer";
-import MoviesList from "./movies-list.jsx";
+import {configure, mount} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
+import withMoviesList from "./with-movies-list.js";
+import MoviesList from "../../components/movies-list/movies-list.jsx";
 
 const Movies = [
   {
@@ -445,31 +447,24 @@ const Movies = [
         mark: `4`,
       },
     ],
-  },
+  }
 ];
 
-it(`Render MoviesList without Show more button`, () => {
-  const tree = renderer.create(
-      <MoviesList
-        movies = {Movies.splice(0, 7)}
-        onMovieTitleClick = {() => {}}
-        renderedMoviesCount = {8}
-        onShowMoreButtonClick = {() => {}}
-      />
-  ).toJSON();
 
-  expect(tree).toMatchSnapshot();
-});
+configure({adapter: new Adapter()});
 
-it(`Render MoviesList with Show more button`, () => {
-  const tree = renderer.create(
-      <MoviesList
+const MockComponentWrapped = withMoviesList(MoviesList);
+
+it(`Should render 9 movies after pressing Show more button`, () => {
+
+  const wrapper = mount(
+      <MockComponentWrapped
         movies = {Movies}
         onMovieTitleClick = {() => {}}
-        renderedMoviesCount = {8}
-        onShowMoreButtonClick = {() => {}}
       />
-  ).toJSON();
+  );
 
-  expect(tree).toMatchSnapshot();
+  const button = wrapper.find(`button.catalog__button`);
+  button.simulate(`click`, {});
+  expect(wrapper.instance().state.renderedMoviesCount).toBe(9);
 });
