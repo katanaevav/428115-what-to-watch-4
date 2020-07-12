@@ -17,7 +17,7 @@ it(`Render video player`, () => {
   const tree = renderer.create(
       <VideoPlayer
         poster = {Movie.smallPoster}
-        preview = {Movie.preview}
+        src = {Movie.preview}
         volume = {playerState.VOLUME}
         isPlaying = {playerState.IS_PLAYING}
         isPaused = {playerState.IS_PAUSED}

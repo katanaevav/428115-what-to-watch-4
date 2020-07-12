@@ -9,17 +9,29 @@ class VideoPlayer extends PureComponent {
   }
 
   componentWillUnmount() {
+    const video = this._videoRef.current;
+    video.ontimeupdate = null;
     this._videoRef.current.src = ``;
+  }
+
+  componentDidMount() {
+    const video = this._videoRef.current;
+
+    video.ontimeupdate = () => {
+      console.log(Math.floor(video.currentTime), Math.floor(video.duration));
+    };
   }
 
   componentDidUpdate() {
     const video = this._videoRef.current;
-    const {preview, volume} = this.props;
+    const {src, volume} = this.props;
 
     if (this.props.isPlaying) {
-      video.src = preview;
+      video.src = src;
       video.volume = volume;
       video.onloadedmetadata = () => video.play();
+    } else if (!this.props.isPlaying && this.props.isPaused) {
+      video.pause();
     } else {
       video.src = ``;
     }
@@ -43,9 +55,10 @@ class VideoPlayer extends PureComponent {
 
 VideoPlayer.propTypes = {
   poster: PropTypes.string.isRequired,
-  preview: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
   volume: PropTypes.number.isRequired,
   isPlaying: PropTypes.bool.isRequired,
+  isPaused: PropTypes.bool.isRequired,
 };
 
 export default VideoPlayer;

@@ -9,6 +9,7 @@ const withSmallVideoPlayer = (Component) => {
 
       this.state = {
         isPlaying: false,
+        isPaused: false,
       };
     }
 
@@ -17,7 +18,7 @@ const withSmallVideoPlayer = (Component) => {
         {...this.props}
 
         renderPlayer={(preview, poster, onMovieMouseOver, onMovieMouseOut) => {
-          const {isPlaying} = this.state;
+          const {isPlaying, isPaused} = this.state;
 
           return (
             <div
@@ -26,6 +27,7 @@ const withSmallVideoPlayer = (Component) => {
                 onMovieMouseOver(() => {
                   this.setState({
                     isPlaying: true,
+                    isPaused: false,
                   });
                 });
               }}
@@ -34,15 +36,17 @@ const withSmallVideoPlayer = (Component) => {
                 onMovieMouseOut(() => {
                   this.setState({
                     isPlaying: false,
+                    isPaused: false,
                   });
                 });
               }}
             >
               <VideoPlayer
                 poster={poster}
-                preview={preview}
+                src={preview}
                 volume={MIN_VOLUME}
                 isPlaying={isPlaying}
+                isPaused={isPaused}
               />
             </div>
           );
