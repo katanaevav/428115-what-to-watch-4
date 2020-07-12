@@ -9,6 +9,9 @@ import {getFilteredMovies} from "../../selectors.js";
 import {Screens, MAX_SIMILAR_MOVIES_COUNT} from "../../const.js";
 import withMovieTabs from "../../hoc/with-movie-tabs/with-movie-tabs.js";
 import CinemaScreen from "../cinema-screen/cinema-screen.jsx";
+import withCinemaVideoPlayer from "../../hoc/with-cinema-video-player/with-cinema-video-player.js";
+
+const CinemaScreenWrapped = withCinemaVideoPlayer(CinemaScreen);
 
 const MoviePageWrapper = withMovieTabs(MoviePage);
 
@@ -102,7 +105,7 @@ class App extends PureComponent {
             />
           </Route>
           <Route exact path="/dev-player">
-            <CinemaScreen />
+            <CinemaScreenWrapped />
           </Route>
         </Switch>
       </BrowserRouter>

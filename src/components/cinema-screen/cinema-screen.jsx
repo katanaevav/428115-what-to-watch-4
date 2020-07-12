@@ -1,15 +1,43 @@
 import React, {PureComponent} from "react";
+import PropTypes from "prop-types";
 
 class CinemaScreen extends PureComponent {
   constructor(props) {
     super(props);
+
+    this._playHandler = this._playHandler.bind(this);
+    this._pauseHandler = this._pauseHandler.bind(this);
+    this._updateTimeHandler = this._updateTimeHandler.bind(this);
+  }
+
+  _playHandler() {
+    const {onPlay, onTimeUpdate} = this.props;
+    onPlay();
+    console.log(onTimeUpdate());
+  }
+
+  _pauseHandler(action) {
+    const {onPause} = this.props;
+    onPause();
+  }
+
+  _updateTimeHandler(currentTime, duration) {
+    const {onTimeUpdate} = this.props;
+    // onTimeUpdate();
+    console.log(onTimeUpdate());
   }
 
   render() {
 
+    const {renderPlayer} = this.props;
+
     return (
       <div className="player">
-        <video src="#" className="player__video" poster="img/player-poster.jpg"></video>
+        {/* <video src="#" className="player__video" poster="img/player-poster.jpg"></video> */}
+        {renderPlayer(
+            `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+            `img/bohemian-rhapsody.jpg`
+        )}
 
         <button type="button" className="player__exit">Exit</button>
 
@@ -17,13 +45,13 @@ class CinemaScreen extends PureComponent {
           <div className="player__controls-row">
             <div className="player__time">
               <progress className="player__progress" value="30" max="100"></progress>
-              <div className="player__toggler" style={{left: `2.3%`}}>Toggler</div>
+              <div className="player__toggler" style={{left: `30%`}}>Toggler</div>
             </div>
             <div className="player__time-value">1:30:29</div>
           </div>
 
           <div className="player__controls-row">
-            <button type="button" className="player__play">
+            <button type="button" className="player__play" onClick={this._playHandler}>
               <svg viewBox="0 0 19 19" width="19" height="19">
                 <use xlinkHref="/sprite.svg#play-s"></use>
               </svg>
@@ -44,6 +72,8 @@ class CinemaScreen extends PureComponent {
   }
 }
 
-CinemaScreen.propTypes = {};
+CinemaScreen.propTypes = {
+  renderPlayer: PropTypes.func.isRequired,
+};
 
 export default CinemaScreen;

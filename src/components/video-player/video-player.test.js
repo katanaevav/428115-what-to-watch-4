@@ -21,6 +21,7 @@ it(`Render video player`, () => {
         volume = {playerState.VOLUME}
         isPlaying = {playerState.IS_PLAYING}
         isPaused = {playerState.IS_PAUSED}
+        onUpdateTime = {() => {}}
       />
   ).toJSON();
 

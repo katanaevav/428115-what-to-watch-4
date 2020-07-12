@@ -16,9 +16,11 @@ class VideoPlayer extends PureComponent {
 
   componentDidMount() {
     const video = this._videoRef.current;
+    const {onUpdateTime} = this.props;
 
     video.ontimeupdate = () => {
-      console.log(Math.floor(video.currentTime), Math.floor(video.duration));
+      onUpdateTime(Math.floor(video.currentTime), Math.floor(video.duration));
+      // console.log(Math.floor(video.currentTime), Math.floor(video.duration));
     };
   }
 
@@ -59,6 +61,7 @@ VideoPlayer.propTypes = {
   volume: PropTypes.number.isRequired,
   isPlaying: PropTypes.bool.isRequired,
   isPaused: PropTypes.bool.isRequired,
+  onUpdateTime: PropTypes.func.isRequired,
 };
 
 export default VideoPlayer;

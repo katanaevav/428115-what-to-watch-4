@@ -47,6 +47,7 @@ const withSmallVideoPlayer = (Component) => {
                 volume={MIN_VOLUME}
                 isPlaying={isPlaying}
                 isPaused={isPaused}
+                onUpdateTime={() => {}}
               />
             </div>
           );
