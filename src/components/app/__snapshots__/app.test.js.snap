@@ -191,10 +191,9 @@ Array [
             onMouseOver={[Function]}
           >
             <video
-              height="175"
+              className="player__video"
               poster="img/bohemian-rhapsody.jpg"
               preload="metadata"
-              width="280"
             />
           </div>
           <h3
@@ -219,10 +218,9 @@ Array [
             onMouseOver={[Function]}
           >
             <video
-              height="175"
+              className="player__video"
               poster="img/moonrise-kingdom.jpg"
               preload="metadata"
-              width="280"
             />
           </div>
           <h3
@@ -371,6 +369,7 @@ Array [
           >
             <button
               className="btn btn--play movie-card__button"
+              onClick={[Function]}
               type="button"
             >
               <svg

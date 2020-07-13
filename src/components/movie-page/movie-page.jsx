@@ -21,11 +21,13 @@ class MoviePage extends PureComponent {
     super(props);
 
     this._renderTab = this._renderTab.bind(this);
+    this._playMovieClickHandler = this._playMovieClickHandler.bind(this);
   }
 
 
   _renderTab() {
-    const {genre, year, runTime, ratingScore, ratingCount, directors, starrings, descriptions, reviews, currentTab} = this.props;
+    const {movie, currentTab} = this.props;
+    const {genre, year, runTime, ratingScore, ratingCount, directors, starrings, descriptions, reviews} = movie;
 
     switch (currentTab) {
       case Tabs.DETAILS_TAB:
@@ -59,8 +61,15 @@ class MoviePage extends PureComponent {
     }
   }
 
+  _playMovieClickHandler() {
+    const {movie, onPlayMovieClick} = this.props;
+    const {id} = movie;
+    onPlayMovieClick(id);
+  }
+
   render() {
-    const {id, title, genre, year, bigPoster, cover, similarMovies, onMovieTitleClick, renderTabs} = this.props;
+    const {movie, similarMovies, onMovieTitleClick, renderTabs} = this.props;
+    const {id, title, genre, year, bigPoster, cover} = movie;
 
     return (
       <React.Fragment>
@@ -86,7 +95,7 @@ class MoviePage extends PureComponent {
                 </p>
 
                 <div className="movie-card__buttons">
-                  <button className="btn btn--play movie-card__button" type="button">
+                  <button className="btn btn--play movie-card__button" type="button" onClick={this._playMovieClickHandler}>
                     <svg viewBox="0 0 19 19" width="19" height="19">
                       <use xlinkHref="/sprite.svg#play-s"></use>
                     </svg>
@@ -146,23 +155,12 @@ class MoviePage extends PureComponent {
 }
 
 MoviePage.propTypes = {
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  year: PropTypes.number.isRequired,
-  runTime: PropTypes.string.isRequired,
-  bigPoster: PropTypes.string.isRequired,
-  cover: PropTypes.string.isRequired,
-  ratingScore: PropTypes.string.isRequired,
-  ratingCount: PropTypes.number.isRequired,
-  directors: PropTypes.arrayOf(PropTypes.string).isRequired,
-  starrings: PropTypes.arrayOf(PropTypes.string).isRequired,
-  descriptions: PropTypes.arrayOf(PropTypes.string).isRequired,
-  reviews: PropTypes.array.isRequired,
+  movie: PropTypes.object.isRequired,
   similarMovies: PropTypes.array.isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
   renderTabs: PropTypes.func.isRequired,
   currentTab: PropTypes.number.isRequired,
+  onPlayMovieClick: PropTypes.func.isRequired,
 };
 
 export default MoviePage;

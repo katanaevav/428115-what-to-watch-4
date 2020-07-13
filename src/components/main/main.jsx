@@ -14,16 +14,17 @@ class Main extends PureComponent {
   }
 
   render() {
-    const {promoMovieTitle, promoMovieGenre, promoMovieYear, promoMovieCover, promoMovieBigPoster, genres, movies, currentGenreFilter, onMovieTitleClick, onMovieFilterClick} = this.props;
+    const {promoMovie, genres, movies, currentGenreFilter, onMovieTitleClick, onMovieFilterClick} = this.props;
+    const {title, genre, year, cover, bigPoster} = promoMovie;
 
     return (
       <React.Fragment>
         <MoviePromo
-          promoMovieTitle = {promoMovieTitle}
-          promoMovieGenre = {promoMovieGenre}
-          promoMovieYear = {promoMovieYear}
-          cover = {promoMovieCover}
-          bigPoster = {promoMovieBigPoster}
+          promoMovieTitle = {title}
+          promoMovieGenre = {genre}
+          promoMovieYear = {year}
+          cover = {cover}
+          bigPoster = {bigPoster}
         />
 
         <div className="page-content">
@@ -58,11 +59,7 @@ class Main extends PureComponent {
 }
 
 Main.propTypes = {
-  promoMovieTitle: PropTypes.string.isRequired,
-  promoMovieGenre: PropTypes.string.isRequired,
-  promoMovieYear: PropTypes.number.isRequired,
-  promoMovieCover: PropTypes.string.isRequired,
-  promoMovieBigPoster: PropTypes.string.isRequired,
+  promoMovie: PropTypes.object.isRequired,
   genres: PropTypes.array.isRequired,
   movies: PropTypes.arrayOf(
       PropTypes.shape({

@@ -22,7 +22,13 @@ it(`Render video player`, () => {
         isPlaying = {playerState.IS_PLAYING}
         isPaused = {playerState.IS_PAUSED}
         onUpdateTime = {() => {}}
-      />
+        onSetFullScreen = {() => {}}
+        isFullScreen = {false}
+      />, {
+        createNodeMock: () => {
+          return {};
+        }
+      }
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render video progress bar and duration time 1`] = `
+<div
+  className="player__controls-row"
+>
+  <div
+    className="player__time"
+  >
+    <progress
+      className="player__progress"
+      max="100"
+      value={12}
+    />
+    <div
+      className="player__toggler"
+      style={
+        Object {
+          "left": "12%",
+        }
+      }
+    >
+      Toggler
+    </div>
+  </div>
+  <div
+    className="player__time-value"
+  >
+    1:40
+  </div>
+</div>
+`;

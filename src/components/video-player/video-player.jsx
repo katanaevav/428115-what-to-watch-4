@@ -36,7 +36,9 @@ class VideoPlayer extends PureComponent {
       video.requestFullscreen();
     }
 
-    if (this.props.isPlaying) {
+    if (this.props.isPlaying && video.currentTime > 0) {
+      video.play();
+    } else if (this.props.isPlaying && !this.props.isPaused) {
       video.src = src;
       video.volume = volume;
       video.onloadedmetadata = () => video.play();
@@ -52,8 +54,7 @@ class VideoPlayer extends PureComponent {
 
     return (
       <video
-        width="100%"
-        height="100%"
+        className="player__video"
         poster={poster}
         preload="metadata"
         ref={this._videoRef}

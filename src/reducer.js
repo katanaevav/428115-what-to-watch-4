@@ -26,6 +26,7 @@ const initialState = {
 const ActionType = {
   SET_GENRE_FILTER: `SET_GENRE_FILTER`,
   OPEN_MOVIE_PAGE: `OPEN_MOVIE_PAGE`,
+  OPEN_CINEMA_PAGE: `OPEN_CINEMA_PAGE`,
 };
 
 const ActionCreator = {
@@ -42,6 +43,13 @@ const ActionCreator = {
       payload: movieId,
     };
   },
+
+  openCinemaScreen: (movieId) => {
+    return {
+      type: ActionType.OPEN_CINEMA_PAGE,
+      payload: movieId,
+    };
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -54,6 +62,12 @@ const reducer = (state = initialState, action) => {
     case ActionType.OPEN_MOVIE_PAGE:
       return Object.assign({}, state, {
         currentPage: Screens.MOVIE_PAGE_SCREEN,
+        selectedMovieId: parseInt(action.payload, 10),
+      });
+
+    case ActionType.OPEN_CINEMA_PAGE:
+      return Object.assign({}, state, {
+        currentPage: Screens.CINEMA_SCREEN,
         selectedMovieId: parseInt(action.payload, 10),
       });
   }

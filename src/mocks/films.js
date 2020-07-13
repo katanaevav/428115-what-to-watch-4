@@ -1,4 +1,5 @@
 export const PromoMovie = {
+  id: 10,
   title: `The Grand Budapest Hotel`,
   smallPoster: `img/the-grand-budapest-hotel-poster.jpg`,
   genre: `Drama`,

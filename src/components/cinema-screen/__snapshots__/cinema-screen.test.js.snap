@@ -4,11 +4,6 @@ exports[`Render cinema screen 1`] = `
 <div
   className="player"
 >
-  <video
-    className="player__video"
-    poster="img/player-poster.jpg"
-    src="#"
-  />
   <button
     className="player__exit"
     type="button"
@@ -22,57 +17,13 @@ exports[`Render cinema screen 1`] = `
       className="player__controls-row"
     >
       <div
-        className="player__time"
-      >
-        <progress
-          className="player__progress"
-          max="100"
-          value="30"
-        />
-        <div
-          className="player__toggler"
-          style={
-            Object {
-              "left": "2.3%",
-            }
-          }
-        >
-          Toggler
-        </div>
-      </div>
-      <div
-        className="player__time-value"
-      >
-        1:30:29
-      </div>
-    </div>
-    <div
-      className="player__controls-row"
-    >
-      <button
-        className="player__play"
-        type="button"
-      >
-        <svg
-          height="19"
-          viewBox="0 0 19 19"
-          width="19"
-        >
-          <use
-            xlinkHref="/sprite.svg#play-s"
-          />
-        </svg>
-        <span>
-          Play
-        </span>
-      </button>
-      <div
         className="player__name"
       >
-        Transpotting
+        Aviator
       </div>
       <button
         className="player__full-screen"
+        onClick={[Function]}
         type="button"
       >
         <svg

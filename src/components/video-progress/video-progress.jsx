@@ -9,8 +9,10 @@ class VideoProgress extends PureComponent {
 
   _getDurationTime() {
     const {duration} = this.props;
-
-    return duration;
+    const hours = Math.floor(duration / 3600);
+    const minutes = Math.floor(duration / 60) - (hours * 60);
+    const seconds = duration - (minutes * 60);
+    return `${hours > 0 ? `${hours}:` : ``}${minutes > 0 ? `${minutes}:` : ``}${seconds > 0 ? `${seconds}` : ``}`;
   }
 
   _getCurrentProgress() {

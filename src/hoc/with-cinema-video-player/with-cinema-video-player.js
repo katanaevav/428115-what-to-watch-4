@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import VideoPlayer from "../../components/video-player/video-player.jsx";
 import VideoProgress from "../../components/video-progress/video-progress.jsx";
+import VideoPlayButton from "../../components/video-play-button/video-play-button.jsx";
 
 const withCinemaVideoPlayer = (Component) => {
   class WithCinemaVideoPlayer extends PureComponent {
@@ -9,6 +10,9 @@ const withCinemaVideoPlayer = (Component) => {
 
       this._updateTimeHandler = this._updateTimeHandler.bind(this);
       this._setFullScreenHandler = this._setFullScreenHandler.bind(this);
+      this._setPlayStatus = this._setPlayStatus.bind(this);
+      this._setPauseStatus = this._setPauseStatus.bind(this);
+      this._playButtonClickHandler = this._playButtonClickHandler.bind(this);
 
       this.state = {
         isPlaying: false,
@@ -31,7 +35,7 @@ const withCinemaVideoPlayer = (Component) => {
         duration: movieDuration,
       });
 
-      if (currentTime === movieDuration && movieDuration > 0) {
+      if (currentTime === movieDuration && currentTime > 0) {
         this.setState({
           isPlaying: false,
           isPaused: false,
@@ -39,23 +43,33 @@ const withCinemaVideoPlayer = (Component) => {
       }
     }
 
+    _setPlayStatus() {
+      this.setState({
+        isPlaying: true,
+        isPaused: false,
+      });
+    }
+
+    _setPauseStatus() {
+      this.setState({
+        isPlaying: false,
+        isPaused: true,
+      });
+    }
+
+    _playButtonClickHandler() {
+      const {isPlaying} = this.state;
+
+      if (!isPlaying) {
+        this._setPlayStatus();
+      } else {
+        this._setPauseStatus();
+      }
+    }
+
     render() {
       return <Component
         {...this.props}
-
-        onPlayButtonClick={() => {
-          this.setState({
-            isPlaying: true,
-            isPaused: false,
-          });
-        }}
-
-        onPauseButtonClick={() => {
-          this.setState({
-            isPlaying: false,
-            isPaused: true,
-          });
-        }}
 
         onFullScreenButtonClick={() => {
           this.setState({
@@ -76,6 +90,17 @@ const withCinemaVideoPlayer = (Component) => {
               onUpdateTime={this._updateTimeHandler}
               onSetFullScreen={this._setFullScreenHandler}
               isFullScreen={isFullScreen}
+            />
+          );
+        }}
+
+        renderPlayButton={() => {
+          const {isPlaying} = this.state;
+
+          return (
+            <VideoPlayButton
+              onPlayButtonClick={this._playButtonClickHandler}
+              isPlaying={isPlaying}
             />
           );
         }}

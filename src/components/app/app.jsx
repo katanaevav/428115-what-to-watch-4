@@ -32,41 +32,33 @@ class App extends PureComponent {
 
 
   _renderApp() {
-    const {promoMovie, movies, genres, currentGenreFilter, onMovieFilterClick, onMovieTitleClick, selectedMovieId, currentPage} = this.props;
-    const {title: promoMovieTitle, genre: promoMovieGenre, year: promoMovieYear, bigPoster: promoMoviePoster, cover: promoMovieCover} = promoMovie;
+    const {promoMovie, movies, genres, currentGenreFilter, onMovieFilterClick, onMovieTitleClick, onPlayMovieClick, selectedMovieId, currentPage} = this.props;
 
     switch (currentPage) {
       case Screens.MOVIE_PAGE_SCREEN:
-        const {id, title, genre, year, runTime, bigPoster, cover, ratingScore, ratingCount, directors, starrings, descriptions, reviews} = this._getMovieById(selectedMovieId);
+        const selecdedMovie = this._getMovieById(selectedMovieId);
+        const {id, genre} = selecdedMovie;
         const similarMovies = movies.filter((movie) => (movie.genre === genre) && (movie.id !== id)).slice(0, MAX_SIMILAR_MOVIES_COUNT);
         return (
           <MoviePageWrapper
-            id = {id}
-            title = {title}
-            genre = {genre}
-            year = {year}
-            runTime = {runTime}
-            bigPoster = {bigPoster}
-            cover = {cover}
-            ratingScore = {ratingScore}
-            ratingCount = {ratingCount}
-            directors = {directors}
-            starrings = {starrings}
-            descriptions = {descriptions}
-            reviews = {reviews}
+            movie={selecdedMovie}
             similarMovies = {similarMovies}
             onMovieTitleClick = {onMovieTitleClick}
+            onPlayMovieClick = {onPlayMovieClick}
+          />
+        );
+
+      case Screens.CINEMA_SCREEN:
+        return (
+          <CinemaScreenWrapped
+            movie={this._getMovieById(selectedMovieId)}
           />
         );
 
       default:
         return (
           <Main
-            promoMovieTitle = {promoMovieTitle}
-            promoMovieGenre = {promoMovieGenre}
-            promoMovieYear = {promoMovieYear}
-            promoMovieCover = {promoMovieCover}
-            promoMovieBigPoster = {promoMoviePoster}
+            promoMovie = {promoMovie}
             genres = {genres}
             movies = {movies}
             currentGenreFilter = {currentGenreFilter}
@@ -78,7 +70,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {promoMovie} = this.props;
+    const {movies} = this.props;
     return (
       <BrowserRouter>
         <Switch>
@@ -87,26 +79,15 @@ class App extends PureComponent {
           </Route>
           <Route exact path="/dev-film">
             <MoviePageWrapper
-              id = {0}
-              title = {promoMovie.title}
-              genre = {promoMovie.genre}
-              year = {promoMovie.year}
-              runTime = {promoMovie.runTime}
-              bigPoster = {promoMovie.bigPoster}
-              cover = {promoMovie.cover}
-              ratingScore = {promoMovie.ratingScore}
-              ratingCount = {promoMovie.ratingCount}
-              directors = {promoMovie.directors}
-              starrings = {promoMovie.starrings}
-              descriptions = {promoMovie.descriptions}
-              reviews = {promoMovie.reviews}
-              similarMovies = {this.props.movies}
+              movie={this._getMovieById(0)}
+              similarMovies = {movies}
               onMovieTitleClick = {() => {}}
+              onPlayMovieClick = {() => {}}
             />
           </Route>
           <Route exact path="/dev-player">
             <CinemaScreenWrapped
-              movie={this.props.movies[1]}
+              movie={this._getMovieById(1)}
             />
           </Route>
         </Switch>
@@ -129,6 +110,7 @@ App.propTypes = {
   currentGenreFilter: PropTypes.string.isRequired,
   onMovieFilterClick: PropTypes.func.isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
+  onPlayMovieClick: PropTypes.func.isRequired,
   selectedMovieId: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
 };
@@ -149,7 +131,11 @@ const mapDispatchToProps = (dispatch) => ({
 
   onMovieTitleClick(movieId) {
     dispatch(ActionCreator.openMovieScreen(movieId));
-  }
+  },
+
+  onPlayMovieClick(movieId) {
+    dispatch(ActionCreator.openCinemaScreen(movieId));
+  },
 });
 
 

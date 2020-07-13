@@ -6,7 +6,8 @@ const NO_FILTER = `All genres`;
 
 const GENRES = [`All genres`, `Drama`, `Comedy`, `Fantasy`, `Action`];
 
-const PromoMovie = {
+export const PromoMovie = {
+  id: 10,
   title: `The Grand Budapest Hotel`,
   smallPoster: `img/the-grand-budapest-hotel-poster.jpg`,
   genre: `Drama`,
@@ -16,6 +17,8 @@ const PromoMovie = {
   cover: `img/bg-the-grand-budapest-hotel.jpg`,
   ratingScore: `8,9`,
   ratingCount: 240,
+  preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+  video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   directors: [`Уэс Андерсон`],
   starrings: [`Рэйф Файнс`, `Тони Револори`, `Сирша Ронан`, `Эдриан Броуди`, `Уиллем Дефо`, `Эдвард Нортон`, `Матьё Амальрик`, `Харви Кейтель`, `Ф. Мюррэй Абрахам`, `Тильда Суинтон`],
   descriptions: [
@@ -60,6 +63,7 @@ const movies = [
     ratingScore: `7,5`,
     ratingCount: 121697,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     directors: [`Мартин Скорсезе`],
     starrings: [`Леонардо ДиКаприо`, `Кейт Бланшетт`, `Мэтт Росс`, `Джон Си Райли`, `Алан Алда`, `Кейт Бекинсейл`, `Алек Болдуин`, `Иэн Холм`, `Адам Скотт`, `Дэнни Хьюстон`],
     descriptions: [
@@ -103,6 +107,7 @@ const movies = [
     ratingScore: `7,9`,
     ratingCount: 284651,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     directors: [`Брайан Сингер`],
     starrings: [`Рами Малек`, `Люси Бойнтон`, `Гвилим Ли`, `Бен Харди`, `Джозеф Маццелло`, `Эйдан Гиллен`, `Аллен Лич`, `Том Холландер`, `Майк Майерс`, `Аарон МакКаскер`],
     descriptions: [
@@ -152,6 +157,7 @@ const movies = [
     ratingScore: `6,5`,
     ratingCount: 34786,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     directors: [`Оливер Паркер`],
     starrings: [`Роуэн Эткинсон`, `Джиллиан Андерсон`, `Доминик Уэст`, `Розамунд Пайк`, `Дэниэл Калуя`, `Марк Иванир`, `Берн Горман`, `Жозефин де ла Буме`, `Тим Макиннерни`, `Пик Сен Лим`],
     descriptions: [
@@ -195,6 +201,7 @@ const movies = [
     ratingScore: `8,9`,
     ratingCount: 240,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     directors: [`Уэс Андерсон`],
     starrings: [`Брюс Уиллис`, `Эдвард Нортон`, `Билл Мюррей`, `Фрэнсис МакДорманд`, `Джаред Гилман`, `Кара Хэйуорд`, `Боб Бэлабан`, `Тильда Суинтон`, `Джейсон Шварцман`, `Харви Кейтель`],
     descriptions: [
@@ -251,6 +258,7 @@ const movies = [
     ratingScore: `7,7`,
     ratingCount: 139424,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     directors: [`Итан Коэн, Джоэл Коэн`],
     starrings: [`Томми Ли Джонс`, `Джош Бролин`, `Хавьер Бардем`, `Келли Макдоналд`, `Вуди Харрельсон`, `Бет Грант`, `Гаррет Диллахант`, `Тесс Харпер`, `Бэри Корбинр`, `Стивен Рут`],
     descriptions: [
@@ -292,6 +300,7 @@ const movies = [
     ratingScore: `7,1`,
     ratingCount: 6058,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     directors: [`Салли Поттер`],
     starrings: [`Тильда Суинтон`, `Билли Зейн`, `Лотер Блюто`, `Джон Вуд`, `Шарлотт Валандре`, `Хиткоут Уильямс`, `Квентин Крисп`, `Джимми Соммервиль`, `Джон Ботт`, `Элейн Бенэм`],
     descriptions: [
@@ -342,6 +351,7 @@ const movies = [
     ratingScore: `8,6`,
     ratingCount: 454261,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     directors: [`Квентин Тарантино`],
     starrings: [`Джон Траволта`, `Сэмюэл Л. Джексон`, `Брюс Уиллис`, `Ума Турман`, `Винг Реймз`, `Тим Рот`, `Харви Кейтель`, `Квентин Тарантино`, `Питер Грин`, `Аманда Пламмер`],
     descriptions: [
@@ -405,6 +415,7 @@ const movies = [
     ratingScore: `7,0`,
     ratingCount: 151728,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     directors: [`Стивен Спилберг`],
     starrings: [`Том Круз`, `Дакота Фаннинг`, `Миранда Отто`, `Джастин Чатвин`, `Тим Роббинс`, `Рик Гонсалес`, `Юл Васкес`, `Ленни Венито`, `Лиза Энн Уолтер`, `Энн Робинсон`],
     descriptions: [
@@ -454,6 +465,7 @@ const movies = [
     ratingScore: `7,0`,
     ratingCount: 151728,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     directors: [`Стивен Спилберг`],
     starrings: [`Том Круз`, `Дакота Фаннинг`, `Миранда Отто`, `Джастин Чатвин`, `Тим Роббинс`, `Рик Гонсалес`, `Юл Васкес`, `Ленни Венито`, `Лиза Энн Уолтер`, `Энн Робинсон`],
     descriptions: [

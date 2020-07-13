@@ -8,12 +8,14 @@ export const MAX_SIMILAR_MOVIES_COUNT = 4;
 export const REVIEWS_COLUMNS_COUNT = 2;
 
 export const MIN_VOLUME = 0.0;
+export const NO_FULLSCREEN = false;
 
 export const TABS_NAMES = [`Overview`, `Details`, `Reviews`];
 
 export const Screens = {
   MAIN_SCREEN: 0,
   MOVIE_PAGE_SCREEN: 1,
+  CINEMA_SCREEN: 2,
 };
 
 export const Tabs = {
