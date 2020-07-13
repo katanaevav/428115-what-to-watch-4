@@ -20,13 +20,21 @@ class VideoPlayer extends PureComponent {
 
     video.ontimeupdate = () => {
       onUpdateTime(Math.floor(video.currentTime), Math.floor(video.duration));
-      // console.log(Math.floor(video.currentTime), Math.floor(video.duration));
+    };
+
+    video.onfullscreenchange = () => {
+      const {onSetFullScreen} = this.props;
+      onSetFullScreen(!!document.fullscreenElement);
     };
   }
 
   componentDidUpdate() {
     const video = this._videoRef.current;
     const {src, volume} = this.props;
+
+    if (this.props.isFullScreen) {
+      video.requestFullscreen();
+    }
 
     if (this.props.isPlaying) {
       video.src = src;
@@ -44,8 +52,8 @@ class VideoPlayer extends PureComponent {
 
     return (
       <video
-        width="280"
-        height="175"
+        width="100%"
+        height="100%"
         poster={poster}
         preload="metadata"
         ref={this._videoRef}
@@ -62,6 +70,8 @@ VideoPlayer.propTypes = {
   isPlaying: PropTypes.bool.isRequired,
   isPaused: PropTypes.bool.isRequired,
   onUpdateTime: PropTypes.func.isRequired,
+  onSetFullScreen: PropTypes.func.isRequired,
+  isFullScreen: PropTypes.bool.isRequired,
 };
 
 export default VideoPlayer;

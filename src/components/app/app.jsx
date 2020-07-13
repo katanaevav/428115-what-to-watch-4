@@ -105,7 +105,9 @@ class App extends PureComponent {
             />
           </Route>
           <Route exact path="/dev-player">
-            <CinemaScreenWrapped />
+            <CinemaScreenWrapped
+              movie={this.props.movies[1]}
+            />
           </Route>
         </Switch>
       </BrowserRouter>
