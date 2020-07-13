@@ -99,6 +99,7 @@ it(`Should movie header be pressed`, () => {
         onMovieTitleClick = {onMovieTitleClick}
         currentGenreFilter = {NO_FILTER}
         onMovieFilterClick = {() => {}}
+        onPlayMovieClick = {() => {}}
       />
   );
 
@@ -122,6 +123,7 @@ it(`Should filter be pressed`, () => {
         onMovieTitleClick = {() => {}}
         currentGenreFilter = {NO_FILTER}
         onMovieFilterClick = {onMovieFilterClick}
+        onPlayMovieClick = {() => {}}
       />
   );
 

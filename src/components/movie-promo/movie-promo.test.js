@@ -18,6 +18,7 @@ it(`Render promo movie section`, () => {
         promoMovieYear = {Movie.year}
         cover = {Movie.cover}
         bigPoster = {Movie.bigPoster}
+        onPlayPromoMovieClick = {() => {}}
       />
   ).toJSON();
 

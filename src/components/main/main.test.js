@@ -92,6 +92,7 @@ it(`Should Main component render correctly`, () => {
         onMovieTitleClick = {() => {}}
         currentGenreFilter = {NO_FILTER}
         onMovieFilterClick = {() => {}}
+        onPlayMovieClick = {() => {}}
       />, {
         createNodeMock: () => {
           return {};

@@ -11,6 +11,14 @@ const MoviesListWrapper = withMoviesList(MoviesList);
 class Main extends PureComponent {
   constructor(props) {
     super(props);
+
+    this._playMoviePromoClickHandler = this._playMoviePromoClickHandler.bind(this);
+  }
+
+  _playMoviePromoClickHandler() {
+    const {promoMovie, onPlayMovieClick} = this.props;
+    const {id} = promoMovie;
+    onPlayMovieClick(id);
   }
 
   render() {
@@ -25,6 +33,7 @@ class Main extends PureComponent {
           promoMovieYear = {year}
           cover = {cover}
           bigPoster = {bigPoster}
+          onPlayPromoMovieClick = {this._playMoviePromoClickHandler}
         />
 
         <div className="page-content">
@@ -71,6 +80,7 @@ Main.propTypes = {
   currentGenreFilter: PropTypes.string.isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
   onMovieFilterClick: PropTypes.func.isRequired,
+  onPlayMovieClick: PropTypes.func.isRequired,
 };
 
 export default Main;

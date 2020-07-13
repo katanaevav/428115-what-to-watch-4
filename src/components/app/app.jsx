@@ -64,6 +64,7 @@ class App extends PureComponent {
             currentGenreFilter = {currentGenreFilter}
             onMovieTitleClick = {onMovieTitleClick}
             onMovieFilterClick = {onMovieFilterClick}
+            onPlayMovieClick = {onPlayMovieClick}
           />
         );
     }
