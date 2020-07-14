@@ -9,17 +9,41 @@ class VideoPlayer extends PureComponent {
   }
 
   componentWillUnmount() {
+    const video = this._videoRef.current;
+    video.ontimeupdate = null;
     this._videoRef.current.src = ``;
+  }
+
+  componentDidMount() {
+    const video = this._videoRef.current;
+    const {onUpdateTime} = this.props;
+
+    video.ontimeupdate = () => {
+      onUpdateTime(Math.floor(video.currentTime), Math.floor(video.duration));
+    };
+
+    video.onfullscreenchange = () => {
+      const {onSetFullScreen} = this.props;
+      onSetFullScreen(!!document.fullscreenElement);
+    };
   }
 
   componentDidUpdate() {
     const video = this._videoRef.current;
-    const {preview, volume} = this.props;
+    const {src, volume} = this.props;
 
-    if (this.props.isPlaying) {
-      video.src = preview;
+    if (this.props.isFullScreen) {
+      video.requestFullscreen();
+    }
+
+    if (this.props.isPlaying && video.currentTime > 0) {
+      video.play();
+    } else if (this.props.isPlaying && !this.props.isPaused) {
+      video.src = src;
       video.volume = volume;
       video.onloadedmetadata = () => video.play();
+    } else if (!this.props.isPlaying && this.props.isPaused) {
+      video.pause();
     } else {
       video.src = ``;
     }
@@ -30,8 +54,7 @@ class VideoPlayer extends PureComponent {
 
     return (
       <video
-        width="280"
-        height="175"
+        className="player__video"
         poster={poster}
         preload="metadata"
         ref={this._videoRef}
@@ -43,9 +66,13 @@ class VideoPlayer extends PureComponent {
 
 VideoPlayer.propTypes = {
   poster: PropTypes.string.isRequired,
-  preview: PropTypes.string.isRequired,
+  src: PropTypes.string.isRequired,
   volume: PropTypes.number.isRequired,
   isPlaying: PropTypes.bool.isRequired,
+  isPaused: PropTypes.bool.isRequired,
+  onUpdateTime: PropTypes.func.isRequired,
+  onSetFullScreen: PropTypes.func.isRequired,
+  isFullScreen: PropTypes.bool.isRequired,
 };
 
 export default VideoPlayer;

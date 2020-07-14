@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render video pause button 1`] = `
+<button
+  className="player__play"
+  onClick={[Function]}
+  type="button"
+>
+  <svg
+    height="21"
+    viewBox="0 0 14 21"
+    width="14"
+  >
+    <use
+      xlinkHref="/sprite.svg#pause"
+    />
+  </svg>
+  <span>
+    Pause
+  </span>
+</button>
+`;
+
+exports[`Render video play button 1`] = `
+<button
+  className="player__play"
+  onClick={[Function]}
+  type="button"
+>
+  <svg
+    height="19"
+    viewBox="0 0 19 19"
+    width="19"
+  >
+    <use
+      xlinkHref="/sprite.svg#play-s"
+    />
+  </svg>
+  <span>
+    Play
+  </span>
+</button>
+`;

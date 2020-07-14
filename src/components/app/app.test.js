@@ -131,10 +131,16 @@ it(`Render App with Main screen`, () => {
           currentGenreFilter = {NO_FILTER}
           onMovieFilterClick = {() => {}}
           onMovieTitleClick = {() => {}}
+          onPlayMovieClick = {() => {}}
           selectedMovieId = {-1}
           currentPage = {Screens.MAIN_SCREEN}
+          onExitVideoPlayer = {() => {}}
         />
-      </Provider>
+      </Provider>, {
+        createNodeMock: () => {
+          return {};
+        }
+      }
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
@@ -153,10 +159,16 @@ it(`Render App with Movie page screen`, () => {
           currentGenreFilter = {NO_FILTER}
           onMovieFilterClick = {() => {}}
           onMovieTitleClick = {() => {}}
+          onPlayMovieClick = {() => {}}
           selectedMovieId = {0}
           currentPage = {Screens.MOVIE_PAGE_SCREEN}
+          onExitVideoPlayer = {() => {}}
         />
-      </Provider>
+      </Provider>, {
+        createNodeMock: () => {
+          return {};
+        }
+      }
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

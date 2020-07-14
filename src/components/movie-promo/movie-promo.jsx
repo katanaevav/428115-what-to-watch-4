@@ -9,7 +9,7 @@ class MoviePromo extends PureComponent {
   }
 
   render() {
-    const {promoMovieTitle, promoMovieGenre, promoMovieYear, cover, bigPoster} = this.props;
+    const {promoMovieTitle, promoMovieGenre, promoMovieYear, cover, bigPoster, onPlayPromoMovieClick} = this.props;
 
     return (
       <section className="movie-card">
@@ -38,7 +38,7 @@ class MoviePromo extends PureComponent {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button className="btn btn--play movie-card__button" type="button" onClick={onPlayPromoMovieClick}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="/sprite.svg#play-s"></use>
                   </svg>
@@ -65,6 +65,7 @@ MoviePromo.propTypes = {
   promoMovieYear: PropTypes.number.isRequired,
   cover: PropTypes.string.isRequired,
   bigPoster: PropTypes.string.isRequired,
+  onPlayPromoMovieClick: PropTypes.func.isRequired,
 };
 
 export default MoviePromo;

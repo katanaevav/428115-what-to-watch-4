@@ -455,7 +455,12 @@ it(`Render MoviesList without Show more button`, () => {
         onMovieTitleClick = {() => {}}
         renderedMoviesCount = {8}
         onShowMoreButtonClick = {() => {}}
-      />
+      >
+      </MoviesList>, {
+        createNodeMock: () => {
+          return {};
+        }
+      }
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
@@ -468,7 +473,11 @@ it(`Render MoviesList with Show more button`, () => {
         onMovieTitleClick = {() => {}}
         renderedMoviesCount = {8}
         onShowMoreButtonClick = {() => {}}
-      />
+      />, {
+        createNodeMock: () => {
+          return {};
+        }
+      }
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

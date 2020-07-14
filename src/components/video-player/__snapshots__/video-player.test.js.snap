@@ -2,9 +2,8 @@
 
 exports[`Render video player 1`] = `
 <video
-  height="175"
+  className="player__video"
   poster="img/aviator.jpg"
   preload="metadata"
-  width="280"
 />
 `;

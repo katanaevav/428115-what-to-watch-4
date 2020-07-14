@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import VideoPlayer from '../../components/video-player/video-player.jsx';
-import {MIN_VOLUME} from "../../const.js";
+import {MIN_VOLUME, NO_FULLSCREEN} from "../../const.js";
 
 const withSmallVideoPlayer = (Component) => {
   class WithSmallVideoPlayer extends PureComponent {
@@ -9,6 +9,7 @@ const withSmallVideoPlayer = (Component) => {
 
       this.state = {
         isPlaying: false,
+        isPaused: false,
       };
     }
 
@@ -26,6 +27,7 @@ const withSmallVideoPlayer = (Component) => {
                 onMovieMouseOver(() => {
                   this.setState({
                     isPlaying: true,
+                    isPaused: false,
                   });
                 });
               }}
@@ -34,16 +36,20 @@ const withSmallVideoPlayer = (Component) => {
                 onMovieMouseOut(() => {
                   this.setState({
                     isPlaying: false,
+                    isPaused: false,
                   });
                 });
               }}
             >
               <VideoPlayer
                 poster={poster}
-                preview={preview}
+                src={preview}
                 volume={MIN_VOLUME}
                 isPlaying={isPlaying}
                 isPaused={isPaused}
+                onUpdateTime={() => {}}
+                onSetFullScreen={() => {}}
+                isFullScreen={NO_FULLSCREEN}
               />
             </div>
           );

@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Render cinema screen 1`] = `
+<div
+  className="player"
+>
+  <button
+    className="player__exit"
+    onClick={[Function]}
+    type="button"
+  >
+    Exit
+  </button>
+  <div
+    className="player__controls"
+  >
+    <div
+      className="player__controls-row"
+    >
+      <div
+        className="player__name"
+      >
+        Aviator
+      </div>
+      <button
+        className="player__full-screen"
+        onClick={[Function]}
+        type="button"
+      >
+        <svg
+          height="27"
+          viewBox="0 0 27 27"
+          width="27"
+        >
+          <use
+            xlinkHref="/sprite.svg#full-screen"
+          />
+        </svg>
+        <span>
+          Full screen
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;

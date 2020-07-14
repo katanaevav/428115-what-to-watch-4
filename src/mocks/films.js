@@ -1,4 +1,5 @@
 export const PromoMovie = {
+  id: 9,
   title: `The Grand Budapest Hotel`,
   smallPoster: `img/the-grand-budapest-hotel-poster.jpg`,
   genre: `Drama`,
@@ -8,6 +9,8 @@ export const PromoMovie = {
   cover: `img/bg-the-grand-budapest-hotel.jpg`,
   ratingScore: `8,9`,
   ratingCount: 240,
+  preview: `http://dl5.webmfiles.org/elephants-dream.webm`,
+  video: `http://dl5.webmfiles.org/elephants-dream.webm`,
   directors: [`Уэс Андерсон`],
   starrings: [`Рэйф Файнс`, `Тони Револори`, `Сирша Ронан`, `Эдриан Броуди`, `Уиллем Дефо`, `Эдвард Нортон`, `Матьё Амальрик`, `Харви Кейтель`, `Ф. Мюррэй Абрахам`, `Тильда Суинтон`],
   descriptions: [
@@ -52,6 +55,7 @@ export default [
     ratingScore: `7,5`,
     ratingCount: 121697,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     directors: [`Мартин Скорсезе`],
     starrings: [`Леонардо ДиКаприо`, `Кейт Бланшетт`, `Мэтт Росс`, `Джон Си Райли`, `Алан Алда`, `Кейт Бекинсейл`, `Алек Болдуин`, `Иэн Холм`, `Адам Скотт`, `Дэнни Хьюстон`],
     descriptions: [
@@ -95,6 +99,7 @@ export default [
     ratingScore: `7,9`,
     ratingCount: 284651,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     directors: [`Брайан Сингер`],
     starrings: [`Рами Малек`, `Люси Бойнтон`, `Гвилим Ли`, `Бен Харди`, `Джозеф Маццелло`, `Эйдан Гиллен`, `Аллен Лич`, `Том Холландер`, `Майк Майерс`, `Аарон МакКаскер`],
     descriptions: [
@@ -144,6 +149,7 @@ export default [
     ratingScore: `6,5`,
     ratingCount: 34786,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     directors: [`Оливер Паркер`],
     starrings: [`Роуэн Эткинсон`, `Джиллиан Андерсон`, `Доминик Уэст`, `Розамунд Пайк`, `Дэниэл Калуя`, `Марк Иванир`, `Берн Горман`, `Жозефин де ла Буме`, `Тим Макиннерни`, `Пик Сен Лим`],
     descriptions: [
@@ -187,6 +193,7 @@ export default [
     ratingScore: `8,9`,
     ratingCount: 240,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     directors: [`Уэс Андерсон`],
     starrings: [`Брюс Уиллис`, `Эдвард Нортон`, `Билл Мюррей`, `Фрэнсис МакДорманд`, `Джаред Гилман`, `Кара Хэйуорд`, `Боб Бэлабан`, `Тильда Суинтон`, `Джейсон Шварцман`, `Харви Кейтель`],
     descriptions: [
@@ -243,6 +250,7 @@ export default [
     ratingScore: `7,7`,
     ratingCount: 139424,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     directors: [`Итан Коэн, Джоэл Коэн`],
     starrings: [`Томми Ли Джонс`, `Джош Бролин`, `Хавьер Бардем`, `Келли Макдоналд`, `Вуди Харрельсон`, `Бет Грант`, `Гаррет Диллахант`, `Тесс Харпер`, `Бэри Корбинр`, `Стивен Рут`],
     descriptions: [
@@ -284,6 +292,7 @@ export default [
     ratingScore: `7,1`,
     ratingCount: 6058,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     directors: [`Салли Поттер`],
     starrings: [`Тильда Суинтон`, `Билли Зейн`, `Лотер Блюто`, `Джон Вуд`, `Шарлотт Валандре`, `Хиткоут Уильямс`, `Квентин Крисп`, `Джимми Соммервиль`, `Джон Ботт`, `Элейн Бенэм`],
     descriptions: [
@@ -334,6 +343,7 @@ export default [
     ratingScore: `8,6`,
     ratingCount: 454261,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     directors: [`Квентин Тарантино`],
     starrings: [`Джон Траволта`, `Сэмюэл Л. Джексон`, `Брюс Уиллис`, `Ума Турман`, `Винг Реймз`, `Тим Рот`, `Харви Кейтель`, `Квентин Тарантино`, `Питер Грин`, `Аманда Пламмер`],
     descriptions: [
@@ -397,6 +407,7 @@ export default [
     ratingScore: `7,0`,
     ratingCount: 151728,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     directors: [`Стивен Спилберг`],
     starrings: [`Том Круз`, `Дакота Фаннинг`, `Миранда Отто`, `Джастин Чатвин`, `Тим Роббинс`, `Рик Гонсалес`, `Юл Васкес`, `Ленни Венито`, `Лиза Энн Уолтер`, `Энн Робинсон`],
     descriptions: [
@@ -446,6 +457,7 @@ export default [
     ratingScore: `7,0`,
     ratingCount: 151728,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+    video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     directors: [`Стивен Спилберг`],
     starrings: [`Том Круз`, `Дакота Фаннинг`, `Миранда Отто`, `Джастин Чатвин`, `Тим Роббинс`, `Рик Гонсалес`, `Юл Васкес`, `Ленни Венито`, `Лиза Энн Уолтер`, `Энн Робинсон`],
     descriptions: [
@@ -480,6 +492,49 @@ export default [
         author: `John Kit`,
         date: Date.parse(`December 15, 2019`),
         mark: `4`,
+      },
+    ],
+  },
+  {
+    id: 9,
+    title: `The Grand Budapest Hotel`,
+    smallPoster: `img/the-grand-budapest-hotel-poster.jpg`,
+    genre: `Drama`,
+    year: 2014,
+    runTime: `1h 35m`,
+    bigPoster: `img/the-grand-budapest-hotel-poster.jpg`,
+    cover: `img/bg-the-grand-budapest-hotel.jpg`,
+    ratingScore: `8,9`,
+    ratingCount: 240,
+    preview: `http://dl5.webmfiles.org/elephants-dream.webm`,
+    video: `http://dl5.webmfiles.org/elephants-dream.webm`,
+    directors: [`Уэс Андерсон`],
+    starrings: [`Рэйф Файнс`, `Тони Револори`, `Сирша Ронан`, `Эдриан Броуди`, `Уиллем Дефо`, `Эдвард Нортон`, `Матьё Амальрик`, `Харви Кейтель`, `Ф. Мюррэй Абрахам`, `Тильда Суинтон`],
+    descriptions: [
+      `Фильм рассказывает об увлекательных приключениях легендарного консьержа Густава и его юного друга, портье Зеро Мустафы.`,
+      `Сотрудники гостиницы становятся свидетелями кражи и поисков бесценных картин эпохи Возрождения, борьбы за огромное состояние богатой семьи и… драматических изменений в Европе между двумя кровопролитными войнами XX века.`
+    ],
+    reviews: [
+      {
+        id: 0,
+        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
+        author: `Kate Muir`,
+        date: Date.parse(`December 24, 2016`),
+        mark: `4`,
+      },
+      {
+        id: 1,
+        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
+        author: `Paula Fleri-Soler`,
+        date: Date.parse(`December 15, 2018`),
+        mark: `5`,
+      },
+      {
+        id: 2,
+        text: `I didn't find it amusing, and while I can appreciate the creativity, it's an hour and 40 minutes I wish I could take back.`,
+        author: `Amanda Greever`,
+        date: Date.parse(`November 18, 2015`),
+        mark: `3`,
       },
     ],
   }

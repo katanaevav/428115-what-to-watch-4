@@ -15,10 +15,9 @@ Array [
         onMouseOver={[Function]}
       >
         <video
-          height="175"
+          className="player__video"
           poster="img/war-of-the-worlds.jpg"
           preload="metadata"
-          width="280"
         />
       </div>
       <h3
@@ -43,10 +42,9 @@ Array [
         onMouseOver={[Function]}
       >
         <video
-          height="175"
+          className="player__video"
           poster="img/war-of-the-worlds.jpg"
           preload="metadata"
-          width="280"
         />
       </div>
       <h3
@@ -81,10 +79,9 @@ Array [
         onMouseOver={[Function]}
       >
         <video
-          height="175"
+          className="player__video"
           poster="img/aviator.jpg"
           preload="metadata"
-          width="280"
         />
       </div>
       <h3
@@ -109,10 +106,9 @@ Array [
         onMouseOver={[Function]}
       >
         <video
-          height="175"
+          className="player__video"
           poster="img/bohemian-rhapsody.jpg"
           preload="metadata"
-          width="280"
         />
       </div>
       <h3
@@ -137,10 +133,9 @@ Array [
         onMouseOver={[Function]}
       >
         <video
-          height="175"
+          className="player__video"
           poster="img/johnny-english.jpg"
           preload="metadata"
-          width="280"
         />
       </div>
       <h3
@@ -165,10 +160,9 @@ Array [
         onMouseOver={[Function]}
       >
         <video
-          height="175"
+          className="player__video"
           poster="img/moonrise-kingdom.jpg"
           preload="metadata"
-          width="280"
         />
       </div>
       <h3
@@ -193,10 +187,9 @@ Array [
         onMouseOver={[Function]}
       >
         <video
-          height="175"
+          className="player__video"
           poster="img/no-country-for-old-men.jpg"
           preload="metadata"
-          width="280"
         />
       </div>
       <h3
@@ -221,10 +214,9 @@ Array [
         onMouseOver={[Function]}
       >
         <video
-          height="175"
+          className="player__video"
           poster="img/orlando.jpg"
           preload="metadata"
-          width="280"
         />
       </div>
       <h3
@@ -249,10 +241,9 @@ Array [
         onMouseOver={[Function]}
       >
         <video
-          height="175"
+          className="player__video"
           poster="img/pulp-fiction.jpg"
           preload="metadata"
-          width="280"
         />
       </div>
       <h3

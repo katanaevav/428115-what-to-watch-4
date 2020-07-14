@@ -100,24 +100,17 @@ const Movies = [
 it(`Render MoviePage`, () => {
   const tree = renderer.create(
       <MoviePage
-        id = {Movies[0].id}
-        title = {Movies[0].title}
-        genre = {Movies[0].genre}
-        year = {Movies[0].year}
-        runTime = {Movies[0].runTime}
-        bigPoster = {Movies[0].bigPoster}
-        cover = {Movies[0].cover}
-        ratingScore = {Movies[0].ratingScore}
-        ratingCount = {Movies[0].ratingCount}
-        directors = {Movies[0].directors}
-        starrings = {Movies[0].starrings}
-        descriptions = {Movies[0].descriptions}
-        reviews = {Movies[0].reviews}
+        movie = {Movies[0]}
         similarMovies = {Movies}
         onMovieTitleClick = {() => {}}
         currentTab = {0}
         renderTabs = {() => {}}
-      />
+        onPlayMovieClick = {() => {}}
+      />, {
+        createNodeMock: () => {
+          return {};
+        }
+      }
   ).toJSON();
 
   expect(tree).toMatchSnapshot();
