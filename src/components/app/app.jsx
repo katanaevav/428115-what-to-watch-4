@@ -32,7 +32,7 @@ class App extends PureComponent {
 
 
   _renderApp() {
-    const {promoMovie, movies, genres, currentGenreFilter, onMovieFilterClick, onMovieTitleClick, onPlayMovieClick, selectedMovieId, currentPage} = this.props;
+    const {promoMovie, movies, genres, currentGenreFilter, onMovieFilterClick, onMovieTitleClick, onPlayMovieClick, selectedMovieId, currentPage, onExitVideoPlayer} = this.props;
 
     switch (currentPage) {
       case Screens.MOVIE_PAGE_SCREEN:
@@ -52,6 +52,7 @@ class App extends PureComponent {
         return (
           <CinemaScreenWrapped
             movie={this._getMovieById(selectedMovieId)}
+            onExitVideoPlayer={onExitVideoPlayer}
           />
         );
 
@@ -89,6 +90,7 @@ class App extends PureComponent {
           <Route exact path="/dev-player">
             <CinemaScreenWrapped
               movie={this._getMovieById(1)}
+              onExitVideoPlayer={() => {}}
             />
           </Route>
         </Switch>
@@ -114,6 +116,7 @@ App.propTypes = {
   onPlayMovieClick: PropTypes.func.isRequired,
   selectedMovieId: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
+  onExitVideoPlayer: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
@@ -137,6 +140,10 @@ const mapDispatchToProps = (dispatch) => ({
   onPlayMovieClick(movieId) {
     dispatch(ActionCreator.openCinemaScreen(movieId));
   },
+
+  onExitVideoPlayer(movieId) {
+    dispatch(ActionCreator.closeCinemaScreen(movieId));
+  }
 });
 
 

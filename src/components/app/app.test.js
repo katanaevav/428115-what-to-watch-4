@@ -134,6 +134,7 @@ it(`Render App with Main screen`, () => {
           onPlayMovieClick = {() => {}}
           selectedMovieId = {-1}
           currentPage = {Screens.MAIN_SCREEN}
+          onExitVideoPlayer = {() => {}}
         />
       </Provider>, {
         createNodeMock: () => {
@@ -161,6 +162,7 @@ it(`Render App with Movie page screen`, () => {
           onPlayMovieClick = {() => {}}
           selectedMovieId = {0}
           currentPage = {Screens.MOVIE_PAGE_SCREEN}
+          onExitVideoPlayer = {() => {}}
         />
       </Provider>, {
         createNodeMock: () => {

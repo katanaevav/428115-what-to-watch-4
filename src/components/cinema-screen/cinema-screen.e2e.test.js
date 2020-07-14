@@ -1,6 +1,11 @@
 import React from "react";
-import renderer from "react-test-renderer";
+import Enzyme, {mount} from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
 import CinemaScreen from "./cinema-screen.jsx";
+
+Enzyme.configure({
+  adapter: new Adapter(),
+});
 
 const Movie = {
   id: 0,
@@ -47,17 +52,23 @@ const Movie = {
   ],
 };
 
-it(`Render cinema screen`, () => {
-  const tree = renderer.create(
+it(`Should pressed on exit button in cinema video player`, () => {
+  const onExitVideoPlayer = jest.fn();
+
+  const main = mount(
       <CinemaScreen
         movie = {Movie}
         renderPlayer = {() => {}}
         renderProgress = {() => {}}
         renderPlayButton = {() => {}}
         onFullScreenButtonClick = {() => {}}
-        onExitVideoPlayer = {() => {}}
+        onExitVideoPlayer = {onExitVideoPlayer}
       />
-  ).toJSON();
+  );
 
-  expect(tree).toMatchSnapshot();
+  const exitButton = main.find(`.player__exit`);
+
+  exitButton.simulate(`click`, {});
+  expect(onExitVideoPlayer.mock.calls.length).toBe(1);
+
 });
