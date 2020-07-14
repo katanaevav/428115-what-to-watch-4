@@ -26,7 +26,7 @@ exports[`Render video progress bar and duration time 1`] = `
   <div
     className="player__time-value"
   >
-    1:40
+    1:28
   </div>
 </div>
 `;
