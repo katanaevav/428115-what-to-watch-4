@@ -556,6 +556,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
     genres: GENRES,
     currentPage: Screens.MAIN_SCREEN,
     selectedMovieId: -1,
+    selectedMoviePage: Screens.MAIN_SCREEN,
   });
 });
 
@@ -568,6 +569,7 @@ it(`Reducer with Drama filter and selected All genres filter should return All g
         genres: GENRES,
         currentPage: Screens.MAIN_SCREEN,
         selectedMovieId: -1,
+        selectedMoviePage: Screens.MAIN_SCREEN,
       },
       {
         type: ActionType.SET_GENRE_FILTER,
@@ -580,6 +582,7 @@ it(`Reducer with Drama filter and selected All genres filter should return All g
     genres: GENRES,
     currentPage: Screens.MAIN_SCREEN,
     selectedMovieId: -1,
+    selectedMoviePage: Screens.MAIN_SCREEN,
   });
 });
 
@@ -592,6 +595,7 @@ it(`Reducer with All genres filter and selected Drama filter should return Drama
         genres: GENRES,
         currentPage: Screens.MAIN_SCREEN,
         selectedMovieId: -1,
+        selectedMoviePage: Screens.MAIN_SCREEN,
       },
       {
         type: ActionType.SET_GENRE_FILTER,
@@ -604,5 +608,6 @@ it(`Reducer with All genres filter and selected Drama filter should return Drama
     genres: GENRES,
     currentPage: Screens.MAIN_SCREEN,
     selectedMovieId: -1,
+    selectedMoviePage: Screens.MAIN_SCREEN,
   });
 });

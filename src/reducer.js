@@ -21,6 +21,7 @@ const initialState = {
   genres: getGenres(movies),
   currentPage: Screens.MAIN_SCREEN,
   selectedMovieId: -1,
+  selectedMoviePage: Screens.MAIN_SCREEN,
 };
 
 const ActionType = {
@@ -71,6 +72,7 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         currentPage: Screens.MOVIE_PAGE_SCREEN,
         selectedMovieId: parseInt(action.payload, 10),
+        selectedMoviePage: Screens.MOVIE_PAGE_SCREEN,
       });
 
     case ActionType.OPEN_CINEMA_PAGE:
@@ -81,7 +83,7 @@ const reducer = (state = initialState, action) => {
 
     case ActionType.CLOSE_CINEMA_PAGE:
       return Object.assign({}, state, {
-        currentPage: Screens.MAIN_SCREEN,
+        currentPage: state.selectedMoviePage,
         selectedMovieId: parseInt(action.payload, 10),
       });
   }
