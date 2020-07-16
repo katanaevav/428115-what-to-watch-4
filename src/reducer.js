@@ -1,4 +1,4 @@
-import movies, {PromoMovie} from "./mocks/films.js";
+// import movies, {PromoMovie} from "./mocks/films.js";
 import {NO_FILTER, Screens} from "./const.js";
 
 export const getUniqueItems = (arr) => {
@@ -16,9 +16,9 @@ const getGenres = (allMovies) => {
 
 const initialState = {
   currentGenreFilter: NO_FILTER,
-  PromoMovie,
-  movies,
-  genres: getGenres(movies),
+  PromoMovie: {},
+  movies: [],
+  genres: [], //getGenres(movies),
   currentPage: Screens.MAIN_SCREEN,
   selectedMovieId: -1,
   selectedMoviePage: Screens.MAIN_SCREEN,
@@ -29,6 +29,7 @@ const ActionType = {
   OPEN_MOVIE_PAGE: `OPEN_MOVIE_PAGE`,
   OPEN_CINEMA_PAGE: `OPEN_CINEMA_PAGE`,
   CLOSE_CINEMA_PAGE: `CLOSE_CINEMA_PAGE`,
+  LOAD_MOVIES: `LOAD_MOVIES`,
 };
 
 const ActionCreator = {
@@ -36,6 +37,13 @@ const ActionCreator = {
     return {
       type: ActionType.SET_GENRE_FILTER,
       payload: filterName,
+    };
+  },
+
+  loadMovies: (films) => {
+    return {
+      type: ActionType.LOAD_MOVIES,
+      payload: films,
     };
   },
 
@@ -61,11 +69,25 @@ const ActionCreator = {
   },
 };
 
+const Operation = {
+  loadMovies: () => (dispatch, getState, api) => {
+    return api.get(`/films`)
+      .then((response) => {
+        dispatch(ActionCreator.loadMovies(response.data));
+      });
+  },
+};
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.SET_GENRE_FILTER:
       return Object.assign({}, state, {
         currentGenreFilter: action.payload,
+      });
+
+    case ActionType.LOAD_MOVIES:
+      return Object.assign({}, state, {
+        questions: action.payload,
       });
 
     case ActionType.OPEN_MOVIE_PAGE:
@@ -91,4 +113,4 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
-export {reducer, ActionType, ActionCreator};
+export {reducer, Operation, ActionType, ActionCreator};

@@ -38,3 +38,8 @@ export const MONTH_NAMES = [
   `November`,
   `December`,
 ];
+
+export const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
