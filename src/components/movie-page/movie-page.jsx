@@ -26,8 +26,8 @@ class MoviePage extends PureComponent {
 
 
   _renderTab() {
-    const {movie, currentTab} = this.props;
-    const {genre, year, runTime, ratingScore, ratingCount, directors, starrings, descriptions, reviews} = movie;
+    const {movie, currentTab, comments} = this.props;
+    const {genre, year, runTime, ratingScore, ratingCount, directors, starrings, descriptions} = movie;
 
     switch (currentTab) {
       case Tabs.DETAILS_TAB:
@@ -44,7 +44,7 @@ class MoviePage extends PureComponent {
       case Tabs.REVIEWS_TAB:
         return (
           <MovieReviews
-            reviews = {reviews}
+            reviews = {comments}
           />
         );
 
@@ -156,6 +156,7 @@ class MoviePage extends PureComponent {
 
 MoviePage.propTypes = {
   movie: PropTypes.object.isRequired,
+  comments: PropTypes.array,
   similarMovies: PropTypes.array.isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
   renderTabs: PropTypes.func.isRequired,
