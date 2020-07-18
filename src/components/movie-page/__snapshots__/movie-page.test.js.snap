@@ -161,7 +161,7 @@ Array [
             <div
               className="movie-rating__score"
             >
-              7,5
+              7
             </div>
             <p
               className="movie-rating__meta"
