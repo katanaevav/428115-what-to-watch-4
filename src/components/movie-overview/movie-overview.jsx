@@ -6,8 +6,8 @@ class MovieOverview extends PureComponent {
     super(props);
   }
 
-  _getRatingLevel(ratingScore) {
-    const score = Number.parseFloat(ratingScore);
+  _getRatingLevel(score) {
+    // const score = Number.parseFloat(ratingScore);
 
     switch (true) {
       case score < 3:
@@ -52,7 +52,7 @@ class MovieOverview extends PureComponent {
 }
 
 MovieOverview.propTypes = {
-  ratingScore: PropTypes.string.isRequired,
+  ratingScore: PropTypes.number.isRequired,
   ratingCount: PropTypes.number.isRequired,
   descriptions: PropTypes.arrayOf(PropTypes.string).isRequired,
   directors: PropTypes.arrayOf(PropTypes.string).isRequired,

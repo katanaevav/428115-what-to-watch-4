@@ -45,7 +45,7 @@ Review.propTypes = {
   text: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
   date: PropTypes.number.isRequired,
-  mark: PropTypes.string.isRequired,
+  mark: PropTypes.number.isRequired,
 };
 
 export default Review;

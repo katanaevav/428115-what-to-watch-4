@@ -11,7 +11,8 @@ class VideoPlayer extends PureComponent {
   componentWillUnmount() {
     const video = this._videoRef.current;
     video.ontimeupdate = null;
-    this._videoRef.current.src = ``;
+    video.onfullscreenchange = null;
+    video.src = ``;
   }
 
   componentDidMount() {

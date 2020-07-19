@@ -4,6 +4,7 @@ import {App} from "./app.jsx";
 import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {Screens} from "../../const.js";
+import {AuthorizationStatus} from "../../const.js";
 
 const mockStore = configureStore([]);
 
@@ -12,10 +13,10 @@ const PromoMovie = {
   smallPoster: `img/the-grand-budapest-hotel-poster.jpg`,
   genre: `Drama`,
   year: 2014,
-  runTime: `1h 35m`,
+  runTime: 170,
   bigPoster: `img/the-grand-budapest-hotel-poster.jpg`,
   cover: `img/bg-the-grand-budapest-hotel.jpg`,
-  ratingScore: `8,9`,
+  ratingScore: 8.9,
   ratingCount: 240,
   directors: [`Уэс Андерсон`],
   starrings: [`Рэйф Файнс`, `Тони Револори`, `Сирша Ронан`, `Эдриан Броуди`, `Уиллем Дефо`, `Эдвард Нортон`, `Матьё Амальрик`, `Харви Кейтель`, `Ф. Мюррэй Абрахам`, `Тильда Суинтон`],
@@ -59,10 +60,10 @@ const Movies = [
     smallPoster: `img/bohemian-rhapsody.jpg`,
     genre: `Drama`,
     year: 2018,
-    runTime: `2h 30m`,
+    runTime: 190,
     bigPoster: `img/bohemian-rhapsody.jpg`,
     cover: `img/bohemian-rhapsody.jpg`,
-    ratingScore: `7,9`,
+    ratingScore: 7.9,
     ratingCount: 284651,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     directors: [`Брайан Сингер`],
@@ -87,10 +88,10 @@ const Movies = [
     smallPoster: `img/moonrise-kingdom.jpg`,
     genre: `Fantasy`,
     year: 2012,
-    runTime: `2h 10m`,
+    runTime: 185,
     bigPoster: `img/moonrise-kingdom.jpg`,
     cover: `img/moonrise-kingdom.jpg`,
-    ratingScore: `8,9`,
+    ratingScore: 8.9,
     ratingCount: 240,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     directors: [`Уэс Андерсон`],
@@ -125,6 +126,8 @@ it(`Render App with Main screen`, () => {
   const tree = renderer.create(
       <Provider store={store}>
         <App
+          authorizationStatus={AuthorizationStatus.NO_AUTH}
+          login={() => {}}
           promoMovie = {PromoMovie}
           movies = {Movies}
           genres = {GENRES}
@@ -153,6 +156,8 @@ it(`Render App with Movie page screen`, () => {
   const tree = renderer.create(
       <Provider store={store}>
         <App
+          authorizationStatus={AuthorizationStatus.NO_AUTH}
+          login={() => {}}
           promoMovie = {PromoMovie}
           movies = {Movies}
           genres = {GENRES}

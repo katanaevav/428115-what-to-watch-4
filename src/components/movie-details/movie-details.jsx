@@ -6,23 +6,10 @@ class MovieDetails extends PureComponent {
     super(props);
   }
 
-  _getRatingLevel(ratingScore) {
-    const score = Number.parseFloat(ratingScore);
-
-    switch (true) {
-      case score < 3:
-        return `Bad`;
-      case score >= 3 && score < 5:
-        return `Normal`;
-      case score >= 5 && score < 8:
-        return `Good`;
-      case score >= 8 && score < 10:
-        return `Very good`;
-      case score === 10:
-        return `Awesome`;
-      default:
-        return `N/A`;
-    }
+  _getDurationTime(duration) {
+    const hours = Math.floor(duration / 60);
+    const minutes = duration - (hours * 60);
+    return `${hours > 0 ? `${hours}h ` : ``}${minutes > 0 ? `${minutes}m` : ``}`;
   }
 
   render() {
@@ -52,7 +39,7 @@ class MovieDetails extends PureComponent {
           <div className="movie-card__text-col">
             <p className="movie-card__details-item">
               <strong className="movie-card__details-name">Run Time</strong>
-              <span className="movie-card__details-value">{runTime}</span>
+              <span className="movie-card__details-value">{this._getDurationTime(runTime)}</span>
             </p>
             <p className="movie-card__details-item">
               <strong className="movie-card__details-name">Genre</strong>
@@ -70,7 +57,7 @@ class MovieDetails extends PureComponent {
 }
 
 MovieDetails.propTypes = {
-  runTime: PropTypes.string.isRequired,
+  runTime: PropTypes.number.isRequired,
   genre: PropTypes.string.isRequired,
   year: PropTypes.number.isRequired,
   directors: PropTypes.arrayOf(PropTypes.string).isRequired,

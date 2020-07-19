@@ -8,7 +8,7 @@ const Movie = {
   smallPoster: `img/johnny-english.jpg`,
   genre: `Comedy`,
   year: 2011,
-  runTime: `1h 50m`,
+  runTime: 170,
   bigPoster: `img/johnny-english.jpg`,
   cover: `img/johnny-english.jpg`,
   ratingScore: `6,5`,

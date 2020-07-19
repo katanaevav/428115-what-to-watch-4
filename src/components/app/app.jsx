@@ -4,12 +4,16 @@ import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer.js";
-import {getFilteredMovies} from "../../selectors.js";
+import {ActionCreator} from "../../reducer/state/state.js";
 import {Screens, MAX_SIMILAR_MOVIES_COUNT} from "../../const.js";
 import withMovieTabs from "../../hoc/with-movie-tabs/with-movie-tabs.js";
 import CinemaScreen from "../cinema-screen/cinema-screen.jsx";
 import withCinemaVideoPlayer from "../../hoc/with-cinema-video-player/with-cinema-video-player.js";
+import {getCurrentGenreFilter, getCurrentPage, getSelectedMovieId, getFilteredMovies} from "../../reducer/state/selectors.js";
+import {getMovies, getPromoMovie, getGenres, getMovieComments} from "../../reducer/data/selectors.js";
+import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
+import {Operation as UserOperation} from "../../reducer/user/user.js";
+import {Operation as DataOperation} from "../../reducer/data/data.js";
 
 const CinemaScreenWrapped = withCinemaVideoPlayer(CinemaScreen);
 
@@ -32,43 +36,51 @@ class App extends PureComponent {
 
 
   _renderApp() {
-    const {promoMovie, movies, genres, currentGenreFilter, onMovieFilterClick, onMovieTitleClick, onPlayMovieClick, selectedMovieId, currentPage, onExitVideoPlayer} = this.props;
+    const {promoMovie, movies, genres, currentGenreFilter, onMovieFilterClick, onMovieTitleClick, onPlayMovieClick, selectedMovieId, currentPage, onExitVideoPlayer, movieComments} = this.props;
 
-    switch (currentPage) {
-      case Screens.MOVIE_PAGE_SCREEN:
-        const selecdedMovie = this._getMovieById(selectedMovieId);
-        const {id, genre} = selecdedMovie;
-        const similarMovies = movies.filter((movie) => (movie.genre === genre) && (movie.id !== id)).slice(0, MAX_SIMILAR_MOVIES_COUNT);
-        return (
-          <MoviePageWrapper
-            movie={selecdedMovie}
-            similarMovies = {similarMovies}
-            onMovieTitleClick = {onMovieTitleClick}
-            onPlayMovieClick = {onPlayMovieClick}
-          />
-        );
+    // console.log(this.props.movieComments);
 
-      case Screens.CINEMA_SCREEN:
-        return (
-          <CinemaScreenWrapped
-            movie={this._getMovieById(selectedMovieId)}
-            onExitVideoPlayer={onExitVideoPlayer}
-          />
-        );
+    if (movies.length) {
+      switch (currentPage) {
+        case Screens.MOVIE_PAGE_SCREEN:
+          const selecdedMovie = this._getMovieById(selectedMovieId);
+          const {id, genre} = selecdedMovie;
+          const similarMovies = movies.filter((movie) => (movie.genre === genre) && (movie.id !== id)).slice(0, MAX_SIMILAR_MOVIES_COUNT);
 
-      default:
-        return (
-          <Main
-            promoMovie = {promoMovie}
-            genres = {genres}
-            movies = {movies}
-            currentGenreFilter = {currentGenreFilter}
-            onMovieTitleClick = {onMovieTitleClick}
-            onMovieFilterClick = {onMovieFilterClick}
-            onPlayMovieClick = {onPlayMovieClick}
-          />
-        );
+          return (
+            <MoviePageWrapper
+              movie={selecdedMovie}
+              comments={movieComments}
+              similarMovies = {similarMovies}
+              onMovieTitleClick = {onMovieTitleClick}
+              onPlayMovieClick = {onPlayMovieClick}
+            />
+          );
+
+        case Screens.CINEMA_SCREEN:
+          return (
+            <CinemaScreenWrapped
+              movie={this._getMovieById(selectedMovieId)}
+              onExitVideoPlayer={onExitVideoPlayer}
+            />
+          );
+
+        default:
+          return (
+            <Main
+              promoMovie = {promoMovie}
+              genres = {genres}
+              movies = {movies}
+              currentGenreFilter = {currentGenreFilter}
+              onMovieTitleClick = {onMovieTitleClick}
+              onMovieFilterClick = {onMovieFilterClick}
+              onPlayMovieClick = {onPlayMovieClick}
+            />
+          );
+      }
     }
+
+    return null;
   }
 
   render() {
@@ -101,6 +113,8 @@ class App extends PureComponent {
 }
 
 App.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
+  login: PropTypes.func.isRequired,
   promoMovie: PropTypes.shape().isRequired,
   movies: PropTypes.arrayOf(
       PropTypes.shape({
@@ -117,24 +131,37 @@ App.propTypes = {
   selectedMovieId: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   onExitVideoPlayer: PropTypes.func.isRequired,
+  movieComments: PropTypes.array,
+  getComments: PropTypes.func,
 };
 
 const mapStateToProps = (state) => ({
-  currentGenreFilter: state.currentGenreFilter,
-  promoMovie: state.PromoMovie,
-  movies: getFilteredMovies(state.movies, state.currentGenreFilter),
-  genres: state.genres,
-  selectedMovieId: state.selectedMovieId,
-  currentPage: state.currentPage,
+  authorizationStatus: getAuthorizationStatus(state),
+  currentGenreFilter: getCurrentGenreFilter(state),
+  promoMovie: getPromoMovie(state),
+  movies: getFilteredMovies(getMovies(state), getCurrentGenreFilter(state)),
+  genres: getGenres(state),
+  selectedMovieId: getSelectedMovieId(state),
+  currentPage: getCurrentPage(state),
+  movieComments: getMovieComments(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  getComments(movieId) {
+    dispatch(DataOperation.loadMovieComments(movieId));
+  },
+
+  login(authData) {
+    dispatch(UserOperation.login(authData));
+  },
+
   onMovieFilterClick(filterName) {
     dispatch(ActionCreator.setCurrentFilter(filterName));
   },
 
   onMovieTitleClick(movieId) {
     dispatch(ActionCreator.openMovieScreen(movieId));
+    dispatch(DataOperation.loadMovieComments(movieId));
   },
 
   onPlayMovieClick(movieId) {
