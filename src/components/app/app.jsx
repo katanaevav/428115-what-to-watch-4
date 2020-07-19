@@ -3,6 +3,7 @@ import {Switch, Route, BrowserRouter} from "react-router-dom";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
+import SignIn from "../sign-in/sign-in.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/state/state.js";
 import {Screens, MAX_SIMILAR_MOVIES_COUNT} from "../../const.js";
@@ -103,6 +104,13 @@ class App extends PureComponent {
             <CinemaScreenWrapped
               movie={this._getMovieById(1)}
               onExitVideoPlayer={() => {}}
+            />
+          </Route>
+          <Route exact path="/dev-signin">
+            <SignIn
+              message={``}
+              onSubmit={() => {}}
+              onSignInButtonClick={() => {}}
             />
           </Route>
         </Switch>
