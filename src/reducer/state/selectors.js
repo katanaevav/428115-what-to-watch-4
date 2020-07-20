@@ -18,3 +18,7 @@ export const getCurrentPage = (state) => {
 export const getSelectedMovieId = (state) => {
   return state[NAME_SPACE].selectedMovieId;
 };
+
+export const getAuthMessage = (state) => {
+  return state[NAME_SPACE].authMessage;
+};

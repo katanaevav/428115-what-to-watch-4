@@ -1,28 +1,35 @@
 import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 
+const EMAIL_VALIDATION_CHECK_ERROR = `Please enter a valid email address`;
+const EMAIL_VALIDATION_CLASS_ERROR = `sign-in__field sign-in__field--error`;
+
 class SignIn extends PureComponent {
   constructor(props) {
     super(props);
 
     this.emailRef = createRef();
     this.passwordRef = createRef();
+    this.messageRef = createRef();
+    this.emailContainerRef = createRef();
 
     this._generateMessageText = this._generateMessageText.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  _testEmail(email) {
+    const regExpr = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regExpr.test(String(email).toLowerCase());
   }
 
   _generateMessageText() {
     const {message} = this.props;
 
-    if (message) {
-      return (
-        <div className="sign-in__message">
-          <p>{message}</p>
-        </div>
-      );
-    }
-
-    return ``;
+    return (
+      <div className="sign-in__message">
+        <p ref={this.messageRef}>{message}</p>
+      </div>
+    );
   }
 
   handleSubmit(evt) {
@@ -30,14 +37,18 @@ class SignIn extends PureComponent {
 
     evt.preventDefault();
 
-    onSubmit({
-      email: this.emailRef.current.value,
-      password: this.passwordRef.current.value,
-    });
+    if (this._testEmail(this.emailRef.current.value)) {
+      onSubmit({
+        login: this.emailRef.current.value,
+        password: this.passwordRef.current.value,
+      });
+    } else {
+      this.messageRef.current.innerHTML = EMAIL_VALIDATION_CHECK_ERROR;
+      this.emailContainerRef.current.className = EMAIL_VALIDATION_CLASS_ERROR;
+    }
   }
 
   render() {
-    const {onSignInButtonClick} = this.props;
 
     return (
       <div className="user-page">
@@ -56,12 +67,11 @@ class SignIn extends PureComponent {
         <div className="sign-in user-page__content">
           {this._generateMessageText()}
           <form
-            action="#"
+            action=""
             className="sign-in__form"
-            onSubmit={this.handleSubmit}
           >
             <div className="sign-in__fields">
-              <div className="sign-in__field">
+              <div ref={this.emailContainerRef} className="sign-in__field">
                 <input className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" ref={this.emailRef} />
                 <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
               </div>
@@ -73,8 +83,7 @@ class SignIn extends PureComponent {
             <div className="sign-in__submit">
               <button
                 className="sign-in__btn"
-                type="submit"
-                onClick={onSignInButtonClick}
+                onClick={this.handleSubmit}
               >Sign in</button>
             </div>
           </form>
@@ -101,7 +110,6 @@ class SignIn extends PureComponent {
 SignIn.propTypes = {
   message: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
-  onSignInButtonClick: PropTypes.func.isRequired,
 };
 
 export default SignIn;

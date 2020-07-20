@@ -16,6 +16,7 @@ export const Screens = {
   MAIN_SCREEN: 0,
   MOVIE_PAGE_SCREEN: 1,
   CINEMA_SCREEN: 2,
+  AUTH_SCREEN: 3,
 };
 
 export const Tabs = {

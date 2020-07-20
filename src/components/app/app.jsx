@@ -10,7 +10,7 @@ import {Screens, MAX_SIMILAR_MOVIES_COUNT} from "../../const.js";
 import withMovieTabs from "../../hoc/with-movie-tabs/with-movie-tabs.js";
 import CinemaScreen from "../cinema-screen/cinema-screen.jsx";
 import withCinemaVideoPlayer from "../../hoc/with-cinema-video-player/with-cinema-video-player.js";
-import {getCurrentGenreFilter, getCurrentPage, getSelectedMovieId, getFilteredMovies} from "../../reducer/state/selectors.js";
+import {getCurrentGenreFilter, getCurrentPage, getSelectedMovieId, getFilteredMovies, getAuthMessage} from "../../reducer/state/selectors.js";
 import {getMovies, getPromoMovie, getGenres, getMovieComments} from "../../reducer/data/selectors.js";
 import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
@@ -37,9 +37,22 @@ class App extends PureComponent {
 
 
   _renderApp() {
-    const {promoMovie, movies, genres, currentGenreFilter, onMovieFilterClick, onMovieTitleClick, onPlayMovieClick, selectedMovieId, currentPage, onExitVideoPlayer, movieComments} = this.props;
-
-    // console.log(this.props.movieComments);
+    const {
+      onOpenAuthScreen,
+      authMessage,
+      authorizationStatus,
+      login,
+      promoMovie,
+      movies,
+      genres,
+      currentGenreFilter,
+      onMovieFilterClick,
+      onMovieTitleClick,
+      onPlayMovieClick,
+      selectedMovieId,
+      currentPage,
+      onExitVideoPlayer,
+      movieComments} = this.props;
 
     if (movies.length) {
       switch (currentPage) {
@@ -50,6 +63,8 @@ class App extends PureComponent {
 
           return (
             <MoviePageWrapper
+              onOpenAuthScreen = {onOpenAuthScreen}
+              authorizationStatus = {authorizationStatus}
               movie={selecdedMovie}
               comments={movieComments}
               similarMovies = {similarMovies}
@@ -66,9 +81,19 @@ class App extends PureComponent {
             />
           );
 
+        case Screens.AUTH_SCREEN:
+          return (
+            <SignIn
+              message={authMessage}
+              onSubmit={login}
+            />
+          );
+
         default:
           return (
             <Main
+              onOpenAuthScreen = {onOpenAuthScreen}
+              authorizationStatus = {authorizationStatus}
               promoMovie = {promoMovie}
               genres = {genres}
               movies = {movies}
@@ -110,7 +135,6 @@ class App extends PureComponent {
             <SignIn
               message={``}
               onSubmit={() => {}}
-              onSignInButtonClick={() => {}}
             />
           </Route>
         </Switch>
@@ -141,6 +165,8 @@ App.propTypes = {
   onExitVideoPlayer: PropTypes.func.isRequired,
   movieComments: PropTypes.array,
   getComments: PropTypes.func,
+  onOpenAuthScreen: PropTypes.func.isRequired,
+  authMessage: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
@@ -152,6 +178,7 @@ const mapStateToProps = (state) => ({
   selectedMovieId: getSelectedMovieId(state),
   currentPage: getCurrentPage(state),
   movieComments: getMovieComments(state),
+  authMessage: getAuthMessage(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -178,7 +205,11 @@ const mapDispatchToProps = (dispatch) => ({
 
   onExitVideoPlayer(movieId) {
     dispatch(ActionCreator.closeCinemaScreen(movieId));
-  }
+  },
+
+  onOpenAuthScreen() {
+    dispatch(ActionCreator.openAuthPage());
+  },
 });
 
 

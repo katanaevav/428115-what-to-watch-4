@@ -22,12 +22,14 @@ class Main extends PureComponent {
   }
 
   render() {
-    const {promoMovie, genres, movies, currentGenreFilter, onMovieTitleClick, onMovieFilterClick} = this.props;
+    const {onOpenAuthScreen, authorizationStatus, promoMovie, genres, movies, currentGenreFilter, onMovieTitleClick, onMovieFilterClick} = this.props;
     const {title, genre, year, cover, bigPoster} = promoMovie;
 
     return (
       <React.Fragment>
         <MoviePromo
+          onOpenAuthScreen = {onOpenAuthScreen}
+          authorizationStatus = {authorizationStatus}
           promoMovieTitle = {title}
           promoMovieGenre = {genre}
           promoMovieYear = {year}
@@ -68,6 +70,8 @@ class Main extends PureComponent {
 }
 
 Main.propTypes = {
+  onOpenAuthScreen: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   promoMovie: PropTypes.object.isRequired,
   genres: PropTypes.array.isRequired,
   movies: PropTypes.arrayOf(
