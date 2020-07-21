@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 const EMAIL_VALIDATION_CHECK_ERROR = `Please enter a valid email address`;
 const EMAIL_VALIDATION_CLASS_ERROR = `sign-in__field sign-in__field--error`;
+const EMAIL_VALIDATION_CLASS = `sign-in__field`;
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -14,7 +15,8 @@ class SignIn extends PureComponent {
     this.emailContainerRef = createRef();
 
     this._generateMessageText = this._generateMessageText.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this._submitButtonClickHandler = this._submitButtonClickHandler.bind(this);
+    this._emailInputChageHandler = this._emailInputChageHandler.bind(this);
   }
 
   _testEmail(email) {
@@ -32,7 +34,7 @@ class SignIn extends PureComponent {
     );
   }
 
-  handleSubmit(evt) {
+  _submitButtonClickHandler(evt) {
     const {onSubmit} = this.props;
 
     evt.preventDefault();
@@ -46,6 +48,11 @@ class SignIn extends PureComponent {
       this.messageRef.current.innerHTML = EMAIL_VALIDATION_CHECK_ERROR;
       this.emailContainerRef.current.className = EMAIL_VALIDATION_CLASS_ERROR;
     }
+  }
+
+  _emailInputChageHandler() {
+    this.messageRef.current.innerHTML = ``;
+    this.emailContainerRef.current.className = EMAIL_VALIDATION_CLASS;
   }
 
   render() {
@@ -72,7 +79,15 @@ class SignIn extends PureComponent {
           >
             <div className="sign-in__fields">
               <div ref={this.emailContainerRef} className="sign-in__field">
-                <input className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" ref={this.emailRef} />
+                <input
+                  className="sign-in__input"
+                  type="email"
+                  placeholder="Email address"
+                  name="user-email"
+                  id="user-email"
+                  ref={this.emailRef}
+                  onInput={this._emailInputChageHandler}
+                />
                 <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
               </div>
               <div className="sign-in__field">
@@ -83,7 +98,7 @@ class SignIn extends PureComponent {
             <div className="sign-in__submit">
               <button
                 className="sign-in__btn"
-                onClick={this.handleSubmit}
+                onClick={this._submitButtonClickHandler}
               >Sign in</button>
             </div>
           </form>

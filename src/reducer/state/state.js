@@ -41,7 +41,7 @@ const ActionCreator = {
 
   closeCinemaScreen: (movieId) => {
     return {
-      type: ActionType.OPEN_AUTH_PAGE,
+      type: ActionType.CLOSE_CINEMA_PAGE,
       payload: movieId,
     };
   },

@@ -69,11 +69,11 @@ class MoviePage extends PureComponent {
 
   render() {
     const {onOpenAuthScreen, authorizationStatus, movie, similarMovies, onMovieTitleClick, renderTabs} = this.props;
-    const {id, title, genre, year, bigPoster, cover} = movie;
+    const {id, title, genre, year, bigPoster, cover, backgroundColor} = movie;
 
     return (
       <React.Fragment>
-        <section className="movie-card movie-card--full" data-key={id}>
+        <section className="movie-card movie-card--full" data-key={id} style={{backgroundColor: `${backgroundColor}`}}>
           <div className="movie-card__hero">
             <div className="movie-card__bg">
               <img src={cover} alt={title} />

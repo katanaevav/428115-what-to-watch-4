@@ -18,6 +18,7 @@ const PromoMovie = {
   cover: `img/bg-the-grand-budapest-hotel.jpg`,
   ratingScore: 8.9,
   ratingCount: 240,
+  backgroundColor: `#AABBCC`,
   directors: [`Уэс Андерсон`],
   starrings: [`Рэйф Файнс`, `Тони Револори`, `Сирша Ронан`, `Эдриан Броуди`, `Уиллем Дефо`, `Эдвард Нортон`, `Матьё Амальрик`, `Харви Кейтель`, `Ф. Мюррэй Абрахам`, `Тильда Суинтон`],
   descriptions: [
@@ -65,21 +66,13 @@ const Movies = [
     cover: `img/bohemian-rhapsody.jpg`,
     ratingScore: 7.9,
     ratingCount: 284651,
+    backgroundColor: `#AABBCC`,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     directors: [`Брайан Сингер`],
     starrings: [`Рами Малек`, `Люси Бойнтон`, `Гвилим Ли`, `Бен Харди`, `Джозеф Маццелло`, `Эйдан Гиллен`, `Аллен Лич`, `Том Холландер`, `Майк Майерс`, `Аарон МакКаскер`],
     descriptions: [
       `Чествование группы Queen, их музыки и их выдающегося вокалиста Фредди Меркьюри, который бросил вызов стереотипам и победил условности, чтобы стать одним из самых любимых артистов на планете.`,
       `Фильм прослеживает головокружительный путь группы к успеху благодаря их культовым песням и революционному звуку, практически распад коллектива, поскольку образ жизни Меркьюри выходит из-под контроля, и их триумфальное воссоединение накануне концерта Live Aid, ставшим одним из величайших выступлений в истории рок-музыки.`,
-    ],
-    reviews: [
-      {
-        id: 0,
-        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
-        author: `Kate Rainbow`,
-        date: Date.parse(`May 20, 2017`),
-        mark: `4`,
-      },
     ],
   },
   {
@@ -93,28 +86,13 @@ const Movies = [
     cover: `img/moonrise-kingdom.jpg`,
     ratingScore: 8.9,
     ratingCount: 240,
+    backgroundColor: `#AABBCC`,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     directors: [`Уэс Андерсон`],
     starrings: [`Брюс Уиллис`, `Эдвард Нортон`, `Билл Мюррей`, `Фрэнсис МакДорманд`, `Джаред Гилман`, `Кара Хэйуорд`, `Боб Бэлабан`, `Тильда Суинтон`, `Джейсон Шварцман`, `Харви Кейтель`],
     descriptions: [
       `60-е годы XX века. Пара влюблённых подростков, живущих на острове в Новой Англии, убегает из-под присмотра взрослых.`,
       `Сэм Шакаски — бойскаут, сирота, от которого отказались приемные родители, из-за своего непростого характера ставший изгоем среди других бойскаутов, и Сьюзи Бишоп — замкнутая двенадцатилетняя неуравновешенная девочка, живущая мечтами о волшебных мирах. После обнаружения пропажи местный шериф начинает расследование, а вожатый лагеря бойскаутов организует поисковый отряд.`,
-    ],
-    reviews: [
-      {
-        id: 0,
-        text: `Discerning travellers and Wes Anderson fans will luxuriate in the glorious Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in years.`,
-        author: `Kate Rainbow`,
-        date: Date.parse(`May 20, 2017`),
-        mark: `4`,
-      },
-      {
-        id: 1,
-        text: `It is certainly a magical and childlike way of storytelling, even if the content is a little more adult.`,
-        author: `John Kit`,
-        date: Date.parse(`December 15, 2019`),
-        mark: `4`,
-      },
     ],
   },
 ];
@@ -138,6 +116,10 @@ it(`Render App with Main screen`, () => {
           selectedMovieId = {-1}
           currentPage = {Screens.MAIN_SCREEN}
           onExitVideoPlayer = {() => {}}
+          movieComments = {[]}
+          getComments = {() => {}}
+          onOpenAuthScreen = {() => {}}
+          authMessage = {``}
         />
       </Provider>, {
         createNodeMock: () => {
@@ -168,6 +150,10 @@ it(`Render App with Movie page screen`, () => {
           selectedMovieId = {0}
           currentPage = {Screens.MOVIE_PAGE_SCREEN}
           onExitVideoPlayer = {() => {}}
+          movieComments = {[]}
+          getComments = {() => {}}
+          onOpenAuthScreen = {() => {}}
+          authMessage = {``}
         />
       </Provider>, {
         createNodeMock: () => {

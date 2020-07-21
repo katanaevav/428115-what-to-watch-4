@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import MoviePromo from "./movie-promo.jsx";
+import {AuthorizationStatus} from "../../const.js";
 
 const Movie = {
   title: `The Grand Budapest Hotel`,
@@ -13,6 +14,8 @@ const Movie = {
 it(`Render promo movie section`, () => {
   const tree = renderer.create(
       <MoviePromo
+        onOpenAuthScreen = {() => {}}
+        authorizationStatus={AuthorizationStatus.NO_AUTH}
         promoMovieTitle = {Movie.title}
         promoMovieGenre = {Movie.genre}
         promoMovieYear = {Movie.year}

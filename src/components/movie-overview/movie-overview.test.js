@@ -13,6 +13,7 @@ const Movie = {
   cover: `img/johnny-english.jpg`,
   ratingScore: 6.5,
   ratingCount: 34786,
+  backgroundColor: `#AABBCC`,
   preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   directors: [`Оливер Паркер`],
   starrings: [`Роуэн Эткинсон`, `Джиллиан Андерсон`, `Доминик Уэст`, `Розамунд Пайк`, `Дэниэл Калуя`, `Марк Иванир`, `Берн Горман`, `Жозефин де ла Буме`, `Тим Макиннерни`, `Пик Сен Лим`],
