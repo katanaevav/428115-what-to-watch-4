@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render user block element 1`] = `
+exports[`Render user block element for authorized user 1`] = `
 <div
   className="user-block"
 >
@@ -14,5 +14,19 @@ exports[`Render user block element 1`] = `
       width="63"
     />
   </div>
+</div>
+`;
+
+exports[`Render user block element for not authorized user 1`] = `
+<div
+  className="user-block"
+>
+  <a
+    className="user-block__link"
+    href="#"
+    onClick={[Function]}
+  >
+    Sign in
+  </a>
 </div>
 `;

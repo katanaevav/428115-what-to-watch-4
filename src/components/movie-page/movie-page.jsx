@@ -68,12 +68,12 @@ class MoviePage extends PureComponent {
   }
 
   render() {
-    const {movie, similarMovies, onMovieTitleClick, renderTabs} = this.props;
-    const {id, title, genre, year, bigPoster, cover} = movie;
+    const {onOpenAuthScreen, authorizationStatus, movie, similarMovies, onMovieTitleClick, renderTabs} = this.props;
+    const {id, title, genre, year, bigPoster, cover, backgroundColor} = movie;
 
     return (
       <React.Fragment>
-        <section className="movie-card movie-card--full" data-key={id}>
+        <section className="movie-card movie-card--full" data-key={id} style={{backgroundColor: `${backgroundColor}`}}>
           <div className="movie-card__hero">
             <div className="movie-card__bg">
               <img src={cover} alt={title} />
@@ -83,7 +83,10 @@ class MoviePage extends PureComponent {
 
             <header className="page-header movie-card__head">
               <Logo />
-              <UserBlock />
+              <UserBlock
+                onOpenAuthScreen = {onOpenAuthScreen}
+                authorizationStatus = {authorizationStatus}
+              />
             </header>
 
             <div className="movie-card__wrap">
@@ -155,6 +158,8 @@ class MoviePage extends PureComponent {
 }
 
 MoviePage.propTypes = {
+  onOpenAuthScreen: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   movie: PropTypes.object.isRequired,
   comments: PropTypes.array,
   similarMovies: PropTypes.array.isRequired,

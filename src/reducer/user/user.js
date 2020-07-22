@@ -1,4 +1,7 @@
 import {AuthorizationStatus} from "../../const.js";
+import {ActionCreator as StateActionCreator} from "../state/state.js";
+
+const AUTH_ERROR_TEXT = `We can’t recognize this email and password combination. Please try again.`;
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
@@ -40,12 +43,18 @@ const Operation = {
   },
 
   login: (authData) => (dispatch, getState, api) => {
+
     return api.post(`/login`, {
       email: authData.login,
       password: authData.password,
     })
       .then(() => {
+        dispatch(StateActionCreator.openMainPage());
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+      })
+      .catch((err) => {
+        dispatch(StateActionCreator.openAuthPage(AUTH_ERROR_TEXT));
+        throw err;
       });
   },
 };

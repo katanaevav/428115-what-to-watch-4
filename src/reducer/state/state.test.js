@@ -3,6 +3,7 @@ import {NO_FILTER, Screens} from "../../const.js";
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
+    authMessage: ``,
     currentGenreFilter: NO_FILTER,
     currentPage: Screens.MAIN_SCREEN,
     selectedMovieId: -1,
@@ -116,6 +117,22 @@ describe(`Action creators work correctly`, () => {
     .toEqual({
       type: ActionType.CLOSE_CINEMA_PAGE,
       payload: 1,
+    });
+  });
+
+  it(`Action creator for open auth screen return correct action`, () => {
+    expect(ActionCreator.openAuthPage(``))
+    .toEqual({
+      type: ActionType.OPEN_AUTH_PAGE,
+      payload: ``,
+    });
+  });
+
+  it(`Action creator for copen main page return correct action`, () => {
+    expect(ActionCreator.openMainPage())
+    .toEqual({
+      type: ActionType.OPEN_MAIN_PAGE,
+      payload: ``,
     });
   });
 });

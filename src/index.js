@@ -24,11 +24,16 @@ const store = createStore(
     )
 );
 
+// const authData = {
+//   login: `kat@mail.ru`,
+//   password: `111`,
+// };
+
+// store.dispatch(UserOperation.login(authData));
+store.dispatch(UserOperation.checkAuth());
 
 store.dispatch(DataOperation.loadPromoMovie());
 store.dispatch(DataOperation.loadMovies());
-store.dispatch(UserOperation.checkAuth());
-
 
 ReactDOM.render(
     <Provider store={store}>

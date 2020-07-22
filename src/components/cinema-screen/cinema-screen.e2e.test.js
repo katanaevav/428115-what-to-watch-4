@@ -18,6 +18,7 @@ const Movie = {
   cover: `img/aviator.jpg`,
   ratingScore: `7,5`,
   ratingCount: 121697,
+  backgroundColor: `#AABBCC`,
   preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   directors: [`Мартин Скорсезе`],

@@ -1,6 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Main from "./main.jsx";
+import {AuthorizationStatus} from "../../const.js";
 
 const NO_FILTER = `All genres`;
 
@@ -17,6 +18,7 @@ const PromoMovie = {
   cover: `img/bg-the-grand-budapest-hotel.jpg`,
   ratingScore: `8,9`,
   ratingCount: 240,
+  backgroundColor: `#AABBCC`,
   preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   directors: [`Уэс Андерсон`],
@@ -61,6 +63,7 @@ const Movies = [
     cover: `img/bohemian-rhapsody.jpg`,
     ratingScore: `7,9`,
     ratingCount: 284651,
+    backgroundColor: `#AABBCC`,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     director: `Брайан Сингер`,
     starring: `Рами Малек, Люси Бойнтон, Гвилим Ли, Бен Харди, Джозеф Маццелло, Эйдан Гиллен, Аллен Лич, Том Холландер, Майк Майерс, Аарон МакКаскер и другие`,
@@ -76,6 +79,7 @@ const Movies = [
     cover: `img/moonrise-kingdom.jpg`,
     ratingScore: `8,9`,
     ratingCount: 240,
+    backgroundColor: `#AABBCC`,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     director: `Уэс Андерсон`,
     starring: `Брюс Уиллис, Эдвард Нортон, Билл Мюррей, Фрэнсис МакДорманд, Джаред Гилман, Кара Хэйуорд, Боб Бэлабан, Тильда Суинтон, Джейсон Шварцман, Харви Кейтель и другие`,
@@ -86,6 +90,8 @@ const Movies = [
 it(`Should Main component render correctly`, () => {
   const tree = renderer.create(
       <Main
+        onOpenAuthScreen = {() => {}}
+        authorizationStatus = {AuthorizationStatus.NO_AUTH}
         promoMovie = {PromoMovie}
         genres = {GENRES}
         movies = {Movies}
