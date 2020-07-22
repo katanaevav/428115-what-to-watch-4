@@ -1,6 +1,7 @@
 import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import Logo from "../logo/logo.jsx";
+import UserBlock from "../user-block/user-block.jsx";
 
 class AddReview extends PureComponent {
   constructor(props) {
@@ -8,13 +9,13 @@ class AddReview extends PureComponent {
   }
 
   render() {
-    const {movie} = this.props;
+    const {movie, onOpenAuthScreen, authorizationStatus, avatarUrl} = this.props;
 
     return (
       <section className="movie-card movie-card--full">
         <div className="movie-card__header">
           <div className="movie-card__bg">
-            <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+            <img src={movie.cover} alt={movie.title} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -25,7 +26,7 @@ class AddReview extends PureComponent {
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <a href="movie-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
+                  <a href="movie-page.html" className="breadcrumbs__link">{movie.title}</a>
                 </li>
                 <li className="breadcrumbs__item">
                   <a className="breadcrumbs__link">Add review</a>
@@ -33,15 +34,15 @@ class AddReview extends PureComponent {
               </ul>
             </nav>
 
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </div>
+            <UserBlock
+              onOpenAuthScreen = {onOpenAuthScreen}
+              authorizationStatus = {authorizationStatus}
+              avatarUrl = {avatarUrl}
+            />
           </header>
 
           <div className="movie-card__poster movie-card__poster--small">
-            <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+            <img src={movie.bigPoster} alt={movie.title} width="218" height="327" />
           </div>
         </div>
 
@@ -83,6 +84,9 @@ class AddReview extends PureComponent {
 
 AddReview.propTypes = {
   movie: PropTypes.object.isRequired,
+  onOpenAuthScreen: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+  avatarUrl: PropTypes.string,
 };
 
 export default AddReview;

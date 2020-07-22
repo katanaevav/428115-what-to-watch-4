@@ -12,9 +12,10 @@ import CinemaScreen from "../cinema-screen/cinema-screen.jsx";
 import withCinemaVideoPlayer from "../../hoc/with-cinema-video-player/with-cinema-video-player.js";
 import {getCurrentGenreFilter, getCurrentPage, getSelectedMovieId, getFilteredMovies, getAuthMessage} from "../../reducer/state/selectors.js";
 import {getMovies, getPromoMovie, getGenres, getMovieComments} from "../../reducer/data/selectors.js";
-import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
+import {getAuthorizationStatus, getAvatarUrl} from "../../reducer/user/selectors.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
+import AddReview from "../add-review/add-review.jsx";
 
 const CinemaScreenWrapped = withCinemaVideoPlayer(CinemaScreen);
 
@@ -40,6 +41,7 @@ class App extends PureComponent {
     const {
       onOpenAuthScreen,
       authMessage,
+      avatarUrl,
       authorizationStatus,
       login,
       promoMovie,
@@ -65,6 +67,7 @@ class App extends PureComponent {
             <MoviePageWrapper
               onOpenAuthScreen = {onOpenAuthScreen}
               authorizationStatus = {authorizationStatus}
+              avatarUrl = {avatarUrl}
               movie={selecdedMovie}
               comments={movieComments}
               similarMovies = {similarMovies}
@@ -94,6 +97,7 @@ class App extends PureComponent {
             <Main
               onOpenAuthScreen = {onOpenAuthScreen}
               authorizationStatus = {authorizationStatus}
+              avatarUrl = {avatarUrl}
               promoMovie = {promoMovie}
               genres = {genres}
               movies = {movies}
@@ -137,6 +141,33 @@ class App extends PureComponent {
               onSubmit={() => {}}
             />
           </Route>
+          <Route exact path="/dev-review">
+            <AddReview
+              movie={
+                {
+                  backgroundColor: "#D8E3E5",
+                  bigPoster: "https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Moonrise_Kingdom.jpg",
+                  cover: "https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Moonrise_Kingdom.jpg",
+                  descriptions: ["A pair of young lovers flee their New England town…ses a local search party to fan out to find them."],
+                  directors: ["Wes Anderson"],
+                  genre: "Adventure",
+                  id: 2,
+                  isFavorite: false,
+                  preview: "https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4",
+                  ratingCount: 291183,
+                  ratingScore: 7.9,
+                  runTime: 94,
+                  smallPoster: "https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/moonrise-kingdom.jpg",
+                  starrings: (3) ["Jared Gilman", "Kara Hayward", "Bruce Willis"],
+                  title: "Moonrise Kingdom",
+                  video: "http://media.xiph.org/mango/tears_of_steel_1080p.webm",
+                  year: 2012,
+                }}
+              onOpenAuthScreen = {() => {}}
+              authorizationStatus = {this.props.authorizationStatus}
+              avatarUrl = {this.props.avatarUrl}
+            />
+          </Route>
         </Switch>
       </BrowserRouter>
     );
@@ -147,6 +178,7 @@ class App extends PureComponent {
 App.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   login: PropTypes.func.isRequired,
+  avatarUrl: PropTypes.string,
   promoMovie: PropTypes.shape().isRequired,
   movies: PropTypes.arrayOf(
       PropTypes.shape({
@@ -179,6 +211,7 @@ const mapStateToProps = (state) => ({
   currentPage: getCurrentPage(state),
   movieComments: getMovieComments(state),
   authMessage: getAuthMessage(state),
+  avatarUrl: getAvatarUrl(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

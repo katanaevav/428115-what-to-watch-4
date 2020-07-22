@@ -68,7 +68,7 @@ class MoviePage extends PureComponent {
   }
 
   render() {
-    const {onOpenAuthScreen, authorizationStatus, movie, similarMovies, onMovieTitleClick, renderTabs} = this.props;
+    const {onOpenAuthScreen, authorizationStatus, avatarUrl, movie, similarMovies, onMovieTitleClick, renderTabs} = this.props;
     const {id, title, genre, year, bigPoster, cover, backgroundColor} = movie;
 
     return (
@@ -86,6 +86,7 @@ class MoviePage extends PureComponent {
               <UserBlock
                 onOpenAuthScreen = {onOpenAuthScreen}
                 authorizationStatus = {authorizationStatus}
+                avatarUrl = {avatarUrl}
               />
             </header>
 
@@ -160,6 +161,7 @@ class MoviePage extends PureComponent {
 MoviePage.propTypes = {
   onOpenAuthScreen: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  avatarUrl: PropTypes.string,
   movie: PropTypes.object.isRequired,
   comments: PropTypes.array,
   similarMovies: PropTypes.array.isRequired,

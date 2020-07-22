@@ -1,3 +1,5 @@
+export const START_URL = `https://4.react.pages.academy`;
+
 export const NO_FILTER = `All genres`;
 
 export const DELAY_BEFORE_START_PREVIEW = 1000;
