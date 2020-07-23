@@ -24,3 +24,7 @@ export const getGenres = (state) => {
 export const getMovieComments = (state) => {
   return createComments(state[NAME_SPACE].movieComments);
 };
+
+export const getSavingMovieCommentStatus = (state) => {
+  return state[NAME_SPACE].savingMovieCommentStatus;
+};

@@ -1,6 +1,5 @@
-import {AuthorizationStatus} from "../../const.js";
+import {AuthorizationStatus, START_URL} from "../../const.js";
 import {ActionCreator as StateActionCreator} from "../state/state.js";
-import {START_URL} from "../../const.js";
 
 const AUTH_ERROR_TEXT = `We can’t recognize this email and password combination. Please try again.`;
 

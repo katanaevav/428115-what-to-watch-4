@@ -12,7 +12,7 @@ import withNewReview from "../../hoc/with-new-review/with-new-review.js";
 import CinemaScreen from "../cinema-screen/cinema-screen.jsx";
 import withCinemaVideoPlayer from "../../hoc/with-cinema-video-player/with-cinema-video-player.js";
 import {getCurrentGenreFilter, getCurrentPage, getSelectedMovieId, getFilteredMovies, getAuthMessage} from "../../reducer/state/selectors.js";
-import {getMovies, getPromoMovie, getGenres, getMovieComments} from "../../reducer/data/selectors.js";
+import {getMovies, getPromoMovie, getGenres, getMovieComments, getSavingMovieCommentStatus} from "../../reducer/data/selectors.js";
 import {getAuthorizationStatus, getAvatarUrl} from "../../reducer/user/selectors.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
@@ -116,7 +116,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {movies} = this.props;
+    const {movies, savingMovieCommentStatus} = this.props;
     return (
       <BrowserRouter>
         <Switch>
@@ -160,7 +160,7 @@ class App extends PureComponent {
                   ratingScore: 7.9,
                   runTime: 94,
                   smallPoster: "https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/moonrise-kingdom.jpg",
-                  starrings: (3) ["Jared Gilman", "Kara Hayward", "Bruce Willis"],
+                  starrings: ["Jared Gilman", "Kara Hayward", "Bruce Willis"],
                   title: "Moonrise Kingdom",
                   video: "http://media.xiph.org/mango/tears_of_steel_1080p.webm",
                   year: 2012,
@@ -168,6 +168,8 @@ class App extends PureComponent {
               onOpenAuthScreen = {() => {}}
               authorizationStatus = {this.props.authorizationStatus}
               avatarUrl = {this.props.avatarUrl}
+              onSaveComment = {this.props.saveComment}
+              savingMovieCommentStatus = {savingMovieCommentStatus}
             />
           </Route>
         </Switch>
@@ -181,6 +183,7 @@ App.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   login: PropTypes.func.isRequired,
   avatarUrl: PropTypes.string,
+  savingMovieCommentStatus: PropTypes.string,
   promoMovie: PropTypes.shape().isRequired,
   movies: PropTypes.arrayOf(
       PropTypes.shape({
@@ -199,6 +202,7 @@ App.propTypes = {
   onExitVideoPlayer: PropTypes.func.isRequired,
   movieComments: PropTypes.array,
   getComments: PropTypes.func,
+  saveComment: PropTypes.func,
   onOpenAuthScreen: PropTypes.func.isRequired,
   authMessage: PropTypes.string,
 };
@@ -214,9 +218,14 @@ const mapStateToProps = (state) => ({
   movieComments: getMovieComments(state),
   authMessage: getAuthMessage(state),
   avatarUrl: getAvatarUrl(state),
+  savingMovieCommentStatus: getSavingMovieCommentStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  saveComment(comment, action) {
+    dispatch(DataOperation.saveMovieComment(comment, action));
+  },
+
   getComments(movieId) {
     dispatch(DataOperation.loadMovieComments(movieId));
   },

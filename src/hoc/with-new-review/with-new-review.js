@@ -1,4 +1,6 @@
 import React, {PureComponent} from 'react';
+import PropTypes from "prop-types";
+import {SavingStatus} from "../../const.js";
 
 const withNewReview = (Component) => {
   class WithNewReview extends PureComponent {
@@ -8,38 +10,80 @@ const withNewReview = (Component) => {
       this.state = {
         disableForm: false,
         selectedMark: 5,
+        errorSaving: SavingStatus.SUCCESS,
       };
+
+      this._enableForm = this._enableForm.bind(this);
+      this._disableForm = this._disableForm.bind(this);
+    }
+
+    _enableForm() {
+      const {savingMovieCommentStatus} = this.props;
+
+      console.log(savingMovieCommentStatus);
+
+      this.setState({
+        disableForm: false,
+        errorSaving: savingMovieCommentStatus,
+      });
+    }
+
+    _disableForm() {
+      this.setState({
+        disableForm: true,
+      });
     }
 
     render() {
-      const {disableForm, selectedMark} = this.state;
+      const {disableForm, selectedMark, errorSaving} = this.state;
+      const pStyle = {
+        margin: 0,
+        marginLeft: `auto`,
+        padding: `10px`,
+        top: `90px`,
+        left: `10px`,
+        display: `inline-block`,
+        position: `absolute`,
+        zIndex: 2,
+        color: `red`,
+        backgroundColor: `white`,
+      };
 
-      return <Component
-        {...this.props}
+      return (
+        <div>
+          {errorSaving === SavingStatus.FAIL ? <p style={pStyle}>{`Can't save review to this movie! Please? try again later.`}</p> : ``}
+          <Component
+            {...this.props}
 
-        disableForm = {disableForm}
+            disableForm = {disableForm}
 
-        onPostButtonClick = {(text) => {
-          this.setState({
-            disableForm: true,
-          });
+            onPostButtonClick = {(reviewText) => {
+              this._disableForm();
 
-          setTimeout(() => {
-            console.log(selectedMark, text);
-            this.setState({
-              disableForm: false,
-            });
-          }, 2000);
-        }}
-        onMarkChange = {(evt) => {
-          this.setState({
-            selectedMark: parseInt(evt.target.value, 10),
-          });
-        }}
-      >
-      </Component>;
+              this.props.onSaveComment({
+                mark: selectedMark,
+                text: reviewText,
+                movieId: this.props.movie.id,
+              }, this._enableForm);
+            }}
+
+            onMarkChange = {(evt) => {
+              this.setState({
+                selectedMark: parseInt(evt.target.value, 10),
+              });
+            }}
+          >
+          </Component>
+        </div>
+      );
     }
   }
+
+  WithNewReview.propTypes = {
+    movie: PropTypes.object.isRequired,
+    onSaveComment: PropTypes.func.isRequired,
+    savingMovieCommentStatus: PropTypes.string,
+  };
 
   return WithNewReview;
 };

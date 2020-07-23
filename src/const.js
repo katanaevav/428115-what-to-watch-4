@@ -21,6 +21,11 @@ export const Screens = {
   AUTH_SCREEN: 3,
 };
 
+export const SavingStatus = {
+  SUCCESS: `SUCCESS`,
+  FAIL: `FAIL`,
+};
+
 export const Tabs = {
   OVERVIEW_TAB: 0,
   DETAILS_TAB: 1,
