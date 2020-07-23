@@ -8,6 +8,7 @@ import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/state/state.js";
 import {Screens, MAX_SIMILAR_MOVIES_COUNT} from "../../const.js";
 import withMovieTabs from "../../hoc/with-movie-tabs/with-movie-tabs.js";
+import withNewReview from "../../hoc/with-new-review/with-new-review.js";
 import CinemaScreen from "../cinema-screen/cinema-screen.jsx";
 import withCinemaVideoPlayer from "../../hoc/with-cinema-video-player/with-cinema-video-player.js";
 import {getCurrentGenreFilter, getCurrentPage, getSelectedMovieId, getFilteredMovies, getAuthMessage} from "../../reducer/state/selectors.js";
@@ -18,6 +19,7 @@ import {Operation as DataOperation} from "../../reducer/data/data.js";
 import AddReview from "../add-review/add-review.jsx";
 
 const CinemaScreenWrapped = withCinemaVideoPlayer(CinemaScreen);
+const AddReviewWrapped = withNewReview(AddReview);
 
 const MoviePageWrapper = withMovieTabs(MoviePage);
 
@@ -56,7 +58,7 @@ class App extends PureComponent {
       onExitVideoPlayer,
       movieComments} = this.props;
 
-    if (movies.length) {
+    if (movies.length && promoMovie) {
       switch (currentPage) {
         case Screens.MOVIE_PAGE_SCREEN:
           const selecdedMovie = this._getMovieById(selectedMovieId);
@@ -142,7 +144,7 @@ class App extends PureComponent {
             />
           </Route>
           <Route exact path="/dev-review">
-            <AddReview
+            <AddReviewWrapped
               movie={
                 {
                   backgroundColor: "#D8E3E5",

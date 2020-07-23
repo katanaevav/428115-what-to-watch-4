@@ -9,15 +9,7 @@ class AddReview extends PureComponent {
 
     this._reviewTextRef = createRef();
 
-    this.state = {
-      disableForm: false,
-      selectedMark: 5,
-      reviewText: ``,
-    };
-
     this._postButtonClickHandler = this._postButtonClickHandler.bind(this);
-    this._markChangeHandler = this._markChangeHandler.bind(this);
-    this._reviewTextChangeHandler = this._reviewTextChangeHandler.bind(this);
   }
 
   _postButtonClickHandler(evt) {
@@ -27,26 +19,12 @@ class AddReview extends PureComponent {
       this._reviewTextRef.current.style.border = `2px solid red`;
     } else {
       this._reviewTextRef.current.style.border = `none`;
+      this.props.onPostButtonClick(this._reviewTextRef.current.value);
     }
-
-    console.log(this.state);
-  }
-
-  _markChangeHandler(evt) {
-    this.setState({
-      selectedMark: parseInt(evt.target.value, 10),
-    });
-  }
-
-  _reviewTextChangeHandler(evt) {
-    this.setState({
-      reviewText: evt.target.value,
-    });
-    console.log(evt.target.value);
   }
 
   render() {
-    const {movie, onOpenAuthScreen, authorizationStatus, avatarUrl} = this.props;
+    const {movie, onOpenAuthScreen, authorizationStatus, avatarUrl, onMarkChange, disableForm} = this.props;
 
     return (
       <section className="movie-card movie-card--full">
@@ -87,19 +65,19 @@ class AddReview extends PureComponent {
           <form action="#" className="add-review__form">
             <div className="rating">
               <div className="rating__stars">
-                <input className="rating__input" id="star-1" type="radio" name="rating" value="1" onChange={this._markChangeHandler} disabled={this.state.disableForm}/>
+                <input className="rating__input" id="star-1" type="radio" name="rating" value="1" onChange={onMarkChange} disabled={disableForm}/>
                 <label className="rating__label" htmlFor="star-1">Rating 1</label>
 
-                <input className="rating__input" id="star-2" type="radio" name="rating" value="2" onChange={this._markChangeHandler} disabled={this.state.disableForm}/>
+                <input className="rating__input" id="star-2" type="radio" name="rating" value="2" onChange={onMarkChange} disabled={disableForm}/>
                 <label className="rating__label" htmlFor="star-2">Rating 2</label>
 
-                <input className="rating__input" id="star-3" type="radio" name="rating" value="3" onChange={this._markChangeHandler} disabled={this.state.disableForm}/>
+                <input className="rating__input" id="star-3" type="radio" name="rating" value="3" onChange={onMarkChange} disabled={disableForm}/>
                 <label className="rating__label" htmlFor="star-3">Rating 3</label>
 
-                <input className="rating__input" id="star-4" type="radio" name="rating" value="4" onChange={this._markChangeHandler} disabled={this.state.disableForm}/>
+                <input className="rating__input" id="star-4" type="radio" name="rating" value="4" onChange={onMarkChange} disabled={disableForm}/>
                 <label className="rating__label" htmlFor="star-4">Rating 4</label>
 
-                <input className="rating__input" id="star-5" type="radio" name="rating" value="5" onChange={this._markChangeHandler} disabled={this.state.disableForm}/>
+                <input className="rating__input" id="star-5" type="radio" name="rating" value="5" onChange={onMarkChange} disabled={disableForm}/>
                 <label className="rating__label" htmlFor="star-5">Rating 5</label>
               </div>
             </div>
@@ -110,7 +88,7 @@ class AddReview extends PureComponent {
                 name="review-text" id="review-text"
                 placeholder="Review text"
                 ref={this._reviewTextRef}
-                disabled={this.state.disableForm}
+                disabled={disableForm}
                 maxLength="400"
                 onChange={this._reviewTextChangeHandler}
               ></textarea>
@@ -118,7 +96,7 @@ class AddReview extends PureComponent {
                 <button
                   className="add-review__btn"
                   type="submit"
-                  disabled={this.state.disableForm}
+                  disabled={disableForm}
                   onClick={this._postButtonClickHandler}
                 >Post</button>
               </div>
@@ -137,6 +115,9 @@ AddReview.propTypes = {
   onOpenAuthScreen: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string,
+  disableForm: PropTypes.bool.isRequired,
+  onPostButtonClick: PropTypes.func.isRequired,
+  onMarkChange: PropTypes.func.isRequired,
 };
 
 export default AddReview;
