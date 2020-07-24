@@ -1,8 +1,10 @@
-import {reducer, ActionCreator, ActionType, AuthorizationStatus} from "./user.js";
+import {reducer, ActionCreator, ActionType} from "./user.js";
+import {AuthorizationStatus} from "../../const.js";
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
+    avatarUrl: ``,
   });
 });
 
@@ -36,11 +38,13 @@ it(`Reducer should change authorizationStatus by a given value`, () => {
 
   expect(reducer({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
+    avatarUrl: ``,
   }, {
     type: ActionType.REQUIRED_AUTHORIZATION,
     payload: AuthorizationStatus.NO_AUTH,
   })).toEqual({
     authorizationStatus: AuthorizationStatus.NO_AUTH,
+    avatarUrl: ``,
   });
 });
 

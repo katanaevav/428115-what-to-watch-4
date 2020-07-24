@@ -7,8 +7,6 @@ class MovieOverview extends PureComponent {
   }
 
   _getRatingLevel(score) {
-    // const score = Number.parseFloat(ratingScore);
-
     switch (true) {
       case score < 3:
         return `Bad`;

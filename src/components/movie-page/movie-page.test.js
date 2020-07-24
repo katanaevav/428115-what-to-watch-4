@@ -58,6 +58,7 @@ it(`Render MoviePage`, () => {
         currentTab = {0}
         renderTabs = {() => {}}
         onPlayMovieClick = {() => {}}
+        onAddReviewClick = {() => {}}
       />, {
         createNodeMock: () => {
           return {};

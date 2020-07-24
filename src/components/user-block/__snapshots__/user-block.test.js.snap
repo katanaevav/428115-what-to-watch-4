@@ -10,7 +10,6 @@ exports[`Render user block element for authorized user 1`] = `
     <img
       alt="User avatar"
       height="63"
-      src="img/avatar.jpg"
       width="63"
     />
   </div>

@@ -128,10 +128,18 @@ describe(`Action creators work correctly`, () => {
     });
   });
 
-  it(`Action creator for copen main page return correct action`, () => {
+  it(`Action creator for open main page return correct action`, () => {
     expect(ActionCreator.openMainPage())
     .toEqual({
       type: ActionType.OPEN_MAIN_PAGE,
+      payload: ``,
+    });
+  });
+
+  it(`Action creator for open add review page return correct action`, () => {
+    expect(ActionCreator.openAddReview(``))
+    .toEqual({
+      type: ActionType.OPEN_ADD_REVIEW_PAGE,
       payload: ``,
     });
   });
