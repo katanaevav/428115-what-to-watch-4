@@ -61,9 +61,9 @@ class App extends PureComponent {
       savingMovieCommentStatus} = this.props;
 
     if (movies.length && promoMovie) {
+      const selecdedMovie = this._getMovieById(selectedMovieId);
       switch (currentPage) {
         case Screens.MOVIE_PAGE_SCREEN:
-          const selecdedMovie = this._getMovieById(selectedMovieId);
           const {id, genre} = selecdedMovie;
           const similarMovies = movies.filter((movie) => (movie.genre === genre) && (movie.id !== id)).slice(0, MAX_SIMILAR_MOVIES_COUNT);
 
@@ -100,7 +100,7 @@ class App extends PureComponent {
         case Screens.ADD_REVIEW_SCREEN:
           return (
             <AddReviewWrapped
-              movie={movies[1]}
+              movie={selecdedMovie}
               onOpenAuthScreen = {() => {}}
               authorizationStatus = {this.props.authorizationStatus}
               avatarUrl = {this.props.avatarUrl}
