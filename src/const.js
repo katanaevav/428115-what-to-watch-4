@@ -19,6 +19,7 @@ export const Screens = {
   MOVIE_PAGE_SCREEN: 1,
   CINEMA_SCREEN: 2,
   AUTH_SCREEN: 3,
+  ADD_REVIEW_SCREEN: 4,
 };
 
 export const SavingStatus = {

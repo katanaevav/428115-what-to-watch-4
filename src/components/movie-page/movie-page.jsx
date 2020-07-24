@@ -23,6 +23,7 @@ class MoviePage extends PureComponent {
 
     this._renderTab = this._renderTab.bind(this);
     this._playMovieClickHandler = this._playMovieClickHandler.bind(this);
+    this._addReviewClickHandler = this._addReviewClickHandler.bind(this);
   }
 
 
@@ -66,6 +67,13 @@ class MoviePage extends PureComponent {
     const {movie, onPlayMovieClick} = this.props;
     const {id} = movie;
     onPlayMovieClick(id);
+  }
+
+  _addReviewClickHandler() {
+    const {movie, onAddReviewClick} = this.props;
+    const {id} = movie;
+
+    onAddReviewClick(id);
   }
 
   render() {
@@ -112,7 +120,7 @@ class MoviePage extends PureComponent {
                     </svg>
                     <span>My list</span>
                   </button>
-                  {authorizationStatus === AuthorizationStatus.AUTH ? <a href="add-review.html" className="btn movie-card__button">{`Add review`}</a> : ``}
+                  {authorizationStatus === AuthorizationStatus.AUTH ? <a href="#" onClick={this._addReviewClickHandler} className="btn movie-card__button">{`Add review`}</a> : ``}
                 </div>
               </div>
             </div>
@@ -170,6 +178,7 @@ MoviePage.propTypes = {
   renderTabs: PropTypes.func.isRequired,
   currentTab: PropTypes.number.isRequired,
   onPlayMovieClick: PropTypes.func.isRequired,
+  onAddReviewClick: PropTypes.func.isRequired,
 };
 
 export default MoviePage;

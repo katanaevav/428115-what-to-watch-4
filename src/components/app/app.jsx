@@ -53,10 +53,12 @@ class App extends PureComponent {
       onMovieFilterClick,
       onMovieTitleClick,
       onPlayMovieClick,
+      onAddReviewClick,
       selectedMovieId,
       currentPage,
       onExitVideoPlayer,
-      movieComments} = this.props;
+      movieComments,
+      savingMovieCommentStatus} = this.props;
 
     if (movies.length && promoMovie) {
       switch (currentPage) {
@@ -75,6 +77,7 @@ class App extends PureComponent {
               similarMovies = {similarMovies}
               onMovieTitleClick = {onMovieTitleClick}
               onPlayMovieClick = {onPlayMovieClick}
+              onAddReviewClick = {onAddReviewClick}
             />
           );
 
@@ -91,6 +94,18 @@ class App extends PureComponent {
             <SignIn
               message={authMessage}
               onSubmit={login}
+            />
+          );
+
+        case Screens.ADD_REVIEW_SCREEN:
+          return (
+            <AddReviewWrapped
+              movie={movies[1]}
+              onOpenAuthScreen = {() => {}}
+              authorizationStatus = {this.props.authorizationStatus}
+              avatarUrl = {this.props.avatarUrl}
+              onSaveComment = {this.props.saveComment}
+              savingMovieCommentStatus = {savingMovieCommentStatus}
             />
           );
 
@@ -184,6 +199,7 @@ App.propTypes = {
   onMovieFilterClick: PropTypes.func.isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
   onPlayMovieClick: PropTypes.func.isRequired,
+  onAddReviewClick: PropTypes.func.isRequired,
   selectedMovieId: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   onExitVideoPlayer: PropTypes.func.isRequired,
@@ -219,6 +235,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   login(authData) {
     dispatch(UserOperation.login(authData));
+  },
+
+  onAddReviewClick(movieId) {
+    dispatch(ActionCreator.openAddReview(movieId));
   },
 
   onMovieFilterClick(filterName) {
