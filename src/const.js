@@ -1,3 +1,5 @@
+export const START_URL = `https://4.react.pages.academy`;
+
 export const NO_FILTER = `All genres`;
 
 export const DELAY_BEFORE_START_PREVIEW = 1000;
@@ -17,6 +19,12 @@ export const Screens = {
   MOVIE_PAGE_SCREEN: 1,
   CINEMA_SCREEN: 2,
   AUTH_SCREEN: 3,
+  ADD_REVIEW_SCREEN: 4,
+};
+
+export const SavingStatus = {
+  SUCCESS: `SUCCESS`,
+  FAIL: `FAIL`,
 };
 
 export const Tabs = {

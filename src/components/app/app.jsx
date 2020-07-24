@@ -8,15 +8,18 @@ import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/state/state.js";
 import {Screens, MAX_SIMILAR_MOVIES_COUNT} from "../../const.js";
 import withMovieTabs from "../../hoc/with-movie-tabs/with-movie-tabs.js";
+import withNewReview from "../../hoc/with-new-review/with-new-review.js";
 import CinemaScreen from "../cinema-screen/cinema-screen.jsx";
 import withCinemaVideoPlayer from "../../hoc/with-cinema-video-player/with-cinema-video-player.js";
 import {getCurrentGenreFilter, getCurrentPage, getSelectedMovieId, getFilteredMovies, getAuthMessage} from "../../reducer/state/selectors.js";
-import {getMovies, getPromoMovie, getGenres, getMovieComments} from "../../reducer/data/selectors.js";
-import {getAuthorizationStatus} from "../../reducer/user/selectors.js";
+import {getMovies, getPromoMovie, getGenres, getMovieComments, getSavingMovieCommentStatus} from "../../reducer/data/selectors.js";
+import {getAuthorizationStatus, getAvatarUrl} from "../../reducer/user/selectors.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
+import AddReview from "../add-review/add-review.jsx";
 
 const CinemaScreenWrapped = withCinemaVideoPlayer(CinemaScreen);
+const AddReviewWrapped = withNewReview(AddReview);
 
 const MoviePageWrapper = withMovieTabs(MoviePage);
 
@@ -40,6 +43,7 @@ class App extends PureComponent {
     const {
       onOpenAuthScreen,
       authMessage,
+      avatarUrl,
       authorizationStatus,
       login,
       promoMovie,
@@ -49,15 +53,17 @@ class App extends PureComponent {
       onMovieFilterClick,
       onMovieTitleClick,
       onPlayMovieClick,
+      onAddReviewClick,
       selectedMovieId,
       currentPage,
       onExitVideoPlayer,
-      movieComments} = this.props;
+      movieComments,
+      savingMovieCommentStatus} = this.props;
 
-    if (movies.length) {
+    if (movies.length && promoMovie) {
+      const selecdedMovie = this._getMovieById(selectedMovieId);
       switch (currentPage) {
         case Screens.MOVIE_PAGE_SCREEN:
-          const selecdedMovie = this._getMovieById(selectedMovieId);
           const {id, genre} = selecdedMovie;
           const similarMovies = movies.filter((movie) => (movie.genre === genre) && (movie.id !== id)).slice(0, MAX_SIMILAR_MOVIES_COUNT);
 
@@ -65,11 +71,13 @@ class App extends PureComponent {
             <MoviePageWrapper
               onOpenAuthScreen = {onOpenAuthScreen}
               authorizationStatus = {authorizationStatus}
+              avatarUrl = {avatarUrl}
               movie={selecdedMovie}
               comments={movieComments}
               similarMovies = {similarMovies}
               onMovieTitleClick = {onMovieTitleClick}
               onPlayMovieClick = {onPlayMovieClick}
+              onAddReviewClick = {onAddReviewClick}
             />
           );
 
@@ -89,11 +97,24 @@ class App extends PureComponent {
             />
           );
 
+        case Screens.ADD_REVIEW_SCREEN:
+          return (
+            <AddReviewWrapped
+              movie={selecdedMovie}
+              onOpenAuthScreen = {() => {}}
+              authorizationStatus = {this.props.authorizationStatus}
+              avatarUrl = {this.props.avatarUrl}
+              onSaveComment = {this.props.saveComment}
+              savingMovieCommentStatus = {savingMovieCommentStatus}
+            />
+          );
+
         default:
           return (
             <Main
               onOpenAuthScreen = {onOpenAuthScreen}
               authorizationStatus = {authorizationStatus}
+              avatarUrl = {avatarUrl}
               promoMovie = {promoMovie}
               genres = {genres}
               movies = {movies}
@@ -110,36 +131,52 @@ class App extends PureComponent {
   }
 
   render() {
-    const {movies} = this.props;
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            {this._renderApp()}
-          </Route>
-          <Route exact path="/dev-film">
-            <MoviePageWrapper
-              movie={this._getMovieById(0)}
-              similarMovies = {movies}
-              onMovieTitleClick = {() => {}}
-              onPlayMovieClick = {() => {}}
-            />
-          </Route>
-          <Route exact path="/dev-player">
-            <CinemaScreenWrapped
-              movie={this._getMovieById(1)}
-              onExitVideoPlayer={() => {}}
-            />
-          </Route>
-          <Route exact path="/dev-signin">
-            <SignIn
-              message={``}
-              onSubmit={() => {}}
-            />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    );
+    const {movies, savingMovieCommentStatus} = this.props;
+
+    if (movies.length) {
+      return (
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/">
+              {this._renderApp()}
+            </Route>
+            <Route exact path="/dev-film">
+              <MoviePageWrapper
+                movie={this._getMovieById(0)}
+                similarMovies = {movies}
+                onMovieTitleClick = {() => {}}
+                onPlayMovieClick = {() => {}}
+              />
+            </Route>
+            <Route exact path="/dev-player">
+              <CinemaScreenWrapped
+                movie={this._getMovieById(1)}
+                onExitVideoPlayer={() => {}}
+              />
+            </Route>
+            <Route exact path="/dev-signin">
+              <SignIn
+                message={``}
+                onSubmit={() => {}}
+              />
+            </Route>
+            <Route exact path="/dev-review">
+              <AddReviewWrapped
+                movie={movies[1]}
+                onOpenAuthScreen = {() => {}}
+                authorizationStatus = {this.props.authorizationStatus}
+                avatarUrl = {this.props.avatarUrl}
+                onSaveComment = {this.props.saveComment}
+                savingMovieCommentStatus = {savingMovieCommentStatus}
+              />
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      );
+    }
+
+    return null;
+
   }
 
 }
@@ -147,6 +184,8 @@ class App extends PureComponent {
 App.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   login: PropTypes.func.isRequired,
+  avatarUrl: PropTypes.string,
+  savingMovieCommentStatus: PropTypes.string,
   promoMovie: PropTypes.shape().isRequired,
   movies: PropTypes.arrayOf(
       PropTypes.shape({
@@ -160,11 +199,13 @@ App.propTypes = {
   onMovieFilterClick: PropTypes.func.isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
   onPlayMovieClick: PropTypes.func.isRequired,
+  onAddReviewClick: PropTypes.func.isRequired,
   selectedMovieId: PropTypes.number.isRequired,
   currentPage: PropTypes.number.isRequired,
   onExitVideoPlayer: PropTypes.func.isRequired,
   movieComments: PropTypes.array,
   getComments: PropTypes.func,
+  saveComment: PropTypes.func,
   onOpenAuthScreen: PropTypes.func.isRequired,
   authMessage: PropTypes.string,
 };
@@ -179,15 +220,25 @@ const mapStateToProps = (state) => ({
   currentPage: getCurrentPage(state),
   movieComments: getMovieComments(state),
   authMessage: getAuthMessage(state),
+  avatarUrl: getAvatarUrl(state),
+  savingMovieCommentStatus: getSavingMovieCommentStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  saveComment(comment, action) {
+    dispatch(DataOperation.saveMovieComment(comment, action));
+  },
+
   getComments(movieId) {
     dispatch(DataOperation.loadMovieComments(movieId));
   },
 
   login(authData) {
     dispatch(UserOperation.login(authData));
+  },
+
+  onAddReviewClick(movieId) {
+    dispatch(ActionCreator.openAddReview(movieId));
   },
 
   onMovieFilterClick(filterName) {

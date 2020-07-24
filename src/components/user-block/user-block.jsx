@@ -8,9 +8,11 @@ class UserBlock extends PureComponent {
   }
 
   _generateUserAvatar() {
+    const {avatarUrl} = this.props;
+
     return (
       <div className="user-block__avatar">
-        <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+        <img src={avatarUrl} alt="User avatar" width="63" height="63" />
       </div>
     );
   }
@@ -41,6 +43,7 @@ class UserBlock extends PureComponent {
 UserBlock.propTypes = {
   onOpenAuthScreen: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  avatarUrl: PropTypes.string,
 };
 
 export default UserBlock;

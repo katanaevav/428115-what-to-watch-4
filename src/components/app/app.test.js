@@ -5,6 +5,7 @@ import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {Screens} from "../../const.js";
 import {AuthorizationStatus} from "../../const.js";
+import {SavingStatus} from "../../const.js";
 
 const mockStore = configureStore([]);
 
@@ -106,6 +107,8 @@ it(`Render App with Main screen`, () => {
         <App
           authorizationStatus={AuthorizationStatus.NO_AUTH}
           login={() => {}}
+          avatarUrl = {``}
+          savingMovieCommentStatus = {SavingStatus.SUCCESS}
           promoMovie = {PromoMovie}
           movies = {Movies}
           genres = {GENRES}
@@ -114,10 +117,12 @@ it(`Render App with Main screen`, () => {
           onMovieTitleClick = {() => {}}
           onPlayMovieClick = {() => {}}
           selectedMovieId = {-1}
+          onAddReviewClick = {() => {}}
           currentPage = {Screens.MAIN_SCREEN}
           onExitVideoPlayer = {() => {}}
           movieComments = {[]}
           getComments = {() => {}}
+          saveComment = {() => {}}
           onOpenAuthScreen = {() => {}}
           authMessage = {``}
         />
@@ -140,6 +145,8 @@ it(`Render App with Movie page screen`, () => {
         <App
           authorizationStatus={AuthorizationStatus.NO_AUTH}
           login={() => {}}
+          avatarUrl = {``}
+          savingMovieCommentStatus = {SavingStatus.SUCCESS}
           promoMovie = {PromoMovie}
           movies = {Movies}
           genres = {GENRES}
@@ -148,9 +155,11 @@ it(`Render App with Movie page screen`, () => {
           onMovieTitleClick = {() => {}}
           onPlayMovieClick = {() => {}}
           selectedMovieId = {0}
+          onAddReviewClick = {() => {}}
           currentPage = {Screens.MOVIE_PAGE_SCREEN}
           onExitVideoPlayer = {() => {}}
           movieComments = {[]}
+          saveComment = {() => {}}
           getComments = {() => {}}
           onOpenAuthScreen = {() => {}}
           authMessage = {``}

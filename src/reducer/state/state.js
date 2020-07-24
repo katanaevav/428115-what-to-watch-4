@@ -15,6 +15,7 @@ const ActionType = {
   CLOSE_CINEMA_PAGE: `CLOSE_CINEMA_PAGE`,
   OPEN_AUTH_PAGE: `OPEN_AUTH_PAGE`,
   OPEN_MAIN_PAGE: `OPEN_MAIN_PAGE`,
+  OPEN_ADD_REVIEW_PAGE: `OPEN_ADD_REVIEW_PAGE`,
 };
 
 const ActionCreator = {
@@ -28,6 +29,13 @@ const ActionCreator = {
   openMovieScreen: (movieId) => {
     return {
       type: ActionType.OPEN_MOVIE_PAGE,
+      payload: movieId,
+    };
+  },
+
+  openAddReview: (movieId) => {
+    return {
+      type: ActionType.OPEN_ADD_REVIEW_PAGE,
       payload: movieId,
     };
   },
@@ -96,6 +104,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.OPEN_MAIN_PAGE:
       return Object.assign({}, state, {
         currentPage: Screens.MAIN_SCREEN,
+      });
+
+    case ActionType.OPEN_ADD_REVIEW_PAGE:
+      return Object.assign({}, state, {
+        currentPage: Screens.ADD_REVIEW_SCREEN,
       });
   }
 

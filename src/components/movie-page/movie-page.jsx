@@ -7,6 +7,7 @@ import MoviesList from "../movies-list/movies-list.jsx";
 import withMoviesList from "../../hoc/with-movies-list/with-movies-list.js";
 import UserBlock from "../user-block/user-block.jsx";
 import Logo from "../logo/logo.jsx";
+import {AuthorizationStatus} from "../../const.js";
 
 const MoviesListWrapper = withMoviesList(MoviesList);
 
@@ -22,6 +23,7 @@ class MoviePage extends PureComponent {
 
     this._renderTab = this._renderTab.bind(this);
     this._playMovieClickHandler = this._playMovieClickHandler.bind(this);
+    this._addReviewClickHandler = this._addReviewClickHandler.bind(this);
   }
 
 
@@ -67,8 +69,15 @@ class MoviePage extends PureComponent {
     onPlayMovieClick(id);
   }
 
+  _addReviewClickHandler() {
+    const {movie, onAddReviewClick} = this.props;
+    const {id} = movie;
+
+    onAddReviewClick(id);
+  }
+
   render() {
-    const {onOpenAuthScreen, authorizationStatus, movie, similarMovies, onMovieTitleClick, renderTabs} = this.props;
+    const {onOpenAuthScreen, authorizationStatus, avatarUrl, movie, similarMovies, onMovieTitleClick, renderTabs} = this.props;
     const {id, title, genre, year, bigPoster, cover, backgroundColor} = movie;
 
     return (
@@ -86,6 +95,7 @@ class MoviePage extends PureComponent {
               <UserBlock
                 onOpenAuthScreen = {onOpenAuthScreen}
                 authorizationStatus = {authorizationStatus}
+                avatarUrl = {avatarUrl}
               />
             </header>
 
@@ -110,7 +120,7 @@ class MoviePage extends PureComponent {
                     </svg>
                     <span>My list</span>
                   </button>
-                  <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                  {authorizationStatus === AuthorizationStatus.AUTH ? <a href="#" onClick={this._addReviewClickHandler} className="btn movie-card__button">{`Add review`}</a> : ``}
                 </div>
               </div>
             </div>
@@ -160,6 +170,7 @@ class MoviePage extends PureComponent {
 MoviePage.propTypes = {
   onOpenAuthScreen: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  avatarUrl: PropTypes.string,
   movie: PropTypes.object.isRequired,
   comments: PropTypes.array,
   similarMovies: PropTypes.array.isRequired,
@@ -167,6 +178,7 @@ MoviePage.propTypes = {
   renderTabs: PropTypes.func.isRequired,
   currentTab: PropTypes.number.isRequired,
   onPlayMovieClick: PropTypes.func.isRequired,
+  onAddReviewClick: PropTypes.func.isRequired,
 };
 
 export default MoviePage;

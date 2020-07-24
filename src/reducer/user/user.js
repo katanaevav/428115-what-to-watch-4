@@ -1,14 +1,16 @@
-import {AuthorizationStatus} from "../../const.js";
+import {AuthorizationStatus, START_URL} from "../../const.js";
 import {ActionCreator as StateActionCreator} from "../state/state.js";
 
 const AUTH_ERROR_TEXT = `We can’t recognize this email and password combination. Please try again.`;
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
+  avatarUrl: ``,
 };
 
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
+  GET_USER_AVATAR: `GET_USER_AVATAR`,
 };
 
 const ActionCreator = {
@@ -16,6 +18,13 @@ const ActionCreator = {
     return {
       type: ActionType.REQUIRED_AUTHORIZATION,
       payload: status,
+    };
+  },
+
+  getUserAvatar: (avatar) => {
+    return {
+      type: ActionType.GET_USER_AVATAR,
+      payload: avatar,
     };
   },
 };
@@ -26,6 +35,11 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         authorizationStatus: action.payload,
       });
+
+    case ActionType.GET_USER_AVATAR:
+      return Object.assign({}, state, {
+        avatarUrl: action.payload,
+      });
   }
 
   return state;
@@ -34,8 +48,9 @@ const reducer = (state = initialState, action) => {
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
-      .then(() => {
+      .then((result) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.getUserAvatar(START_URL + result.data.avatar_url));
       })
       .catch((err) => {
         throw err;
@@ -48,9 +63,10 @@ const Operation = {
       email: authData.login,
       password: authData.password,
     })
-      .then(() => {
+      .then((result) => {
         dispatch(StateActionCreator.openMainPage());
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
+        dispatch(ActionCreator.getUserAvatar(START_URL + result.data.avatar_url));
       })
       .catch((err) => {
         dispatch(StateActionCreator.openAuthPage(AUTH_ERROR_TEXT));
@@ -62,7 +78,6 @@ const Operation = {
 export {
   ActionCreator,
   ActionType,
-  AuthorizationStatus,
   Operation,
   reducer,
 };

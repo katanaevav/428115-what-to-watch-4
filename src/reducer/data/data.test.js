@@ -137,6 +137,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
     promoMovie: {},
     movies: [],
     movieComments: [],
+    savingMovieCommentStatus: ``,
   });
 });
 
@@ -145,6 +146,7 @@ it(`Reducer should update movies by LOAD_MOVIES`, () => {
     promoMovie: {},
     movies: [],
     movieComments: [],
+    savingMovieCommentStatus: ``,
   }, {
     type: ActionType.LOAD_MOVIES,
     payload: movies,
@@ -152,6 +154,7 @@ it(`Reducer should update movies by LOAD_MOVIES`, () => {
     promoMovie: {},
     movies,
     movieComments: [],
+    savingMovieCommentStatus: ``,
   });
 });
 
@@ -160,6 +163,7 @@ it(`Reducer should update promo movie by LOAD_PROMO_MOVIE`, () => {
     promoMovie: {},
     movies: [],
     movieComments: [],
+    savingMovieCommentStatus: ``,
   }, {
     type: ActionType.LOAD_PROMO_MOVIE,
     payload: PromoMovie,
@@ -167,6 +171,7 @@ it(`Reducer should update promo movie by LOAD_PROMO_MOVIE`, () => {
     promoMovie: PromoMovie,
     movies: [],
     movieComments: [],
+    savingMovieCommentStatus: ``,
   });
 });
 
@@ -175,6 +180,7 @@ it(`Reducer should update comments by LOAD_MOVIE_COMMENTS`, () => {
     promoMovie: {},
     movies: [],
     movieComments: [],
+    savingMovieCommentStatus: ``,
   }, {
     type: ActionType.LOAD_MOVIE_COMMENTS,
     payload: comments,
@@ -182,6 +188,7 @@ it(`Reducer should update comments by LOAD_MOVIE_COMMENTS`, () => {
     promoMovie: {},
     movies: [],
     movieComments: comments,
+    savingMovieCommentStatus: ``,
   });
 });
 
