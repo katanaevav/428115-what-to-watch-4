@@ -7,6 +7,7 @@ import MoviesList from "../movies-list/movies-list.jsx";
 import withMoviesList from "../../hoc/with-movies-list/with-movies-list.js";
 import UserBlock from "../user-block/user-block.jsx";
 import Logo from "../logo/logo.jsx";
+import {AuthorizationStatus} from "../../const.js";
 
 const MoviesListWrapper = withMoviesList(MoviesList);
 
@@ -111,7 +112,7 @@ class MoviePage extends PureComponent {
                     </svg>
                     <span>My list</span>
                   </button>
-                  <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                  {authorizationStatus === AuthorizationStatus.AUTH ? <a href="add-review.html" className="btn movie-card__button">{`Add review`}</a> : ``}
                 </div>
               </div>
             </div>

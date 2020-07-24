@@ -117,64 +117,51 @@ class App extends PureComponent {
 
   render() {
     const {movies, savingMovieCommentStatus} = this.props;
-    return (
-      <BrowserRouter>
-        <Switch>
-          <Route exact path="/">
-            {this._renderApp()}
-          </Route>
-          <Route exact path="/dev-film">
-            <MoviePageWrapper
-              movie={this._getMovieById(0)}
-              similarMovies = {movies}
-              onMovieTitleClick = {() => {}}
-              onPlayMovieClick = {() => {}}
-            />
-          </Route>
-          <Route exact path="/dev-player">
-            <CinemaScreenWrapped
-              movie={this._getMovieById(1)}
-              onExitVideoPlayer={() => {}}
-            />
-          </Route>
-          <Route exact path="/dev-signin">
-            <SignIn
-              message={``}
-              onSubmit={() => {}}
-            />
-          </Route>
-          <Route exact path="/dev-review">
-            <AddReviewWrapped
-              movie={
-                {
-                  backgroundColor: "#D8E3E5",
-                  bigPoster: "https://htmlacademy-react-3.appspot.com/wtw/static/film/poster/Moonrise_Kingdom.jpg",
-                  cover: "https://htmlacademy-react-3.appspot.com/wtw/static/film/background/Moonrise_Kingdom.jpg",
-                  descriptions: ["A pair of young lovers flee their New England town…ses a local search party to fan out to find them."],
-                  directors: ["Wes Anderson"],
-                  genre: "Adventure",
-                  id: 2,
-                  isFavorite: false,
-                  preview: "https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4",
-                  ratingCount: 291183,
-                  ratingScore: 7.9,
-                  runTime: 94,
-                  smallPoster: "https://htmlacademy-react-3.appspot.com/wtw/static/film/preview/moonrise-kingdom.jpg",
-                  starrings: ["Jared Gilman", "Kara Hayward", "Bruce Willis"],
-                  title: "Moonrise Kingdom",
-                  video: "http://media.xiph.org/mango/tears_of_steel_1080p.webm",
-                  year: 2012,
-                }}
-              onOpenAuthScreen = {() => {}}
-              authorizationStatus = {this.props.authorizationStatus}
-              avatarUrl = {this.props.avatarUrl}
-              onSaveComment = {this.props.saveComment}
-              savingMovieCommentStatus = {savingMovieCommentStatus}
-            />
-          </Route>
-        </Switch>
-      </BrowserRouter>
-    );
+
+    if (movies.length) {
+      return (
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/">
+              {this._renderApp()}
+            </Route>
+            <Route exact path="/dev-film">
+              <MoviePageWrapper
+                movie={this._getMovieById(0)}
+                similarMovies = {movies}
+                onMovieTitleClick = {() => {}}
+                onPlayMovieClick = {() => {}}
+              />
+            </Route>
+            <Route exact path="/dev-player">
+              <CinemaScreenWrapped
+                movie={this._getMovieById(1)}
+                onExitVideoPlayer={() => {}}
+              />
+            </Route>
+            <Route exact path="/dev-signin">
+              <SignIn
+                message={``}
+                onSubmit={() => {}}
+              />
+            </Route>
+            <Route exact path="/dev-review">
+              <AddReviewWrapped
+                movie={movies[1]}
+                onOpenAuthScreen = {() => {}}
+                authorizationStatus = {this.props.authorizationStatus}
+                avatarUrl = {this.props.avatarUrl}
+                onSaveComment = {this.props.saveComment}
+                savingMovieCommentStatus = {savingMovieCommentStatus}
+              />
+            </Route>
+          </Switch>
+        </BrowserRouter>
+      );
+    }
+
+    return null;
+
   }
 
 }
