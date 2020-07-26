@@ -1,12 +1,12 @@
 import React, {PureComponent} from "react";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Switch, Route, Router} from "react-router-dom";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/state/state.js";
-import {Screens, MAX_SIMILAR_MOVIES_COUNT} from "../../const.js";
+import {Screens, MAX_SIMILAR_MOVIES_COUNT, AppRoute} from "../../const.js";
 import withMovieTabs from "../../hoc/with-movie-tabs/with-movie-tabs.js";
 import withNewReview from "../../hoc/with-new-review/with-new-review.js";
 import CinemaScreen from "../cinema-screen/cinema-screen.jsx";
@@ -17,6 +17,7 @@ import {getAuthorizationStatus, getAvatarUrl} from "../../reducer/user/selectors
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
 import AddReview from "../add-review/add-review.jsx";
+import history from "../../history.js";
 
 const CinemaScreenWrapped = withCinemaVideoPlayer(CinemaScreen);
 const AddReviewWrapped = withNewReview(AddReview);
@@ -42,10 +43,10 @@ class App extends PureComponent {
   _renderApp() {
     const {
       onOpenAuthScreen,
-      authMessage,
+
       avatarUrl,
       authorizationStatus,
-      login,
+
       promoMovie,
       movies,
       genres,
@@ -89,13 +90,13 @@ class App extends PureComponent {
             />
           );
 
-        case Screens.AUTH_SCREEN:
-          return (
-            <SignIn
-              message={authMessage}
-              onSubmit={login}
-            />
-          );
+          // case Screens.AUTH_SCREEN:
+          //   return (
+          //     <SignIn
+          //       message={authMessage}
+          //       onSubmit={login}
+          //     />
+          //   );
 
         case Screens.ADD_REVIEW_SCREEN:
           return (
@@ -131,16 +132,24 @@ class App extends PureComponent {
   }
 
   render() {
-    const {movies, savingMovieCommentStatus} = this.props;
+    const {movies, authMessage, login, savingMovieCommentStatus} = this.props;
 
     if (movies.length) {
       return (
-        <BrowserRouter>
+        <Router
+          history={history}
+        >
           <Switch>
-            <Route exact path="/">
+            <Route exact path={AppRoute.ROOT}>
               {this._renderApp()}
             </Route>
-            <Route exact path="/dev-film">
+            <Route exact path={AppRoute.LOGIN}>
+              <SignIn
+                message={authMessage}
+                onSubmit={login}
+              />
+            </Route>
+            {/* <Route exact path="/dev-film">
               <MoviePageWrapper
                 movie={this._getMovieById(0)}
                 similarMovies = {movies}
@@ -169,9 +178,9 @@ class App extends PureComponent {
                 onSaveComment = {this.props.saveComment}
                 savingMovieCommentStatus = {savingMovieCommentStatus}
               />
-            </Route>
+            </Route> */}
           </Switch>
-        </BrowserRouter>
+        </Router>
       );
     }
 
