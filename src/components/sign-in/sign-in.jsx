@@ -76,6 +76,7 @@ class SignIn extends PureComponent {
           <form
             action=""
             className="sign-in__form"
+            onSubmit={this._submitButtonClickHandler}
           >
             <div className="sign-in__fields">
               <div ref={this.emailContainerRef} className="sign-in__field">
@@ -98,7 +99,7 @@ class SignIn extends PureComponent {
             <div className="sign-in__submit">
               <button
                 className="sign-in__btn"
-                onClick={this._submitButtonClickHandler}
+                // onClick={this._submitButtonClickHandler}
               >Sign in</button>
             </div>
           </form>

@@ -1,12 +1,12 @@
 import React, {PureComponent} from "react";
-import {Switch, Route, Router} from "react-router-dom";
+import {Switch, Route, Router, Redirect, useParams} from "react-router-dom";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/state/state.js";
-import {Screens, MAX_SIMILAR_MOVIES_COUNT, AppRoute} from "../../const.js";
+import {Screens, MAX_SIMILAR_MOVIES_COUNT, AppRoute, AuthorizationStatus} from "../../const.js";
 import withMovieTabs from "../../hoc/with-movie-tabs/with-movie-tabs.js";
 import withNewReview from "../../hoc/with-new-review/with-new-review.js";
 import CinemaScreen from "../cinema-screen/cinema-screen.jsx";
@@ -43,10 +43,8 @@ class App extends PureComponent {
   _renderApp() {
     const {
       onOpenAuthScreen,
-
       avatarUrl,
       authorizationStatus,
-
       promoMovie,
       movies,
       genres,
@@ -132,7 +130,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {movies, authMessage, login, savingMovieCommentStatus} = this.props;
+    const {movies, authMessage, login, authorizationStatus, savingMovieCommentStatus} = this.props;
 
     if (movies.length) {
       return (
@@ -140,15 +138,22 @@ class App extends PureComponent {
           history={history}
         >
           <Switch>
+
             <Route exact path={AppRoute.ROOT}>
               {this._renderApp()}
             </Route>
+
             <Route exact path={AppRoute.LOGIN}>
-              <SignIn
-                message={authMessage}
-                onSubmit={login}
-              />
+              {authorizationStatus === AuthorizationStatus.NO_AUTH ?
+                <SignIn
+                  message={authMessage}
+                  onSubmit={login}
+                /> :
+                <Redirect to={AppRoute.ROOT} />}
             </Route>
+
+            {/* <Route path="/films/:id" render={(props)=><CinemaScreenWrapped movie={this._getMovieById(props.match.params.id)} onExitVideoPlayer={() => {}} {...props}/>}/> */}
+
             {/* <Route exact path="/dev-film">
               <MoviePageWrapper
                 movie={this._getMovieById(0)}
