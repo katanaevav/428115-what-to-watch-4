@@ -48,12 +48,12 @@ class MoviePromo extends PureComponent {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
+                {/* <button className="btn btn--list movie-card__button" type="button">
                   <svg viewBox="0 0 19 20" width="19" height="20">
                     <use xlinkHref="/sprite.svg#add"></use>
                   </svg>
                   <span>My list</span>
-                </button>
+                </button> */}
               </div>
             </div>
           </div>

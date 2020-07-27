@@ -15,7 +15,7 @@ class SignIn extends PureComponent {
     this.emailContainerRef = createRef();
 
     this._generateMessageText = this._generateMessageText.bind(this);
-    this._submitButtonClickHandler = this._submitButtonClickHandler.bind(this);
+    this._submitHandler = this._submitHandler.bind(this);
     this._emailInputChageHandler = this._emailInputChageHandler.bind(this);
   }
 
@@ -34,7 +34,7 @@ class SignIn extends PureComponent {
     );
   }
 
-  _submitButtonClickHandler(evt) {
+  _submitHandler(evt) {
     const {onSubmit} = this.props;
 
     evt.preventDefault();
@@ -76,7 +76,7 @@ class SignIn extends PureComponent {
           <form
             action=""
             className="sign-in__form"
-            onSubmit={this._submitButtonClickHandler}
+            onSubmit={this._submitHandler}
           >
             <div className="sign-in__fields">
               <div ref={this.emailContainerRef} className="sign-in__field">
@@ -99,7 +99,7 @@ class SignIn extends PureComponent {
             <div className="sign-in__submit">
               <button
                 className="sign-in__btn"
-                // onClick={this._submitButtonClickHandler}
+                // onClick={this._submitHandler}
               >Sign in</button>
             </div>
           </form>
