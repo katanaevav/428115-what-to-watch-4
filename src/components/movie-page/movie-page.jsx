@@ -8,6 +8,7 @@ import withMoviesList from "../../hoc/with-movies-list/with-movies-list.js";
 import UserBlock from "../user-block/user-block.jsx";
 import Logo from "../logo/logo.jsx";
 import {AuthorizationStatus} from "../../const.js";
+import AddToMyList from "../add-to-my-list/add-to-my-list.jsx";
 
 const MoviesListWrapper = withMoviesList(MoviesList);
 
@@ -78,7 +79,7 @@ class MoviePage extends PureComponent {
 
   render() {
     const {onOpenAuthScreen, authorizationStatus, avatarUrl, movie, similarMovies, onMovieTitleClick, renderTabs} = this.props;
-    const {id, title, genre, year, bigPoster, cover, backgroundColor} = movie;
+    const {id, title, genre, year, bigPoster, cover, backgroundColor, isFavorite} = movie;
 
     return (
       <React.Fragment>
@@ -114,12 +115,17 @@ class MoviePage extends PureComponent {
                     </svg>
                     <span>Play</span>
                   </button>
-                  <button className="btn btn--list movie-card__button" type="button">
+                  <AddToMyList
+                    isInList = {isFavorite}
+                    onButtonClick = {() => {}}
+                    authorizationStatus = {authorizationStatus}
+                  />
+                  {/* <button className="btn btn--list movie-card__button" type="button">
                     <svg viewBox="0 0 19 20" width="19" height="20">
                       <use xlinkHref="/sprite.svg#add"></use>
                     </svg>
                     <span>My list</span>
-                  </button>
+                  </button> */}
                   {authorizationStatus === AuthorizationStatus.AUTH ? <a href="#" onClick={this._addReviewClickHandler} className="btn movie-card__button">{`Add review`}</a> : ``}
                 </div>
               </div>

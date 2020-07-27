@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import UserBlock from "../user-block/user-block.jsx";
 import Logo from "../logo/logo.jsx";
+import AddToMyList from "../add-to-my-list/add-to-my-list.jsx";
 
 class MoviePromo extends PureComponent {
   constructor(props) {
@@ -9,7 +10,7 @@ class MoviePromo extends PureComponent {
   }
 
   render() {
-    const {onOpenAuthScreen, authorizationStatus, avatarUrl, promoMovieTitle, promoMovieGenre, promoMovieYear, cover, bigPoster, onPlayPromoMovieClick} = this.props;
+    const {onOpenAuthScreen, authorizationStatus, avatarUrl, promoMovieTitle, promoMovieGenre, promoMovieYear, movieIsFavorite, cover, bigPoster, onPlayPromoMovieClick, onFavoriteButtonClick} = this.props;
 
     return (
       <section className="movie-card">
@@ -48,12 +49,13 @@ class MoviePromo extends PureComponent {
                   </svg>
                   <span>Play</span>
                 </button>
-                {/* <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="/sprite.svg#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button> */}
+
+                <AddToMyList
+                  isInList = {movieIsFavorite}
+                  onButtonClick = {onFavoriteButtonClick}
+                  authorizationStatus = {authorizationStatus}
+                />
+
               </div>
             </div>
           </div>
@@ -70,9 +72,11 @@ MoviePromo.propTypes = {
   promoMovieTitle: PropTypes.string.isRequired,
   promoMovieGenre: PropTypes.string.isRequired,
   promoMovieYear: PropTypes.number.isRequired,
+  movieIsFavorite: PropTypes.bool.isRequired,
   cover: PropTypes.string.isRequired,
   bigPoster: PropTypes.string.isRequired,
   onPlayPromoMovieClick: PropTypes.func.isRequired,
+  onFavoriteButtonClick: PropTypes.func.isRequired,
 };
 
 export default MoviePromo;

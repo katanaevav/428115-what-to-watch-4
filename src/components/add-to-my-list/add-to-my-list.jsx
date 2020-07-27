@@ -1,13 +1,11 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {AuthorizationStatus} from "../../const.js";
+import {AuthorizationStatus, AppRoute} from "../../const.js";
+import {Link} from 'react-router-dom';
 
 class AddToMyList extends PureComponent {
   constructor(props) {
     super(props);
-
-    this._renderIcon = this._renderIcon.bind(this);
-    this._buttonClickHandler = this._buttonClickHandler.bind(this);
   }
 
   _renderAddIcon() {
@@ -26,30 +24,33 @@ class AddToMyList extends PureComponent {
     );
   }
 
-  _renderIcon() {
-    const {isInList} = this.props;
-
-    return isInList ? this._renderInListIcon() : this._renderAddIcon();
-  }
-
   render() {
-    const {onButtonClick} = this.props;
-    return (
+    const {isInList, onButtonClick, authorizationStatus} = this.props;
+
+    return (authorizationStatus === AuthorizationStatus.AUTH ?
       <button
         className="btn btn--list movie-card__button"
         type="button"
-        onClick={onButtonClick}
+        onClick = {onButtonClick}
       >
-        {this._renderIcon()}
+        {isInList ? this._renderInListIcon() : this._renderAddIcon()}
         <span>My list</span>
-      </button>
-    );
+      </button> :
+
+      <Link
+        className="btn btn--list movie-card__button"
+        to={AppRoute.LOGIN}
+      >
+        {isInList ? this._renderInListIcon() : this._renderAddIcon()}
+        <span>My list</span>
+      </Link>);
   }
 }
 
 AddToMyList.propTypes = {
   isInList: PropTypes.bool.isRequired,
   onButtonClick: PropTypes.func.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
 };
 
 export default AddToMyList;

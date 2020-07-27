@@ -5,6 +5,7 @@ const initialState = {
   movies: [],
   movieComments: [],
   savingMovieCommentStatus: ``,
+  savingMovieFavoriteStatus: ``,
 };
 
 const ActionType = {
@@ -12,6 +13,7 @@ const ActionType = {
   LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
   LOAD_MOVIE_COMMENTS: `LOAD_MOVIE_COMMENTS`,
   SAVE_MOVIE_COMMENT: `SAVE_MOVIE_COMMENT`,
+  CHANGE_FAVORITE_STATUS: `SAVE_FAVORITE_STATUS`,
 };
 
 const ActionCreator = {
@@ -39,6 +41,13 @@ const ActionCreator = {
   saveMovieComment: (status) => {
     return {
       type: ActionType.SAVE_MOVIE_COMMENT,
+      payload: status,
+    };
+  },
+
+  saveMovieFavoriteStatus: (status) => {
+    return {
+      type: ActionType.CHANGE_FAVORITE_STATUS,
       payload: status,
     };
   },
@@ -81,6 +90,21 @@ const Operation = {
         throw err;
       });
   },
+
+  saveMovieFavoriteStatus: (favoriteStatus, action) => (dispatch, getState, api) => {
+    return api.post(`/favorite/${favoriteStatus.movieId}/${favoriteStatus.isFavorite ? 1 : 0}`)
+      .then((response) => {
+        dispatch(ActionCreator.saveMovieFavoriteStatus(SavingStatus.SUCCESS));
+        dispatch(Operation.loadPromoMovie());
+        dispatch(Operation.loadMovies());
+        action(response.data);
+      })
+      .catch((err) => {
+        dispatch(ActionCreator.saveMovieFavoriteStatus(SavingStatus.FAIL));
+        action();
+        throw err;
+      });
+  },
 };
 
 const reducer = (state = initialState, action) => {
@@ -103,6 +127,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.SAVE_MOVIE_COMMENT:
       return Object.assign({}, state, {
         savingMovieCommentStatus: action.payload,
+      });
+
+    case ActionType.CHANGE_FAVORITE_STATUS:
+      return Object.assign({}, state, {
+        savingMovieFavoriteStatus: action.payload,
       });
   }
 

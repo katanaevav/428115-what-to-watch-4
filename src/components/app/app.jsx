@@ -1,5 +1,5 @@
 import React, {PureComponent} from "react";
-import {Switch, Route, Router, Redirect, useParams} from "react-router-dom";
+import {Switch, Route, Router, Redirect} from "react-router-dom";
 import PropTypes from "prop-types";
 import Main from "../main/main.jsx";
 import MoviePage from "../movie-page/movie-page.jsx";
@@ -12,7 +12,7 @@ import withNewReview from "../../hoc/with-new-review/with-new-review.js";
 import CinemaScreen from "../cinema-screen/cinema-screen.jsx";
 import withCinemaVideoPlayer from "../../hoc/with-cinema-video-player/with-cinema-video-player.js";
 import {getCurrentGenreFilter, getCurrentPage, getSelectedMovieId, getFilteredMovies, getAuthMessage} from "../../reducer/state/selectors.js";
-import {getMovies, getPromoMovie, getGenres, getMovieComments, getSavingMovieCommentStatus} from "../../reducer/data/selectors.js";
+import {getMovies, getPromoMovie, getGenres, getMovieComments, getSavingMovieCommentStatus, getSavingMovieFavoriteStatus} from "../../reducer/data/selectors.js";
 import {getAuthorizationStatus, getAvatarUrl} from "../../reducer/user/selectors.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
@@ -28,7 +28,7 @@ class App extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._movieCardMouseOverHandler = this._movieCardMouseOverHandler.bind(this);
+    this._favoriteButtonClickHandler = this._favoriteButtonClickHandler.bind(this);
   }
 
   _getMovieById(movieId) {
@@ -37,8 +37,9 @@ class App extends PureComponent {
     return movies.find((movie) => movie.id === Number.parseInt(movieId, 10));
   }
 
-  _movieCardMouseOverHandler() {}
+  _favoriteButtonClickHandler() {
 
+  }
 
   _renderApp() {
     const {
@@ -57,7 +58,9 @@ class App extends PureComponent {
       currentPage,
       onExitVideoPlayer,
       movieComments,
-      savingMovieCommentStatus} = this.props;
+      savingMovieCommentStatus,
+      savingMovieFavoriteStatus,
+      setFavoriteStatus} = this.props;
 
     if (movies.length && promoMovie) {
       const selecdedMovie = this._getMovieById(selectedMovieId);
@@ -121,6 +124,8 @@ class App extends PureComponent {
               onMovieTitleClick = {onMovieTitleClick}
               onMovieFilterClick = {onMovieFilterClick}
               onPlayMovieClick = {onPlayMovieClick}
+              savingMovieFavoriteStatus = {savingMovieFavoriteStatus}
+              setFavoriteStatus = {setFavoriteStatus}
             />
           );
       }
@@ -200,6 +205,7 @@ App.propTypes = {
   login: PropTypes.func.isRequired,
   avatarUrl: PropTypes.string,
   savingMovieCommentStatus: PropTypes.string,
+  savingMovieFavoriteStatus: PropTypes.string,
   promoMovie: PropTypes.shape().isRequired,
   movies: PropTypes.arrayOf(
       PropTypes.shape({
@@ -220,6 +226,7 @@ App.propTypes = {
   movieComments: PropTypes.array,
   getComments: PropTypes.func,
   saveComment: PropTypes.func,
+  setFavoriteStatus: PropTypes.func,
   onOpenAuthScreen: PropTypes.func.isRequired,
   authMessage: PropTypes.string,
 };
@@ -236,9 +243,14 @@ const mapStateToProps = (state) => ({
   authMessage: getAuthMessage(state),
   avatarUrl: getAvatarUrl(state),
   savingMovieCommentStatus: getSavingMovieCommentStatus(state),
+  savingMovieFavoriteStatus: getSavingMovieFavoriteStatus(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  setFavoriteStatus(favoriteStatus, action) {
+    dispatch(DataOperation.saveMovieFavoriteStatus(favoriteStatus, action));
+  },
+
   saveComment(comment, action) {
     dispatch(DataOperation.saveMovieComment(comment, action));
   },

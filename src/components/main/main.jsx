@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 import MoviesList from "../movies-list/movies-list.jsx";
 import GenreList from "../genre-list/genre-list.jsx";
 import withMoviesList from "../../hoc/with-movies-list/with-movies-list.js";
+import withAddToFavoriteButton from "../../hoc/with-add-to-favorite-button/with-add-to-favorite-button.js";
 import MoviePromo from "../movie-promo/movie-promo.jsx";
 import Logo from "../logo/logo.jsx";
 
+const MoviePromoWrapper = withAddToFavoriteButton(MoviePromo);
 const MoviesListWrapper = withMoviesList(MoviesList);
 
 class Main extends PureComponent {
@@ -22,21 +24,25 @@ class Main extends PureComponent {
   }
 
   render() {
-    const {onOpenAuthScreen, authorizationStatus, avatarUrl, promoMovie, genres, movies, currentGenreFilter, onMovieTitleClick, onMovieFilterClick} = this.props;
-    const {title, genre, year, cover, bigPoster} = promoMovie;
+    const {onOpenAuthScreen, authorizationStatus, avatarUrl, promoMovie, genres, movies, currentGenreFilter, onMovieTitleClick, onMovieFilterClick, savingMovieFavoriteStatus, setFavoriteStatus} = this.props;
+    const {title, genre, year, cover, bigPoster, isFavorite, id} = promoMovie;
 
     return (
       <React.Fragment>
-        <MoviePromo
+        <MoviePromoWrapper
           onOpenAuthScreen = {onOpenAuthScreen}
           authorizationStatus = {authorizationStatus}
           avatarUrl = {avatarUrl}
           promoMovieTitle = {title}
           promoMovieGenre = {genre}
           promoMovieYear = {year}
+          movieIsFavorite = {isFavorite}
+          movieId = {id}
           cover = {cover}
           bigPoster = {bigPoster}
           onPlayPromoMovieClick = {this._playMoviePromoClickHandler}
+          savingMovieFavoriteStatus = {savingMovieFavoriteStatus}
+          setFavoriteStatus = {setFavoriteStatus}
         />
 
         <div className="page-content">
@@ -87,6 +93,8 @@ Main.propTypes = {
   onMovieTitleClick: PropTypes.func.isRequired,
   onMovieFilterClick: PropTypes.func.isRequired,
   onPlayMovieClick: PropTypes.func.isRequired,
+  savingMovieFavoriteStatus: PropTypes.string,
+  setFavoriteStatus: PropTypes.func.isRequired,
 };
 
 export default Main;
