@@ -2,6 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import MoviePage from "./movie-page.jsx";
 import {AuthorizationStatus} from "../../const.js";
+import {BrowserRouter} from "react-router-dom";
 
 const Movies = [
   {
@@ -13,6 +14,7 @@ const Movies = [
     runTime: `1h 39m`,
     bigPoster: `img/aviator.jpg`,
     cover: `img/aviator.jpg`,
+    isFavorite: true,
     ratingScore: 7,
     ratingCount: 121697,
     backgroundColor: `#AABBCC`,
@@ -49,17 +51,20 @@ const Movies = [
 
 it(`Render MoviePage`, () => {
   const tree = renderer.create(
-      <MoviePage
-        onOpenAuthScreen = {() => {}}
-        authorizationStatus={AuthorizationStatus.NO_AUTH}
-        movie = {Movies[0]}
-        similarMovies = {Movies}
-        onMovieTitleClick = {() => {}}
-        currentTab = {0}
-        renderTabs = {() => {}}
-        onPlayMovieClick = {() => {}}
-        onAddReviewClick = {() => {}}
-      />, {
+      <BrowserRouter>
+        <MoviePage
+          authorizationStatus={AuthorizationStatus.NO_AUTH}
+          avatarUrl = {``}
+          movie = {Movies[0]}
+          comments = {[]}
+          similarMovies = {Movies}
+          onMovieTitleClick = {() => {}}
+          currentTab = {0}
+          renderTabs = {() => {}}
+          onPlayMovieClick = {() => {}}
+          onAddReviewClick = {() => {}}
+        />
+      </BrowserRouter>, {
         createNodeMock: () => {
           return {};
         }

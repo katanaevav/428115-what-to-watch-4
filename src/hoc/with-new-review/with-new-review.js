@@ -20,8 +20,6 @@ const withNewReview = (Component) => {
     _enableForm() {
       const {savingMovieCommentStatus} = this.props;
 
-      // console.log(savingMovieCommentStatus);
-
       this.setState({
         disableForm: false,
         errorSaving: savingMovieCommentStatus,

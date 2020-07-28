@@ -24,7 +24,7 @@ class AddReview extends PureComponent {
   }
 
   render() {
-    const {movie, onOpenAuthScreen, authorizationStatus, avatarUrl, onMarkChange, disableForm} = this.props;
+    const {movie, authorizationStatus, avatarUrl, onMarkChange, disableForm} = this.props;
 
     return (
       <section className="movie-card movie-card--full">
@@ -50,7 +50,6 @@ class AddReview extends PureComponent {
             </nav>
 
             <UserBlock
-              onOpenAuthScreen = {onOpenAuthScreen}
               authorizationStatus = {authorizationStatus}
               avatarUrl = {avatarUrl}
             />
@@ -112,7 +111,6 @@ class AddReview extends PureComponent {
 
 AddReview.propTypes = {
   movie: PropTypes.object.isRequired,
-  onOpenAuthScreen: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string,
   disableForm: PropTypes.bool.isRequired,

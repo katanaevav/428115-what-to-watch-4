@@ -10,7 +10,7 @@ class MoviePromo extends PureComponent {
   }
 
   render() {
-    const {onOpenAuthScreen, authorizationStatus, avatarUrl, promoMovieTitle, promoMovieGenre, promoMovieYear, movieIsFavorite, cover, bigPoster, onPlayPromoMovieClick, onFavoriteButtonClick} = this.props;
+    const {authorizationStatus, avatarUrl, promoMovieTitle, promoMovieGenre, promoMovieYear, movieIsFavorite, cover, bigPoster, onPlayPromoMovieClick, onFavoriteButtonClick} = this.props;
 
     return (
       <section className="movie-card">
@@ -23,7 +23,6 @@ class MoviePromo extends PureComponent {
         <header className="page-header movie-card__head">
           <Logo />
           <UserBlock
-            onOpenAuthScreen = {onOpenAuthScreen}
             authorizationStatus = {authorizationStatus}
             avatarUrl = {avatarUrl}
           />
@@ -66,7 +65,6 @@ class MoviePromo extends PureComponent {
 }
 
 MoviePromo.propTypes = {
-  onOpenAuthScreen: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string,
   promoMovieTitle: PropTypes.string.isRequired,

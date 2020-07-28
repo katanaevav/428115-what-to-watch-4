@@ -2,6 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import Main from "./main.jsx";
 import {AuthorizationStatus} from "../../const.js";
+import {BrowserRouter} from "react-router-dom";
 
 const NO_FILTER = `All genres`;
 
@@ -18,6 +19,7 @@ const PromoMovie = {
   cover: `img/bg-the-grand-budapest-hotel.jpg`,
   ratingScore: `8,9`,
   ratingCount: 240,
+  isFavorite: false,
   backgroundColor: `#AABBCC`,
   preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
@@ -63,6 +65,7 @@ const Movies = [
     cover: `img/bohemian-rhapsody.jpg`,
     ratingScore: `7,9`,
     ratingCount: 284651,
+    isFavorite: false,
     backgroundColor: `#AABBCC`,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     director: `Брайан Сингер`,
@@ -79,6 +82,7 @@ const Movies = [
     cover: `img/moonrise-kingdom.jpg`,
     ratingScore: `8,9`,
     ratingCount: 240,
+    isFavorite: true,
     backgroundColor: `#AABBCC`,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     director: `Уэс Андерсон`,
@@ -89,17 +93,21 @@ const Movies = [
 
 it(`Should Main component render correctly`, () => {
   const tree = renderer.create(
-      <Main
-        onOpenAuthScreen = {() => {}}
-        authorizationStatus = {AuthorizationStatus.NO_AUTH}
-        promoMovie = {PromoMovie}
-        genres = {GENRES}
-        movies = {Movies}
-        onMovieTitleClick = {() => {}}
-        currentGenreFilter = {NO_FILTER}
-        onMovieFilterClick = {() => {}}
-        onPlayMovieClick = {() => {}}
-      />, {
+      <BrowserRouter>
+        <Main
+          authorizationStatus = {AuthorizationStatus.NO_AUTH}
+          avatarUrl = {``}
+          promoMovie = {PromoMovie}
+          genres = {GENRES}
+          movies = {Movies}
+          onMovieTitleClick = {() => {}}
+          currentGenreFilter = {NO_FILTER}
+          onMovieFilterClick = {() => {}}
+          onPlayMovieClick = {() => {}}
+          savingMovieFavoriteStatus = {``}
+          setFavoriteStatus = {() => {}}
+        />
+      </BrowserRouter>, {
         createNodeMock: () => {
           return {};
         }

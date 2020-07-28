@@ -2,6 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import AddReview from "./add-review.jsx";
 import {AuthorizationStatus} from "../../const.js";
+import {BrowserRouter} from "react-router-dom";
 
 const Movie = {
   id: 0,
@@ -28,15 +29,16 @@ const Movie = {
 
 it(`Render cinema screen`, () => {
   const tree = renderer.create(
-      <AddReview
-        movie = {Movie}
-        onOpenAuthScreen = {() => {}}
-        authorizationStatus = {AuthorizationStatus.AUTH}
-        avatarUrl = {``}
-        disableForm = {false}
-        onPostButtonClick = {() => {}}
-        onMarkChange = {() => {}}
-      />
+      <BrowserRouter>
+        <AddReview
+          movie = {Movie}
+          authorizationStatus = {AuthorizationStatus.AUTH}
+          avatarUrl = {``}
+          disableForm = {false}
+          onPostButtonClick = {() => {}}
+          onMarkChange = {() => {}}
+        />
+      </BrowserRouter>
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

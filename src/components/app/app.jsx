@@ -43,7 +43,6 @@ class App extends PureComponent {
 
   _renderApp() {
     const {
-      onOpenAuthScreen,
       avatarUrl,
       authorizationStatus,
       promoMovie,
@@ -62,7 +61,7 @@ class App extends PureComponent {
       savingMovieFavoriteStatus,
       setFavoriteStatus} = this.props;
 
-    if (movies.length && promoMovie) {
+    if (movies.length && promoMovie.id) {
       const selecdedMovie = this._getMovieById(selectedMovieId);
       switch (currentPage) {
         case Screens.MOVIE_PAGE_SCREEN:
@@ -71,7 +70,6 @@ class App extends PureComponent {
 
           return (
             <MoviePageWrapper
-              onOpenAuthScreen = {onOpenAuthScreen}
               authorizationStatus = {authorizationStatus}
               avatarUrl = {avatarUrl}
               movie={selecdedMovie}
@@ -91,19 +89,10 @@ class App extends PureComponent {
             />
           );
 
-          // case Screens.AUTH_SCREEN:
-          //   return (
-          //     <SignIn
-          //       message={authMessage}
-          //       onSubmit={login}
-          //     />
-          //   );
-
         case Screens.ADD_REVIEW_SCREEN:
           return (
             <AddReviewWrapped
               movie={selecdedMovie}
-              onOpenAuthScreen = {() => {}}
               authorizationStatus = {this.props.authorizationStatus}
               avatarUrl = {this.props.avatarUrl}
               onSaveComment = {this.props.saveComment}
@@ -114,7 +103,6 @@ class App extends PureComponent {
         default:
           return (
             <Main
-              onOpenAuthScreen = {onOpenAuthScreen}
               authorizationStatus = {authorizationStatus}
               avatarUrl = {avatarUrl}
               promoMovie = {promoMovie}
@@ -135,7 +123,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {movies, authMessage, login, authorizationStatus, savingMovieCommentStatus} = this.props;
+    const {movies, login, authorizationStatus} = this.props;
 
     if (movies.length) {
       return (
@@ -151,7 +139,6 @@ class App extends PureComponent {
             <Route exact path={AppRoute.LOGIN}>
               {authorizationStatus === AuthorizationStatus.NO_AUTH ?
                 <SignIn
-                  message={authMessage}
                   onSubmit={login}
                 /> :
                 <Redirect to={AppRoute.ROOT} />}
@@ -175,14 +162,12 @@ class App extends PureComponent {
             </Route>
             <Route exact path="/dev-signin">
               <SignIn
-                message={``}
                 onSubmit={() => {}}
               />
             </Route>
             <Route exact path="/dev-review">
               <AddReviewWrapped
                 movie={movies[1]}
-                onOpenAuthScreen = {() => {}}
                 authorizationStatus = {this.props.authorizationStatus}
                 avatarUrl = {this.props.avatarUrl}
                 onSaveComment = {this.props.saveComment}
@@ -227,7 +212,6 @@ App.propTypes = {
   getComments: PropTypes.func,
   saveComment: PropTypes.func,
   setFavoriteStatus: PropTypes.func,
-  onOpenAuthScreen: PropTypes.func.isRequired,
   authMessage: PropTypes.string,
 };
 
@@ -259,8 +243,8 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(DataOperation.loadMovieComments(movieId));
   },
 
-  login(authData) {
-    dispatch(UserOperation.login(authData));
+  login(authData, action) {
+    dispatch(UserOperation.login(authData, action));
   },
 
   onAddReviewClick(movieId) {
@@ -282,10 +266,6 @@ const mapDispatchToProps = (dispatch) => ({
 
   onExitVideoPlayer(movieId) {
     dispatch(ActionCreator.closeCinemaScreen(movieId));
-  },
-
-  onOpenAuthScreen() {
-    dispatch(ActionCreator.openAuthPage());
   },
 });
 

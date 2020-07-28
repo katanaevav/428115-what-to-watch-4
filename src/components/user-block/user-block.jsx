@@ -22,14 +22,10 @@ class UserBlock extends PureComponent {
   }
 
   _generateSignIn() {
-    // const {onOpenAuthScreen} = this.props;
-
     return (
       <Link
-        // href=""
         className="user-block__link"
         to={AppRoute.LOGIN}
-        // onClick={onOpenAuthScreen}
       >Sign in</Link>
     );
   }
@@ -46,7 +42,6 @@ class UserBlock extends PureComponent {
 }
 
 UserBlock.propTypes = {
-  onOpenAuthScreen: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string,
 };

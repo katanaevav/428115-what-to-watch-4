@@ -5,7 +5,6 @@ import SignIn from "./sign-in.jsx";
 it(`SignIn component render correctly`, () => {
   const tree = renderer.create(
       <SignIn
-        message={``}
         onSubmit={() => {}}
       />
   ).toJSON();

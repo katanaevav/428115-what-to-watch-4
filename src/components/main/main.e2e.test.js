@@ -20,6 +20,7 @@ const PromoMovie = {
   ratingScore: `8,9`,
   ratingCount: 240,
   backgroundColor: `#AABBCC`,
+  isFavorite: false,
   preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   directors: [`Уэс Андерсон`],
@@ -64,6 +65,7 @@ const Movies = [
     cover: `img/bohemian-rhapsody.jpg`,
     ratingScore: `7,9`,
     ratingCount: 284651,
+    isFavorite: false,
     backgroundColor: `#AABBCC`,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     director: `Брайан Сингер`,
@@ -80,6 +82,7 @@ const Movies = [
     cover: `img/moonrise-kingdom.jpg`,
     ratingScore: `8,9`,
     ratingCount: 240,
+    isFavorite: true,
     backgroundColor: `#AABBCC`,
     preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     director: `Уэс Андерсон`,
@@ -97,8 +100,8 @@ it(`Should movie header be pressed`, () => {
 
   const main = shallow(
       <Main
-        onOpenAuthScreen = {() => {}}
         authorizationStatus = {AuthorizationStatus.NO_AUTH}
+        avatarUrl = {``}
         promoMovie = {PromoMovie}
         genres = {GENRES}
         movies = {Movies}
@@ -106,6 +109,8 @@ it(`Should movie header be pressed`, () => {
         currentGenreFilter = {NO_FILTER}
         onMovieFilterClick = {() => {}}
         onPlayMovieClick = {() => {}}
+        savingMovieFavoriteStatus = {``}
+        setFavoriteStatus = {() => {}}
       />
   );
 
@@ -123,8 +128,8 @@ it(`Should filter be pressed`, () => {
 
   const main = shallow(
       <Main
-        onOpenAuthScreen = {() => {}}
         authorizationStatus = {AuthorizationStatus.NO_AUTH}
+        avatarUrl = {``}
         promoMovie = {PromoMovie}
         genres = {GENRES}
         movies = {Movies}
@@ -132,6 +137,8 @@ it(`Should filter be pressed`, () => {
         currentGenreFilter = {NO_FILTER}
         onMovieFilterClick = {onMovieFilterClick}
         onPlayMovieClick = {() => {}}
+        savingMovieFavoriteStatus = {``}
+        setFavoriteStatus = {() => {}}
       />
   );
 
