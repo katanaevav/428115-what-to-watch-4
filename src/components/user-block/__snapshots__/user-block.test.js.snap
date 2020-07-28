@@ -7,11 +7,17 @@ exports[`Render user block element for authorized user 1`] = `
   <div
     className="user-block__avatar"
   >
-    <img
-      alt="User avatar"
-      height="63"
-      width="63"
-    />
+    <a
+      href="/mylist"
+      onClick={[Function]}
+    >
+      <img
+        alt="User avatar"
+        height="63"
+        src=""
+        width="63"
+      />
+    </a>
   </div>
 </div>
 `;
@@ -22,7 +28,7 @@ exports[`Render user block element for not authorized user 1`] = `
 >
   <a
     className="user-block__link"
-    href="#"
+    href="/login"
     onClick={[Function]}
   >
     Sign in

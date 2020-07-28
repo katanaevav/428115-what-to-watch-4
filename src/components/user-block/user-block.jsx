@@ -1,6 +1,8 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {AuthorizationStatus} from "../../const.js";
+import {Link} from "react-router-dom";
+import {AppRoute} from "../../const.js";
 
 class UserBlock extends PureComponent {
   constructor(props) {
@@ -12,20 +14,19 @@ class UserBlock extends PureComponent {
 
     return (
       <div className="user-block__avatar">
-        <img src={avatarUrl} alt="User avatar" width="63" height="63" />
+        <Link to={AppRoute.MY_LIST}>
+          <img src={avatarUrl} alt="User avatar" width="63" height="63" />
+        </Link>
       </div>
     );
   }
 
   _generateSignIn() {
-    const {onOpenAuthScreen} = this.props;
-
     return (
-      <a
-        href="#"
+      <Link
         className="user-block__link"
-        onClick={onOpenAuthScreen}
-      >Sign in</a>
+        to={AppRoute.LOGIN}
+      >Sign in</Link>
     );
   }
 
@@ -41,7 +42,6 @@ class UserBlock extends PureComponent {
 }
 
 UserBlock.propTypes = {
-  onOpenAuthScreen: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string,
 };

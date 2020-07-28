@@ -28,3 +28,7 @@ export const getMovieComments = (state) => {
 export const getSavingMovieCommentStatus = (state) => {
   return state[NAME_SPACE].savingMovieCommentStatus;
 };
+
+export const getSavingMovieFavoriteStatus = (state) => {
+  return state[NAME_SPACE].savingMovieFavoriteStatus;
+};

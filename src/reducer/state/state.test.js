@@ -120,14 +120,6 @@ describe(`Action creators work correctly`, () => {
     });
   });
 
-  it(`Action creator for open auth screen return correct action`, () => {
-    expect(ActionCreator.openAuthPage(``))
-    .toEqual({
-      type: ActionType.OPEN_AUTH_PAGE,
-      payload: ``,
-    });
-  });
-
   it(`Action creator for open main page return correct action`, () => {
     expect(ActionCreator.openMainPage())
     .toEqual({

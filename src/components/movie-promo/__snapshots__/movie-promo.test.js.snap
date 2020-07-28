@@ -48,7 +48,7 @@ exports[`Render promo movie section 1`] = `
     >
       <a
         className="user-block__link"
-        href="#"
+        href="/login"
         onClick={[Function]}
       >
         Sign in
@@ -114,9 +114,10 @@ exports[`Render promo movie section 1`] = `
               Play
             </span>
           </button>
-          <button
+          <a
             className="btn btn--list movie-card__button"
-            type="button"
+            href="/login"
+            onClick={[Function]}
           >
             <svg
               height="20"
@@ -130,7 +131,7 @@ exports[`Render promo movie section 1`] = `
             <span>
               My list
             </span>
-          </button>
+          </a>
         </div>
       </div>
     </div>

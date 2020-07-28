@@ -123,7 +123,6 @@ it(`Render App with Main screen`, () => {
           movieComments = {[]}
           getComments = {() => {}}
           saveComment = {() => {}}
-          onOpenAuthScreen = {() => {}}
           authMessage = {``}
         />
       </Provider>, {
@@ -161,7 +160,6 @@ it(`Render App with Movie page screen`, () => {
           movieComments = {[]}
           saveComment = {() => {}}
           getComments = {() => {}}
-          onOpenAuthScreen = {() => {}}
           authMessage = {``}
         />
       </Provider>, {

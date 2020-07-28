@@ -43,9 +43,7 @@ exports[`SignIn component render correctly 1`] = `
     <div
       className="sign-in__message"
     >
-      <p>
-        
-      </p>
+      <p />
     </div>
     <form
       action=""

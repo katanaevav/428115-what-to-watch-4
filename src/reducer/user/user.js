@@ -57,8 +57,7 @@ const Operation = {
       });
   },
 
-  login: (authData) => (dispatch, getState, api) => {
-
+  login: (authData, action) => (dispatch, getState, api) => {
     return api.post(`/login`, {
       email: authData.login,
       password: authData.password,
@@ -69,7 +68,7 @@ const Operation = {
         dispatch(ActionCreator.getUserAvatar(START_URL + result.data.avatar_url));
       })
       .catch((err) => {
-        dispatch(StateActionCreator.openAuthPage(AUTH_ERROR_TEXT));
+        action(AUTH_ERROR_TEXT);
         throw err;
       });
   },

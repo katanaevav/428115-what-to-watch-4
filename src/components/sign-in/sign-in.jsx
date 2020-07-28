@@ -14,8 +14,8 @@ class SignIn extends PureComponent {
     this.messageRef = createRef();
     this.emailContainerRef = createRef();
 
-    this._generateMessageText = this._generateMessageText.bind(this);
-    this._submitButtonClickHandler = this._submitButtonClickHandler.bind(this);
+    this._setMessageText = this._setMessageText.bind(this);
+    this._submitHandler = this._submitHandler.bind(this);
     this._emailInputChageHandler = this._emailInputChageHandler.bind(this);
   }
 
@@ -24,17 +24,14 @@ class SignIn extends PureComponent {
     return regExpr.test(String(email).toLowerCase());
   }
 
-  _generateMessageText() {
-    const {message} = this.props;
-
-    return (
-      <div className="sign-in__message">
-        <p ref={this.messageRef}>{message}</p>
-      </div>
-    );
+  _setMessageText(text, hightlightEmail = false) {
+    this.messageRef.current.innerHTML = text;
+    if (hightlightEmail) {
+      this.emailContainerRef.current.className = EMAIL_VALIDATION_CLASS_ERROR;
+    }
   }
 
-  _submitButtonClickHandler(evt) {
+  _submitHandler(evt) {
     const {onSubmit} = this.props;
 
     evt.preventDefault();
@@ -43,10 +40,9 @@ class SignIn extends PureComponent {
       onSubmit({
         login: this.emailRef.current.value,
         password: this.passwordRef.current.value,
-      });
+      }, this._setMessageText);
     } else {
-      this.messageRef.current.innerHTML = EMAIL_VALIDATION_CHECK_ERROR;
-      this.emailContainerRef.current.className = EMAIL_VALIDATION_CLASS_ERROR;
+      this._setMessageText(EMAIL_VALIDATION_CHECK_ERROR, true);
     }
   }
 
@@ -72,7 +68,9 @@ class SignIn extends PureComponent {
         </header>
 
         <div className="sign-in user-page__content">
-          {this._generateMessageText()}
+          <div className="sign-in__message">
+            <p ref={this.messageRef}></p>
+          </div>
           <form
             action=""
             className="sign-in__form"
@@ -98,7 +96,7 @@ class SignIn extends PureComponent {
             <div className="sign-in__submit">
               <button
                 className="sign-in__btn"
-                onClick={this._submitButtonClickHandler}
+                onClick={this._submitHandler}
               >Sign in</button>
             </div>
           </form>
@@ -123,7 +121,6 @@ class SignIn extends PureComponent {
 }
 
 SignIn.propTypes = {
-  message: PropTypes.string,
   onSubmit: PropTypes.func.isRequired,
 };
 

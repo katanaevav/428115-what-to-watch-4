@@ -13,7 +13,6 @@ const ActionType = {
   OPEN_MOVIE_PAGE: `OPEN_MOVIE_PAGE`,
   OPEN_CINEMA_PAGE: `OPEN_CINEMA_PAGE`,
   CLOSE_CINEMA_PAGE: `CLOSE_CINEMA_PAGE`,
-  OPEN_AUTH_PAGE: `OPEN_AUTH_PAGE`,
   OPEN_MAIN_PAGE: `OPEN_MAIN_PAGE`,
   OPEN_ADD_REVIEW_PAGE: `OPEN_ADD_REVIEW_PAGE`,
 };
@@ -54,13 +53,6 @@ const ActionCreator = {
     };
   },
 
-  openAuthPage: (errorMessage) => {
-    return {
-      type: ActionType.OPEN_AUTH_PAGE,
-      payload: errorMessage,
-    };
-  },
-
   openMainPage: () => {
     return {
       type: ActionType.OPEN_MAIN_PAGE,
@@ -93,12 +85,6 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         currentPage: state.selectedMoviePage,
         selectedMovieId: parseInt(action.payload, 10),
-      });
-
-    case ActionType.OPEN_AUTH_PAGE:
-      return Object.assign({}, state, {
-        currentPage: Screens.AUTH_SCREEN,
-        authMessage: action.payload,
       });
 
     case ActionType.OPEN_MAIN_PAGE:

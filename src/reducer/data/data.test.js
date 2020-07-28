@@ -1,6 +1,7 @@
 import MockAdapter from "axios-mock-adapter";
 import {createAPI} from "../../api.js";
 import {reducer, ActionType, Operation} from "./data.js";
+import {SavingStatus} from "../../const.js";
 
 const api = createAPI(() => {});
 
@@ -138,6 +139,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
     movies: [],
     movieComments: [],
     savingMovieCommentStatus: ``,
+    savingMovieFavoriteStatus: ``,
   });
 });
 
@@ -191,6 +193,29 @@ it(`Reducer should update comments by LOAD_MOVIE_COMMENTS`, () => {
     savingMovieCommentStatus: ``,
   });
 });
+
+it(`Reducer should update savingMovieCommentStatus by SAVE_MOVIE_COMMENT`, () => {
+  expect(reducer({
+    savingMovieCommentStatus: ``,
+  }, {
+    type: ActionType.SAVE_MOVIE_COMMENT,
+    payload: SavingStatus.SUCCESS,
+  })).toEqual({
+    savingMovieCommentStatus: SavingStatus.SUCCESS,
+  });
+});
+
+it(`Reducer should update savingMovieFavoriteStatus by CHANGE_FAVORITE_STATUS`, () => {
+  expect(reducer({
+    savingMovieFavoriteStatus: ``,
+  }, {
+    type: ActionType.CHANGE_FAVORITE_STATUS,
+    payload: SavingStatus.SUCCESS,
+  })).toEqual({
+    savingMovieFavoriteStatus: SavingStatus.SUCCESS,
+  });
+});
+
 
 describe(`Operation work correctly`, () => {
   it(`Should make a correct API call to /films`, function () {
@@ -247,6 +272,38 @@ describe(`Operation work correctly`, () => {
           type: ActionType.LOAD_MOVIE_COMMENTS,
           payload: [{fake: true}],
         });
+      });
+  });
+
+  it(`Should make a correct API call to save comment /comments/1`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const saveMovieCommentCallback = jest.fn();
+    const saveMovieComment = Operation.saveMovieComment({movieId: 1, rating: 5, comment: ``}, saveMovieCommentCallback);
+
+    apiMock
+      .onPost(`/comments/1`)
+      .reply(200, [{fake: true}]);
+
+    return saveMovieComment(dispatch, () => {}, api)
+      .then(() => {
+        expect(saveMovieCommentCallback).toHaveBeenCalledTimes(1);
+      });
+  });
+
+  it(`Should make a correct API call to change favorite status /favorite/1/1`, function () {
+    const apiMock = new MockAdapter(api);
+    const dispatch = jest.fn();
+    const saveStatusCallback = jest.fn();
+    const saveMovieFavoriteStatus = Operation.saveMovieFavoriteStatus({isFavorite: true, movieId: 1}, saveStatusCallback);
+
+    apiMock
+      .onPost(`/favorite/1/1`)
+      .reply(200, [{fake: true}]);
+
+    return saveMovieFavoriteStatus(dispatch, () => {}, api)
+      .then(() => {
+        expect(saveStatusCallback).toHaveBeenCalledTimes(1);
       });
   });
 });
