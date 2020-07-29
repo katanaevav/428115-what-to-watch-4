@@ -55,7 +55,10 @@ export const AuthorizationStatus = {
 
 
 export const AppRoute = {
-  LOGIN: `/login`,
-  ROOT: `/`,
   MY_LIST: `/mylist`,
+  ADD_REVIEW: `/films/:id/review`,
+  ROOT: `/`,
+  LOGIN: `/login`,
+  FILM: `/films/:id`,
+  PLAYER: `/player/:id`,
 };

@@ -62,17 +62,17 @@ class App extends PureComponent {
       setFavoriteStatus} = this.props;
 
     if (movies.length && promoMovie.id) {
-      const selecdedMovie = this._getMovieById(selectedMovieId);
+      const selectedMovie = this._getMovieById(selectedMovieId);
       switch (currentPage) {
         case Screens.MOVIE_PAGE_SCREEN:
-          const {id, genre} = selecdedMovie;
+          const {id, genre} = selectedMovie;
           const similarMovies = movies.filter((movie) => (movie.genre === genre) && (movie.id !== id)).slice(0, MAX_SIMILAR_MOVIES_COUNT);
 
           return (
             <MoviePageWrapper
               authorizationStatus = {authorizationStatus}
               avatarUrl = {avatarUrl}
-              movie={selecdedMovie}
+              movie={selectedMovie}
               comments={movieComments}
               similarMovies = {similarMovies}
               onMovieTitleClick = {onMovieTitleClick}
@@ -92,7 +92,7 @@ class App extends PureComponent {
         case Screens.ADD_REVIEW_SCREEN:
           return (
             <AddReviewWrapped
-              movie={selecdedMovie}
+              movie={selectedMovie}
               authorizationStatus = {this.props.authorizationStatus}
               avatarUrl = {this.props.avatarUrl}
               onSaveComment = {this.props.saveComment}
@@ -123,7 +123,7 @@ class App extends PureComponent {
   }
 
   render() {
-    const {movies, login, authorizationStatus} = this.props;
+    const {movies, login, authorizationStatus, avatarUrl} = this.props;
 
     if (movies.length) {
       return (
@@ -144,36 +144,66 @@ class App extends PureComponent {
                 <Redirect to={AppRoute.ROOT} />}
             </Route>
 
-            {/* <Route path="/films/:id" render={(props)=><CinemaScreenWrapped movie={this._getMovieById(props.match.params.id)} onExitVideoPlayer={() => {}} {...props}/>}/> */}
+            <Route
+              path={AppRoute.ADD_REVIEW}
+              render = {
+                (props) => {
+                  const selectedMovie = this._getMovieById(props.match.params.id);
+                  const {saveComment, savingMovieCommentStatus} = this.props;
 
-            {/* <Route exact path="/dev-film">
-              <MoviePageWrapper
-                movie={this._getMovieById(0)}
-                similarMovies = {movies}
-                onMovieTitleClick = {() => {}}
-                onPlayMovieClick = {() => {}}
-              />
-            </Route>
-            <Route exact path="/dev-player">
-              <CinemaScreenWrapped
-                movie={this._getMovieById(1)}
-                onExitVideoPlayer={() => {}}
-              />
-            </Route>
-            <Route exact path="/dev-signin">
-              <SignIn
-                onSubmit={() => {}}
-              />
-            </Route>
-            <Route exact path="/dev-review">
-              <AddReviewWrapped
-                movie={movies[1]}
-                authorizationStatus = {this.props.authorizationStatus}
-                avatarUrl = {this.props.avatarUrl}
-                onSaveComment = {this.props.saveComment}
-                savingMovieCommentStatus = {savingMovieCommentStatus}
-              />
-            </Route> */}
+                  return (
+                    <AddReviewWrapped
+                      movie={selectedMovie}
+                      authorizationStatus = {authorizationStatus}
+                      avatarUrl = {avatarUrl}
+                      onSaveComment = {saveComment}
+                      savingMovieCommentStatus = {savingMovieCommentStatus}
+                      {...props}
+                    />
+                  );
+                }
+              }
+            />
+
+            <Route
+              path={AppRoute.FILM}
+              render = {(props) => {
+                this.props.getComments(props.match.params.id);
+                const {movieComments, onMovieTitleClick, onPlayMovieClick, onAddReviewClick} = this.props;
+                const selectedMovie = this._getMovieById(props.match.params.id);
+                const {id, genre} = selectedMovie;
+                const similarMovies = movies.filter((movie) => (movie.genre === genre) && (movie.id !== id)).slice(0, MAX_SIMILAR_MOVIES_COUNT);
+
+                return (
+                  <MoviePageWrapper
+                    authorizationStatus = {authorizationStatus}
+                    avatarUrl = {avatarUrl}
+                    movie={selectedMovie}
+                    comments={movieComments}
+                    similarMovies = {similarMovies}
+                    onMovieTitleClick = {onMovieTitleClick}
+                    onPlayMovieClick = {onPlayMovieClick}
+                    onAddReviewClick = {onAddReviewClick}
+                  />
+                );
+              }}
+            />
+
+            <Route
+              path={AppRoute.PLAYER}
+              render = {
+                (props) => {
+                  return (
+                    <CinemaScreenWrapped
+                      movie = {this._getMovieById(props.match.params.id)}
+                      onExitVideoPlayer={() => {}}
+                      {...props}
+                    />
+                  );
+                }
+              }
+            />
+
           </Switch>
         </Router>
       );
