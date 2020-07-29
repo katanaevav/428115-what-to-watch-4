@@ -146,7 +146,7 @@ class MoviePage extends PureComponent {
 
             <MoviesListWrapper
               movies = {similarMovies}
-              onMovieTitleClick = {onMovieTitleClick}
+              // onMovieTitleClick = {onMovieTitleClick}
             />
 
           </section>

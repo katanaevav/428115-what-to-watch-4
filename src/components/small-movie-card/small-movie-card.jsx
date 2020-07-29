@@ -1,5 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+// import {AppRoute} from "../../const.js";
+import {Link} from "react-router-dom";
 
 class SmallMovieCard extends PureComponent {
   constructor(props) {
@@ -23,13 +25,14 @@ class SmallMovieCard extends PureComponent {
       >
         {renderPlayer(preview, movieSmallPoster, this.props.onMovieMouseOver, this.props.onMovieMouseOut)}
         <h3 className="small-movie-card__title">
-          <a
+          <Link
             className="small-movie-card__link"
             href="movie-page.html"
-            onClick={this._movieTitleClickHandler}
+            // onClick={this._movieTitleClickHandler}
+            to={`/films/${movieId}`}
           >
             {movieTitle}
-          </a>
+          </Link>
         </h3>
       </article>
     );
@@ -41,7 +44,7 @@ SmallMovieCard.propTypes = {
   movieTitle: PropTypes.string.isRequired,
   movieSmallPoster: PropTypes.string.isRequired,
   preview: PropTypes.string.isRequired,
-  onMovieTitleClick: PropTypes.func.isRequired,
+  // onMovieTitleClick: PropTypes.func.isRequired,
   onMovieMouseOver: PropTypes.func.isRequired,
   onMovieMouseOut: PropTypes.func.isRequired,
   renderPlayer: PropTypes.func.isRequired,

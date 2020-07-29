@@ -11,13 +11,14 @@ import withMovieTabs from "../../hoc/with-movie-tabs/with-movie-tabs.js";
 import withNewReview from "../../hoc/with-new-review/with-new-review.js";
 import CinemaScreen from "../cinema-screen/cinema-screen.jsx";
 import withCinemaVideoPlayer from "../../hoc/with-cinema-video-player/with-cinema-video-player.js";
-import {getCurrentGenreFilter, getCurrentPage, getSelectedMovieId, getFilteredMovies, getAuthMessage} from "../../reducer/state/selectors.js";
+import {getCurrentGenreFilter, getCurrentPage, getSelectedMovieId, getFilteredMovies, getMyMovies, getAuthMessage} from "../../reducer/state/selectors.js";
 import {getMovies, getPromoMovie, getGenres, getMovieComments, getSavingMovieCommentStatus, getSavingMovieFavoriteStatus} from "../../reducer/data/selectors.js";
 import {getAuthorizationStatus, getAvatarUrl} from "../../reducer/user/selectors.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
 import AddReview from "../add-review/add-review.jsx";
 import history from "../../history.js";
+import MyList from "../my-list/my-list.jsx";
 
 const CinemaScreenWrapped = withCinemaVideoPlayer(CinemaScreen);
 const AddReviewWrapped = withNewReview(AddReview);
@@ -123,9 +124,9 @@ class App extends PureComponent {
   }
 
   render() {
-    const {movies, login, authorizationStatus, avatarUrl} = this.props;
+    const {movies, login, authorizationStatus, avatarUrl, myMovies} = this.props;
 
-    if (movies.length) {
+    if (movies.length && myMovies.length >= 0) {
       return (
         <Router
           history={history}
@@ -142,6 +143,18 @@ class App extends PureComponent {
                   onSubmit={login}
                 /> :
                 <Redirect to={AppRoute.ROOT} />}
+            </Route>
+
+            <Route exact path={AppRoute.MY_LIST}>
+              {authorizationStatus === AuthorizationStatus.NO_AUTH ?
+                <SignIn
+                  onSubmit={login}
+                /> :
+                <MyList
+                  myMovies = {myMovies}
+                  authorizationStatus = {authorizationStatus}
+                  avatarUrl = {avatarUrl}
+                />}
             </Route>
 
             <Route
@@ -233,6 +246,7 @@ App.propTypes = {
         genre: PropTypes.string.isRequired,
         year: PropTypes.number.isRequired,
       })).isRequired,
+  myMovies: PropTypes.array,
   genres: PropTypes.array.isRequired,
   currentGenreFilter: PropTypes.string.isRequired,
   onMovieFilterClick: PropTypes.func.isRequired,
@@ -254,6 +268,7 @@ const mapStateToProps = (state) => ({
   currentGenreFilter: getCurrentGenreFilter(state),
   promoMovie: getPromoMovie(state),
   movies: getFilteredMovies(getMovies(state), getCurrentGenreFilter(state)),
+  myMovies: getMyMovies(getMovies(state)),
   genres: getGenres(state),
   selectedMovieId: getSelectedMovieId(state),
   currentPage: getCurrentPage(state),

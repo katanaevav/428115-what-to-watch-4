@@ -56,7 +56,7 @@ class Main extends PureComponent {
 
             <MoviesListWrapper
               movies = {movies}
-              onMovieTitleClick = {onMovieTitleClick}
+              // onMovieTitleClick = {onMovieTitleClick}
             />
           </section>
 
