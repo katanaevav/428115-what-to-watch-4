@@ -148,6 +148,10 @@ class App extends PureComponent {
               path={AppRoute.ADD_REVIEW}
               render = {
                 (props) => {
+                  if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
+                    return (<Redirect to={AppRoute.LOGIN} />);
+                  }
+
                   const selectedMovie = this._getMovieById(props.match.params.id);
                   const {saveComment, savingMovieCommentStatus} = this.props;
 
