@@ -146,15 +146,13 @@ class App extends PureComponent {
             </Route>
 
             <Route exact path={AppRoute.MY_LIST}>
-              {authorizationStatus === AuthorizationStatus.NO_AUTH ?
-                <SignIn
-                  onSubmit={login}
-                /> :
+              {authorizationStatus === AuthorizationStatus.AUTH ?
                 <MyList
                   myMovies = {myMovies}
                   authorizationStatus = {authorizationStatus}
                   avatarUrl = {avatarUrl}
-                />}
+                /> :
+                <Redirect to={AppRoute.LOGIN} />}
             </Route>
 
             <Route
