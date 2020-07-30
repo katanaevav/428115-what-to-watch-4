@@ -8,6 +8,10 @@ export const getMovies = (state) => {
   return createMovies(state[NAME_SPACE].movies);
 };
 
+export const getMyMovies = (state) => {
+  return createMovies(state[NAME_SPACE].myMovies);
+};
+
 export const getPromoMovie = (state) => {
   return createMovie(state[NAME_SPACE].promoMovie);
 };

@@ -11,8 +11,8 @@ import withMovieTabs from "../../hoc/with-movie-tabs/with-movie-tabs.js";
 import withNewReview from "../../hoc/with-new-review/with-new-review.js";
 import CinemaScreen from "../cinema-screen/cinema-screen.jsx";
 import withCinemaVideoPlayer from "../../hoc/with-cinema-video-player/with-cinema-video-player.js";
-import {getCurrentGenreFilter, getCurrentPage, getSelectedMovieId, getFilteredMovies, getMyMovies, getAuthMessage} from "../../reducer/state/selectors.js";
-import {getMovies, getPromoMovie, getGenres, getMovieComments, getSavingMovieCommentStatus, getSavingMovieFavoriteStatus} from "../../reducer/data/selectors.js";
+import {getCurrentGenreFilter, getCurrentPage, getSelectedMovieId, getFilteredMovies, getAuthMessage} from "../../reducer/state/selectors.js";
+import {getMovies, getPromoMovie, getGenres, getMovieComments, getSavingMovieCommentStatus, getSavingMovieFavoriteStatus, getMyMovies} from "../../reducer/data/selectors.js";
 import {getAuthorizationStatus, getAvatarUrl} from "../../reducer/user/selectors.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
 import {Operation as DataOperation} from "../../reducer/data/data.js";
@@ -266,7 +266,7 @@ const mapStateToProps = (state) => ({
   currentGenreFilter: getCurrentGenreFilter(state),
   promoMovie: getPromoMovie(state),
   movies: getFilteredMovies(getMovies(state), getCurrentGenreFilter(state)),
-  myMovies: getMyMovies(getMovies(state)),
+  myMovies: getMyMovies(state),
   genres: getGenres(state),
   selectedMovieId: getSelectedMovieId(state),
   currentPage: getCurrentPage(state),

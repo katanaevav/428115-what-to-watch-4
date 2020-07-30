@@ -3,6 +3,7 @@ import {SavingStatus} from "../../const.js";
 const initialState = {
   promoMovie: {},
   movies: [],
+  myMovies: [],
   movieComments: [],
   savingMovieCommentStatus: ``,
   savingMovieFavoriteStatus: ``,
@@ -11,6 +12,7 @@ const initialState = {
 const ActionType = {
   LOAD_MOVIES: `LOAD_MOVIES`,
   LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
+  LOAD_MY_MOVIES: `LOAD_MY_MOVIES`,
   LOAD_MOVIE_COMMENTS: `LOAD_MOVIE_COMMENTS`,
   SAVE_MOVIE_COMMENT: `SAVE_MOVIE_COMMENT`,
   CHANGE_FAVORITE_STATUS: `CHANGE_FAVORITE_STATUS`,
@@ -28,6 +30,13 @@ const ActionCreator = {
     return {
       type: ActionType.LOAD_PROMO_MOVIE,
       payload: promoFilm,
+    };
+  },
+
+  loadMyMovies: (myFilms) => {
+    return {
+      type: ActionType.LOAD_MY_MOVIES,
+      payload: myFilms,
     };
   },
 
@@ -68,6 +77,13 @@ const Operation = {
       });
   },
 
+  loadMyMovies: () => (dispatch, getState, api) => {
+    return api.get(`/favorite`)
+      .then((response) => {
+        dispatch(ActionCreator.loadMyMovies(response.data));
+      });
+  },
+
   loadMovieComments: (movieId) => (dispatch, getState, api) => {
     return api.get(`/comments/${movieId}`)
       .then((response) => {
@@ -97,6 +113,7 @@ const Operation = {
         dispatch(ActionCreator.saveMovieFavoriteStatus(SavingStatus.SUCCESS));
         dispatch(Operation.loadPromoMovie());
         dispatch(Operation.loadMovies());
+        dispatch(Operation.loadMyMovies());
         action(response.data);
       })
       .catch((err) => {
@@ -117,6 +134,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_PROMO_MOVIE:
       return Object.assign({}, state, {
         promoMovie: action.payload,
+      });
+
+    case ActionType.LOAD_MY_MOVIES:
+      return Object.assign({}, state, {
+        myMovies: action.payload,
       });
 
     case ActionType.LOAD_MOVIE_COMMENTS:
