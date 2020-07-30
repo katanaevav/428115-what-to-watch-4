@@ -7,13 +7,13 @@ class SmallMovieCard extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._movieTitleClickHandler = this._movieTitleClickHandler.bind(this);
+    // this._movieTitleClickHandler = this._movieTitleClickHandler.bind(this);
   }
 
-  _movieTitleClickHandler(evt) {
-    evt.preventDefault();
-    this.props.onMovieTitleClick(evt.currentTarget.parentElement.parentElement.dataset.key);
-  }
+  // _movieTitleClickHandler(evt) {
+  //   evt.preventDefault();
+  //   this.props.onMovieTitleClick(evt.currentTarget.parentElement.parentElement.dataset.key);
+  // }
 
   render() {
     const {movieId, movieTitle, renderPlayer, movieSmallPoster, preview} = this.props;

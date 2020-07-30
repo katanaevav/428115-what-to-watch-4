@@ -50,7 +50,7 @@ class MoviesList extends PureComponent {
   }
 
   render() {
-    const {movies, onMovieTitleClick, renderedMoviesCount} = this.props;
+    const {movies, renderedMoviesCount} = this.props;
 
     const moviesToRender = movies.slice(0, renderedMoviesCount);
     const movieCards = moviesToRender.map((movie) => (

@@ -2,7 +2,10 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import UserBlock from "../user-block/user-block.jsx";
 import Logo from "../logo/logo.jsx";
-import AddToMyList from "../add-to-my-list/add-to-my-list.jsx";
+import withAddToFavoriteButton from "../../hoc/with-add-to-favorite-button/with-add-to-favorite-button.js";
+import MovieButtons from "../movie-buttons/movie-buttons.jsx";
+
+const MovieButtonsWrapper = withAddToFavoriteButton(MovieButtons);
 
 class MoviePromo extends PureComponent {
   constructor(props) {
@@ -10,7 +13,7 @@ class MoviePromo extends PureComponent {
   }
 
   render() {
-    const {authorizationStatus, avatarUrl, promoMovieTitle, promoMovieGenre, promoMovieYear, movieIsFavorite, cover, bigPoster, onPlayPromoMovieClick, onFavoriteButtonClick} = this.props;
+    const {authorizationStatus, avatarUrl, movieId, promoMovieTitle, promoMovieGenre, promoMovieYear, isFavorite, cover, bigPoster, savingMovieFavoriteStatus, setFavoriteStatus} = this.props;
 
     return (
       <section className="movie-card">
@@ -21,7 +24,9 @@ class MoviePromo extends PureComponent {
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header movie-card__head">
-          <Logo />
+          <Logo
+            isMainScreen = {true}
+          />
           <UserBlock
             authorizationStatus = {authorizationStatus}
             avatarUrl = {avatarUrl}
@@ -41,21 +46,15 @@ class MoviePromo extends PureComponent {
                 <span className="movie-card__year">{promoMovieYear}</span>
               </p>
 
-              <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button" onClick={onPlayPromoMovieClick}>
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="/sprite.svg#play-s"></use>
-                  </svg>
-                  <span>Play</span>
-                </button>
+              <MovieButtonsWrapper
+                isMainScreen = {true}
+                movieId = {movieId}
+                authorizationStatus = {authorizationStatus}
+                isFavorite = {isFavorite}
+                savingMovieFavoriteStatus = {savingMovieFavoriteStatus}
+                setFavoriteStatus = {setFavoriteStatus}
+              />
 
-                <AddToMyList
-                  isInList = {movieIsFavorite}
-                  onButtonClick = {onFavoriteButtonClick}
-                  authorizationStatus = {authorizationStatus}
-                />
-
-              </div>
             </div>
           </div>
         </div>
@@ -70,11 +69,12 @@ MoviePromo.propTypes = {
   promoMovieTitle: PropTypes.string.isRequired,
   promoMovieGenre: PropTypes.string.isRequired,
   promoMovieYear: PropTypes.number.isRequired,
-  movieIsFavorite: PropTypes.bool.isRequired,
+  movieId: PropTypes.number.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
   cover: PropTypes.string.isRequired,
   bigPoster: PropTypes.string.isRequired,
-  onPlayPromoMovieClick: PropTypes.func.isRequired,
-  onFavoriteButtonClick: PropTypes.func.isRequired,
+  savingMovieFavoriteStatus: PropTypes.string,
+  setFavoriteStatus: PropTypes.func.isRequired,
 };
 
 export default MoviePromo;

@@ -30,17 +30,12 @@ class App extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._favoriteButtonClickHandler = this._favoriteButtonClickHandler.bind(this);
   }
 
   _getMovieById(movieId) {
     const {movies} = this.props;
 
     return movies.find((movie) => movie.id === Number.parseInt(movieId, 10));
-  }
-
-  _favoriteButtonClickHandler() {
-
   }
 
   _renderApp() {
@@ -52,7 +47,7 @@ class App extends PureComponent {
       genres,
       currentGenreFilter,
       onMovieFilterClick,
-      onMovieTitleClick,
+      // onMovieTitleClick,
       onPlayMovieClick,
       onAddReviewClick,
       selectedMovieId,
@@ -77,7 +72,7 @@ class App extends PureComponent {
               movie={selectedMovie}
               comments={movieComments}
               similarMovies = {similarMovies}
-              onMovieTitleClick = {onMovieTitleClick}
+              // onMovieTitleClick = {onMovieTitleClick}
               onPlayMovieClick = {onPlayMovieClick}
               onAddReviewClick = {onAddReviewClick}
             />
@@ -111,7 +106,7 @@ class App extends PureComponent {
               genres = {genres}
               movies = {movies}
               currentGenreFilter = {currentGenreFilter}
-              onMovieTitleClick = {onMovieTitleClick}
+              // onMovieTitleClick = {onMovieTitleClick}
               onMovieFilterClick = {onMovieFilterClick}
               onPlayMovieClick = {onPlayMovieClick}
               savingMovieFavoriteStatus = {savingMovieFavoriteStatus}
@@ -184,7 +179,7 @@ class App extends PureComponent {
               path={AppRoute.FILM}
               render = {(props) => {
                 this.props.getComments(props.match.params.id);
-                const {movieComments, onMovieTitleClick, onPlayMovieClick, onAddReviewClick} = this.props;
+                const {movieComments, onPlayMovieClick, onAddReviewClick, savingMovieFavoriteStatus, setFavoriteStatus} = this.props;
                 const selectedMovie = this._getMovieById(props.match.params.id);
                 const {id, genre} = selectedMovie;
                 const similarMovies = movies.filter((movie) => (movie.genre === genre) && (movie.id !== id)).slice(0, MAX_SIMILAR_MOVIES_COUNT);
@@ -196,9 +191,11 @@ class App extends PureComponent {
                     movie={selectedMovie}
                     comments={movieComments}
                     similarMovies = {similarMovies}
-                    onMovieTitleClick = {onMovieTitleClick}
+                    // onMovieTitleClick = {onMovieTitleClick}
                     onPlayMovieClick = {onPlayMovieClick}
                     onAddReviewClick = {onAddReviewClick}
+                    savingMovieFavoriteStatus = {savingMovieFavoriteStatus}
+                    setFavoriteStatus = {setFavoriteStatus}
                   />
                 );
               }}
@@ -211,7 +208,9 @@ class App extends PureComponent {
                   return (
                     <CinemaScreenWrapped
                       movie = {this._getMovieById(props.match.params.id)}
-                      onExitVideoPlayer={() => {}}
+                      onExitVideoPlayer={() => {
+                        history.goBack();
+                      }}
                       {...props}
                     />
                   );
@@ -248,7 +247,7 @@ App.propTypes = {
   genres: PropTypes.array.isRequired,
   currentGenreFilter: PropTypes.string.isRequired,
   onMovieFilterClick: PropTypes.func.isRequired,
-  onMovieTitleClick: PropTypes.func.isRequired,
+  // onMovieTitleClick: PropTypes.func.isRequired,
   onPlayMovieClick: PropTypes.func.isRequired,
   onAddReviewClick: PropTypes.func.isRequired,
   selectedMovieId: PropTypes.number.isRequired,
@@ -302,10 +301,10 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.setCurrentFilter(filterName));
   },
 
-  onMovieTitleClick(movieId) {
-    dispatch(ActionCreator.openMovieScreen(movieId));
-    dispatch(DataOperation.loadMovieComments(movieId));
-  },
+  // onMovieTitleClick(movieId) {
+  //   dispatch(ActionCreator.openMovieScreen(movieId));
+  //   dispatch(DataOperation.loadMovieComments(movieId));
+  // },
 
   onPlayMovieClick(movieId) {
     dispatch(ActionCreator.openCinemaScreen(movieId));

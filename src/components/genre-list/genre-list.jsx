@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
+
 class GenreList extends PureComponent {
   constructor(props) {
     super(props);
@@ -47,5 +48,6 @@ GenreList.propTypes = {
   genres: PropTypes.array.isRequired,
   onGenreClick: PropTypes.func.isRequired,
 };
+
 
 export default GenreList;

@@ -7,10 +7,11 @@ import MoviesList from "../movies-list/movies-list.jsx";
 import withMoviesList from "../../hoc/with-movies-list/with-movies-list.js";
 import UserBlock from "../user-block/user-block.jsx";
 import Logo from "../logo/logo.jsx";
-import {AuthorizationStatus} from "../../const.js";
-import AddToMyList from "../add-to-my-list/add-to-my-list.jsx";
+import withAddToFavoriteButton from "../../hoc/with-add-to-favorite-button/with-add-to-favorite-button.js";
+import MovieButtons from "../movie-buttons/movie-buttons.jsx";
 
 const MoviesListWrapper = withMoviesList(MoviesList);
+const MovieButtonsWrapper = withAddToFavoriteButton(MovieButtons);
 
 const Tabs = {
   OVERVIEW_TAB: 0,
@@ -78,7 +79,7 @@ class MoviePage extends PureComponent {
   }
 
   render() {
-    const {authorizationStatus, avatarUrl, movie, similarMovies, onMovieTitleClick, renderTabs} = this.props;
+    const {authorizationStatus, avatarUrl, movie, similarMovies, renderTabs, savingMovieFavoriteStatus, setFavoriteStatus} = this.props;
     const {id, title, genre, year, bigPoster, cover, backgroundColor, isFavorite} = movie;
 
     return (
@@ -107,20 +108,15 @@ class MoviePage extends PureComponent {
                   <span className="movie-card__year">{year}</span>
                 </p>
 
-                <div className="movie-card__buttons">
-                  <button className="btn btn--play movie-card__button" type="button" onClick={this._playMovieClickHandler}>
-                    <svg viewBox="0 0 19 19" width="19" height="19">
-                      <use xlinkHref="/sprite.svg#play-s"></use>
-                    </svg>
-                    <span>Play</span>
-                  </button>
-                  <AddToMyList
-                    isInList = {isFavorite}
-                    onButtonClick = {() => {}}
-                    authorizationStatus = {authorizationStatus}
-                  />
-                  {authorizationStatus === AuthorizationStatus.AUTH ? <a href="#" onClick={this._addReviewClickHandler} className="btn movie-card__button">{`Add review`}</a> : ``}
-                </div>
+                <MovieButtonsWrapper
+                  isMainScreen = {false}
+                  movieId = {id}
+                  authorizationStatus = {authorizationStatus}
+                  isFavorite = {isFavorite}
+                  savingMovieFavoriteStatus = {savingMovieFavoriteStatus}
+                  setFavoriteStatus = {setFavoriteStatus}
+                />
+
               </div>
             </div>
           </div>
@@ -172,11 +168,13 @@ MoviePage.propTypes = {
   movie: PropTypes.object.isRequired,
   comments: PropTypes.array,
   similarMovies: PropTypes.array.isRequired,
-  onMovieTitleClick: PropTypes.func.isRequired,
+  // onMovieTitleClick: PropTypes.func.isRequired,
   renderTabs: PropTypes.func.isRequired,
   currentTab: PropTypes.number.isRequired,
   onPlayMovieClick: PropTypes.func.isRequired,
   onAddReviewClick: PropTypes.func.isRequired,
+  savingMovieFavoriteStatus: PropTypes.string,
+  setFavoriteStatus: PropTypes.func.isRequired,
 };
 
 export default MoviePage;

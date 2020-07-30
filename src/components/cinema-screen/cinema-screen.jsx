@@ -6,7 +6,7 @@ class CinemaScreen extends PureComponent {
     super(props);
 
     this._fullScreenButtonClickHandler = this._fullScreenButtonClickHandler.bind(this);
-    this._exitVideoPlayerHandler = this._exitVideoPlayerHandler.bind(this);
+    // this._exitVideoPlayerHandler = this._exitVideoPlayerHandler.bind(this);
   }
 
   _fullScreenButtonClickHandler() {
@@ -14,21 +14,21 @@ class CinemaScreen extends PureComponent {
     onFullScreenButtonClick();
   }
 
-  _exitVideoPlayerHandler() {
-    const {movie, onExitVideoPlayer} = this.props;
-    const {id} = movie;
-    onExitVideoPlayer(id);
-  }
+  // _exitVideoPlayerHandler() {
+  //   const {movie, onExitVideoPlayer} = this.props;
+  //   const {id} = movie;
+  //   onExitVideoPlayer(id);
+  // }
 
   render() {
-    const {movie, renderPlayer, renderProgress, renderPlayButton} = this.props;
-    const {title, video, bigPoster} = movie;
+    const {movie, renderPlayer, renderProgress, renderPlayButton, onExitVideoPlayer} = this.props;
+    const {title, video, cover} = movie;
 
     return (
       <div className="player">
-        {renderPlayer(video, bigPoster)}
+        {renderPlayer(video, cover)}
 
-        <button type="button" className="player__exit" onClick={this._exitVideoPlayerHandler}>Exit</button>
+        <button type="button" className="player__exit" onClick={onExitVideoPlayer}>Exit</button>
 
         <div className="player__controls">
           {renderProgress()}

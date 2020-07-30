@@ -1,7 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-import {AuthorizationStatus, AppRoute} from "../../const.js";
-import {Link} from 'react-router-dom';
+
 
 class AddToMyList extends PureComponent {
   constructor(props) {
@@ -25,32 +24,25 @@ class AddToMyList extends PureComponent {
   }
 
   render() {
-    const {isInList, onButtonClick, authorizationStatus} = this.props;
+    const {isFavorite, onButtonClick} = this.props;
 
-    return (authorizationStatus === AuthorizationStatus.AUTH ?
+    return (
       <button
         className="btn btn--list movie-card__button"
         type="button"
         onClick = {onButtonClick}
       >
-        {isInList ? this._renderInListIcon() : this._renderAddIcon()}
+        {isFavorite ? this._renderInListIcon() : this._renderAddIcon()}
         <span>My list</span>
-      </button> :
-
-      <Link
-        className="btn btn--list movie-card__button"
-        to={AppRoute.LOGIN}
-      >
-        {isInList ? this._renderInListIcon() : this._renderAddIcon()}
-        <span>My list</span>
-      </Link>);
+      </button>
+    );
   }
 }
 
 AddToMyList.propTypes = {
-  isInList: PropTypes.bool.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
   onButtonClick: PropTypes.func.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
 };
+
 
 export default AddToMyList;
