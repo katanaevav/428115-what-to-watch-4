@@ -19,6 +19,7 @@ import {Operation as DataOperation} from "../../reducer/data/data.js";
 import AddReview from "../add-review/add-review.jsx";
 import history from "../../history.js";
 import MyList from "../my-list/my-list.jsx";
+import PrivateRoute from "../private-route/private-route.jsx";
 
 const CinemaScreenWrapped = withCinemaVideoPlayer(CinemaScreen);
 const AddReviewWrapped = withNewReview(AddReview);
@@ -145,39 +146,38 @@ class App extends PureComponent {
                 <Redirect to={AppRoute.ROOT} />}
             </Route>
 
-            <Route exact path={AppRoute.MY_LIST}>
-              {authorizationStatus === AuthorizationStatus.AUTH ?
-                <MyList
-                  myMovies = {myMovies}
-                  authorizationStatus = {authorizationStatus}
-                  avatarUrl = {avatarUrl}
-                /> :
-                <Redirect to={AppRoute.LOGIN} />}
-            </Route>
+            <PrivateRoute
+              exact
+              path={AppRoute.MY_LIST}
+              render={() => {
+                return (
+                  <MyList
+                    myMovies = {myMovies}
+                    authorizationStatus = {authorizationStatus}
+                    avatarUrl = {avatarUrl}
+                  />
+                );
+              }}
+            />
 
-            <Route
+            <PrivateRoute
               path={AppRoute.ADD_REVIEW}
-              render = {
-                (props) => {
-                  if (authorizationStatus === AuthorizationStatus.NO_AUTH) {
-                    return (<Redirect to={AppRoute.LOGIN} />);
-                  }
+              exact
+              render={(props) => {
+                const selectedMovie = this._getMovieById(props.computedMatch.params.id);
+                const {saveComment, savingMovieCommentStatus} = this.props;
 
-                  const selectedMovie = this._getMovieById(props.match.params.id);
-                  const {saveComment, savingMovieCommentStatus} = this.props;
-
-                  return (
-                    <AddReviewWrapped
-                      movie={selectedMovie}
-                      authorizationStatus = {authorizationStatus}
-                      avatarUrl = {avatarUrl}
-                      onSaveComment = {saveComment}
-                      savingMovieCommentStatus = {savingMovieCommentStatus}
-                      {...props}
-                    />
-                  );
-                }
-              }
+                return (
+                  <AddReviewWrapped
+                    movie={selectedMovie}
+                    authorizationStatus = {authorizationStatus}
+                    avatarUrl = {avatarUrl}
+                    onSaveComment = {saveComment}
+                    savingMovieCommentStatus = {savingMovieCommentStatus}
+                    {...props}
+                  />
+                );
+              }}
             />
 
             <Route

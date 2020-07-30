@@ -17,7 +17,7 @@ const PrivateRoute = (props) => {
       render={() => {
         return (
           authorizationStatus === AuthorizationStatus.AUTH
-            ? render()
+            ? render(props)
             : <Redirect to={AppRoute.LOGIN} />
         );
       }}
@@ -27,7 +27,7 @@ const PrivateRoute = (props) => {
 
 PrivateRoute.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
-  exact: PropTypes.bool.isRequired,
+  exact: PropTypes.bool,
   path: PropTypes.string.isRequired,
   render: PropTypes.func.isRequired,
 };
