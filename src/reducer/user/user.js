@@ -1,5 +1,5 @@
 import {AuthorizationStatus, START_URL} from "../../const.js";
-import {ActionCreator as StateActionCreator} from "../state/state.js";
+import {Operation as DataOperation} from "../data/data.js";
 
 const AUTH_ERROR_TEXT = `We can’t recognize this email and password combination. Please try again.`;
 
@@ -51,6 +51,7 @@ const Operation = {
       .then((result) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.getUserAvatar(START_URL + result.data.avatar_url));
+        dispatch(DataOperation.loadMyMovies());
       })
       .catch((err) => {
         throw err;
@@ -63,9 +64,10 @@ const Operation = {
       password: authData.password,
     })
       .then((result) => {
-        dispatch(StateActionCreator.openMainPage());
+        // dispatch(StateActionCreator.openMainPage());
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.getUserAvatar(START_URL + result.data.avatar_url));
+        dispatch(DataOperation.loadMyMovies());
       })
       .catch((err) => {
         action(AUTH_ERROR_TEXT);
