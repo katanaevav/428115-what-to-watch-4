@@ -51,7 +51,7 @@ const Operation = {
       .then((result) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.getUserAvatar(START_URL + result.data.avatar_url));
-        dispatch(DataOperation.loadMyMovies());
+
       })
       .catch((err) => {
         throw err;
@@ -65,9 +65,11 @@ const Operation = {
     })
       .then((result) => {
         // dispatch(StateActionCreator.openMainPage());
+        dispatch(DataOperation.loadMyMovies());
+        dispatch(DataOperation.loadMovies());
+        dispatch(DataOperation.loadPromoMovie());
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.getUserAvatar(START_URL + result.data.avatar_url));
-        dispatch(DataOperation.loadMyMovies());
       })
       .catch((err) => {
         action(AUTH_ERROR_TEXT);
