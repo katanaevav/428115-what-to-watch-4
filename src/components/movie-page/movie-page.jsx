@@ -23,6 +23,8 @@ class MoviePage extends PureComponent {
   constructor(props) {
     super(props);
 
+    this.props.getComments(this.props.movie.id);
+
     this._renderTab = this._renderTab.bind(this);
     this._playMovieClickHandler = this._playMovieClickHandler.bind(this);
     this._addReviewClickHandler = this._addReviewClickHandler.bind(this);
@@ -175,6 +177,7 @@ MoviePage.propTypes = {
   onAddReviewClick: PropTypes.func.isRequired,
   savingMovieFavoriteStatus: PropTypes.string,
   setFavoriteStatus: PropTypes.func.isRequired,
+  getComments: PropTypes.func.isRequired,
 };
 
 export default MoviePage;

@@ -178,7 +178,7 @@ class App extends PureComponent {
             <Route
               path={AppRoute.FILM}
               render = {(props) => {
-                this.props.getComments(props.match.params.id);
+                // this.props.getComments(props.match.params.id);
                 const {movieComments, onPlayMovieClick, onAddReviewClick, savingMovieFavoriteStatus, setFavoriteStatus} = this.props;
                 const selectedMovie = this._getMovieById(props.match.params.id);
                 const {id, genre} = selectedMovie;
@@ -196,6 +196,7 @@ class App extends PureComponent {
                     onAddReviewClick = {onAddReviewClick}
                     savingMovieFavoriteStatus = {savingMovieFavoriteStatus}
                     setFavoriteStatus = {setFavoriteStatus}
+                    getComments = {this.props.getComments}
                   />
                 );
               }}
