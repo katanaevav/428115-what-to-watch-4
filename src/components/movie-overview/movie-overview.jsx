@@ -30,7 +30,7 @@ class MovieOverview extends PureComponent {
     return (
       <React.Fragment>
         <div className="movie-rating">
-          <div className="movie-rating__score">{ratingScore}</div>
+          <div className="movie-rating__score">{ratingScore.toFixed(1)}</div>
           <p className="movie-rating__meta">
             <span className="movie-rating__level">{ratingLevel}</span>
             <span className="movie-rating__count">{ratingCount} ratings</span>
