@@ -2,6 +2,8 @@ import NameSpace from "../name-space.js";
 import {NO_FILTER} from "../../const.js";
 import {createMovie, createMovies, createComments} from "../../adapter/films.js";
 
+const GENRES_START_ELEMENT = 0;
+const GEMRES_MAX_ELEMENTS = 9;
 const NAME_SPACE = NameSpace.DATA;
 
 export const getMovies = (state) => {
@@ -19,7 +21,8 @@ export const getPromoMovie = (state) => {
 export const getGenres = (state) => {
   let allGenres = Array.from(new Set(
       state[NAME_SPACE].movies.map((movie) => (movie.genre))
-  ));
+  )).slice(GENRES_START_ELEMENT, GEMRES_MAX_ELEMENTS);
+
   allGenres.unshift(NO_FILTER);
 
   return allGenres;
