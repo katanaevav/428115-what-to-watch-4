@@ -54,10 +54,14 @@ const ActionCreator = {
     };
   },
 
-  saveMovieFavoriteStatus: (status) => {
+  saveMovieFavoriteStatus: (status, movieId = -1, favoriteStatus = false) => {
     return {
       type: ActionType.CHANGE_FAVORITE_STATUS,
-      payload: status,
+      payload: {
+        status,
+        movieId,
+        favoriteStatus,
+      },
     };
   },
 };
@@ -110,10 +114,7 @@ const Operation = {
   saveMovieFavoriteStatus: (favoriteStatus, action) => (dispatch, getState, api) => {
     return api.post(`/favorite/${favoriteStatus.movieId}/${favoriteStatus.isFavorite ? 1 : 0}`)
       .then((response) => {
-        dispatch(ActionCreator.saveMovieFavoriteStatus(SavingStatus.SUCCESS));
-        dispatch(Operation.loadPromoMovie());
-        dispatch(Operation.loadMovies());
-        dispatch(Operation.loadMyMovies());
+        dispatch(ActionCreator.saveMovieFavoriteStatus(SavingStatus.SUCCESS, favoriteStatus.movieId, favoriteStatus.isFavorite));
         action(response.data);
       })
       .catch((err) => {
@@ -152,8 +153,28 @@ const reducer = (state = initialState, action) => {
       });
 
     case ActionType.CHANGE_FAVORITE_STATUS:
+      const {movieId, status, favoriteStatus} = action.payload;
+
+      if (status === SavingStatus.SUCCESS) {
+        if (state.promoMovie.id === movieId) {
+          // eslint-disable-next-line
+          state.promoMovie.is_favorite = favoriteStatus;
+        }
+
+        const movieIndex = state.movies.findIndex((currentValue) => currentValue.id === movieId);
+        // eslint-disable-next-line
+        state.movies[movieIndex].is_favorite = favoriteStatus;
+
+        const myMovieIndex = state.myMovies.findIndex((currentValue) => currentValue.id === movieId);
+        if (myMovieIndex > 0 && !favoriteStatus) {
+          state.myMovies.splice(myMovieIndex, 1);
+        } else {
+          state.myMovies.push(state.movies[movieIndex]);
+        }
+      }
+
       return Object.assign({}, state, {
-        savingMovieFavoriteStatus: action.payload,
+        savingMovieFavoriteStatus: action.payload.status,
       });
   }
 
