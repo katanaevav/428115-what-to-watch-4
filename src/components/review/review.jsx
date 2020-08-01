@@ -35,7 +35,7 @@ class Review extends PureComponent {
           </footer>
         </blockquote>
 
-        <div className="review__rating">{mark}</div>
+        <div className="review__rating">{mark.toFixed(1)}</div>
       </div>
     );
   }
