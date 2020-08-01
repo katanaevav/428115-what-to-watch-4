@@ -13,14 +13,14 @@ const withAddToFavoriteButton = (Component) => {
         errorSaving: SavingStatus.SUCCESS,
       };
 
-      this._getSavingStatus = this._getSavingStatus.bind(this);
+      this._setSavingStatus = this._setSavingStatus.bind(this);
     }
 
-    _getSavingStatus(response) {
+    _setSavingStatus(response) {
       const {savingMovieFavoriteStatus} = this.props;
 
       this.setState({
-        isFavorite: response.is_favorite,
+        isFavorite: response.isFavorite,
         errorSaving: savingMovieFavoriteStatus,
       });
     }
@@ -54,7 +54,7 @@ const withAddToFavoriteButton = (Component) => {
                 this.props.setFavoriteStatus({
                   isFavorite: !isFavorite,
                   movieId: this.props.movieId,
-                }, this._getSavingStatus);
+                }, this._setSavingStatus);
               }
             }}
           >

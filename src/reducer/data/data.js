@@ -1,5 +1,6 @@
 import {SavingStatus} from "../../const.js";
 import {createMovie, createMovies, createComments} from "../../adapter/films.js";
+import {getMovies, getPromoMovie, getMyMovies} from "./selectors.js";
 
 const initialState = {
   promoMovie: {},
@@ -17,6 +18,9 @@ const ActionType = {
   LOAD_MOVIE_COMMENTS: `LOAD_MOVIE_COMMENTS`,
   SAVE_MOVIE_COMMENT: `SAVE_MOVIE_COMMENT`,
   CHANGE_FAVORITE_STATUS: `CHANGE_FAVORITE_STATUS`,
+  UPDATE_MOVIES: `UPDATE_MOVIES`,
+  UPDATE_PROMO_MOVIE: `UPDATE_PROMO_MOVIE`,
+  UPDATE_MY_MOVIES: `UPDATE_MY_MOVIES`,
 };
 
 const ActionCreator = {
@@ -55,14 +59,31 @@ const ActionCreator = {
     };
   },
 
-  saveMovieFavoriteStatus: (status, movieId = -1, favoriteStatus = false) => {
+  saveMovieFavoriteStatus: (status) => {
     return {
       type: ActionType.CHANGE_FAVORITE_STATUS,
-      payload: {
-        status,
-        movieId,
-        favoriteStatus,
-      },
+      payload: status,
+    };
+  },
+
+  updateMovies: (movies) => {
+    return {
+      type: ActionType.UPDATE_MOVIES,
+      payload: movies,
+    };
+  },
+
+  updatePromoMovie: (movie) => {
+    return {
+      type: ActionType.UPDATE_PROMO_MOVIE,
+      payload: movie,
+    };
+  },
+
+  updateMyMovies: (myMovies) => {
+    return {
+      type: ActionType.UPDATE_MY_MOVIES,
+      payload: myMovies,
     };
   },
 };
@@ -116,7 +137,26 @@ const Operation = {
     return api.post(`/favorite/${favoriteStatus.movieId}/${favoriteStatus.isFavorite ? 1 : 0}`)
       .then((response) => {
         dispatch(ActionCreator.saveMovieFavoriteStatus(SavingStatus.SUCCESS, favoriteStatus.movieId, favoriteStatus.isFavorite));
-        action(response.data);
+        action(createMovie(response.data));
+
+        const updatedMovies = getMovies(getState());
+        const movieIndex = updatedMovies.findIndex((currentValue) => currentValue.id === favoriteStatus.movieId);
+        updatedMovies[movieIndex].isFavorite = favoriteStatus.isFavorite;
+        dispatch(ActionCreator.updateMovies(updatedMovies));
+
+        if (getPromoMovie(getState()).id === favoriteStatus.movieId) {
+          dispatch(ActionCreator.updatePromoMovie(updatedMovies[movieIndex]));
+        }
+
+        const updatedMyMovies = getMyMovies(getState());
+        const myMovieIndex = updatedMyMovies.findIndex((currentValue) => currentValue.id === favoriteStatus.movieId);
+        if (favoriteStatus.isFavorite) {
+          updatedMyMovies.push(updatedMovies[movieIndex]);
+        } else if (myMovieIndex > -1) {
+          updatedMyMovies.splice(myMovieIndex, 1);
+        }
+        dispatch(ActionCreator.updateMyMovies(updatedMyMovies));
+
       })
       .catch((err) => {
         dispatch(ActionCreator.saveMovieFavoriteStatus(SavingStatus.FAIL));
@@ -154,26 +194,23 @@ const reducer = (state = initialState, action) => {
       });
 
     case ActionType.CHANGE_FAVORITE_STATUS:
-      const {movieId, status, favoriteStatus} = action.payload;
-
-      if (status === SavingStatus.SUCCESS) {
-        if (state.promoMovie.id === movieId) {
-          state.promoMovie.isFavorite = favoriteStatus;
-        }
-
-        const movieIndex = state.movies.findIndex((currentValue) => currentValue.id === movieId);
-        state.movies[movieIndex].isFavorite = favoriteStatus;
-
-        const myMovieIndex = state.myMovies.findIndex((currentValue) => currentValue.id === movieId);
-        if (myMovieIndex > 0 && !favoriteStatus) {
-          state.myMovies.splice(myMovieIndex, 1);
-        } else {
-          state.myMovies.push(state.movies[movieIndex]);
-        }
-      }
-
       return Object.assign({}, state, {
-        savingMovieFavoriteStatus: status,
+        savingMovieFavoriteStatus: action.payload,
+      });
+
+    case ActionType.UPDATE_MOVIES:
+      return Object.assign({}, state, {
+        movies: action.payload,
+      });
+
+    case ActionType.UPDATE_PROMO_MOVIE:
+      return Object.assign({}, state, {
+        promoMovie: action.payload,
+      });
+
+    case ActionType.UPDATE_MY_MOVIES:
+      return Object.assign({}, state, {
+        myMovies: action.payload,
       });
   }
 
