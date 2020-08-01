@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from "prop-types";
 import {SavingStatus} from "../../const.js";
+import history from "../../history.js";
 
 const withNewReview = (Component) => {
   class WithNewReview extends PureComponent {
@@ -18,12 +19,14 @@ const withNewReview = (Component) => {
     }
 
     _enableForm() {
-      const {savingMovieCommentStatus} = this.props;
+      const {savingMovieCommentStatus, movie} = this.props;
 
       this.setState({
         disableForm: false,
         errorSaving: savingMovieCommentStatus,
       });
+
+      history.push(`/films/${movie.id}`);
     }
 
     _disableForm() {
