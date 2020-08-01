@@ -6,7 +6,7 @@ import MoviePage from "../movie-page/movie-page.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/state/state.js";
-import {Screens, MAX_SIMILAR_MOVIES_COUNT, AppRoute, AuthorizationStatus} from "../../const.js";
+import {MAX_SIMILAR_MOVIES_COUNT, AppRoute, AuthorizationStatus} from "../../const.js";
 import withMovieTabs from "../../hoc/with-movie-tabs/with-movie-tabs.js";
 import withNewReview from "../../hoc/with-new-review/with-new-review.js";
 import CinemaScreen from "../cinema-screen/cinema-screen.jsx";
@@ -21,15 +21,18 @@ import history from "../../history.js";
 import MyList from "../my-list/my-list.jsx";
 import PrivateRoute from "../private-route/private-route.jsx";
 
+
 const CinemaScreenWrapped = withCinemaVideoPlayer(CinemaScreen);
 const AddReviewWrapped = withNewReview(AddReview);
 
 const MoviePageWrapper = withMovieTabs(MoviePage);
 
+
 class App extends PureComponent {
   constructor(props) {
     super(props);
 
+    this._getMovieById = this._getMovieById.bind(this);
   }
 
   _getMovieById(movieId) {
@@ -38,99 +41,26 @@ class App extends PureComponent {
     return movies.find((movie) => movie.id === Number.parseInt(movieId, 10));
   }
 
-  _renderApp() {
-    const {
-      avatarUrl,
-      authorizationStatus,
-      promoMovie,
-      movies,
-      genres,
-      currentGenreFilter,
-      onMovieFilterClick,
-      // onMovieTitleClick,
-      onPlayMovieClick,
-      onAddReviewClick,
-      selectedMovieId,
-      currentPage,
-      onExitVideoPlayer,
-      movieComments,
-      savingMovieCommentStatus,
-      savingMovieFavoriteStatus,
-      setFavoriteStatus} = this.props;
-
-    if (movies.length && promoMovie.id) {
-      const selectedMovie = this._getMovieById(selectedMovieId);
-      switch (currentPage) {
-        case Screens.MOVIE_PAGE_SCREEN:
-          const {id, genre} = selectedMovie;
-          const similarMovies = movies.filter((movie) => (movie.genre === genre) && (movie.id !== id)).slice(0, MAX_SIMILAR_MOVIES_COUNT);
-
-          return (
-            <MoviePageWrapper
-              authorizationStatus = {authorizationStatus}
-              avatarUrl = {avatarUrl}
-              movie={selectedMovie}
-              comments={movieComments}
-              similarMovies = {similarMovies}
-              // onMovieTitleClick = {onMovieTitleClick}
-              onPlayMovieClick = {onPlayMovieClick}
-              onAddReviewClick = {onAddReviewClick}
-            />
-          );
-
-        case Screens.CINEMA_SCREEN:
-          return (
-            <CinemaScreenWrapped
-              movie={this._getMovieById(selectedMovieId)}
-              onExitVideoPlayer={onExitVideoPlayer}
-            />
-          );
-
-        case Screens.ADD_REVIEW_SCREEN:
-          return (
-            <AddReviewWrapped
-              movie={selectedMovie}
-              authorizationStatus = {this.props.authorizationStatus}
-              avatarUrl = {this.props.avatarUrl}
-              onSaveComment = {this.props.saveComment}
-              savingMovieCommentStatus = {savingMovieCommentStatus}
-            />
-          );
-
-        default:
-          return (
-            <Main
-              authorizationStatus = {authorizationStatus}
-              avatarUrl = {avatarUrl}
-              promoMovie = {promoMovie}
-              genres = {genres}
-              movies = {movies}
-              currentGenreFilter = {currentGenreFilter}
-              // onMovieTitleClick = {onMovieTitleClick}
-              onMovieFilterClick = {onMovieFilterClick}
-              onPlayMovieClick = {onPlayMovieClick}
-              savingMovieFavoriteStatus = {savingMovieFavoriteStatus}
-              setFavoriteStatus = {setFavoriteStatus}
-            />
-          );
-      }
-    }
-
-    return null;
-  }
-
   render() {
-    const {movies, login, authorizationStatus, avatarUrl, myMovies} = this.props;
+    const {movies, login, authorizationStatus, avatarUrl, myMovies, promoMovie, genres, currentGenreFilter, onMovieFilterClick, onPlayMovieClick, savingMovieFavoriteStatus, setFavoriteStatus} = this.props;
 
     if (movies.length && myMovies.length >= 0) {
       return (
-        <Router
-          history={history}
-        >
+        <Router history={history}>
           <Switch>
-
             <Route exact path={AppRoute.ROOT}>
-              {this._renderApp()}
+              <Main
+                authorizationStatus = {authorizationStatus}
+                avatarUrl = {avatarUrl}
+                promoMovie = {promoMovie}
+                genres = {genres}
+                movies = {movies}
+                currentGenreFilter = {currentGenreFilter}
+                onMovieFilterClick = {onMovieFilterClick}
+                onPlayMovieClick = {onPlayMovieClick}
+                savingMovieFavoriteStatus = {savingMovieFavoriteStatus}
+                setFavoriteStatus = {setFavoriteStatus}
+              />
             </Route>
 
             <Route exact path={AppRoute.LOGIN}>
@@ -178,8 +108,7 @@ class App extends PureComponent {
             <Route
               path={AppRoute.FILM}
               render = {(props) => {
-                // this.props.getComments(props.match.params.id);
-                const {movieComments, onPlayMovieClick, onAddReviewClick, savingMovieFavoriteStatus, setFavoriteStatus} = this.props;
+                const {movieComments, onAddReviewClick} = this.props;
                 const selectedMovie = this._getMovieById(props.match.params.id);
                 const {id, genre} = selectedMovie;
                 const similarMovies = movies.filter((movie) => (movie.genre === genre) && (movie.id !== id)).slice(0, MAX_SIMILAR_MOVIES_COUNT);
@@ -191,7 +120,6 @@ class App extends PureComponent {
                     movie={selectedMovie}
                     comments={movieComments}
                     similarMovies = {similarMovies}
-                    // onMovieTitleClick = {onMovieTitleClick}
                     onPlayMovieClick = {onPlayMovieClick}
                     onAddReviewClick = {onAddReviewClick}
                     savingMovieFavoriteStatus = {savingMovieFavoriteStatus}
@@ -225,10 +153,9 @@ class App extends PureComponent {
     }
 
     return null;
-
   }
-
 }
+
 
 App.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
@@ -248,7 +175,6 @@ App.propTypes = {
   genres: PropTypes.array.isRequired,
   currentGenreFilter: PropTypes.string.isRequired,
   onMovieFilterClick: PropTypes.func.isRequired,
-  // onMovieTitleClick: PropTypes.func.isRequired,
   onPlayMovieClick: PropTypes.func.isRequired,
   onAddReviewClick: PropTypes.func.isRequired,
   selectedMovieId: PropTypes.number.isRequired,
@@ -301,11 +227,6 @@ const mapDispatchToProps = (dispatch) => ({
   onMovieFilterClick(filterName) {
     dispatch(ActionCreator.setCurrentFilter(filterName));
   },
-
-  // onMovieTitleClick(movieId) {
-  //   dispatch(ActionCreator.openMovieScreen(movieId));
-  //   dispatch(DataOperation.loadMovieComments(movieId));
-  // },
 
   onPlayMovieClick(movieId) {
     dispatch(ActionCreator.openCinemaScreen(movieId));
