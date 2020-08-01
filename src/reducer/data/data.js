@@ -1,4 +1,5 @@
 import {SavingStatus} from "../../const.js";
+import {createMovie, createMovies, createComments} from "../../adapter/films.js";
 
 const initialState = {
   promoMovie: {},
@@ -70,28 +71,28 @@ const Operation = {
   loadMovies: () => (dispatch, getState, api) => {
     return api.get(`/films`)
       .then((response) => {
-        dispatch(ActionCreator.loadMovies(response.data));
+        dispatch(ActionCreator.loadMovies(createMovies(response.data)));
       });
   },
 
   loadPromoMovie: () => (dispatch, getState, api) => {
     return api.get(`/films/promo`)
       .then((response) => {
-        dispatch(ActionCreator.loadPromoMovie(response.data));
+        dispatch(ActionCreator.loadPromoMovie(createMovie(response.data)));
       });
   },
 
   loadMyMovies: () => (dispatch, getState, api) => {
     return api.get(`/favorite`)
       .then((response) => {
-        dispatch(ActionCreator.loadMyMovies(response.data));
+        dispatch(ActionCreator.loadMyMovies(createMovies(response.data)));
       });
   },
 
   loadMovieComments: (movieId) => (dispatch, getState, api) => {
     return api.get(`/comments/${movieId}`)
       .then((response) => {
-        dispatch(ActionCreator.loadMovieComments(response.data));
+        dispatch(ActionCreator.loadMovieComments(createComments(response.data)));
       });
   },
 
@@ -157,13 +158,11 @@ const reducer = (state = initialState, action) => {
 
       if (status === SavingStatus.SUCCESS) {
         if (state.promoMovie.id === movieId) {
-          // eslint-disable-next-line
-          state.promoMovie.is_favorite = favoriteStatus;
+          state.promoMovie.isFavorite = favoriteStatus;
         }
 
         const movieIndex = state.movies.findIndex((currentValue) => currentValue.id === movieId);
-        // eslint-disable-next-line
-        state.movies[movieIndex].is_favorite = favoriteStatus;
+        state.movies[movieIndex].isFavorite = favoriteStatus;
 
         const myMovieIndex = state.myMovies.findIndex((currentValue) => currentValue.id === movieId);
         if (myMovieIndex > 0 && !favoriteStatus) {
@@ -174,7 +173,7 @@ const reducer = (state = initialState, action) => {
       }
 
       return Object.assign({}, state, {
-        savingMovieFavoriteStatus: action.payload.status,
+        savingMovieFavoriteStatus: status,
       });
   }
 
