@@ -5,6 +5,7 @@ import GenreList from "../genre-list/genre-list.jsx";
 import withMoviesList from "../../hoc/with-movies-list/with-movies-list.js";
 import MoviePromo from "../movie-promo/movie-promo.jsx";
 import Logo from "../logo/logo.jsx";
+import {MOVIE_PROP_TYPE} from "../../const.js";
 
 const MoviesListWrapper = withMoviesList(MoviesList);
 
@@ -67,18 +68,11 @@ class Main extends PureComponent {
 Main.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string,
-  promoMovie: PropTypes.object.isRequired,
+  promoMovie: MOVIE_PROP_TYPE.isRequired,
   genres: PropTypes.array.isRequired,
-  movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        smallPoster: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        year: PropTypes.number.isRequired,
-      })).isRequired,
+  movies: PropTypes.arrayOf(MOVIE_PROP_TYPE).isRequired,
   currentGenreFilter: PropTypes.string.isRequired,
   onMovieFilterClick: PropTypes.func.isRequired,
-  onPlayMovieClick: PropTypes.func.isRequired,
   savingMovieFavoriteStatus: PropTypes.string,
   setFavoriteStatus: PropTypes.func.isRequired,
 };

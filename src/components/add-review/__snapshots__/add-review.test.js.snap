@@ -28,6 +28,8 @@ exports[`Render cinema screen 1`] = `
       >
         <a
           className="logo__link "
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -57,7 +59,8 @@ exports[`Render cinema screen 1`] = `
           >
             <a
               className="breadcrumbs__link"
-              href="movie-page.html"
+              href="/films/0"
+              onClick={[Function]}
             >
               Aviator
             </a>

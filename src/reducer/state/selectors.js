@@ -11,14 +11,6 @@ export const getFilteredMovies = (movies, filter) => {
   return filter === NO_FILTER ? movies : movies.slice().filter((movie) => movie.genre === filter);
 };
 
-export const getCurrentPage = (state) => {
-  return state[NAME_SPACE].currentPage;
-};
-
-export const getSelectedMovieId = (state) => {
-  return state[NAME_SPACE].selectedMovieId;
-};
-
 export const getAuthMessage = (state) => {
   return state[NAME_SPACE].authMessage;
 };

@@ -6,14 +6,7 @@ import {Link} from "react-router-dom";
 class SmallMovieCard extends PureComponent {
   constructor(props) {
     super(props);
-
-    // this._movieTitleClickHandler = this._movieTitleClickHandler.bind(this);
   }
-
-  // _movieTitleClickHandler(evt) {
-  //   evt.preventDefault();
-  //   this.props.onMovieTitleClick(evt.currentTarget.parentElement.parentElement.dataset.key);
-  // }
 
   render() {
     const {movieId, movieTitle, renderPlayer, movieSmallPoster, preview} = this.props;
@@ -44,7 +37,6 @@ SmallMovieCard.propTypes = {
   movieTitle: PropTypes.string.isRequired,
   movieSmallPoster: PropTypes.string.isRequired,
   preview: PropTypes.string.isRequired,
-  // onMovieTitleClick: PropTypes.func.isRequired,
   onMovieMouseOver: PropTypes.func.isRequired,
   onMovieMouseOut: PropTypes.func.isRequired,
   renderPlayer: PropTypes.func.isRequired,

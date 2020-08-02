@@ -6,12 +6,12 @@ import MoviePage from "../movie-page/movie-page.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/state/state.js";
-import {MAX_SIMILAR_MOVIES_COUNT, AppRoute, AuthorizationStatus} from "../../const.js";
+import {MAX_SIMILAR_MOVIES_COUNT, AppRoute, AuthorizationStatus, MOVIE_PROP_TYPE} from "../../const.js";
 import withMovieTabs from "../../hoc/with-movie-tabs/with-movie-tabs.js";
 import withNewReview from "../../hoc/with-new-review/with-new-review.js";
 import CinemaScreen from "../cinema-screen/cinema-screen.jsx";
 import withCinemaVideoPlayer from "../../hoc/with-cinema-video-player/with-cinema-video-player.js";
-import {getCurrentGenreFilter, getCurrentPage, getSelectedMovieId, getFilteredMovies, getAuthMessage} from "../../reducer/state/selectors.js";
+import {getCurrentGenreFilter, getFilteredMovies} from "../../reducer/state/selectors.js";
 import {getMovies, getPromoMovie, getGenres, getMovieComments, getSavingMovieCommentStatus, getSavingMovieFavoriteStatus, getMyMovies} from "../../reducer/data/selectors.js";
 import {getAuthorizationStatus, getAvatarUrl} from "../../reducer/user/selectors.js";
 import {Operation as UserOperation} from "../../reducer/user/user.js";
@@ -42,9 +42,9 @@ class App extends PureComponent {
   }
 
   render() {
-    const {movies, login, authorizationStatus, avatarUrl, myMovies, promoMovie, genres, currentGenreFilter, onMovieFilterClick, onPlayMovieClick, savingMovieFavoriteStatus, setFavoriteStatus} = this.props;
+    const {movies, login, authorizationStatus, avatarUrl, myMovies, promoMovie, genres, currentGenreFilter, onMovieFilterClick, savingMovieFavoriteStatus, setFavoriteStatus} = this.props;
 
-    if (movies.length && myMovies.length >= 0) {
+    if (movies.length && myMovies.length >= 0 && promoMovie) {
       return (
         <Router history={history}>
           <Switch>
@@ -57,7 +57,6 @@ class App extends PureComponent {
                 movies = {movies}
                 currentGenreFilter = {currentGenreFilter}
                 onMovieFilterClick = {onMovieFilterClick}
-                onPlayMovieClick = {onPlayMovieClick}
                 savingMovieFavoriteStatus = {savingMovieFavoriteStatus}
                 setFavoriteStatus = {setFavoriteStatus}
               />
@@ -120,7 +119,6 @@ class App extends PureComponent {
                     movie={selectedMovie}
                     comments={movieComments}
                     similarMovies = {similarMovies}
-                    onPlayMovieClick = {onPlayMovieClick}
                     onAddReviewClick = {onAddReviewClick}
                     savingMovieFavoriteStatus = {savingMovieFavoriteStatus}
                     setFavoriteStatus = {setFavoriteStatus}
@@ -163,28 +161,17 @@ App.propTypes = {
   avatarUrl: PropTypes.string,
   savingMovieCommentStatus: PropTypes.string,
   savingMovieFavoriteStatus: PropTypes.string,
-  promoMovie: PropTypes.shape().isRequired,
-  movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        smallPoster: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        year: PropTypes.number.isRequired,
-      })).isRequired,
+  promoMovie: MOVIE_PROP_TYPE.isRequired,
+  movies: PropTypes.arrayOf(MOVIE_PROP_TYPE).isRequired,
   myMovies: PropTypes.array,
   genres: PropTypes.array.isRequired,
   currentGenreFilter: PropTypes.string.isRequired,
   onMovieFilterClick: PropTypes.func.isRequired,
-  onPlayMovieClick: PropTypes.func.isRequired,
   onAddReviewClick: PropTypes.func.isRequired,
-  selectedMovieId: PropTypes.number.isRequired,
-  currentPage: PropTypes.number.isRequired,
-  onExitVideoPlayer: PropTypes.func.isRequired,
   movieComments: PropTypes.array,
   getComments: PropTypes.func,
   saveComment: PropTypes.func,
   setFavoriteStatus: PropTypes.func,
-  authMessage: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
@@ -194,10 +181,7 @@ const mapStateToProps = (state) => ({
   movies: getFilteredMovies(getMovies(state), getCurrentGenreFilter(state)),
   myMovies: getMyMovies(state),
   genres: getGenres(state),
-  selectedMovieId: getSelectedMovieId(state),
-  currentPage: getCurrentPage(state),
   movieComments: getMovieComments(state),
-  authMessage: getAuthMessage(state),
   avatarUrl: getAvatarUrl(state),
   savingMovieCommentStatus: getSavingMovieCommentStatus(state),
   savingMovieFavoriteStatus: getSavingMovieFavoriteStatus(state),
@@ -226,14 +210,6 @@ const mapDispatchToProps = (dispatch) => ({
 
   onMovieFilterClick(filterName) {
     dispatch(ActionCreator.setCurrentFilter(filterName));
-  },
-
-  onPlayMovieClick(movieId) {
-    dispatch(ActionCreator.openCinemaScreen(movieId));
-  },
-
-  onExitVideoPlayer(movieId) {
-    dispatch(ActionCreator.closeCinemaScreen(movieId));
   },
 });
 

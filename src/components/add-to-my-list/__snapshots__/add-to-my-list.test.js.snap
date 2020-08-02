@@ -7,12 +7,12 @@ exports[`Render add to My list button with isInList status 1`] = `
   type="button"
 >
   <svg
-    height="14"
-    viewBox="0 0 18 14"
-    width="18"
+    height="20"
+    viewBox="0 0 19 20"
+    width="19"
   >
     <use
-      xlinkHref="/sprite.svg#in-list"
+      xlinkHref="/sprite.svg#add"
     />
   </svg>
   <span>

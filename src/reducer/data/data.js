@@ -89,10 +89,15 @@ const ActionCreator = {
 };
 
 const Operation = {
-  loadMovies: () => (dispatch, getState, api) => {
+  loadMovies: (action) => (dispatch, getState, api) => {
     return api.get(`/films`)
       .then((response) => {
         dispatch(ActionCreator.loadMovies(createMovies(response.data)));
+        api.get(`/films/promo`)
+          .then((respPromo) => {
+            dispatch(ActionCreator.loadPromoMovie(createMovie(respPromo.data)));
+            action();
+          });
       });
   },
 

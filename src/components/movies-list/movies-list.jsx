@@ -62,7 +62,6 @@ class MoviesList extends PureComponent {
         preview={movie.preview}
         onMovieMouseOver={this.movieMouseOverHandler}
         onMovieMouseOut={this.movieMouseOutHandler}
-        // onMovieTitleClick={onMovieTitleClick}
       />
     ));
 
@@ -86,7 +85,6 @@ MoviesList.propTypes = {
         genre: PropTypes.string.isRequired,
         year: PropTypes.number.isRequired,
       })).isRequired,
-  // onMovieTitleClick: PropTypes.func.isRequired,
   renderedMoviesCount: PropTypes.number.isRequired,
   onShowMoreButtonClick: PropTypes.func.isRequired,
 };

@@ -1,3 +1,25 @@
+import PropTypes from "prop-types";
+
+export const MOVIE_PROP_TYPE = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  smallPoster: PropTypes.string.isRequired,
+  genre: PropTypes.string.isRequired,
+  year: PropTypes.number.isRequired,
+  runTime: PropTypes.number.isRequired,
+  bigPoster: PropTypes.string.isRequired,
+  cover: PropTypes.string.isRequired,
+  ratingScore: PropTypes.number.isRequired,
+  ratingCount: PropTypes.number.isRequired,
+  preview: PropTypes.string.isRequired,
+  video: PropTypes.string.isRequired,
+  directors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  starrings: PropTypes.arrayOf(PropTypes.string).isRequired,
+  descriptions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  backgroundColor: PropTypes.string.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+});
+
 export const START_URL = `https://4.react.pages.academy`;
 
 export const NO_FILTER = `All genres`;

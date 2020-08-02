@@ -64,10 +64,8 @@ const Operation = {
       password: authData.password,
     })
       .then((result) => {
-        // dispatch(StateActionCreator.openMainPage());
         dispatch(DataOperation.loadMyMovies());
-        dispatch(DataOperation.loadMovies());
-        dispatch(DataOperation.loadPromoMovie());
+        dispatch(DataOperation.loadMovies(()=>{}));
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.getUserAvatar(START_URL + result.data.avatar_url));
       })
