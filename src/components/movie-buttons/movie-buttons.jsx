@@ -17,7 +17,7 @@ class MovieButtons extends PureComponent {
         <Link
           className="btn btn--play movie-card__button"
           type="button"
-          to = {`${AppRoute.PLAYER}/` + movieId}
+          to = {`${AppRoute.PLAYER}/${movieId}`}
         >
           <svg viewBox="0 0 19 19" width="19" height="19">
             <use xlinkHref="/sprite.svg#play-s"></use>
@@ -33,7 +33,7 @@ class MovieButtons extends PureComponent {
 
         {!isMainScreen ?
           <Link
-            to = {`${AppRoute.FILMS}/` + movieId + AppRoute.ADD_REVIEW}
+            to = {`${AppRoute.FILMS}/${movieId}${AppRoute.ADD_REVIEW}`}
             className="btn movie-card__button"
           >
             {`Add review`}

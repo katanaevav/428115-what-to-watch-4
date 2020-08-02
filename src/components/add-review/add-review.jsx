@@ -45,7 +45,7 @@ class AddReview extends PureComponent {
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
                   <Link
-                    to = {`${AppRoute.FILMS}/` + movie.id}
+                    to = {`${AppRoute.FILMS}/${movie.id}`}
                     className="breadcrumbs__link"
                   >
                     {movie.title}
