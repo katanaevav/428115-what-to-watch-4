@@ -1,5 +1,5 @@
 import axios from "axios";
-import {START_URL} from "./const.js";
+import {Url} from "./const.js";
 
 const Error = {
   UNAUTHORIZED: 401
@@ -7,7 +7,7 @@ const Error = {
 
 export const createAPI = (onUnauthorized) => {
   const api = axios.create({
-    baseURL: START_URL + `/wtw`,
+    baseURL: Url.START_URL + Url.PROJECT_ROUTE,
     timeout: 5000,
     withCredentials: true,
   });

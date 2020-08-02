@@ -1,4 +1,4 @@
-import {AuthorizationStatus, START_URL} from "../../const.js";
+import {AuthorizationStatus, Url, AppRoute} from "../../const.js";
 import {Operation as DataOperation} from "../data/data.js";
 
 const AUTH_ERROR_TEXT = `We can’t recognize this email and password combination. Please try again.`;
@@ -47,10 +47,10 @@ const reducer = (state = initialState, action) => {
 
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
-    return api.get(`/login`)
+    return api.get(AppRoute.LOGIN)
       .then((result) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-        dispatch(ActionCreator.getUserAvatar(START_URL + result.data.avatar_url));
+        dispatch(ActionCreator.getUserAvatar(Url.START_URL + result.data.avatar_url));
 
       })
       .catch((err) => {
@@ -59,7 +59,7 @@ const Operation = {
   },
 
   login: (authData, action) => (dispatch, getState, api) => {
-    return api.post(`/login`, {
+    return api.post(AppRoute.LOGIN, {
       email: authData.login,
       password: authData.password,
     })
@@ -67,7 +67,7 @@ const Operation = {
         dispatch(DataOperation.loadMyMovies());
         dispatch(DataOperation.loadMovies(()=>{}));
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-        dispatch(ActionCreator.getUserAvatar(START_URL + result.data.avatar_url));
+        dispatch(ActionCreator.getUserAvatar(Url.START_URL + result.data.avatar_url));
       })
       .catch((err) => {
         action(AUTH_ERROR_TEXT);

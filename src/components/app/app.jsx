@@ -85,7 +85,7 @@ class App extends PureComponent {
             />
 
             <PrivateRoute
-              path={AppRoute.ADD_REVIEW}
+              path={AppRoute.FILMS + AppRoute.ID + AppRoute.ADD_REVIEW}
               exact
               render={(props) => {
                 const selectedMovie = this._getMovieById(props.computedMatch.params.id);
@@ -105,7 +105,7 @@ class App extends PureComponent {
             />
 
             <Route
-              path={AppRoute.FILM}
+              path={AppRoute.FILMS + AppRoute.ID}
               render = {(props) => {
                 const {movieComments, onAddReviewClick} = this.props;
                 const selectedMovie = this._getMovieById(props.match.params.id);
@@ -129,7 +129,7 @@ class App extends PureComponent {
             />
 
             <Route
-              path={AppRoute.PLAYER}
+              path={AppRoute.PLAYER + AppRoute.ID}
               render = {
                 (props) => {
                   return (

@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 import Logo from "../logo/logo.jsx";
 import UserBlock from "../user-block/user-block.jsx";
 import {Link} from 'react-router-dom';
+import {AppRoute} from "../../const.js";
+
 
 class AddReview extends PureComponent {
   constructor(props) {
@@ -43,7 +45,7 @@ class AddReview extends PureComponent {
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
                   <Link
-                    to = {`/films/` + movie.id}
+                    to = {`${AppRoute.FILMS}/` + movie.id}
                     className="breadcrumbs__link"
                   >
                     {movie.title}

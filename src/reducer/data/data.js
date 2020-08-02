@@ -1,6 +1,7 @@
-import {SavingStatus} from "../../const.js";
+import {SavingStatus, AppRoute} from "../../const.js";
 import {createMovie, createMovies, createComments} from "../../adapter/films.js";
 import {getMovies, getPromoMovie, getMyMovies} from "./selectors.js";
+
 
 const initialState = {
   promoMovie: {},
@@ -90,7 +91,7 @@ const ActionCreator = {
 
 const Operation = {
   loadMovies: (action) => (dispatch, getState, api) => {
-    return api.get(`/films`)
+    return api.get(AppRoute.FILMS)
       .then((response) => {
         dispatch(ActionCreator.loadMovies(createMovies(response.data)));
         action();
@@ -98,7 +99,7 @@ const Operation = {
   },
 
   loadPromoMovie: (action) => (dispatch, getState, api) => {
-    return api.get(`/films/promo`)
+    return api.get(AppRoute.FILMS + AppRoute.PROMO)
       .then((response) => {
         dispatch(ActionCreator.loadPromoMovie(createMovie(response.data)));
         action();
@@ -106,21 +107,21 @@ const Operation = {
   },
 
   loadMyMovies: () => (dispatch, getState, api) => {
-    return api.get(`/favorite`)
+    return api.get(AppRoute.FAVORITE)
       .then((response) => {
         dispatch(ActionCreator.loadMyMovies(createMovies(response.data)));
       });
   },
 
   loadMovieComments: (movieId) => (dispatch, getState, api) => {
-    return api.get(`/comments/${movieId}`)
+    return api.get(`${AppRoute.COMMENTS}/${movieId}`)
       .then((response) => {
         dispatch(ActionCreator.loadMovieComments(createComments(response.data)));
       });
   },
 
   saveMovieComment: (comment, action) => (dispatch, getState, api) => {
-    return api.post(`/comments/${comment.movieId}`, {
+    return api.post(`${AppRoute.COMMENTS}/${comment.movieId}`, {
       rating: comment.mark,
       comment: comment.text,
     })
@@ -136,7 +137,7 @@ const Operation = {
   },
 
   saveMovieFavoriteStatus: (favoriteStatus, action) => (dispatch, getState, api) => {
-    return api.post(`/favorite/${favoriteStatus.movieId}/${favoriteStatus.isFavorite ? 1 : 0}`)
+    return api.post(`${AppRoute.FAVORITE}/${favoriteStatus.movieId}/${favoriteStatus.isFavorite ? 1 : 0}`)
       .then((response) => {
         dispatch(ActionCreator.saveMovieFavoriteStatus(SavingStatus.SUCCESS, favoriteStatus.movieId, favoriteStatus.isFavorite));
         action(createMovie(response.data));

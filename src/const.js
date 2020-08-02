@@ -20,7 +20,10 @@ export const MOVIE_PROP_TYPE = PropTypes.shape({
   isFavorite: PropTypes.bool.isRequired,
 });
 
-export const START_URL = `https://4.react.pages.academy`;
+export const Url = {
+  START_URL: `https://4.react.pages.academy`,
+  PROJECT_ROUTE: `/wtw`,
+};
 
 export const NO_FILTER = `All genres`;
 
@@ -69,9 +72,13 @@ export const AuthorizationStatus = {
 
 export const AppRoute = {
   MY_LIST: `/mylist`,
-  ADD_REVIEW: `/films/:id/review`,
+  ADD_REVIEW: `/review`,
   ROOT: `/`,
   LOGIN: `/login`,
-  FILM: `/films/:id`,
-  PLAYER: `/player/:id`,
+  PLAYER: `/player`,
+  FILMS: `/films`,
+  ID: `/:id`,
+  PROMO: `/promo`,
+  FAVORITE: `/favorite`,
+  COMMENTS: `/comments`,
 };

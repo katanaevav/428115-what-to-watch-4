@@ -1,6 +1,6 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
-// import {AppRoute} from "../../const.js";
+import {AppRoute} from "../../const.js";
 import {Link} from "react-router-dom";
 
 class SmallMovieCard extends PureComponent {
@@ -21,8 +21,7 @@ class SmallMovieCard extends PureComponent {
           <Link
             className="small-movie-card__link"
             href="movie-page.html"
-            // onClick={this._movieTitleClickHandler}
-            to={`/films/${movieId}`}
+            to={`${AppRoute.FILMS}/${movieId}`}
           >
             {movieTitle}
           </Link>

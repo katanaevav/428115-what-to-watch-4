@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import PropTypes from "prop-types";
 import {SavingStatus} from "../../const.js";
 import history from "../../history.js";
+import {AppRoute} from "../../const.js";
 
 const withNewReview = (Component) => {
   class WithNewReview extends PureComponent {
@@ -26,7 +27,7 @@ const withNewReview = (Component) => {
         errorSaving: savingMovieCommentStatus,
       });
 
-      history.push(`/films/${movie.id}`);
+      history.push(`${AppRoute.FILMS}/${movie.id}`);
     }
 
     _disableForm() {
