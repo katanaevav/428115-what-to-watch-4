@@ -18,8 +18,8 @@ Array [
         className="movie-card__bg"
       >
         <img
-          alt="Aviator"
-          src="img/aviator.jpg"
+          alt="Bohemian rhapsody"
+          src="img/bohemian-rhapsody.jpg"
         />
       </div>
       <h1
@@ -35,6 +35,8 @@ Array [
         >
           <a
             className="logo__link "
+            href="/"
+            onClick={[Function]}
           >
             <span
               className="logo__letter logo__letter--1"
@@ -74,7 +76,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            Aviator
+            Bohemian rhapsody
           </h2>
           <p
             className="movie-card__meta"
@@ -87,49 +89,59 @@ Array [
             <span
               className="movie-card__year"
             >
-              2004
+              2018
             </span>
           </p>
-          <div
-            className="movie-card__buttons"
-          >
-            <button
-              className="btn btn--play movie-card__button"
-              onClick={[Function]}
-              type="button"
-            >
-              <svg
-                height="19"
-                viewBox="0 0 19 19"
-                width="19"
-              >
-                <use
-                  xlinkHref="/sprite.svg#play-s"
-                />
-              </svg>
-              <span>
-                Play
-              </span>
-            </button>
-            <a
-              className="btn btn--list movie-card__button"
-              href="/login"
-              onClick={[Function]}
-            >
-              <svg
-                height="14"
-                viewBox="0 0 18 14"
-                width="18"
-              >
-                <use
-                  xlinkHref="/sprite.svg#in-list"
-                />
-              </svg>
-              <span>
-                My list
-              </span>
-            </a>
+          <div>
             
+            <div
+              className="movie-card__buttons"
+            >
+              <a
+                className="btn btn--play movie-card__button"
+                href="/player/0"
+                onClick={[Function]}
+                type="button"
+              >
+                <svg
+                  height="19"
+                  viewBox="0 0 19 19"
+                  width="19"
+                >
+                  <use
+                    xlinkHref="/sprite.svg#play-s"
+                  />
+                </svg>
+                <span>
+                  Play
+                </span>
+              </a>
+              <button
+                className="btn btn--list movie-card__button"
+                onClick={[Function]}
+                type="button"
+              >
+                <svg
+                  height="14"
+                  viewBox="0 0 18 14"
+                  width="18"
+                >
+                  <use
+                    xlinkHref="/sprite.svg#in-list"
+                  />
+                </svg>
+                <span>
+                  My list
+                </span>
+              </button>
+              <a
+                className="btn movie-card__button"
+                href="/films/0/review"
+                onClick={[Function]}
+              >
+                Add review
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -144,9 +156,9 @@ Array [
           className="movie-card__poster movie-card__poster--big"
         >
           <img
-            alt="Aviator"
+            alt="Bohemian rhapsody"
             height="327"
-            src="img/aviator.jpg"
+            src="img/bohemian-rhapsody.jpg"
             width="218"
           />
         </div>
@@ -159,7 +171,7 @@ Array [
             <div
               className="movie-rating__score"
             >
-              7
+              7.9
             </div>
             <p
               className="movie-rating__meta"
@@ -172,7 +184,7 @@ Array [
               <span
                 className="movie-rating__count"
               >
-                121697
+                284651
                  ratings
               </span>
             </p>
@@ -181,20 +193,17 @@ Array [
             className="movie-card__text"
           >
             <p>
-              Получив от отца небольшую фабрику, Говард Хьюз превратил ее в гигантское, фантастически прибыльное предприятие. Став владельцем огромной кинокомпании, он снял самый дорогой для своего времени фильм и покорил сердца прелестнейших голливудских актрис.
+              Чествование группы Queen, их музыки и их выдающегося вокалиста Фредди Меркьюри, который бросил вызов стереотипам и победил условности, чтобы стать одним из самых любимых артистов на планете.
             </p>
             <p>
-              Ему принадлежали самые престижные казино Лас-Вегаса и он установил рекорд скоростных полетов, приобрел вторую по величине коммерческую авиакомпанию…
-            </p>
-            <p>
-              Деньги жгут сердце Хьюза, они не дают ему покоя, а душа его рвется ввысь. Только там, на высоте нескольких тысяч метров он счастлив по-настоящему. Только там, где все решает лишь мастерство пилота и Бог, ничто не ценится так дорого, как верность и честь.
+              Фильм прослеживает головокружительный путь группы к успеху благодаря их культовым песням и революционному звуку, практически распад коллектива, поскольку образ жизни Меркьюри выходит из-под контроля, и их триумфальное воссоединение накануне концерта Live Aid, ставшим одним из величайших выступлений в истории рок-музыки.
             </p>
             <p
               className="movie-card__director"
             >
               <strong>
                 Director: 
-                Мартин Скорсезе
+                Брайан Сингер
               </strong>
             </p>
             <p
@@ -202,7 +211,7 @@ Array [
             >
               <strong>
                 Starring: 
-                Леонардо ДиКаприо, Кейт Бланшетт, Мэтт Росс, Джон Си Райли
+                Рами Малек, Люси Бойнтон, Гвилим Ли, Бен Харди
                  and others
               </strong>
             </p>
@@ -236,7 +245,7 @@ Array [
           >
             <video
               className="player__video"
-              poster="img/aviator.jpg"
+              poster="img/bohemian-rhapsody.jpg"
               preload="metadata"
             />
           </div>
@@ -245,10 +254,10 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/0"
               onClick={[Function]}
             >
-              Aviator
+              Bohemian rhapsody
             </a>
           </h3>
         </article>
@@ -263,7 +272,7 @@ Array [
           >
             <video
               className="player__video"
-              poster="img/bohemian-rhapsody.jpg"
+              poster="img/moonrise-kingdom.jpg"
               preload="metadata"
             />
           </div>
@@ -272,10 +281,10 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="movie-page.html"
+              href="/films/1"
               onClick={[Function]}
             >
-              Bohemian rhapsody
+              Moonrise kingdom
             </a>
           </h3>
         </article>
@@ -290,6 +299,8 @@ Array [
       >
         <a
           className="logo__link logo__link--light"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"

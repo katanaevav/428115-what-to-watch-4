@@ -2,7 +2,8 @@ import React from "react";
 import renderer from "react-test-renderer";
 import MoviePromo from "./movie-promo.jsx";
 import {AuthorizationStatus} from "../../const.js";
-import {BrowserRouter} from "react-router-dom";
+import {Router} from "react-router-dom";
+import history from "../../history.js";
 
 const Movie = {
   title: `The Grand Budapest Hotel`,
@@ -14,20 +15,21 @@ const Movie = {
 
 it(`Render promo movie section`, () => {
   const tree = renderer.create(
-      <BrowserRouter>
+      <Router history={history}>
         <MoviePromo
           authorizationStatus={AuthorizationStatus.NO_AUTH}
           promoMovieTitle = {Movie.title}
+          movieId = {1}
           avatarUrl = {``}
           promoMovieGenre = {Movie.genre}
           promoMovieYear = {Movie.year}
           cover = {Movie.cover}
           bigPoster = {Movie.bigPoster}
-          onPlayPromoMovieClick = {() => {}}
-          movieIsFavorite = {false}
-          onFavoriteButtonClick = {() => {}}
+          isFavorite = {false}
+          savingMovieFavoriteStatus = {``}
+          setFavoriteStatus = {() => {}}
         />
-      </BrowserRouter>
+      </Router>
   ).toJSON();
 
   expect(tree).toMatchSnapshot();

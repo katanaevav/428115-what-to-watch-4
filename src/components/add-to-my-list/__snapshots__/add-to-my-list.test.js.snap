@@ -1,18 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render add to My list button with isInList status 1`] = `
+exports[`Render add to My list button with isFavorite status 1`] = `
 <button
   className="btn btn--list movie-card__button"
   onClick={[Function]}
   type="button"
 >
   <svg
-    height="20"
-    viewBox="0 0 19 20"
-    width="19"
+    height="14"
+    viewBox="0 0 18 14"
+    width="18"
   >
     <use
-      xlinkHref="/sprite.svg#add"
+      xlinkHref="/sprite.svg#in-list"
     />
   </svg>
   <span>
@@ -21,7 +21,7 @@ exports[`Render add to My list button with isInList status 1`] = `
 </button>
 `;
 
-exports[`Render add to My list button without isInList status 1`] = `
+exports[`Render add to My list button without isFavorite status 1`] = `
 <button
   className="btn btn--list movie-card__button"
   onClick={[Function]}

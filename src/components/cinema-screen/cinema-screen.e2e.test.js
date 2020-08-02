@@ -71,5 +71,24 @@ it(`Should pressed on exit button in cinema video player`, () => {
 
   exitButton.simulate(`click`, {});
   expect(onExitVideoPlayer.mock.calls.length).toBe(1);
+});
 
+it(`Should pressed on full screen button in cinema video player`, () => {
+  const onFullScreenButtonClick = jest.fn();
+
+  const main = mount(
+      <CinemaScreen
+        movie = {Movie}
+        renderPlayer = {() => {}}
+        renderProgress = {() => {}}
+        renderPlayButton = {() => {}}
+        onFullScreenButtonClick = {onFullScreenButtonClick}
+        onExitVideoPlayer = {() => {}}
+      />
+  );
+
+  const exitButton = main.find(`.player__full-screen`);
+
+  exitButton.simulate(`click`, {});
+  expect(onFullScreenButtonClick.mock.calls.length).toBe(1);
 });

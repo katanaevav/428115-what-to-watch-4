@@ -10,7 +10,7 @@ exports[`Render small movie card 1`] = `
   >
     <a
       className="small-movie-card__link"
-      href="movie-page.html"
+      href="/films/0"
       onClick={[Function]}
     >
       Aviator

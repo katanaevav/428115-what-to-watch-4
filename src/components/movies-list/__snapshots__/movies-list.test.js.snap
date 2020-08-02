@@ -25,7 +25,7 @@ Array [
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
+          href="/films/7"
           onClick={[Function]}
         >
           War of the worlds
@@ -52,7 +52,7 @@ Array [
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
+          href="/films/8"
           onClick={[Function]}
         >
           War of the worlds
@@ -89,7 +89,7 @@ Array [
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
+          href="/films/0"
           onClick={[Function]}
         >
           Aviator
@@ -116,7 +116,7 @@ Array [
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
+          href="/films/1"
           onClick={[Function]}
         >
           Bohemian rhapsody
@@ -143,7 +143,7 @@ Array [
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
+          href="/films/2"
           onClick={[Function]}
         >
           Johnny english
@@ -170,7 +170,7 @@ Array [
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
+          href="/films/3"
           onClick={[Function]}
         >
           Moonrise kingdom
@@ -197,7 +197,7 @@ Array [
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
+          href="/films/4"
           onClick={[Function]}
         >
           No country for old men
@@ -224,7 +224,7 @@ Array [
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
+          href="/films/5"
           onClick={[Function]}
         >
           Orlando
@@ -251,7 +251,7 @@ Array [
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
+          href="/films/6"
           onClick={[Function]}
         >
           Pulp fiction

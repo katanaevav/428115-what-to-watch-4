@@ -3,6 +3,8 @@ import {configure, mount} from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import withMoviesList from "./with-movies-list.js";
 import MoviesList from "../../components/movies-list/movies-list.jsx";
+import {Router} from "react-router-dom";
+import history from "../../history.js";
 
 const Movies = [
   {
@@ -197,13 +199,15 @@ const MockComponentWrapped = withMoviesList(MoviesList);
 it(`Should render 9 movies after pressing Show more button`, () => {
 
   const wrapper = mount(
-      <MockComponentWrapped
-        movies = {Movies}
-        onMovieTitleClick = {() => {}}
-      />
+      <Router history={history}>
+        <MockComponentWrapped
+          movies = {Movies}
+          onMovieTitleClick = {() => {}}
+        />
+      </Router>
   );
 
   const button = wrapper.find(`button.catalog__button`);
   button.simulate(`click`, {});
-  expect(wrapper.instance().state.renderedMoviesCount).toBe(9);
+  expect(wrapper.find(MockComponentWrapped).instance().state.renderedMoviesCount).toBe(9);
 });

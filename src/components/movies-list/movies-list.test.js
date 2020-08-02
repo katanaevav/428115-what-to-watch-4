@@ -1,6 +1,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import MoviesList from "./movies-list.jsx";
+import {Router} from "react-router-dom";
+import history from "../../history.js";
 
 const Movies = [
   {
@@ -189,13 +191,14 @@ const Movies = [
 
 it(`Render MoviesList without Show more button`, () => {
   const tree = renderer.create(
-      <MoviesList
-        movies = {Movies.splice(0, 7)}
-        onMovieTitleClick = {() => {}}
-        renderedMoviesCount = {8}
-        onShowMoreButtonClick = {() => {}}
-      >
-      </MoviesList>, {
+      <Router history={history}>
+        <MoviesList
+          movies = {Movies.splice(0, 7)}
+          renderedMoviesCount = {8}
+          onShowMoreButtonClick = {() => {}}
+        >
+        </MoviesList>
+      </Router>, {
         createNodeMock: () => {
           return {};
         }
@@ -207,12 +210,13 @@ it(`Render MoviesList without Show more button`, () => {
 
 it(`Render MoviesList with Show more button`, () => {
   const tree = renderer.create(
-      <MoviesList
-        movies = {Movies}
-        onMovieTitleClick = {() => {}}
-        renderedMoviesCount = {8}
-        onShowMoreButtonClick = {() => {}}
-      />, {
+      <Router history={history}>
+        <MoviesList
+          movies = {Movies}
+          renderedMoviesCount = {8}
+          onShowMoreButtonClick = {() => {}}
+        />
+      </Router>, {
         createNodeMock: () => {
           return {};
         }
