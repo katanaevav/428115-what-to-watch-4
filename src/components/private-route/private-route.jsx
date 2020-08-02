@@ -25,6 +25,7 @@ const PrivateRoute = (props) => {
   );
 };
 
+
 PrivateRoute.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   exact: PropTypes.bool,

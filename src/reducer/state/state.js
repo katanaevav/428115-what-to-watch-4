@@ -1,13 +1,16 @@
 import {NO_FILTER} from "../../const.js";
 
+
 const initialState = {
   authMessage: ``,
   currentGenreFilter: NO_FILTER,
 };
 
+
 const ActionType = {
   SET_GENRE_FILTER: `SET_GENRE_FILTER`,
 };
+
 
 const ActionCreator = {
   setCurrentFilter: (filterName) => {
@@ -17,6 +20,7 @@ const ActionCreator = {
     };
   },
 };
+
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -28,5 +32,6 @@ const reducer = (state = initialState, action) => {
 
   return state;
 };
+
 
 export {reducer, ActionType, ActionCreator};

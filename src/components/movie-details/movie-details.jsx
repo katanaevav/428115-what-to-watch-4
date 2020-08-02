@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
+
 class MovieDetails extends PureComponent {
   constructor(props) {
     super(props);
@@ -9,6 +10,7 @@ class MovieDetails extends PureComponent {
   _getDurationTime(duration) {
     const hours = Math.floor(duration / 60);
     const minutes = duration - (hours * 60);
+
     return `${hours > 0 ? `${hours}h ` : ``}${minutes > 0 ? `${minutes}m` : ``}`;
   }
 
@@ -56,6 +58,7 @@ class MovieDetails extends PureComponent {
   }
 }
 
+
 MovieDetails.propTypes = {
   runTime: PropTypes.number.isRequired,
   genre: PropTypes.string.isRequired,
@@ -63,5 +66,6 @@ MovieDetails.propTypes = {
   directors: PropTypes.arrayOf(PropTypes.string).isRequired,
   starrings: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
+
 
 export default MovieDetails;

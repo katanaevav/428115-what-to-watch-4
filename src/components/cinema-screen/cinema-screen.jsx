@@ -1,24 +1,19 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {MOVIE_PROP_TYPE} from "../../const.js";
+
 
 class CinemaScreen extends PureComponent {
   constructor(props) {
     super(props);
 
     this._fullScreenButtonClickHandler = this._fullScreenButtonClickHandler.bind(this);
-    // this._exitVideoPlayerHandler = this._exitVideoPlayerHandler.bind(this);
   }
 
   _fullScreenButtonClickHandler() {
     const {onFullScreenButtonClick} = this.props;
     onFullScreenButtonClick();
   }
-
-  // _exitVideoPlayerHandler() {
-  //   const {movie, onExitVideoPlayer} = this.props;
-  //   const {id} = movie;
-  //   onExitVideoPlayer(id);
-  // }
 
   render() {
     const {movie, renderPlayer, renderProgress, renderPlayButton, onExitVideoPlayer} = this.props;
@@ -52,13 +47,15 @@ class CinemaScreen extends PureComponent {
   }
 }
 
+
 CinemaScreen.propTypes = {
-  movie: PropTypes.object.isRequired,
+  movie: MOVIE_PROP_TYPE.isRequired,
   renderPlayer: PropTypes.func.isRequired,
   renderProgress: PropTypes.func.isRequired,
   renderPlayButton: PropTypes.func.isRequired,
   onFullScreenButtonClick: PropTypes.func.isRequired,
   onExitVideoPlayer: PropTypes.func.isRequired,
 };
+
 
 export default CinemaScreen;

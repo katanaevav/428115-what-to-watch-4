@@ -2,9 +2,11 @@ import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import Logo from "../logo/logo.jsx";
 
+
 const EMAIL_VALIDATION_CHECK_ERROR = `Please enter a valid email address`;
 const EMAIL_VALIDATION_CLASS_ERROR = `sign-in__field sign-in__field--error`;
 const EMAIL_VALIDATION_CLASS = `sign-in__field`;
+
 
 class SignIn extends PureComponent {
   constructor(props) {
@@ -53,7 +55,6 @@ class SignIn extends PureComponent {
   }
 
   render() {
-
     return (
       <div className="user-page">
         <header className="page-header user-page__head">
@@ -113,8 +114,10 @@ class SignIn extends PureComponent {
   }
 }
 
+
 SignIn.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
+
 
 export default SignIn;

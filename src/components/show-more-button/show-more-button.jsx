@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
+
 class ShowMoreButton extends PureComponent {
   constructor(props) {
     super(props);
@@ -25,8 +26,10 @@ class ShowMoreButton extends PureComponent {
   }
 }
 
+
 ShowMoreButton.propTypes = {
   onShowMoreButtonClick: PropTypes.func.isRequired,
 };
+
 
 export default ShowMoreButton;

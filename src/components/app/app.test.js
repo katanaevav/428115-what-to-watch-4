@@ -115,10 +115,11 @@ const MyMovies = [
     runTime: 190,
     bigPoster: `img/bohemian-rhapsody.jpg`,
     cover: `img/bohemian-rhapsody.jpg`,
-    ratingScore: 7.9,
     isFavorite: true,
+    ratingScore: 7.9,
     ratingCount: 284651,
     backgroundColor: `#AABBCC`,
+    video: ``,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
     directors: [`Брайан Сингер`],
     starrings: [`Рами Малек`, `Люси Бойнтон`, `Гвилим Ли`, `Бен Харди`, `Джозеф Маццелло`, `Эйдан Гиллен`, `Аллен Лич`, `Том Холландер`, `Майк Майерс`, `Аарон МакКаскер`],
@@ -147,7 +148,6 @@ it(`Render App with Main screen`, () => {
           currentGenreFilter = {NO_FILTER}
           onMovieFilterClick = {() => {}}
           onMovieTitleClick = {() => {}}
-          onAddReviewClick = {() => {}}
           movieComments = {[]}
           getComments = {() => {}}
           saveComment = {() => {}}

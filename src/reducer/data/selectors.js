@@ -1,9 +1,11 @@
 import NameSpace from "../name-space.js";
 import {NO_FILTER} from "../../const.js";
 
+
 const GENRES_START_ELEMENT = 0;
 const GEMRES_MAX_ELEMENTS = 9;
 const NAME_SPACE = NameSpace.DATA;
+
 
 export const getMovies = (state) => {
   return state[NAME_SPACE].movies;

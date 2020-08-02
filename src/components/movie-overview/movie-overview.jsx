@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
+
 class MovieOverview extends PureComponent {
   constructor(props) {
     super(props);
@@ -49,6 +50,7 @@ class MovieOverview extends PureComponent {
   }
 }
 
+
 MovieOverview.propTypes = {
   ratingScore: PropTypes.number.isRequired,
   ratingCount: PropTypes.number.isRequired,
@@ -56,5 +58,6 @@ MovieOverview.propTypes = {
   directors: PropTypes.arrayOf(PropTypes.string).isRequired,
   starrings: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
+
 
 export default MovieOverview;

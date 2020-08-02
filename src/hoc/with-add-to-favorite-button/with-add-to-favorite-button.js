@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import {SavingStatus, AppRoute, AuthorizationStatus} from "../../const.js";
 import history from "../../history.js";
 
+
 const withAddToFavoriteButton = (Component) => {
   class WithAddToFavoriteButton extends PureComponent {
     constructor(props) {
@@ -14,6 +15,20 @@ const withAddToFavoriteButton = (Component) => {
       };
 
       this._setSavingStatus = this._setSavingStatus.bind(this);
+      this._favoriteButtonClickHandler = this._favoriteButtonClickHandler.bind(this);
+    }
+
+    _favoriteButtonClickHandler() {
+      const {isFavorite} = this.state;
+
+      if (this.props.authorizationStatus === AuthorizationStatus.NO_AUTH) {
+        history.push(AppRoute.LOGIN);
+      } else {
+        this.props.setFavoriteStatus({
+          isFavorite: !isFavorite,
+          movieId: this.props.movieId,
+        }, this._setSavingStatus);
+      }
     }
 
     _setSavingStatus(response) {
@@ -47,22 +62,14 @@ const withAddToFavoriteButton = (Component) => {
             {...this.props}
             isFavorite = {isFavorite}
 
-            onFavoriteButtonClick = {() => {
-              if (this.props.authorizationStatus === AuthorizationStatus.NO_AUTH) {
-                history.push(AppRoute.LOGIN);
-              } else {
-                this.props.setFavoriteStatus({
-                  isFavorite: !isFavorite,
-                  movieId: this.props.movieId,
-                }, this._setSavingStatus);
-              }
-            }}
+            onFavoriteButtonClick = {this._favoriteButtonClickHandler}
           >
           </Component>
         </div>
       );
     }
   }
+
 
   WithAddToFavoriteButton.propTypes = {
     authorizationStatus: PropTypes.string.isRequired,
@@ -74,5 +81,6 @@ const withAddToFavoriteButton = (Component) => {
 
   return WithAddToFavoriteButton;
 };
+
 
 export default withAddToFavoriteButton;

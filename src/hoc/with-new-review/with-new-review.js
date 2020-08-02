@@ -4,6 +4,7 @@ import {SavingStatus} from "../../const.js";
 import history from "../../history.js";
 import {AppRoute} from "../../const.js";
 
+
 const withNewReview = (Component) => {
   class WithNewReview extends PureComponent {
     constructor(props) {
@@ -17,6 +18,8 @@ const withNewReview = (Component) => {
 
       this._enableForm = this._enableForm.bind(this);
       this._disableForm = this._disableForm.bind(this);
+      this._postButtonClickHandler = this._postButtonClickHandler.bind(this);
+      this._markChangeHandler = this._markChangeHandler.bind(this);
     }
 
     _enableForm() {
@@ -36,8 +39,26 @@ const withNewReview = (Component) => {
       });
     }
 
+    _postButtonClickHandler(reviewText) {
+      const {selectedMark} = this.state;
+      const {onSaveComment, movie} = this.props;
+      this._disableForm();
+
+      onSaveComment({
+        mark: selectedMark,
+        text: reviewText,
+        movieId: movie.id,
+      }, this._enableForm);
+    }
+
+    _markChangeHandler(evt) {
+      this.setState({
+        selectedMark: parseInt(evt.target.value, 10),
+      });
+    }
+
     render() {
-      const {disableForm, selectedMark, errorSaving} = this.state;
+      const {disableForm, errorSaving} = this.state;
       const pStyle = {
         margin: 0,
         marginLeft: `auto`,
@@ -59,27 +80,16 @@ const withNewReview = (Component) => {
 
             disableForm = {disableForm}
 
-            onPostButtonClick = {(reviewText) => {
-              this._disableForm();
+            onPostButtonClick = {this._postButtonClickHandler}
 
-              this.props.onSaveComment({
-                mark: selectedMark,
-                text: reviewText,
-                movieId: this.props.movie.id,
-              }, this._enableForm);
-            }}
-
-            onMarkChange = {(evt) => {
-              this.setState({
-                selectedMark: parseInt(evt.target.value, 10),
-              });
-            }}
+            onMarkChange = {this._markChangeHandler}
           >
           </Component>
         </div>
       );
     }
   }
+
 
   WithNewReview.propTypes = {
     movie: PropTypes.object.isRequired,
@@ -89,5 +99,6 @@ const withNewReview = (Component) => {
 
   return WithNewReview;
 };
+
 
 export default withNewReview;

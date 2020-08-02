@@ -3,6 +3,7 @@ import VideoPlayer from "../../components/video-player/video-player.jsx";
 import VideoProgress from "../../components/video-progress/video-progress.jsx";
 import VideoPlayButton from "../../components/video-play-button/video-play-button.jsx";
 
+
 const withCinemaVideoPlayer = (Component) => {
   class WithCinemaVideoPlayer extends PureComponent {
     constructor(props) {
@@ -119,9 +120,11 @@ const withCinemaVideoPlayer = (Component) => {
     }
   }
 
+
   WithCinemaVideoPlayer.propTypes = {};
 
   return WithCinemaVideoPlayer;
 };
+
 
 export default withCinemaVideoPlayer;

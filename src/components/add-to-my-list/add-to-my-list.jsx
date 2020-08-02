@@ -39,6 +39,7 @@ class AddToMyList extends PureComponent {
   }
 }
 
+
 AddToMyList.propTypes = {
   isFavorite: PropTypes.bool.isRequired,
   onButtonClick: PropTypes.func.isRequired,

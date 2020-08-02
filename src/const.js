@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 
+
 export const MOVIE_PROP_TYPE = PropTypes.shape({
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
@@ -18,6 +19,14 @@ export const MOVIE_PROP_TYPE = PropTypes.shape({
   descriptions: PropTypes.arrayOf(PropTypes.string).isRequired,
   backgroundColor: PropTypes.string.isRequired,
   isFavorite: PropTypes.bool.isRequired,
+});
+
+export const COMMENT_PROP_TYPE = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  date: PropTypes.number.isRequired,
+  mark: PropTypes.number.isRequired,
 });
 
 export const Url = {

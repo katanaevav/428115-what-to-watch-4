@@ -1,17 +1,21 @@
 import {AuthorizationStatus, Url, AppRoute} from "../../const.js";
 import {Operation as DataOperation} from "../data/data.js";
 
+
 const AUTH_ERROR_TEXT = `We can’t recognize this email and password combination. Please try again.`;
+
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   avatarUrl: ``,
 };
 
+
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   GET_USER_AVATAR: `GET_USER_AVATAR`,
 };
+
 
 const ActionCreator = {
   requireAuthorization: (status) => {
@@ -29,6 +33,7 @@ const ActionCreator = {
   },
 };
 
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.REQUIRED_AUTHORIZATION:
@@ -44,6 +49,7 @@ const reducer = (state = initialState, action) => {
 
   return state;
 };
+
 
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
@@ -75,6 +81,7 @@ const Operation = {
       });
   },
 };
+
 
 export {
   ActionCreator,

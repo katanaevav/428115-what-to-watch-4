@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import Logo from "../logo/logo.jsx";
 import UserBlock from "../user-block/user-block.jsx";
 import {Link} from 'react-router-dom';
-import {AppRoute} from "../../const.js";
+import {AppRoute, MOVIE_PROP_TYPE} from "../../const.js";
 
 
 class AddReview extends PureComponent {
@@ -117,13 +117,15 @@ class AddReview extends PureComponent {
   }
 }
 
+
 AddReview.propTypes = {
-  movie: PropTypes.object.isRequired,
+  movie: MOVIE_PROP_TYPE.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string,
   disableForm: PropTypes.bool.isRequired,
   onPostButtonClick: PropTypes.func.isRequired,
   onMarkChange: PropTypes.func.isRequired,
 };
+
 
 export default AddReview;

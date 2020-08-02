@@ -24,6 +24,7 @@ const ActionType = {
   UPDATE_MY_MOVIES: `UPDATE_MY_MOVIES`,
 };
 
+
 const ActionCreator = {
   loadMovies: (films) => {
     return {
@@ -88,6 +89,7 @@ const ActionCreator = {
     };
   },
 };
+
 
 const Operation = {
   loadMovies: (action) => (dispatch, getState, api) => {
@@ -169,6 +171,7 @@ const Operation = {
   },
 };
 
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.LOAD_MOVIES:
@@ -219,5 +222,6 @@ const reducer = (state = initialState, action) => {
 
   return state;
 };
+
 
 export {reducer, Operation, ActionType, ActionCreator};

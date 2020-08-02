@@ -40,4 +40,5 @@ store.dispatch(DataOperation.loadMovies(
             );
           }
       ));
-    }));
+    }
+));

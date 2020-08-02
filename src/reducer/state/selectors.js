@@ -1,7 +1,9 @@
 import NameSpace from "../name-space.js";
 import {NO_FILTER} from "../../const.js";
 
+
 const NAME_SPACE = NameSpace.STATE;
+
 
 export const getCurrentGenreFilter = (state) => {
   return state[NAME_SPACE].currentGenreFilter;

@@ -6,7 +6,7 @@ import MoviePage from "../movie-page/movie-page.jsx";
 import SignIn from "../sign-in/sign-in.jsx";
 import {connect} from "react-redux";
 import {ActionCreator} from "../../reducer/state/state.js";
-import {MAX_SIMILAR_MOVIES_COUNT, AppRoute, AuthorizationStatus, MOVIE_PROP_TYPE} from "../../const.js";
+import {MAX_SIMILAR_MOVIES_COUNT, AppRoute, AuthorizationStatus, MOVIE_PROP_TYPE, COMMENT_PROP_TYPE} from "../../const.js";
 import withMovieTabs from "../../hoc/with-movie-tabs/with-movie-tabs.js";
 import withNewReview from "../../hoc/with-new-review/with-new-review.js";
 import CinemaScreen from "../cinema-screen/cinema-screen.jsx";
@@ -24,7 +24,6 @@ import PrivateRoute from "../private-route/private-route.jsx";
 
 const CinemaScreenWrapped = withCinemaVideoPlayer(CinemaScreen);
 const AddReviewWrapped = withNewReview(AddReview);
-
 const MoviePageWrapper = withMovieTabs(MoviePage);
 
 
@@ -107,7 +106,7 @@ class App extends PureComponent {
             <Route
               path={AppRoute.FILMS + AppRoute.ID}
               render = {(props) => {
-                const {movieComments, onAddReviewClick} = this.props;
+                const {movieComments} = this.props;
                 const selectedMovie = this._getMovieById(props.match.params.id);
                 const {id, genre} = selectedMovie;
                 const similarMovies = movies.filter((movie) => (movie.genre === genre) && (movie.id !== id)).slice(0, MAX_SIMILAR_MOVIES_COUNT);
@@ -119,7 +118,6 @@ class App extends PureComponent {
                     movie={selectedMovie}
                     comments={movieComments}
                     similarMovies = {similarMovies}
-                    onAddReviewClick = {onAddReviewClick}
                     savingMovieFavoriteStatus = {savingMovieFavoriteStatus}
                     setFavoriteStatus = {setFavoriteStatus}
                     getComments = {this.props.getComments}
@@ -163,12 +161,11 @@ App.propTypes = {
   savingMovieFavoriteStatus: PropTypes.string,
   promoMovie: MOVIE_PROP_TYPE.isRequired,
   movies: PropTypes.arrayOf(MOVIE_PROP_TYPE).isRequired,
-  myMovies: PropTypes.array,
-  genres: PropTypes.array.isRequired,
+  myMovies: PropTypes.arrayOf(MOVIE_PROP_TYPE),
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   currentGenreFilter: PropTypes.string.isRequired,
   onMovieFilterClick: PropTypes.func.isRequired,
-  onAddReviewClick: PropTypes.func.isRequired,
-  movieComments: PropTypes.array,
+  movieComments: PropTypes.arrayOf(COMMENT_PROP_TYPE),
   getComments: PropTypes.func,
   saveComment: PropTypes.func,
   setFavoriteStatus: PropTypes.func,
@@ -202,10 +199,6 @@ const mapDispatchToProps = (dispatch) => ({
 
   login(authData, action) {
     dispatch(UserOperation.login(authData, action));
-  },
-
-  onAddReviewClick(movieId) {
-    dispatch(ActionCreator.openAddReview(movieId));
   },
 
   onMovieFilterClick(filterName) {

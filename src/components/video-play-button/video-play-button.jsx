@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
+
 class VideoPlayButton extends PureComponent {
   constructor(props) {
     super(props);
@@ -44,9 +45,11 @@ class VideoPlayButton extends PureComponent {
   }
 }
 
+
 VideoPlayButton.propTypes = {
   onPlayButtonClick: PropTypes.func.isRequired,
   isPlaying: PropTypes.bool.isRequired,
 };
+
 
 export default VideoPlayButton;

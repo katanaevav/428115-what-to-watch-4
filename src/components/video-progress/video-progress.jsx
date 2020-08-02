@@ -1,15 +1,16 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
+
 const SECONDS_IN_HOUR = 3600;
 const MINUTES_IN_HOUR = 60;
 const SECONDS_IN_MINUTE = 60;
 const MAX_DURATION_IN_PERCENT = 100;
 
+
 class VideoProgress extends PureComponent {
   constructor(props) {
     super(props);
-
   }
 
   _getDurationTime() {
@@ -41,9 +42,11 @@ class VideoProgress extends PureComponent {
   }
 }
 
+
 VideoProgress.propTypes = {
   currentProgress: PropTypes.number.isRequired,
   duration: PropTypes.number.isRequired,
 };
+
 
 export default VideoProgress;

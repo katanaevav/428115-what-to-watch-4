@@ -4,6 +4,7 @@ import {AuthorizationStatus} from "../../const.js";
 import {Link} from "react-router-dom";
 import {AppRoute} from "../../const.js";
 
+
 class UserBlock extends PureComponent {
   constructor(props) {
     super(props);
@@ -41,9 +42,11 @@ class UserBlock extends PureComponent {
   }
 }
 
+
 UserBlock.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string,
 };
+
 
 export default UserBlock;

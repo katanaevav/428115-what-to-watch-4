@@ -9,27 +9,23 @@ import UserBlock from "../user-block/user-block.jsx";
 import Logo from "../logo/logo.jsx";
 import withAddToFavoriteButton from "../../hoc/with-add-to-favorite-button/with-add-to-favorite-button.js";
 import MovieButtons from "../movie-buttons/movie-buttons.jsx";
-import {MOVIE_PROP_TYPE} from "../../const.js";
+import {MOVIE_PROP_TYPE, COMMENT_PROP_TYPE, Tabs} from "../../const.js";
+
 
 const MoviesListWrapper = withMoviesList(MoviesList);
 const MovieButtonsWrapper = withAddToFavoriteButton(MovieButtons);
 
-const Tabs = {
-  OVERVIEW_TAB: 0,
-  DETAILS_TAB: 1,
-  REVIEWS_TAB: 2,
-};
 
 class MoviePage extends PureComponent {
   constructor(props) {
     super(props);
 
-    this.props.getComments(this.props.movie.id);
+    const {getComments, movie} = this.props;
+
+    getComments(movie.id);
 
     this._renderTab = this._renderTab.bind(this);
-    this._addReviewClickHandler = this._addReviewClickHandler.bind(this);
   }
-
 
   _renderTab() {
     const {movie, currentTab, comments} = this.props;
@@ -65,13 +61,6 @@ class MoviePage extends PureComponent {
           />
         );
     }
-  }
-
-  _addReviewClickHandler() {
-    const {movie, onAddReviewClick} = this.props;
-    const {id} = movie;
-
-    onAddReviewClick(id);
   }
 
   render() {
@@ -157,18 +146,19 @@ class MoviePage extends PureComponent {
   }
 }
 
+
 MoviePage.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string,
   movie: MOVIE_PROP_TYPE.isRequired,
-  comments: PropTypes.array,
+  comments: PropTypes.arrayOf(COMMENT_PROP_TYPE),
   similarMovies: PropTypes.arrayOf(MOVIE_PROP_TYPE),
   renderTabs: PropTypes.func.isRequired,
   currentTab: PropTypes.number.isRequired,
-  onAddReviewClick: PropTypes.func.isRequired,
   savingMovieFavoriteStatus: PropTypes.string,
   setFavoriteStatus: PropTypes.func.isRequired,
   getComments: PropTypes.func.isRequired,
 };
+
 
 export default MoviePage;
