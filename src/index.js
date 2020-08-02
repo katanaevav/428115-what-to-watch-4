@@ -25,14 +25,21 @@ const store = createStore(
 );
 
 store.dispatch(UserOperation.checkAuth());
-store.dispatch(DataOperation.loadPromoMovie());
-store.dispatch(DataOperation.loadMovies());
+// store.dispatch(DataOperation.loadPromoMovie());
 store.dispatch(DataOperation.loadMyMovies());
+store.dispatch(DataOperation.loadMovies(() => {
+  ReactDOM.render(
+      <Provider store={store}>
+        <App />
+      </Provider>,
+      document.querySelector(`#root`)
+  );
+}));
 
 
-ReactDOM.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.querySelector(`#root`)
-);
+// ReactDOM.render(
+//     <Provider store={store}>
+//       <App />
+//     </Provider>,
+//     document.querySelector(`#root`)
+// );
