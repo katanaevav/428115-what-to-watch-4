@@ -36,14 +36,6 @@ export const NO_FULLSCREEN = false;
 
 export const TABS_NAMES = [`Overview`, `Details`, `Reviews`];
 
-export const Screens = {
-  MAIN_SCREEN: 0,
-  MOVIE_PAGE_SCREEN: 1,
-  CINEMA_SCREEN: 2,
-  AUTH_SCREEN: 3,
-  ADD_REVIEW_SCREEN: 4,
-};
-
 export const SavingStatus = {
   SUCCESS: `SUCCESS`,
   FAIL: `FAIL`,
@@ -74,7 +66,6 @@ export const AuthorizationStatus = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
 };
-
 
 export const AppRoute = {
   MY_LIST: `/mylist`,
