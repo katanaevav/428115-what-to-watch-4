@@ -29,17 +29,15 @@ store.dispatch(UserOperation.checkAuth(() => {
   store.dispatch(DataOperation.loadMyMovies());
 }));
 
-store.dispatch(DataOperation.loadMovies(
-    () => {
-      store.dispatch(DataOperation.loadPromoMovie(
-          () => {
-            ReactDOM.render(
-                <Provider store = {store}>
-                  <App />
-                </Provider>,
-                document.querySelector(`#root`)
-            );
-          }
-      ));
-    }
+store.dispatch(DataOperation.loadMovies(() => {
+  store.dispatch(DataOperation.loadPromoMovie(() => {
+    ReactDOM.render(
+        <Provider store = {store}>
+          <App />
+        </Provider>,
+        document.querySelector(`#root`)
+    );
+  }
+  ));
+}
 ));
