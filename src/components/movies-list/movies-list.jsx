@@ -4,6 +4,9 @@ import SmallMovieCard from "../small-movie-card/small-movie-card.jsx";
 import withSmallVideoPlayer from "../../hoc/with-small-video-player/with-small-video-player.js";
 import ShowMoreButton from "../show-more-button/show-more-button.jsx";
 import {DELAY_BEFORE_START_PREVIEW, MAX_RENDERED_MOVIES_AT_TIME, MOVIE_PROP_TYPE} from "../../const.js";
+import {connect} from "react-redux";
+import {getRenderedMoviesCount} from "../../reducer/state/selectors.js";
+import {ActionCreator} from "../../reducer/state/state.js";
 
 
 const SmallMovieCardWrapped = withSmallVideoPlayer(SmallMovieCard);
@@ -33,9 +36,9 @@ class MoviesList extends PureComponent {
   }
 
   _renderShowMoreButton() {
-    const {movies, renderedMoviesCount} = this.props;
+    const {movies, renderedMoviesCount, showAll} = this.props;
 
-    const buttonComponent = movies.length > (renderedMoviesCount) ?
+    const buttonComponent = movies.length > (renderedMoviesCount) && !showAll ?
       <ShowMoreButton
         onShowMoreButtonClick={this._showMoreButtonClickHandler}
       />
@@ -45,16 +48,16 @@ class MoviesList extends PureComponent {
   }
 
   _showMoreButtonClickHandler() {
-    const {movies, renderedMoviesCount, onShowMoreButtonClick} = this.props;
+    const {movies, renderedMoviesCount, setRenderedMoviesCount} = this.props;
     let newMoviesCount = movies.length < (renderedMoviesCount + MAX_RENDERED_MOVIES_AT_TIME) ? movies.length : renderedMoviesCount + MAX_RENDERED_MOVIES_AT_TIME;
 
-    onShowMoreButtonClick(newMoviesCount);
+    setRenderedMoviesCount(newMoviesCount);
   }
 
   render() {
-    const {movies, renderedMoviesCount} = this.props;
+    const {movies, renderedMoviesCount, showAll} = this.props;
 
-    const moviesToRender = movies.slice(0, renderedMoviesCount);
+    const moviesToRender = movies.slice(0, showAll ? movies.length : renderedMoviesCount);
     const movieCards = moviesToRender.map((movie) => (
       <SmallMovieCardWrapped
         key={movie.id}
@@ -82,8 +85,21 @@ class MoviesList extends PureComponent {
 MoviesList.propTypes = {
   movies: PropTypes.arrayOf(MOVIE_PROP_TYPE).isRequired,
   renderedMoviesCount: PropTypes.number.isRequired,
-  onShowMoreButtonClick: PropTypes.func.isRequired,
+  setRenderedMoviesCount: PropTypes.func.isRequired,
+  showAll: PropTypes.bool,
 };
 
 
-export default MoviesList;
+const mapStateToProps = (state) => ({
+  renderedMoviesCount: getRenderedMoviesCount(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setRenderedMoviesCount(moviesCount) {
+    dispatch(ActionCreator.setRenderedMoviesCount(moviesCount));
+  },
+});
+
+
+export {MoviesList};
+export default connect(mapStateToProps, mapDispatchToProps)(MoviesList);

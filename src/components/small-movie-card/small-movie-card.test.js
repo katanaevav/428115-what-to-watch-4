@@ -22,7 +22,6 @@ it(`Render small movie card`, () => {
           preview = {Movie.preview}
           onMovieMouseOver = {() => {}}
           onMovieMouseOut = {() => {}}
-          onMovieTitleClick = {() => {}}
           renderPlayer = {() => {}}
         />
       </Router>

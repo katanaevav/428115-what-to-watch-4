@@ -16,3 +16,7 @@ export const getFilteredMovies = (movies, filter) => {
 export const getAuthMessage = (state) => {
   return state[NAME_SPACE].authMessage;
 };
+
+export const getRenderedMoviesCount = (state) => {
+  return state[NAME_SPACE].renderedMoviesCount;
+};

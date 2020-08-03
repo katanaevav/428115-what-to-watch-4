@@ -4,6 +4,11 @@ import MyList from "./my-list.jsx";
 import {AuthorizationStatus} from "../../const.js";
 import {Router} from "react-router-dom";
 import history from "../../history.js";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+import NameSpace from "../../reducer/name-space.js";
+
+const mockStore = configureStore([]);
 
 const Movies = [
   {
@@ -47,14 +52,23 @@ const Movies = [
 ];
 
 it(`Render My list component`, () => {
+
+  const store = mockStore({
+    [NameSpace.STATE]: {
+      renderedMoviesCount: 2,
+    },
+  });
+
   const tree = renderer.create(
-      <Router history={history}>
-        <MyList
-          myMovies = {Movies}
-          authorizationStatus = {AuthorizationStatus.AUTH}
-          avatarUrl = {``}
-        />
-      </Router>, {
+      <Provider store={store}>
+        <Router history={history}>
+          <MyList
+            myMovies = {Movies}
+            authorizationStatus = {AuthorizationStatus.AUTH}
+            avatarUrl = {``}
+          />
+        </Router>
+      </Provider>, {
         createNodeMock: () => {
           return {};
         }

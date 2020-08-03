@@ -76,34 +76,6 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-it(`Should movie header be pressed`, () => {
-  const onMovieTitleClick = jest.fn();
-
-  const main = shallow(
-      <Main
-        authorizationStatus = {AuthorizationStatus.NO_AUTH}
-        avatarUrl = {``}
-        promoMovie = {PromoMovie}
-        genres = {GENRES}
-        movies = {Movies}
-        onMovieTitleClick = {onMovieTitleClick}
-        currentGenreFilter = {NO_FILTER}
-        onMovieFilterClick = {() => {}}
-        onPlayMovieClick = {() => {}}
-        savingMovieFavoriteStatus = {``}
-        setFavoriteStatus = {() => {}}
-      />
-  );
-
-  const movieHeaders = main.find(`a.small-movie-card__link`);
-
-  movieHeaders.forEach((movieHeader, index) => {
-    movieHeader.props().onClick();
-    expect(onMovieTitleClick.mock.calls.length).toBe(index + 1);
-  });
-});
-
-
 it(`Should filter be pressed`, () => {
   const onMovieFilterClick = jest.fn();
 
@@ -114,7 +86,6 @@ it(`Should filter be pressed`, () => {
         promoMovie = {PromoMovie}
         genres = {GENRES}
         movies = {Movies}
-        onMovieTitleClick = {() => {}}
         currentGenreFilter = {NO_FILTER}
         onMovieFilterClick = {onMovieFilterClick}
         onPlayMovieClick = {() => {}}

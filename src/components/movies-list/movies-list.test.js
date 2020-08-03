@@ -3,6 +3,11 @@ import renderer from "react-test-renderer";
 import MoviesList from "./movies-list.jsx";
 import {Router} from "react-router-dom";
 import history from "../../history.js";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+import NameSpace from "../../reducer/name-space.js";
+
+const mockStore = configureStore([]);
 
 const Movies = [
   {
@@ -206,15 +211,22 @@ const Movies = [
 ];
 
 it(`Render MoviesList without Show more button`, () => {
+
+  const store = mockStore({
+    [NameSpace.STATE]: {
+      renderedMoviesCount: 8,
+    },
+  });
+
   const tree = renderer.create(
-      <Router history={history}>
-        <MoviesList
-          movies = {Movies.splice(0, 7)}
-          renderedMoviesCount = {8}
-          onShowMoreButtonClick = {() => {}}
-        >
-        </MoviesList>
-      </Router>, {
+      <Provider store={store}>
+        <Router history={history}>
+          <MoviesList
+            movies = {Movies.splice(0, 7)}
+          >
+          </MoviesList>
+        </Router>
+      </Provider>, {
         createNodeMock: () => {
           return {};
         }
@@ -225,14 +237,47 @@ it(`Render MoviesList without Show more button`, () => {
 });
 
 it(`Render MoviesList with Show more button`, () => {
+
+  const store = mockStore({
+    [NameSpace.STATE]: {
+      renderedMoviesCount: 8,
+    },
+  });
+
   const tree = renderer.create(
-      <Router history={history}>
-        <MoviesList
-          movies = {Movies}
-          renderedMoviesCount = {8}
-          onShowMoreButtonClick = {() => {}}
-        />
-      </Router>, {
+      <Provider store={store}>
+        <Router history={history}>
+          <MoviesList
+            movies = {Movies}
+          />
+        </Router>
+      </Provider>, {
+        createNodeMock: () => {
+          return {};
+        }
+      }
+  ).toJSON();
+
+  expect(tree).toMatchSnapshot();
+});
+
+it(`Render MoviesList with all movies withoutShow more button`, () => {
+
+  const store = mockStore({
+    [NameSpace.STATE]: {
+      renderedMoviesCount: 8,
+    },
+  });
+
+  const tree = renderer.create(
+      <Provider store={store}>
+        <Router history={history}>
+          <MoviesList
+            movies = {Movies}
+            showAll = {true}
+          />
+        </Router>
+      </Provider>, {
         createNodeMock: () => {
           return {};
         }
