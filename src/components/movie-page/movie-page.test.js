@@ -66,10 +66,10 @@ it(`Render MoviePage`, () => {
   });
 
   const tree = renderer.create(
-      <Provider store={store}>
-        <Router history={history}>
+      <Provider store = {store}>
+        <Router history = {history}>
           <MoviePage
-            authorizationStatus={AuthorizationStatus.NO_AUTH}
+            authorizationStatus = {AuthorizationStatus.NO_AUTH}
             avatarUrl = {``}
             movie = {Movies[0]}
             comments = {[]}

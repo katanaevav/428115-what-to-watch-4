@@ -25,14 +25,14 @@ class GenreList extends PureComponent {
           genres.map((genre) => {
             return (
               <li
-                key={genre}
-                className={`catalog__genres-item ${currentGenre === genre ? `catalog__genres-item--active` : ``}`}
+                key = {genre}
+                className = {`catalog__genres-item ${currentGenre === genre ? `catalog__genres-item--active` : ``}`}
               >
                 <a
-                  data-key={genre}
+                  data-key = {genre}
                   href="#"
                   className="catalog__genres-link"
-                  onClick={this._genreClickHandler}
+                  onClick = {this._genreClickHandler}
                 >
                   {genre}
                 </a>

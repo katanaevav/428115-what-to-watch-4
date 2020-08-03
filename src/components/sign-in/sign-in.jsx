@@ -66,34 +66,34 @@ class SignIn extends PureComponent {
 
         <div className="sign-in user-page__content">
           <div className="sign-in__message">
-            <p ref={this.messageRef}></p>
+            <p ref = {this.messageRef}></p>
           </div>
           <form
             action=""
             className="sign-in__form"
           >
             <div className="sign-in__fields">
-              <div ref={this.emailContainerRef} className="sign-in__field">
+              <div ref = {this.emailContainerRef} className="sign-in__field">
                 <input
                   className="sign-in__input"
                   type="email"
                   placeholder="Email address"
                   name="user-email"
                   id="user-email"
-                  ref={this.emailRef}
-                  onInput={this._emailInputChageHandler}
+                  ref = {this.emailRef}
+                  onInput = {this._emailInputChageHandler}
                 />
                 <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
               </div>
               <div className="sign-in__field">
-                <input className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" ref={this.passwordRef} />
+                <input className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" ref = {this.passwordRef} />
                 <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
               </div>
             </div>
             <div className="sign-in__submit">
               <button
                 className="sign-in__btn"
-                onClick={this._submitHandler}
+                onClick = {this._submitHandler}
               >Sign in</button>
             </div>
           </form>

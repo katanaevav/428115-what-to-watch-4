@@ -7,9 +7,9 @@ import history from "../../history.js";
 
 it(`SignIn component render correctly`, () => {
   const tree = renderer.create(
-      <Router history={history}>
+      <Router history = {history}>
         <SignIn
-          onSubmit={() => {}}
+          onSubmit = {() => {}}
         />
       </Router>
   ).toJSON();

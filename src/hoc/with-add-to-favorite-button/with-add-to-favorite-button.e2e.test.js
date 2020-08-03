@@ -11,7 +11,7 @@ const AddReview = (props) => {
   const {setFavoriteStatus} = props;
   return (
     <div>
-      <button onClick={setFavoriteStatus} />
+      <button onClick = {setFavoriteStatus} />
     </div>
   );
 };

@@ -18,13 +18,13 @@ const withSmallVideoPlayer = (Component) => {
       return <Component
         {...this.props}
 
-        renderPlayer={(preview, poster, onMovieMouseOver, onMovieMouseOut) => {
+        renderPlayer = {(preview, poster, onMovieMouseOver, onMovieMouseOut) => {
           const {isPlaying, isPaused} = this.state;
 
           return (
             <div
               className="small-movie-card__image"
-              onMouseOver={() => {
+              onMouseOver = {() => {
                 onMovieMouseOver(() => {
                   this.setState({
                     isPlaying: true,
@@ -33,7 +33,7 @@ const withSmallVideoPlayer = (Component) => {
                 });
               }}
 
-              onMouseOut={() => {
+              onMouseOut = {() => {
                 onMovieMouseOut(() => {
                   this.setState({
                     isPlaying: false,
@@ -43,14 +43,14 @@ const withSmallVideoPlayer = (Component) => {
               }}
             >
               <VideoPlayer
-                poster={poster}
-                src={preview}
-                volume={MIN_VOLUME}
-                isPlaying={isPlaying}
-                isPaused={isPaused}
-                onUpdateTime={() => {}}
-                onSetFullScreen={() => {}}
-                isFullScreen={NO_FULLSCREEN}
+                poster = {poster}
+                src = {preview}
+                volume = {MIN_VOLUME}
+                isPlaying = {isPlaying}
+                isPaused = {isPaused}
+                onUpdateTime = {() => {}}
+                onSetFullScreen = {() => {}}
+                isFullScreen = {NO_FULLSCREEN}
               />
             </div>
           );

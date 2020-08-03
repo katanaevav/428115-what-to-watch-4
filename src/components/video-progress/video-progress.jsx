@@ -33,8 +33,8 @@ class VideoProgress extends PureComponent {
     return (
       <div className="player__controls-row">
         <div className="player__time">
-          <progress className="player__progress" value={this._getCurrentProgress()} max="100"></progress>
-          <div className="player__toggler" style={{left: `${this._getCurrentProgress()}%`}}>Toggler</div>
+          <progress className="player__progress" value = {this._getCurrentProgress()} max="100"></progress>
+          <div className="player__toggler" style = {{left: `${this._getCurrentProgress()}%`}}>Toggler</div>
         </div>
         <div className="player__time-value">{this._getDurationTime()}</div>
       </div>

@@ -72,47 +72,47 @@ const withCinemaVideoPlayer = (Component) => {
       return <Component
         {...this.props}
 
-        onFullScreenButtonClick={() => {
+        onFullScreenButtonClick = {() => {
           this.setState({
             isFullScreen: true,
           });
         }}
 
-        renderPlayer={(movie, poster) => {
+        renderPlayer = {(movie, poster) => {
           const {isPlaying, isPaused, isFullScreen} = this.state;
 
           return (
             <VideoPlayer
-              poster={poster}
-              src={movie}
-              volume={1.0}
-              isPlaying={isPlaying}
-              isPaused={isPaused}
-              onUpdateTime={this._updateTimeHandler}
-              onSetFullScreen={this._setFullScreenHandler}
-              isFullScreen={isFullScreen}
+              poster = {poster}
+              src = {movie}
+              volume = {1.0}
+              isPlaying = {isPlaying}
+              isPaused = {isPaused}
+              onUpdateTime = {this._updateTimeHandler}
+              onSetFullScreen = {this._setFullScreenHandler}
+              isFullScreen = {isFullScreen}
             />
           );
         }}
 
-        renderPlayButton={() => {
+        renderPlayButton = {() => {
           const {isPlaying} = this.state;
 
           return (
             <VideoPlayButton
-              onPlayButtonClick={this._playButtonClickHandler}
-              isPlaying={isPlaying}
+              onPlayButtonClick = {this._playButtonClickHandler}
+              isPlaying = {isPlaying}
             />
           );
         }}
 
-        renderProgress={() => {
+        renderProgress = {() => {
           const {progress, duration} = this.state;
 
           return (
             <VideoProgress
-              currentProgress={isNaN(progress) ? 0 : progress}
-              duration={isNaN(duration) ? 0 : duration}
+              currentProgress = {isNaN(progress) ? 0 : progress}
+              duration = {isNaN(duration) ? 0 : duration}
             />
           );
         }}

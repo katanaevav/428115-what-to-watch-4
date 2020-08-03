@@ -97,6 +97,9 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.loadMovies(createMovies(response.data)));
         action();
+      })
+      .catch((err) => {
+        throw err;
       });
   },
 
@@ -105,6 +108,9 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.loadPromoMovie(createMovie(response.data)));
         action();
+      })
+      .catch((err) => {
+        throw err;
       });
   },
 
@@ -112,6 +118,9 @@ const Operation = {
     return api.get(AppRoute.FAVORITE)
       .then((response) => {
         dispatch(ActionCreator.loadMyMovies(createMovies(response.data)));
+      })
+      .catch((err) => {
+        throw err;
       });
   },
 
@@ -119,6 +128,9 @@ const Operation = {
     return api.get(`${AppRoute.COMMENTS}/${movieId}`)
       .then((response) => {
         dispatch(ActionCreator.loadMovieComments(createComments(response.data)));
+      })
+      .catch((err) => {
+        throw err;
       });
   },
 

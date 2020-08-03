@@ -13,10 +13,10 @@ const Movie = {
 
 it(`Render small movie card`, () => {
   const tree = renderer.create(
-      <Router history={history}>
+      <Router history = {history}>
         <SmallMovieCard
           key = {Movie.id}
-          movieId={Movie.id}
+          movieId = {Movie.id}
           movieTitle = {Movie.title}
           movieSmallPoster = {Movie.smallPoster}
           preview = {Movie.preview}

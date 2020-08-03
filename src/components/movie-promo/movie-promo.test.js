@@ -15,9 +15,9 @@ const Movie = {
 
 it(`Render promo movie section`, () => {
   const tree = renderer.create(
-      <Router history={history}>
+      <Router history = {history}>
         <MoviePromo
-          authorizationStatus={AuthorizationStatus.NO_AUTH}
+          authorizationStatus = {AuthorizationStatus.NO_AUTH}
           promoMovieTitle = {Movie.title}
           movieId = {1}
           avatarUrl = {``}

@@ -7,7 +7,7 @@ import history from "../../history.js";
 
 it(`Should MovieButtons component render correctly`, () => {
   const tree = renderer.create(
-      <Router history={history}>
+      <Router history = {history}>
         <MovieButtons
           isMainScreen = {false}
           movieId = {1}
@@ -27,7 +27,7 @@ it(`Should MovieButtons component render correctly`, () => {
 
 it(`Should MovieButtons component render correctly for main screen`, () => {
   const tree = renderer.create(
-      <Router history={history}>
+      <Router history = {history}>
         <MovieButtons
           isMainScreen = {true}
           movieId = {1}

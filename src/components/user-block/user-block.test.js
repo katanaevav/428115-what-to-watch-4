@@ -7,9 +7,9 @@ import history from "../../history.js";
 
 it(`Render user block element for not authorized user`, () => {
   const tree = renderer.create(
-      <Router history={history}>
+      <Router history = {history}>
         <UserBlock
-          authorizationStatus={AuthorizationStatus.NO_AUTH}
+          authorizationStatus = {AuthorizationStatus.NO_AUTH}
           avatarUrl = {``}
         />
       </Router>
@@ -20,9 +20,9 @@ it(`Render user block element for not authorized user`, () => {
 
 it(`Render user block element for authorized user`, () => {
   const tree = renderer.create(
-      <Router history={history}>
+      <Router history = {history}>
         <UserBlock
-          authorizationStatus={AuthorizationStatus.AUTH}
+          authorizationStatus = {AuthorizationStatus.AUTH}
           avatarUrl = {``}
         />
       </Router>

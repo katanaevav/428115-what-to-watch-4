@@ -30,7 +30,7 @@ const Movie = {
 
 it(`Render cinema screen`, () => {
   const tree = renderer.create(
-      <Router history={history}>
+      <Router history = {history}>
         <AddReview
           movie = {Movie}
           authorizationStatus = {AuthorizationStatus.AUTH}

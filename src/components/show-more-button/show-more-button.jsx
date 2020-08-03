@@ -19,7 +19,7 @@ class ShowMoreButton extends PureComponent {
         <button
           className="catalog__button"
           type="button"
-          onClick={this._showMoreButtonClickHandler}
+          onClick = {this._showMoreButtonClickHandler}
         >Show more</button>
       </div>
     );
