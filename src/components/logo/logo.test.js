@@ -6,7 +6,7 @@ import history from "../../history.js";
 
 it(`Render logo element`, () => {
   const tree = renderer.create(
-      <Router history= {history}>
+      <Router history = {history}>
         <Logo
           isMainScreen = {false}
         />
@@ -18,7 +18,7 @@ it(`Render logo element`, () => {
 
 it(`Render logo element with light modify`, () => {
   const tree = renderer.create(
-      <Router history= {history}>
+      <Router history = {history}>
         <Logo
           light = {true}
           isMainScreen = {false}

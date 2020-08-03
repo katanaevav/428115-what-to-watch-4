@@ -34,7 +34,7 @@ store.dispatch(DataOperation.loadMovies(
       store.dispatch(DataOperation.loadPromoMovie(
           () => {
             ReactDOM.render(
-                <Provider store={store}>
+                <Provider store = {store}>
                   <App />
                 </Provider>,
                 document.querySelector(`#root`)

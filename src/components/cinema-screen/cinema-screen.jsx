@@ -23,7 +23,7 @@ class CinemaScreen extends PureComponent {
       <div className="player">
         {renderPlayer(video, cover)}
 
-        <button type="button" className="player__exit" onClick= {onExitVideoPlayer}>Exit</button>
+        <button type="button" className="player__exit" onClick = {onExitVideoPlayer}>Exit</button>
 
         <div className="player__controls">
           {renderProgress()}
@@ -34,7 +34,7 @@ class CinemaScreen extends PureComponent {
 
             <div className="player__name">{title}</div>
 
-            <button type="button" className="player__full-screen" onClick= {this._fullScreenButtonClickHandler}>
+            <button type="button" className="player__full-screen" onClick = {this._fullScreenButtonClickHandler}>
               <svg viewBox="0 0 27 27" width="27" height="27">
                 <use xlinkHref="/sprite.svg#full-screen"></use>
               </svg>

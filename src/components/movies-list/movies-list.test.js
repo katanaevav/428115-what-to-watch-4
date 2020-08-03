@@ -219,8 +219,8 @@ it(`Render MoviesList without Show more button`, () => {
   });
 
   const tree = renderer.create(
-      <Provider store= {store}>
-        <Router history= {history}>
+      <Provider store = {store}>
+        <Router history = {history}>
           <MoviesList
             movies = {Movies.splice(0, 7)}
           >
@@ -245,8 +245,8 @@ it(`Render MoviesList with Show more button`, () => {
   });
 
   const tree = renderer.create(
-      <Provider store= {store}>
-        <Router history= {history}>
+      <Provider store = {store}>
+        <Router history = {history}>
           <MoviesList
             movies = {Movies}
           />
@@ -270,8 +270,8 @@ it(`Render MoviesList with all movies withoutShow more button`, () => {
   });
 
   const tree = renderer.create(
-      <Provider store= {store}>
-        <Router history= {history}>
+      <Provider store = {store}>
+        <Router history = {history}>
           <MoviesList
             movies = {Movies}
             showAll = {true}

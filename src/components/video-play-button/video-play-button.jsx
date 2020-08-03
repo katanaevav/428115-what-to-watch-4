@@ -37,7 +37,7 @@ class VideoPlayButton extends PureComponent {
       <button
         type="button"
         className="player__play"
-        onClick= {onPlayButtonClick}
+        onClick = {onPlayButtonClick}
       >
         {this._renderPlayButton(isPlaying)}
       </button>

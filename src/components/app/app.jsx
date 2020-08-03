@@ -57,9 +57,9 @@ class App extends PureComponent {
 
     if (movies.length && myMovies.length >= 0 && promoMovie) {
       return (
-        <Router history= {history}>
+        <Router history = {history}>
           <Switch>
-            <Route exact path= {AppRoute.ROOT}>
+            <Route exact path = {AppRoute.ROOT}>
               <Main
                 authorizationStatus = {authorizationStatus}
                 avatarUrl = {avatarUrl}
@@ -73,18 +73,18 @@ class App extends PureComponent {
               />
             </Route>
 
-            <Route exact path= {AppRoute.LOGIN}>
+            <Route exact path = {AppRoute.LOGIN}>
               {authorizationStatus === AuthorizationStatus.NO_AUTH ?
                 <SignIn
-                  onSubmit= {login}
+                  onSubmit = {login}
                 /> :
-                <Redirect to= {AppRoute.ROOT} />}
+                <Redirect to = {AppRoute.ROOT} />}
             </Route>
 
             <PrivateRoute
               exact
-              path= {AppRoute.MY_LIST}
-              render= {() => {
+              path = {AppRoute.MY_LIST}
+              render = {() => {
                 return (
                   <MyList
                     myMovies = {myMovies}
@@ -96,15 +96,15 @@ class App extends PureComponent {
             />
 
             <PrivateRoute
-              path= {AppRoute.FILMS + AppRoute.ID + AppRoute.ADD_REVIEW}
+              path = {AppRoute.FILMS + AppRoute.ID + AppRoute.ADD_REVIEW}
               exact
-              render= {(props) => {
+              render = {(props) => {
                 const selectedMovie = this._getMovieById(props.computedMatch.params.id);
                 const {saveComment, savingMovieCommentStatus} = this.props;
 
                 return (
                   <AddReviewWrapped
-                    movie= {selectedMovie}
+                    movie = {selectedMovie}
                     authorizationStatus = {authorizationStatus}
                     avatarUrl = {avatarUrl}
                     onSaveComment = {saveComment}
@@ -116,7 +116,7 @@ class App extends PureComponent {
             />
 
             <Route
-              path= {AppRoute.FILMS + AppRoute.ID}
+              path = {AppRoute.FILMS + AppRoute.ID}
               render = {(props) => {
                 const {movieComments} = this.props;
                 const selectedMovie = this._getMovieById(props.match.params.id);
@@ -127,8 +127,8 @@ class App extends PureComponent {
                   <MoviePageWrapper
                     authorizationStatus = {authorizationStatus}
                     avatarUrl = {avatarUrl}
-                    movie= {selectedMovie}
-                    comments= {movieComments}
+                    movie = {selectedMovie}
+                    comments = {movieComments}
                     similarMovies = {similarMovies}
                     savingMovieFavoriteStatus = {savingMovieFavoriteStatus}
                     setFavoriteStatus = {setFavoriteStatus}
@@ -139,13 +139,13 @@ class App extends PureComponent {
             />
 
             <Route
-              path= {AppRoute.PLAYER + AppRoute.ID}
+              path = {AppRoute.PLAYER + AppRoute.ID}
               render = {
                 (props) => {
                   return (
                     <CinemaScreenWrapped
                       movie = {this._getMovieById(props.match.params.id)}
-                      onExitVideoPlayer= {() => {
+                      onExitVideoPlayer = {() => {
                         history.goBack();
                       }}
                       {...props}

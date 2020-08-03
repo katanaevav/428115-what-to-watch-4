@@ -27,7 +27,7 @@ const MoviePromo = (props) => {
   return (
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src= {cover} alt= {promoMovieTitle} />
+        <img src = {cover} alt = {promoMovieTitle} />
       </div>
       <h1 className="visually-hidden">WTW</h1>
       <header className="page-header movie-card__head">
@@ -42,7 +42,7 @@ const MoviePromo = (props) => {
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src= {bigPoster} alt= {promoMovieTitle} width="218" height="327" />
+            <img src = {bigPoster} alt = {promoMovieTitle} width="218" height="327" />
           </div>
           <div className="movie-card__desc">
             <h2 className="movie-card__title">{promoMovieTitle}</h2>

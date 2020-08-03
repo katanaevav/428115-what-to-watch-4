@@ -17,11 +17,11 @@ const props = {
 describe(`Should Private Route works correctly`, () => {
   it(`Private Route should render component with authenticated user`, () => {
     const wrapper = Enzyme.mount(
-        <MemoryRouter initialEntries= {[props.path]}>
+        <MemoryRouter initialEntries = {[props.path]}>
           <PrivateRoute
             exact
-            authorizationStatus= {AuthorizationStatus.AUTH}
-            path= {props.path}
+            authorizationStatus = {AuthorizationStatus.AUTH}
+            path = {props.path}
             render = {() => {
               return (
                 <MockComponent />
@@ -37,11 +37,11 @@ describe(`Should Private Route works correctly`, () => {
 
   it(`Private Route should redirect to Login screen if user is not authenticated`, () => {
     const wrapper = Enzyme.mount(
-        <MemoryRouter initialEntries= {[props.path]}>
+        <MemoryRouter initialEntries = {[props.path]}>
           <PrivateRoute
             exact
-            authorizationStatus= {AuthorizationStatus.NO_AUTH}
-            path= {props.path}
+            authorizationStatus = {AuthorizationStatus.NO_AUTH}
+            path = {props.path}
             render = {() => {
               return (
                 <MockComponent />

@@ -74,7 +74,7 @@ const withNewReview = (Component) => {
 
       return (
         <div>
-          {errorSaving === SavingStatus.FAIL ? <p style= {pStyle}>{`Can't save review to this movie! Please? try again later.`}</p> : ``}
+          {errorSaving === SavingStatus.FAIL ? <p style = {pStyle}>{`Can't save review to this movie! Please? try again later.`}</p> : ``}
           <Component
             {...this.props}
 

@@ -139,10 +139,10 @@ it(`Render App with Main screen`, () => {
   });
 
   const tree = renderer.create(
-      <Provider store= {store}>
+      <Provider store = {store}>
         <App
-          authorizationStatus= {AuthorizationStatus.NO_AUTH}
-          login= {() => {}}
+          authorizationStatus = {AuthorizationStatus.NO_AUTH}
+          login = {() => {}}
           avatarUrl = {``}
           savingMovieCommentStatus = {SavingStatus.SUCCESS}
           savingMovieFavoriteStatus = {SavingStatus.SUCCESS}

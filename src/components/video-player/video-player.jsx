@@ -57,9 +57,9 @@ class VideoPlayer extends PureComponent {
     return (
       <video
         className="player__video"
-        poster= {poster}
+        poster = {poster}
         preload="metadata"
-        ref= {this._videoRef}
+        ref = {this._videoRef}
       >
       </video>
     );

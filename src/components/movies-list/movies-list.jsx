@@ -40,7 +40,7 @@ class MoviesList extends PureComponent {
 
     const buttonComponent = movies.length > (renderedMoviesCount) && !showAll ?
       <ShowMoreButton
-        onShowMoreButtonClick= {this._showMoreButtonClickHandler}
+        onShowMoreButtonClick = {this._showMoreButtonClickHandler}
       />
       : ``;
 
@@ -60,13 +60,13 @@ class MoviesList extends PureComponent {
     const moviesToRender = movies.slice(0, showAll ? movies.length : renderedMoviesCount);
     const movieCards = moviesToRender.map((movie) => (
       <SmallMovieCardWrapped
-        key= {movie.id}
-        movieId= {movie.id}
-        movieTitle= {movie.title}
-        movieSmallPoster= {movie.smallPoster}
-        preview= {movie.preview}
-        onMovieMouseOver= {this._movieMouseOverHandler}
-        onMovieMouseOut= {this._movieMouseOutHandler}
+        key = {movie.id}
+        movieId = {movie.id}
+        movieTitle = {movie.title}
+        movieSmallPoster = {movie.smallPoster}
+        preview = {movie.preview}
+        onMovieMouseOver = {this._movieMouseOverHandler}
+        onMovieMouseOut = {this._movieMouseOutHandler}
       />
     ));
 

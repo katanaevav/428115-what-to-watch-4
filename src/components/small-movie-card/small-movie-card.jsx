@@ -10,14 +10,14 @@ const SmallMovieCard = (props) => {
   return (
     <article
       className="small-movie-card catalog__movies-card"
-      data-key= {movieId}
+      data-key = {movieId}
     >
       {renderPlayer(preview, movieSmallPoster, onMovieMouseOver, onMovieMouseOut)}
       <h3 className="small-movie-card__title">
         <Link
           className="small-movie-card__link"
           href="movie-page.html"
-          to= {`${AppRoute.FILMS}/${movieId}`}
+          to = {`${AppRoute.FILMS}/${movieId}`}
         >
           {movieTitle}
         </Link>

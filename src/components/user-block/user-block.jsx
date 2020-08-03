@@ -15,8 +15,8 @@ class UserBlock extends PureComponent {
 
     return (
       <div className="user-block__avatar">
-        <Link to= {AppRoute.MY_LIST}>
-          <img src= {avatarUrl} alt="User avatar" width="63" height="63" />
+        <Link to = {AppRoute.MY_LIST}>
+          <img src = {avatarUrl} alt="User avatar" width="63" height="63" />
         </Link>
       </div>
     );
@@ -26,7 +26,7 @@ class UserBlock extends PureComponent {
     return (
       <Link
         className="user-block__link"
-        to= {AppRoute.LOGIN}
+        to = {AppRoute.LOGIN}
       >Sign in</Link>
     );
   }
