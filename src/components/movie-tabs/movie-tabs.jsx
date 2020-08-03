@@ -24,13 +24,13 @@ class MovieTabs extends PureComponent {
           {
             TABS_NAMES.map((movieTab, index) => {
               return (
-                <li key={movieTab}
-                  className={`movie-nav__item ${currentTab === index ? `movie-nav__item--active` : ``}`}>
+                <li key= {movieTab}
+                  className= {`movie-nav__item ${currentTab === index ? `movie-nav__item--active` : ``}`}>
                   <a
-                    data-key={index}
+                    data-key= {index}
                     href="#"
                     className="movie-nav__link"
-                    onClick={this._movieTabClickHandler}
+                    onClick= {this._movieTabClickHandler}
                   >
                     {movieTab}
                   </a>

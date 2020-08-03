@@ -25,8 +25,9 @@ const store = createStore(
     )
 );
 
-store.dispatch(UserOperation.checkAuth());
-store.dispatch(DataOperation.loadMyMovies());
+store.dispatch(UserOperation.checkAuth(() => {
+  store.dispatch(DataOperation.loadMyMovies());
+}));
 
 store.dispatch(DataOperation.loadMovies(
     () => {

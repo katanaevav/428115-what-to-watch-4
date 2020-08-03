@@ -30,7 +30,7 @@ class MovieDetails extends PureComponent {
               <span className="movie-card__details-value">
                 {starrings.map((starring, index) => {
                   return (
-                    <React.Fragment key={starring}>
+                    <React.Fragment key= {starring}>
                       {starring}{index < starrings.length - 1 ? <br /> : ``}
                     </React.Fragment>
                   );

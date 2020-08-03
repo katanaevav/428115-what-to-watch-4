@@ -13,7 +13,7 @@ const Review = (props) => {
   const {onSaveComment} = props;
   return (
     <div>
-      <button onClick={onSaveComment} />
+      <button onClick= {onSaveComment} />
     </div>
   );
 };

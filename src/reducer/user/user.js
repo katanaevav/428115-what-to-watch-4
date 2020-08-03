@@ -52,12 +52,12 @@ const reducer = (state = initialState, action) => {
 
 
 const Operation = {
-  checkAuth: () => (dispatch, getState, api) => {
+  checkAuth: (action) => (dispatch, getState, api) => {
     return api.get(AppRoute.LOGIN)
       .then((result) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.getUserAvatar(Url.START_URL + result.data.avatar_url));
-
+        action();
       })
       .catch((err) => {
         throw err;
@@ -70,10 +70,11 @@ const Operation = {
       password: authData.password,
     })
       .then((result) => {
-        dispatch(DataOperation.loadMyMovies());
-        dispatch(DataOperation.loadMovies(()=>{}));
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
         dispatch(ActionCreator.getUserAvatar(Url.START_URL + result.data.avatar_url));
+        dispatch(DataOperation.loadPromoMovie(() => {}));
+        dispatch(DataOperation.loadMyMovies());
+        dispatch(DataOperation.loadMovies(() => {}));
       })
       .catch((err) => {
         action(AUTH_ERROR_TEXT);

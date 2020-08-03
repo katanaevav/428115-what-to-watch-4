@@ -12,8 +12,8 @@ it(`Should mouse over event work`, () => {
   const onMovieMouseOver = jest.fn();
 
   const wrapper = shallow(<MockComponentWrapped
-    onMouseOver={onMovieMouseOver}
-    onMouseOut={() => {}}
+    onMouseOver= {onMovieMouseOver}
+    onMouseOut= {() => {}}
   />);
 
   wrapper.simulate(`mouseover`, {});
@@ -25,8 +25,8 @@ it(`Should mouse out event work`, () => {
   const onMovieMouseOut = jest.fn();
 
   const wrapper = shallow(<MockComponentWrapped
-    onMouseOver={() => {}}
-    onMouseOut={onMovieMouseOut}
+    onMouseOver= {() => {}}
+    onMouseOut= {onMovieMouseOut}
   />);
 
   wrapper.simulate(`mouseout`, {});

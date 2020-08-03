@@ -39,7 +39,7 @@ class MovieOverview extends PureComponent {
         </div>
 
         <div className="movie-card__text">
-          {descriptions.map((description) => (<p key={description}>{description}</p>))}
+          {descriptions.map((description) => (<p key= {description}>{description}</p>))}
 
           <p className="movie-card__director"><strong>Director: {directors.join(`, `)}</strong></p>
 

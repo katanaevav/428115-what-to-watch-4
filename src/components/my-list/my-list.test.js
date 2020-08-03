@@ -60,8 +60,8 @@ it(`Render My list component`, () => {
   });
 
   const tree = renderer.create(
-      <Provider store={store}>
-        <Router history={history}>
+      <Provider store= {store}>
+        <Router history= {history}>
           <MyList
             myMovies = {Movies}
             authorizationStatus = {AuthorizationStatus.AUTH}

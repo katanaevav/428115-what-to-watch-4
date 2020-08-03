@@ -32,7 +32,7 @@ class Review extends PureComponent {
 
           <footer className="review__details">
             <cite className="review__author">{author}</cite>
-            <time className="review__date" dateTime={this._setDateToHTMLFormat(date)}>{this._setDateToMonthDDYYYYFormat(date)}</time>
+            <time className="review__date" dateTime= {this._setDateToHTMLFormat(date)}>{this._setDateToMonthDDYYYYFormat(date)}</time>
           </footer>
         </blockquote>
 

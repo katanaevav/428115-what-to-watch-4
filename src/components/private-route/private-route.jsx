@@ -12,13 +12,13 @@ const PrivateRoute = (props) => {
 
   return (
     <Route
-      path={path}
-      exact={exact}
-      render={() => {
+      path= {path}
+      exact= {exact}
+      render= {() => {
         return (
           authorizationStatus === AuthorizationStatus.AUTH
             ? render(props)
-            : <Redirect to={AppRoute.LOGIN} />
+            : <Redirect to= {AppRoute.LOGIN} />
         );
       }}
     />

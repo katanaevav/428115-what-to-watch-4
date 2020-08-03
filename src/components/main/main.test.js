@@ -87,8 +87,8 @@ it(`Should Main component render correctly`, () => {
   });
 
   const tree = renderer.create(
-      <Provider store={store}>
-        <Router history={history}>
+      <Provider store= {store}>
+        <Router history= {history}>
           <Main
             authorizationStatus = {AuthorizationStatus.NO_AUTH}
             avatarUrl = {``}

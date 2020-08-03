@@ -26,7 +26,7 @@ class Logo extends PureComponent {
 
     return (
       <a
-        className={`logo__link ${light ? `logo__link--light` : ``}`}
+        className= {`logo__link ${light ? `logo__link--light` : ``}`}
       >
         {this._renderLogo()}
       </a>
@@ -38,7 +38,7 @@ class Logo extends PureComponent {
 
     return (
       <Link
-        className={`logo__link ${light ? `logo__link--light` : ``}`}
+        className= {`logo__link ${light ? `logo__link--light` : ``}`}
         to = {AppRoute.ROOT}
       >
         {this._renderLogo()}
