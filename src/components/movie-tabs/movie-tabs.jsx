@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {TABS_NAMES} from "../../const.js";
 
+
 class MovieTabs extends PureComponent {
   constructor(props) {
     super(props);
@@ -43,9 +44,11 @@ class MovieTabs extends PureComponent {
   }
 }
 
+
 MovieTabs.propTypes = {
   currentTab: PropTypes.number.isRequired,
   onMovieTabClick: PropTypes.func.isRequired,
 };
+
 
 export default MovieTabs;

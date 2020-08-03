@@ -2,6 +2,7 @@ import React, {PureComponent} from 'react';
 import VideoPlayer from '../../components/video-player/video-player.jsx';
 import {MIN_VOLUME, NO_FULLSCREEN} from "../../const.js";
 
+
 const withSmallVideoPlayer = (Component) => {
   class WithSmallVideoPlayer extends PureComponent {
     constructor(props) {
@@ -58,9 +59,11 @@ const withSmallVideoPlayer = (Component) => {
     }
   }
 
+
   WithSmallVideoPlayer.propTypes = {};
 
   return WithSmallVideoPlayer;
 };
+
 
 export default withSmallVideoPlayer;

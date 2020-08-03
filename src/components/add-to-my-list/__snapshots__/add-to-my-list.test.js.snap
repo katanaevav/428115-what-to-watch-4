@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render add to My list button with isInList status 1`] = `
+exports[`Render add to My list button with isFavorite status 1`] = `
 <button
   className="btn btn--list movie-card__button"
   onClick={[Function]}
@@ -21,7 +21,7 @@ exports[`Render add to My list button with isInList status 1`] = `
 </button>
 `;
 
-exports[`Render add to My list button without isInList status 1`] = `
+exports[`Render add to My list button without isFavorite status 1`] = `
 <button
   className="btn btn--list movie-card__button"
   onClick={[Function]}

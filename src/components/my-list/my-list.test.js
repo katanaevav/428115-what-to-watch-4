@@ -1,36 +1,9 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import Main from "./main.jsx";
+import MyList from "./my-list.jsx";
 import {AuthorizationStatus} from "../../const.js";
 import {Router} from "react-router-dom";
 import history from "../../history.js";
-
-const NO_FILTER = `All genres`;
-
-const GENRES = [`Drama`, `Fantasy`];
-
-const PromoMovie = {
-  id: 10,
-  title: `The Grand Budapest Hotel`,
-  smallPoster: `img/the-grand-budapest-hotel-poster.jpg`,
-  genre: `Drama`,
-  year: 2014,
-  runTime: 170,
-  bigPoster: `img/the-grand-budapest-hotel-poster.jpg`,
-  cover: `img/bg-the-grand-budapest-hotel.jpg`,
-  ratingScore: 8.9,
-  ratingCount: 240,
-  backgroundColor: `#AABBCC`,
-  isFavorite: false,
-  preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-  video: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-  directors: [`Уэс Андерсон`],
-  starrings: [`Рэйф Файнс`, `Тони Револори`, `Сирша Ронан`, `Эдриан Броуди`, `Уиллем Дефо`, `Эдвард Нортон`, `Матьё Амальрик`, `Харви Кейтель`, `Ф. Мюррэй Абрахам`, `Тильда Суинтон`],
-  descriptions: [
-    `Фильм рассказывает об увлекательных приключениях легендарного консьержа Густава и его юного друга, портье Зеро Мустафы.`,
-    `Сотрудники гостиницы становятся свидетелями кражи и поисков бесценных картин эпохи Возрождения, борьбы за огромное состояние богатой семьи и… драматических изменений в Европе между двумя кровопролитными войнами XX века.`
-  ],
-};
 
 const Movies = [
   {
@@ -44,7 +17,7 @@ const Movies = [
     ratingScore: 7.9,
     runTime: 170,
     ratingCount: 284651,
-    isFavorite: false,
+    isFavorite: true,
     backgroundColor: `#AABBCC`,
     video: ``,
     preview: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
@@ -73,21 +46,13 @@ const Movies = [
   },
 ];
 
-it(`Should Main component render correctly`, () => {
+it(`Render My list component`, () => {
   const tree = renderer.create(
       <Router history={history}>
-        <Main
-          authorizationStatus = {AuthorizationStatus.NO_AUTH}
+        <MyList
+          myMovies = {Movies}
+          authorizationStatus = {AuthorizationStatus.AUTH}
           avatarUrl = {``}
-          promoMovie = {PromoMovie}
-          genres = {GENRES}
-          movies = {Movies}
-          onMovieTitleClick = {() => {}}
-          currentGenreFilter = {NO_FILTER}
-          onMovieFilterClick = {() => {}}
-          onPlayMovieClick = {() => {}}
-          savingMovieFavoriteStatus = {``}
-          setFavoriteStatus = {() => {}}
         />
       </Router>, {
         createNodeMock: () => {

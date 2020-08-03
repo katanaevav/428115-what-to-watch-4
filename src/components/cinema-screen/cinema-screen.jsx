@@ -1,12 +1,13 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import {MOVIE_PROP_TYPE} from "../../const.js";
+
 
 class CinemaScreen extends PureComponent {
   constructor(props) {
     super(props);
 
     this._fullScreenButtonClickHandler = this._fullScreenButtonClickHandler.bind(this);
-    this._exitVideoPlayerHandler = this._exitVideoPlayerHandler.bind(this);
   }
 
   _fullScreenButtonClickHandler() {
@@ -14,21 +15,15 @@ class CinemaScreen extends PureComponent {
     onFullScreenButtonClick();
   }
 
-  _exitVideoPlayerHandler() {
-    const {movie, onExitVideoPlayer} = this.props;
-    const {id} = movie;
-    onExitVideoPlayer(id);
-  }
-
   render() {
-    const {movie, renderPlayer, renderProgress, renderPlayButton} = this.props;
-    const {title, video, bigPoster} = movie;
+    const {movie, renderPlayer, renderProgress, renderPlayButton, onExitVideoPlayer} = this.props;
+    const {title, video, cover} = movie;
 
     return (
       <div className="player">
-        {renderPlayer(video, bigPoster)}
+        {renderPlayer(video, cover)}
 
-        <button type="button" className="player__exit" onClick={this._exitVideoPlayerHandler}>Exit</button>
+        <button type="button" className="player__exit" onClick={onExitVideoPlayer}>Exit</button>
 
         <div className="player__controls">
           {renderProgress()}
@@ -52,13 +47,15 @@ class CinemaScreen extends PureComponent {
   }
 }
 
+
 CinemaScreen.propTypes = {
-  movie: PropTypes.object.isRequired,
+  movie: MOVIE_PROP_TYPE.isRequired,
   renderPlayer: PropTypes.func.isRequired,
   renderProgress: PropTypes.func.isRequired,
   renderPlayButton: PropTypes.func.isRequired,
   onFullScreenButtonClick: PropTypes.func.isRequired,
   onExitVideoPlayer: PropTypes.func.isRequired,
 };
+
 
 export default CinemaScreen;

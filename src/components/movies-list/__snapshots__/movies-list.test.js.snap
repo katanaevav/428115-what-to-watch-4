@@ -16,7 +16,7 @@ Array [
       >
         <video
           className="player__video"
-          poster="img/war-of-the-worlds.jpg"
+          poster="img/bohemian-rhapsody.jpg"
           preload="metadata"
         />
       </div>
@@ -25,10 +25,10 @@ Array [
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
+          href="/films/7"
           onClick={[Function]}
         >
-          War of the worlds
+          Bohemian rhapsody
         </a>
       </h3>
     </article>
@@ -43,7 +43,7 @@ Array [
       >
         <video
           className="player__video"
-          poster="img/war-of-the-worlds.jpg"
+          poster="img/bohemian-rhapsody.jpg"
           preload="metadata"
         />
       </div>
@@ -52,10 +52,10 @@ Array [
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
+          href="/films/8"
           onClick={[Function]}
         >
-          War of the worlds
+          Bohemian rhapsody
         </a>
       </h3>
     </article>
@@ -80,7 +80,7 @@ Array [
       >
         <video
           className="player__video"
-          poster="img/aviator.jpg"
+          poster="img/bohemian-rhapsody.jpg"
           preload="metadata"
         />
       </div>
@@ -89,10 +89,10 @@ Array [
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
+          href="/films/0"
           onClick={[Function]}
         >
-          Aviator
+          Bohemian rhapsody
         </a>
       </h3>
     </article>
@@ -116,7 +116,7 @@ Array [
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
+          href="/films/1"
           onClick={[Function]}
         >
           Bohemian rhapsody
@@ -134,7 +134,7 @@ Array [
       >
         <video
           className="player__video"
-          poster="img/johnny-english.jpg"
+          poster="img/bohemian-rhapsody.jpg"
           preload="metadata"
         />
       </div>
@@ -143,10 +143,10 @@ Array [
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
+          href="/films/2"
           onClick={[Function]}
         >
-          Johnny english
+          Bohemian rhapsody
         </a>
       </h3>
     </article>
@@ -161,7 +161,7 @@ Array [
       >
         <video
           className="player__video"
-          poster="img/moonrise-kingdom.jpg"
+          poster="img/bohemian-rhapsody.jpg"
           preload="metadata"
         />
       </div>
@@ -170,10 +170,10 @@ Array [
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
+          href="/films/3"
           onClick={[Function]}
         >
-          Moonrise kingdom
+          Bohemian rhapsody
         </a>
       </h3>
     </article>
@@ -188,7 +188,7 @@ Array [
       >
         <video
           className="player__video"
-          poster="img/no-country-for-old-men.jpg"
+          poster="img/bohemian-rhapsody.jpg"
           preload="metadata"
         />
       </div>
@@ -197,10 +197,10 @@ Array [
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
+          href="/films/4"
           onClick={[Function]}
         >
-          No country for old men
+          Bohemian rhapsody
         </a>
       </h3>
     </article>
@@ -215,7 +215,7 @@ Array [
       >
         <video
           className="player__video"
-          poster="img/orlando.jpg"
+          poster="img/bohemian-rhapsody.jpg"
           preload="metadata"
         />
       </div>
@@ -224,10 +224,10 @@ Array [
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
+          href="/films/5"
           onClick={[Function]}
         >
-          Orlando
+          Bohemian rhapsody
         </a>
       </h3>
     </article>
@@ -242,7 +242,7 @@ Array [
       >
         <video
           className="player__video"
-          poster="img/pulp-fiction.jpg"
+          poster="img/bohemian-rhapsody.jpg"
           preload="metadata"
         />
       </div>
@@ -251,10 +251,10 @@ Array [
       >
         <a
           className="small-movie-card__link"
-          href="movie-page.html"
+          href="/films/6"
           onClick={[Function]}
         >
-          Pulp fiction
+          Bohemian rhapsody
         </a>
       </h3>
     </article>

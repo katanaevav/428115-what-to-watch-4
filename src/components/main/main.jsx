@@ -1,98 +1,78 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import MoviesList from "../movies-list/movies-list.jsx";
 import GenreList from "../genre-list/genre-list.jsx";
 import withMoviesList from "../../hoc/with-movies-list/with-movies-list.js";
-import withAddToFavoriteButton from "../../hoc/with-add-to-favorite-button/with-add-to-favorite-button.js";
 import MoviePromo from "../movie-promo/movie-promo.jsx";
 import Logo from "../logo/logo.jsx";
+import {MOVIE_PROP_TYPE} from "../../const.js";
 
-const MoviePromoWrapper = withAddToFavoriteButton(MoviePromo);
+
 const MoviesListWrapper = withMoviesList(MoviesList);
 
-class Main extends PureComponent {
-  constructor(props) {
-    super(props);
 
-    this._playMoviePromoClickHandler = this._playMoviePromoClickHandler.bind(this);
-  }
+const Main = (props) => {
+  const {authorizationStatus, avatarUrl, promoMovie, genres, movies, currentGenreFilter, onMovieFilterClick, savingMovieFavoriteStatus, setFavoriteStatus} = props;
+  const {title, genre, year, cover, bigPoster, isFavorite, id} = promoMovie;
 
-  _playMoviePromoClickHandler() {
-    const {promoMovie, onPlayMovieClick} = this.props;
-    const {id} = promoMovie;
-    onPlayMovieClick(id);
-  }
+  return (
+    <React.Fragment>
+      <MoviePromo
+        authorizationStatus = {authorizationStatus}
+        avatarUrl = {avatarUrl}
+        promoMovieTitle = {title}
+        promoMovieGenre = {genre}
+        promoMovieYear = {year}
+        isFavorite = {isFavorite}
+        movieId = {id}
+        cover = {cover}
+        bigPoster = {bigPoster}
+        savingMovieFavoriteStatus = {savingMovieFavoriteStatus}
+        setFavoriteStatus = {setFavoriteStatus}
+      />
 
-  render() {
-    const {authorizationStatus, avatarUrl, promoMovie, genres, movies, currentGenreFilter, onMovieTitleClick, onMovieFilterClick, savingMovieFavoriteStatus, setFavoriteStatus} = this.props;
-    const {title, genre, year, cover, bigPoster, isFavorite, id} = promoMovie;
+      <div className="page-content">
+        <section className="catalog">
+          <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-    return (
-      <React.Fragment>
-        <MoviePromoWrapper
-          authorizationStatus = {authorizationStatus}
-          avatarUrl = {avatarUrl}
-          promoMovieTitle = {title}
-          promoMovieGenre = {genre}
-          promoMovieYear = {year}
-          movieIsFavorite = {isFavorite}
-          movieId = {id}
-          cover = {cover}
-          bigPoster = {bigPoster}
-          onPlayPromoMovieClick = {this._playMoviePromoClickHandler}
-          savingMovieFavoriteStatus = {savingMovieFavoriteStatus}
-          setFavoriteStatus = {setFavoriteStatus}
-        />
+          <GenreList
+            currentGenre = {currentGenreFilter}
+            genres = {genres}
+            onGenreClick = {onMovieFilterClick}
+          />
 
-        <div className="page-content">
-          <section className="catalog">
-            <h2 className="catalog__title visually-hidden">Catalog</h2>
+          <MoviesListWrapper
+            movies = {movies}
+          />
+        </section>
 
-            <GenreList
-              currentGenre = {currentGenreFilter}
-              genres = {genres}
-              onGenreClick = {onMovieFilterClick}
-            />
+        <footer className="page-footer">
+          <Logo
+            isMainScreen = {true}
+            light = {true}
+          />
 
-            <MoviesListWrapper
-              movies = {movies}
-              onMovieTitleClick = {onMovieTitleClick}
-            />
-          </section>
+          <div className="copyright">
+            <p>© 2019 What to watch Ltd.</p>
+          </div>
+        </footer>
+      </div>
+    </React.Fragment>
+  );
+};
 
-          <footer className="page-footer">
-            <Logo
-              light = {true}
-            />
-
-            <div className="copyright">
-              <p>© 2019 What to watch Ltd.</p>
-            </div>
-          </footer>
-        </div>
-      </React.Fragment>
-    );
-  }
-}
 
 Main.propTypes = {
   authorizationStatus: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string,
-  promoMovie: PropTypes.object.isRequired,
-  genres: PropTypes.array.isRequired,
-  movies: PropTypes.arrayOf(
-      PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        smallPoster: PropTypes.string.isRequired,
-        genre: PropTypes.string.isRequired,
-        year: PropTypes.number.isRequired,
-      })).isRequired,
+  promoMovie: MOVIE_PROP_TYPE.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  movies: PropTypes.arrayOf(MOVIE_PROP_TYPE).isRequired,
   currentGenreFilter: PropTypes.string.isRequired,
-  onMovieTitleClick: PropTypes.func.isRequired,
   onMovieFilterClick: PropTypes.func.isRequired,
-  onPlayMovieClick: PropTypes.func.isRequired,
   savingMovieFavoriteStatus: PropTypes.string,
   setFavoriteStatus: PropTypes.func.isRequired,
 };
+
 
 export default Main;

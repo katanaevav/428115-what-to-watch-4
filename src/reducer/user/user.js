@@ -1,17 +1,21 @@
-import {AuthorizationStatus, START_URL} from "../../const.js";
-import {ActionCreator as StateActionCreator} from "../state/state.js";
+import {AuthorizationStatus, Url, AppRoute} from "../../const.js";
+import {Operation as DataOperation} from "../data/data.js";
+
 
 const AUTH_ERROR_TEXT = `We can’t recognize this email and password combination. Please try again.`;
+
 
 const initialState = {
   authorizationStatus: AuthorizationStatus.NO_AUTH,
   avatarUrl: ``,
 };
 
+
 const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   GET_USER_AVATAR: `GET_USER_AVATAR`,
 };
+
 
 const ActionCreator = {
   requireAuthorization: (status) => {
@@ -29,6 +33,7 @@ const ActionCreator = {
   },
 };
 
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.REQUIRED_AUTHORIZATION:
@@ -45,12 +50,14 @@ const reducer = (state = initialState, action) => {
   return state;
 };
 
+
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
-    return api.get(`/login`)
+    return api.get(AppRoute.LOGIN)
       .then((result) => {
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-        dispatch(ActionCreator.getUserAvatar(START_URL + result.data.avatar_url));
+        dispatch(ActionCreator.getUserAvatar(Url.START_URL + result.data.avatar_url));
+
       })
       .catch((err) => {
         throw err;
@@ -58,14 +65,15 @@ const Operation = {
   },
 
   login: (authData, action) => (dispatch, getState, api) => {
-    return api.post(`/login`, {
+    return api.post(AppRoute.LOGIN, {
       email: authData.login,
       password: authData.password,
     })
       .then((result) => {
-        dispatch(StateActionCreator.openMainPage());
+        dispatch(DataOperation.loadMyMovies());
+        dispatch(DataOperation.loadMovies(()=>{}));
         dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.AUTH));
-        dispatch(ActionCreator.getUserAvatar(START_URL + result.data.avatar_url));
+        dispatch(ActionCreator.getUserAvatar(Url.START_URL + result.data.avatar_url));
       })
       .catch((err) => {
         action(AUTH_ERROR_TEXT);
@@ -73,6 +81,7 @@ const Operation = {
       });
   },
 };
+
 
 export {
   ActionCreator,

@@ -1,35 +1,33 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import Review from "../review/review.jsx";
+import {COMMENT_PROP_TYPE} from "../../const.js";
 
-class ReviewsColumn extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
 
-  render() {
-    const {reviews} = this.props;
+const ReviewsColumn = (props) => {
+  const {reviews} = props;
 
-    return (
-      <div className="movie-card__reviews-col">
-        {
-          reviews.map((review) => (
-            <Review
-              key = {review.id}
-              text = {review.text}
-              author = {review.author}
-              date = {review.date}
-              mark = {review.mark}
-            />
-          ))
-        }
-      </div>
-    );
-  }
-}
+  return (
+    <div className="movie-card__reviews-col">
+      {
+        reviews.map((review) => (
+          <Review
+            key = {review.id}
+            text = {review.text}
+            author = {review.author}
+            date = {review.date}
+            mark = {review.mark}
+          />
+        ))
+      }
+    </div>
+  );
+};
+
 
 ReviewsColumn.propTypes = {
-  reviews: PropTypes.array.isRequired,
+  reviews: PropTypes.arrayOf(COMMENT_PROP_TYPE).isRequired,
 };
+
 
 export default ReviewsColumn;

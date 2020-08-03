@@ -11,8 +11,8 @@ exports[`Render cinema screen 1`] = `
       className="movie-card__bg"
     >
       <img
-        alt="Aviator"
-        src="img/aviator.jpg"
+        alt="Bohemian rhapsody"
+        src="img/bohemian-rhapsody.jpg"
       />
     </div>
     <h1
@@ -28,6 +28,8 @@ exports[`Render cinema screen 1`] = `
       >
         <a
           className="logo__link "
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -57,9 +59,10 @@ exports[`Render cinema screen 1`] = `
           >
             <a
               className="breadcrumbs__link"
-              href="movie-page.html"
+              href="/films/0"
+              onClick={[Function]}
             >
-              Aviator
+              Bohemian rhapsody
             </a>
           </li>
           <li
@@ -97,9 +100,9 @@ exports[`Render cinema screen 1`] = `
       className="movie-card__poster movie-card__poster--small"
     >
       <img
-        alt="Aviator"
+        alt="Bohemian rhapsody"
         height="327"
-        src="img/aviator.jpg"
+        src="img/bohemian-rhapsody.jpg"
         width="218"
       />
     </div>

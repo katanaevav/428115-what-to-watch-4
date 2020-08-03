@@ -34,7 +34,7 @@ exports[`Render ReviewsColumn 1`] = `
     <div
       className="review__rating"
     >
-      5
+      5.0
     </div>
   </div>
   <div
@@ -67,7 +67,7 @@ exports[`Render ReviewsColumn 1`] = `
     <div
       className="review__rating"
     >
-      5
+      5.0
     </div>
   </div>
   <div
@@ -100,7 +100,7 @@ exports[`Render ReviewsColumn 1`] = `
     <div
       className="review__rating"
     >
-      4
+      4.0
     </div>
   </div>
 </div>

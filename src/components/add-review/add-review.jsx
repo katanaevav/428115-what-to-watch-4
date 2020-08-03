@@ -2,6 +2,9 @@ import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 import Logo from "../logo/logo.jsx";
 import UserBlock from "../user-block/user-block.jsx";
+import {Link} from 'react-router-dom';
+import {AppRoute, MOVIE_PROP_TYPE} from "../../const.js";
+
 
 class AddReview extends PureComponent {
   constructor(props) {
@@ -41,7 +44,12 @@ class AddReview extends PureComponent {
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <a href="movie-page.html" className="breadcrumbs__link">{movie.title}</a>
+                  <Link
+                    to = {`${AppRoute.FILMS}/${movie.id}`}
+                    className="breadcrumbs__link"
+                  >
+                    {movie.title}
+                  </Link>
                 </li>
                 <li className="breadcrumbs__item">
                   <a className="breadcrumbs__link">Add review</a>
@@ -109,13 +117,15 @@ class AddReview extends PureComponent {
   }
 }
 
+
 AddReview.propTypes = {
-  movie: PropTypes.object.isRequired,
+  movie: MOVIE_PROP_TYPE.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string,
   disableForm: PropTypes.bool.isRequired,
   onPostButtonClick: PropTypes.func.isRequired,
   onMarkChange: PropTypes.func.isRequired,
 };
+
 
 export default AddReview;

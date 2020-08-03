@@ -2,6 +2,7 @@ import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import {MONTH_NAMES} from "../../const.js";
 
+
 class Review extends PureComponent {
   constructor(props) {
     super(props);
@@ -35,11 +36,12 @@ class Review extends PureComponent {
           </footer>
         </blockquote>
 
-        <div className="review__rating">{mark}</div>
+        <div className="review__rating">{mark.toFixed(1)}</div>
       </div>
     );
   }
 }
+
 
 Review.propTypes = {
   text: PropTypes.string.isRequired,
@@ -47,5 +49,6 @@ Review.propTypes = {
   date: PropTypes.number.isRequired,
   mark: PropTypes.number.isRequired,
 };
+
 
 export default Review;

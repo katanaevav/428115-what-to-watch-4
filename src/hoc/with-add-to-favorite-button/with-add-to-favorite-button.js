@@ -1,6 +1,8 @@
 import React, {PureComponent} from 'react';
 import PropTypes from "prop-types";
-import {SavingStatus} from "../../const.js";
+import {SavingStatus, AppRoute, AuthorizationStatus} from "../../const.js";
+import history from "../../history.js";
+
 
 const withAddToFavoriteButton = (Component) => {
   class WithAddToFavoriteButton extends PureComponent {
@@ -8,18 +10,32 @@ const withAddToFavoriteButton = (Component) => {
       super(props);
 
       this.state = {
-        isFavorite: this.props.movieIsFavorite,
+        isFavorite: this.props.isFavorite,
         errorSaving: SavingStatus.SUCCESS,
       };
 
-      this._getSavingStatus = this._getSavingStatus.bind(this);
+      this._setSavingStatus = this._setSavingStatus.bind(this);
+      this._favoriteButtonClickHandler = this._favoriteButtonClickHandler.bind(this);
     }
 
-    _getSavingStatus(response) {
+    _favoriteButtonClickHandler() {
+      const {isFavorite} = this.state;
+
+      if (this.props.authorizationStatus === AuthorizationStatus.NO_AUTH) {
+        history.push(AppRoute.LOGIN);
+      } else {
+        this.props.setFavoriteStatus({
+          isFavorite: !isFavorite,
+          movieId: this.props.movieId,
+        }, this._setSavingStatus);
+      }
+    }
+
+    _setSavingStatus(response) {
       const {savingMovieFavoriteStatus} = this.props;
 
       this.setState({
-        isFavorite: response.is_favorite,
+        isFavorite: response.isFavorite,
         errorSaving: savingMovieFavoriteStatus,
       });
     }
@@ -44,14 +60,9 @@ const withAddToFavoriteButton = (Component) => {
           {errorSaving === SavingStatus.FAIL ? <p style={pStyle}>{`Can't save review to this movie! Please? try again later.`}</p> : ``}
           <Component
             {...this.props}
-            movieIsFavorite = {isFavorite}
+            isFavorite = {isFavorite}
 
-            onFavoriteButtonClick = {() => {
-              this.props.setFavoriteStatus({
-                isFavorite: !isFavorite,
-                movieId: this.props.movieId,
-              }, this._getSavingStatus);
-            }}
+            onFavoriteButtonClick = {this._favoriteButtonClickHandler}
           >
           </Component>
         </div>
@@ -59,14 +70,17 @@ const withAddToFavoriteButton = (Component) => {
     }
   }
 
+
   WithAddToFavoriteButton.propTypes = {
+    authorizationStatus: PropTypes.string.isRequired,
     savingMovieFavoriteStatus: PropTypes.string,
     setFavoriteStatus: PropTypes.func.isRequired,
     movieId: PropTypes.number.isRequired,
-    movieIsFavorite: PropTypes.bool.isRequired,
+    isFavorite: PropTypes.bool.isRequired,
   };
 
   return WithAddToFavoriteButton;
 };
+
 
 export default withAddToFavoriteButton;

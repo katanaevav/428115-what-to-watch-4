@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 
+
 class GenreList extends PureComponent {
   constructor(props) {
     super(props);
@@ -9,8 +10,10 @@ class GenreList extends PureComponent {
   }
 
   _genreClickHandler(evt) {
+    const {onGenreClick} = this.props;
+
     evt.preventDefault();
-    this.props.onGenreClick(evt.currentTarget.dataset.key);
+    onGenreClick(evt.currentTarget.dataset.key);
   }
 
   render() {
@@ -42,10 +45,12 @@ class GenreList extends PureComponent {
   }
 }
 
+
 GenreList.propTypes = {
   currentGenre: PropTypes.string.isRequired,
-  genres: PropTypes.array.isRequired,
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   onGenreClick: PropTypes.func.isRequired,
 };
+
 
 export default GenreList;

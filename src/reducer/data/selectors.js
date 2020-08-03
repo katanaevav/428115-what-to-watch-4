@@ -1,28 +1,36 @@
 import NameSpace from "../name-space.js";
 import {NO_FILTER} from "../../const.js";
-import {createMovie, createMovies, createComments} from "../../adapter/films.js";
 
+
+const GENRES_START_ELEMENT = 0;
+const GEMRES_MAX_ELEMENTS = 9;
 const NAME_SPACE = NameSpace.DATA;
 
+
 export const getMovies = (state) => {
-  return createMovies(state[NAME_SPACE].movies);
+  return state[NAME_SPACE].movies;
+};
+
+export const getMyMovies = (state) => {
+  return state[NAME_SPACE].myMovies;
 };
 
 export const getPromoMovie = (state) => {
-  return createMovie(state[NAME_SPACE].promoMovie);
+  return state[NAME_SPACE].promoMovie;
 };
 
 export const getGenres = (state) => {
   let allGenres = Array.from(new Set(
       state[NAME_SPACE].movies.map((movie) => (movie.genre))
-  ));
+  )).slice(GENRES_START_ELEMENT, GEMRES_MAX_ELEMENTS);
+
   allGenres.unshift(NO_FILTER);
 
   return allGenres;
 };
 
 export const getMovieComments = (state) => {
-  return createComments(state[NAME_SPACE].movieComments);
+  return state[NAME_SPACE].movieComments;
 };
 
 export const getSavingMovieCommentStatus = (state) => {

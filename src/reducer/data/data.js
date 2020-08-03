@@ -1,8 +1,12 @@
-import {SavingStatus} from "../../const.js";
+import {SavingStatus, AppRoute} from "../../const.js";
+import {createMovie, createMovies, createComments} from "../../adapter/films.js";
+import {getMovies, getPromoMovie, getMyMovies} from "./selectors.js";
+
 
 const initialState = {
   promoMovie: {},
   movies: [],
+  myMovies: [],
   movieComments: [],
   savingMovieCommentStatus: ``,
   savingMovieFavoriteStatus: ``,
@@ -11,10 +15,15 @@ const initialState = {
 const ActionType = {
   LOAD_MOVIES: `LOAD_MOVIES`,
   LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
+  LOAD_MY_MOVIES: `LOAD_MY_MOVIES`,
   LOAD_MOVIE_COMMENTS: `LOAD_MOVIE_COMMENTS`,
   SAVE_MOVIE_COMMENT: `SAVE_MOVIE_COMMENT`,
   CHANGE_FAVORITE_STATUS: `CHANGE_FAVORITE_STATUS`,
+  UPDATE_MOVIES: `UPDATE_MOVIES`,
+  UPDATE_PROMO_MOVIE: `UPDATE_PROMO_MOVIE`,
+  UPDATE_MY_MOVIES: `UPDATE_MY_MOVIES`,
 };
+
 
 const ActionCreator = {
   loadMovies: (films) => {
@@ -28,6 +37,13 @@ const ActionCreator = {
     return {
       type: ActionType.LOAD_PROMO_MOVIE,
       payload: promoFilm,
+    };
+  },
+
+  loadMyMovies: (myFilms) => {
+    return {
+      type: ActionType.LOAD_MY_MOVIES,
+      payload: myFilms,
     };
   },
 
@@ -51,32 +67,63 @@ const ActionCreator = {
       payload: status,
     };
   },
+
+  updateMovies: (movies) => {
+    return {
+      type: ActionType.UPDATE_MOVIES,
+      payload: movies,
+    };
+  },
+
+  updatePromoMovie: (movie) => {
+    return {
+      type: ActionType.UPDATE_PROMO_MOVIE,
+      payload: movie,
+    };
+  },
+
+  updateMyMovies: (myMovies) => {
+    return {
+      type: ActionType.UPDATE_MY_MOVIES,
+      payload: myMovies,
+    };
+  },
 };
 
+
 const Operation = {
-  loadMovies: () => (dispatch, getState, api) => {
-    return api.get(`/films`)
+  loadMovies: (action) => (dispatch, getState, api) => {
+    return api.get(AppRoute.FILMS)
       .then((response) => {
-        dispatch(ActionCreator.loadMovies(response.data));
+        dispatch(ActionCreator.loadMovies(createMovies(response.data)));
+        action();
       });
   },
 
-  loadPromoMovie: () => (dispatch, getState, api) => {
-    return api.get(`/films/promo`)
+  loadPromoMovie: (action) => (dispatch, getState, api) => {
+    return api.get(AppRoute.FILMS + AppRoute.PROMO)
       .then((response) => {
-        dispatch(ActionCreator.loadPromoMovie(response.data));
+        dispatch(ActionCreator.loadPromoMovie(createMovie(response.data)));
+        action();
+      });
+  },
+
+  loadMyMovies: () => (dispatch, getState, api) => {
+    return api.get(AppRoute.FAVORITE)
+      .then((response) => {
+        dispatch(ActionCreator.loadMyMovies(createMovies(response.data)));
       });
   },
 
   loadMovieComments: (movieId) => (dispatch, getState, api) => {
-    return api.get(`/comments/${movieId}`)
+    return api.get(`${AppRoute.COMMENTS}/${movieId}`)
       .then((response) => {
-        dispatch(ActionCreator.loadMovieComments(response.data));
+        dispatch(ActionCreator.loadMovieComments(createComments(response.data)));
       });
   },
 
   saveMovieComment: (comment, action) => (dispatch, getState, api) => {
-    return api.post(`/comments/${comment.movieId}`, {
+    return api.post(`${AppRoute.COMMENTS}/${comment.movieId}`, {
       rating: comment.mark,
       comment: comment.text,
     })
@@ -92,12 +139,29 @@ const Operation = {
   },
 
   saveMovieFavoriteStatus: (favoriteStatus, action) => (dispatch, getState, api) => {
-    return api.post(`/favorite/${favoriteStatus.movieId}/${favoriteStatus.isFavorite ? 1 : 0}`)
+    return api.post(`${AppRoute.FAVORITE}/${favoriteStatus.movieId}/${favoriteStatus.isFavorite ? 1 : 0}`)
       .then((response) => {
-        dispatch(ActionCreator.saveMovieFavoriteStatus(SavingStatus.SUCCESS));
-        dispatch(Operation.loadPromoMovie());
-        dispatch(Operation.loadMovies());
-        action(response.data);
+        dispatch(ActionCreator.saveMovieFavoriteStatus(SavingStatus.SUCCESS, favoriteStatus.movieId, favoriteStatus.isFavorite));
+        action(createMovie(response.data));
+
+        const updatedMovies = getMovies(getState());
+        const movieIndex = updatedMovies.findIndex((currentValue) => currentValue.id === favoriteStatus.movieId);
+        updatedMovies[movieIndex].isFavorite = favoriteStatus.isFavorite;
+        dispatch(ActionCreator.updateMovies(updatedMovies));
+
+        if (getPromoMovie(getState()).id === favoriteStatus.movieId) {
+          dispatch(ActionCreator.updatePromoMovie(updatedMovies[movieIndex]));
+        }
+
+        const updatedMyMovies = getMyMovies(getState());
+        const myMovieIndex = updatedMyMovies.findIndex((currentValue) => currentValue.id === favoriteStatus.movieId);
+        if (favoriteStatus.isFavorite) {
+          updatedMyMovies.push(updatedMovies[movieIndex]);
+        } else if (myMovieIndex > -1) {
+          updatedMyMovies.splice(myMovieIndex, 1);
+        }
+        dispatch(ActionCreator.updateMyMovies(updatedMyMovies));
+
       })
       .catch((err) => {
         dispatch(ActionCreator.saveMovieFavoriteStatus(SavingStatus.FAIL));
@@ -106,6 +170,7 @@ const Operation = {
       });
   },
 };
+
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
@@ -117,6 +182,11 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_PROMO_MOVIE:
       return Object.assign({}, state, {
         promoMovie: action.payload,
+      });
+
+    case ActionType.LOAD_MY_MOVIES:
+      return Object.assign({}, state, {
+        myMovies: action.payload,
       });
 
     case ActionType.LOAD_MOVIE_COMMENTS:
@@ -133,9 +203,25 @@ const reducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         savingMovieFavoriteStatus: action.payload,
       });
+
+    case ActionType.UPDATE_MOVIES:
+      return Object.assign({}, state, {
+        movies: action.payload,
+      });
+
+    case ActionType.UPDATE_PROMO_MOVIE:
+      return Object.assign({}, state, {
+        promoMovie: action.payload,
+      });
+
+    case ActionType.UPDATE_MY_MOVIES:
+      return Object.assign({}, state, {
+        myMovies: action.payload,
+      });
   }
 
   return state;
 };
+
 
 export {reducer, Operation, ActionType, ActionCreator};

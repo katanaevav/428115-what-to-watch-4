@@ -1,4 +1,38 @@
-export const START_URL = `https://4.react.pages.academy`;
+import PropTypes from "prop-types";
+
+
+export const MOVIE_PROP_TYPE = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  smallPoster: PropTypes.string.isRequired,
+  genre: PropTypes.string.isRequired,
+  year: PropTypes.number.isRequired,
+  runTime: PropTypes.number.isRequired,
+  bigPoster: PropTypes.string.isRequired,
+  cover: PropTypes.string.isRequired,
+  ratingScore: PropTypes.number.isRequired,
+  ratingCount: PropTypes.number.isRequired,
+  preview: PropTypes.string.isRequired,
+  video: PropTypes.string.isRequired,
+  directors: PropTypes.arrayOf(PropTypes.string).isRequired,
+  starrings: PropTypes.arrayOf(PropTypes.string).isRequired,
+  descriptions: PropTypes.arrayOf(PropTypes.string).isRequired,
+  backgroundColor: PropTypes.string.isRequired,
+  isFavorite: PropTypes.bool.isRequired,
+});
+
+export const COMMENT_PROP_TYPE = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
+  author: PropTypes.string.isRequired,
+  date: PropTypes.number.isRequired,
+  mark: PropTypes.number.isRequired,
+});
+
+export const Url = {
+  START_URL: `https://4.react.pages.academy`,
+  PROJECT_ROUTE: `/wtw`,
+};
 
 export const NO_FILTER = `All genres`;
 
@@ -13,14 +47,6 @@ export const MIN_VOLUME = 0.0;
 export const NO_FULLSCREEN = false;
 
 export const TABS_NAMES = [`Overview`, `Details`, `Reviews`];
-
-export const Screens = {
-  MAIN_SCREEN: 0,
-  MOVIE_PAGE_SCREEN: 1,
-  CINEMA_SCREEN: 2,
-  AUTH_SCREEN: 3,
-  ADD_REVIEW_SCREEN: 4,
-};
 
 export const SavingStatus = {
   SUCCESS: `SUCCESS`,
@@ -53,9 +79,15 @@ export const AuthorizationStatus = {
   NO_AUTH: `NO_AUTH`,
 };
 
-
 export const AppRoute = {
-  LOGIN: `/login`,
-  ROOT: `/`,
   MY_LIST: `/mylist`,
+  ADD_REVIEW: `/review`,
+  ROOT: `/`,
+  LOGIN: `/login`,
+  PLAYER: `/player`,
+  FILMS: `/films`,
+  ID: `/:id`,
+  PROMO: `/promo`,
+  FAVORITE: `/favorite`,
+  COMMENTS: `/comments`,
 };

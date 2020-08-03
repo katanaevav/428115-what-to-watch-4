@@ -1,6 +1,7 @@
 import React, {PureComponent, createRef} from "react";
 import PropTypes from "prop-types";
 
+
 class VideoPlayer extends PureComponent {
   constructor(props) {
     super(props);
@@ -65,6 +66,7 @@ class VideoPlayer extends PureComponent {
   }
 }
 
+
 VideoPlayer.propTypes = {
   poster: PropTypes.string.isRequired,
   src: PropTypes.string.isRequired,
@@ -75,5 +77,6 @@ VideoPlayer.propTypes = {
   onSetFullScreen: PropTypes.func.isRequired,
   isFullScreen: PropTypes.bool.isRequired,
 };
+
 
 export default VideoPlayer;

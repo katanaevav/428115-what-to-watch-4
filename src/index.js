@@ -10,6 +10,7 @@ import reducer from "./reducer/reducer.js";
 import {Operation as DataOperation} from "./reducer/data/data.js";
 import {Operation as UserOperation, ActionCreator} from "./reducer/user/user.js";
 
+
 const onUnauthorized = () => {
   store.dispatch(ActionCreator.requireAuthorization(AuthorizationStatus.NO_AUTH));
 };
@@ -25,14 +26,19 @@ const store = createStore(
 );
 
 store.dispatch(UserOperation.checkAuth());
+store.dispatch(DataOperation.loadMyMovies());
 
-store.dispatch(DataOperation.loadPromoMovie());
-store.dispatch(DataOperation.loadMovies());
-
-
-ReactDOM.render(
-    <Provider store={store}>
-      <App />
-    </Provider>,
-    document.querySelector(`#root`)
-);
+store.dispatch(DataOperation.loadMovies(
+    () => {
+      store.dispatch(DataOperation.loadPromoMovie(
+          () => {
+            ReactDOM.render(
+                <Provider store={store}>
+                  <App />
+                </Provider>,
+                document.querySelector(`#root`)
+            );
+          }
+      ));
+    }
+));
