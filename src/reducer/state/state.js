@@ -1,14 +1,16 @@
-import {NO_FILTER} from "../../const.js";
+import {NO_FILTER, MAX_RENDERED_MOVIES_AT_TIME} from "../../const.js";
 
 
 const initialState = {
   authMessage: ``,
   currentGenreFilter: NO_FILTER,
+  renderedMoviesCount: MAX_RENDERED_MOVIES_AT_TIME,
 };
 
 
 const ActionType = {
   SET_GENRE_FILTER: `SET_GENRE_FILTER`,
+  SET_RENDERED_MOVIES_COUNT: `SET_RENDERED_MOVIES_COUNT`,
 };
 
 
@@ -19,6 +21,13 @@ const ActionCreator = {
       payload: filterName,
     };
   },
+
+  setRenderedMoviesCount: (renderedMoviesCount) => {
+    return {
+      type: ActionType.SET_RENDERED_MOVIES_COUNT,
+      payload: renderedMoviesCount,
+    };
+  },
 };
 
 
@@ -27,6 +36,12 @@ const reducer = (state = initialState, action) => {
     case ActionType.SET_GENRE_FILTER:
       return Object.assign({}, state, {
         currentGenreFilter: action.payload,
+        renderedMoviesCount: MAX_RENDERED_MOVIES_AT_TIME,
+      });
+
+    case ActionType.SET_RENDERED_MOVIES_COUNT:
+      return Object.assign({}, state, {
+        renderedMoviesCount: action.payload,
       });
   }
 

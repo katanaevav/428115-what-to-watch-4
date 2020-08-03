@@ -2,13 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import MoviesList from "../movies-list/movies-list.jsx";
 import GenreList from "../genre-list/genre-list.jsx";
-import withMoviesList from "../../hoc/with-movies-list/with-movies-list.js";
 import MoviePromo from "../movie-promo/movie-promo.jsx";
 import Logo from "../logo/logo.jsx";
 import {MOVIE_PROP_TYPE} from "../../const.js";
-
-
-const MoviesListWrapper = withMoviesList(MoviesList);
 
 
 const Main = (props) => {
@@ -41,7 +37,7 @@ const Main = (props) => {
             onGenreClick = {onMovieFilterClick}
           />
 
-          <MoviesListWrapper
+          <MoviesList
             movies = {movies}
           />
         </section>

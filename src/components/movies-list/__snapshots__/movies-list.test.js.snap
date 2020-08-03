@@ -64,6 +64,70 @@ Array [
 ]
 `;
 
+exports[`Render MoviesList with all movies withoutShow more button 1`] = `
+Array [
+  <div
+    className="catalog__movies-list"
+  >
+    <article
+      className="small-movie-card catalog__movies-card"
+      data-key={7}
+    >
+      <div
+        className="small-movie-card__image"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <video
+          className="player__video"
+          poster="img/bohemian-rhapsody.jpg"
+          preload="metadata"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="/films/7"
+          onClick={[Function]}
+        >
+          Bohemian rhapsody
+        </a>
+      </h3>
+    </article>
+    <article
+      className="small-movie-card catalog__movies-card"
+      data-key={8}
+    >
+      <div
+        className="small-movie-card__image"
+        onMouseOut={[Function]}
+        onMouseOver={[Function]}
+      >
+        <video
+          className="player__video"
+          poster="img/bohemian-rhapsody.jpg"
+          preload="metadata"
+        />
+      </div>
+      <h3
+        className="small-movie-card__title"
+      >
+        <a
+          className="small-movie-card__link"
+          href="/films/8"
+          onClick={[Function]}
+        >
+          Bohemian rhapsody
+        </a>
+      </h3>
+    </article>
+  </div>,
+  "",
+]
+`;
+
 exports[`Render MoviesList without Show more button 1`] = `
 Array [
   <div

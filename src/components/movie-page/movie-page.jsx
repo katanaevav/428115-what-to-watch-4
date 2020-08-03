@@ -4,7 +4,6 @@ import MovieOverview from "../movie-overview/movie-overview.jsx";
 import MovieDetails from "../movie-details/movie-details.jsx";
 import MovieReviews from "../movie-reviews/movie-reviews.jsx";
 import MoviesList from "../movies-list/movies-list.jsx";
-import withMoviesList from "../../hoc/with-movies-list/with-movies-list.js";
 import UserBlock from "../user-block/user-block.jsx";
 import Logo from "../logo/logo.jsx";
 import withAddToFavoriteButton from "../../hoc/with-add-to-favorite-button/with-add-to-favorite-button.js";
@@ -12,7 +11,6 @@ import MovieButtons from "../movie-buttons/movie-buttons.jsx";
 import {MOVIE_PROP_TYPE, COMMENT_PROP_TYPE, Tabs} from "../../const.js";
 
 
-const MoviesListWrapper = withMoviesList(MoviesList);
 const MovieButtonsWrapper = withAddToFavoriteButton(MovieButtons);
 
 
@@ -125,7 +123,7 @@ class MoviePage extends PureComponent {
           <section className="catalog catalog--like-this">
             <h2 className="catalog__title">More like this</h2>
 
-            <MoviesListWrapper
+            <MoviesList
               movies = {similarMovies}
             />
 

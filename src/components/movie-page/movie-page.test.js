@@ -4,6 +4,11 @@ import MoviePage from "./movie-page.jsx";
 import {AuthorizationStatus} from "../../const.js";
 import {Router} from "react-router-dom";
 import history from "../../history.js";
+import {Provider} from "react-redux";
+import configureStore from "redux-mock-store";
+import NameSpace from "../../reducer/name-space.js";
+
+const mockStore = configureStore([]);
 
 const Movies = [
   {
@@ -53,24 +58,32 @@ const Movies = [
 ];
 
 it(`Render MoviePage`, () => {
+
+  const store = mockStore({
+    [NameSpace.STATE]: {
+      renderedMoviesCount: 2,
+    },
+  });
+
   const tree = renderer.create(
-      <Router history={history}>
-        <MoviePage
-          authorizationStatus={AuthorizationStatus.NO_AUTH}
-          avatarUrl = {``}
-          movie = {Movies[0]}
-          comments = {[]}
-          similarMovies = {Movies}
-          onMovieTitleClick = {() => {}}
-          currentTab = {0}
-          renderTabs = {() => {}}
-          onPlayMovieClick = {() => {}}
-          onAddReviewClick = {() => {}}
-          savingMovieFavoriteStatus = {``}
-          setFavoriteStatus = {() => {}}
-          getComments = {() => {}}
-        />
-      </Router>, {
+      <Provider store={store}>
+        <Router history={history}>
+          <MoviePage
+            authorizationStatus={AuthorizationStatus.NO_AUTH}
+            avatarUrl = {``}
+            movie = {Movies[0]}
+            comments = {[]}
+            similarMovies = {Movies}
+            currentTab = {0}
+            renderTabs = {() => {}}
+            onPlayMovieClick = {() => {}}
+            onAddReviewClick = {() => {}}
+            savingMovieFavoriteStatus = {``}
+            setFavoriteStatus = {() => {}}
+            getComments = {() => {}}
+          />
+        </Router>
+      </Provider>, {
         createNodeMock: () => {
           return {};
         }

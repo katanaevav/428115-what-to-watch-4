@@ -2,12 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import Logo from "../logo/logo.jsx";
 import MoviesList from "../movies-list/movies-list.jsx";
-import withMoviesList from "../../hoc/with-movies-list/with-movies-list.js";
 import UserBlock from "../user-block/user-block.jsx";
 import {MOVIE_PROP_TYPE} from "../../const.js";
-
-
-const MoviesListWrapper = withMoviesList(MoviesList);
 
 
 const MyList = (props) => {
@@ -24,8 +20,9 @@ const MyList = (props) => {
       </header>
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
-        <MoviesListWrapper
+        <MoviesList
           movies = {myMovies}
+          showAll = {true}
         />
       </section>
       <footer className="page-footer">

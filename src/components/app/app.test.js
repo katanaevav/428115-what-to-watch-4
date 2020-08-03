@@ -5,6 +5,7 @@ import {Provider} from "react-redux";
 import configureStore from "redux-mock-store";
 import {AuthorizationStatus} from "../../const.js";
 import {SavingStatus} from "../../const.js";
+import NameSpace from "../../reducer/name-space.js";
 
 const mockStore = configureStore([]);
 
@@ -131,7 +132,11 @@ const MyMovies = [
 
 it(`Render App with Main screen`, () => {
 
-  const store = mockStore({});
+  const store = mockStore({
+    [NameSpace.STATE]: {
+      renderedMoviesCount: 2,
+    },
+  });
 
   const tree = renderer.create(
       <Provider store={store}>
@@ -147,7 +152,6 @@ it(`Render App with Main screen`, () => {
           genres = {GENRES}
           currentGenreFilter = {NO_FILTER}
           onMovieFilterClick = {() => {}}
-          onMovieTitleClick = {() => {}}
           movieComments = {[]}
           getComments = {() => {}}
           saveComment = {() => {}}

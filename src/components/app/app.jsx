@@ -41,7 +41,19 @@ class App extends PureComponent {
   }
 
   render() {
-    const {movies, login, authorizationStatus, avatarUrl, myMovies, promoMovie, genres, currentGenreFilter, onMovieFilterClick, savingMovieFavoriteStatus, setFavoriteStatus} = this.props;
+    const {
+      movies,
+      login,
+      authorizationStatus,
+      avatarUrl,
+      myMovies,
+      promoMovie,
+      genres,
+      currentGenreFilter,
+      onMovieFilterClick,
+      savingMovieFavoriteStatus,
+      setFavoriteStatus
+    } = this.props;
 
     if (movies.length && myMovies.length >= 0 && promoMovie) {
       return (
@@ -166,9 +178,9 @@ App.propTypes = {
   currentGenreFilter: PropTypes.string.isRequired,
   onMovieFilterClick: PropTypes.func.isRequired,
   movieComments: PropTypes.arrayOf(COMMENT_PROP_TYPE),
-  getComments: PropTypes.func,
-  saveComment: PropTypes.func,
-  setFavoriteStatus: PropTypes.func,
+  getComments: PropTypes.func.isRequired,
+  saveComment: PropTypes.func.isRequired,
+  setFavoriteStatus: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
