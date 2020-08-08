@@ -1,18 +1,28 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
-import SmallMovieCard from "../small-movie-card/small-movie-card.jsx";
-import withSmallVideoPlayer from "../../hoc/with-small-video-player/with-small-video-player.js";
-import ShowMoreButton from "../show-more-button/show-more-button.jsx";
-import {DELAY_BEFORE_START_PREVIEW, MAX_RENDERED_MOVIES_AT_TIME, MOVIE_PROP_TYPE} from "../../const.js";
+import * as React from "react";
+import SmallMovieCard from "../small-movie-card/small-movie-card";
+import withSmallVideoPlayer from "../../hoc/with-small-video-player/with-small-video-player";
+import ShowMoreButton from "../show-more-button/show-more-button";
+import {DELAY_BEFORE_START_PREVIEW, MAX_RENDERED_MOVIES_AT_TIME} from "../../const";
 import {connect} from "react-redux";
-import {getRenderedMoviesCount} from "../../reducer/state/selectors.js";
-import {ActionCreator} from "../../reducer/state/state.js";
+import {getRenderedMoviesCount} from "../../reducer/state/selectors";
+import {ActionCreator} from "../../reducer/state/state";
+import {Movie} from "../../types";
+
+
+interface Props {
+  movies: Array<Movie>,
+  renderedMoviesCount: number,
+  setRenderedMoviesCount: (number) => void,
+  showAll?: boolean,
+}
 
 
 const SmallMovieCardWrapped = withSmallVideoPlayer(SmallMovieCard);
 
 
-class MoviesList extends PureComponent {
+class MoviesList extends React.PureComponent<Props, {}> {
+  private timer: NodeJS.Timeout;
+
   constructor(props) {
     super(props);
 
@@ -25,13 +35,13 @@ class MoviesList extends PureComponent {
   }
 
   _movieMouseOverHandler(action) {
-    this._timer = setTimeout(() => {
+    this.timer = setTimeout(() => {
       action();
     }, DELAY_BEFORE_START_PREVIEW);
   }
 
   _movieMouseOutHandler(action) {
-    clearTimeout(this._timer);
+    clearTimeout(this.timer);
     action();
   }
 
@@ -80,15 +90,6 @@ class MoviesList extends PureComponent {
     );
   }
 }
-
-
-MoviesList.propTypes = {
-  movies: PropTypes.arrayOf(MOVIE_PROP_TYPE).isRequired,
-  renderedMoviesCount: PropTypes.number.isRequired,
-  setRenderedMoviesCount: PropTypes.func.isRequired,
-  showAll: PropTypes.bool,
-};
-
 
 const mapStateToProps = (state) => ({
   renderedMoviesCount: getRenderedMoviesCount(state),

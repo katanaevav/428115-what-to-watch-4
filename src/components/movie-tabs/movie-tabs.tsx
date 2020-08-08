@@ -1,9 +1,12 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
-import {TABS_NAMES} from "../../const.js";
+import * as React from "react";
+import {TABS_NAMES} from "../../const";
 
+interface Props {
+  currentTab: number,
+  onMovieTabClick: (evt: Event) => void,
+}
 
-class MovieTabs extends PureComponent {
+class MovieTabs extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
 
@@ -43,12 +46,6 @@ class MovieTabs extends PureComponent {
     );
   }
 }
-
-
-MovieTabs.propTypes = {
-  currentTab: PropTypes.number.isRequired,
-  onMovieTabClick: PropTypes.func.isRequired,
-};
 
 
 export default MovieTabs;

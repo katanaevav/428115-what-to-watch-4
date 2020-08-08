@@ -1,8 +1,16 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 
 
-class MovieOverview extends PureComponent {
+interface Props {
+  ratingScore: number,
+  ratingCount: number,
+  descriptions: Array<string>,
+  directors: Array<string>,
+  starrings: Array<string>,
+}
+
+
+class MovieOverview extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
   }
@@ -49,15 +57,6 @@ class MovieOverview extends PureComponent {
     );
   }
 }
-
-
-MovieOverview.propTypes = {
-  ratingScore: PropTypes.number.isRequired,
-  ratingCount: PropTypes.number.isRequired,
-  descriptions: PropTypes.arrayOf(PropTypes.string).isRequired,
-  directors: PropTypes.arrayOf(PropTypes.string).isRequired,
-  starrings: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
 
 
 export default MovieOverview;

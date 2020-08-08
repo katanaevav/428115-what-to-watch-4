@@ -1,5 +1,5 @@
-import NameSpace from "../name-space.js";
-import {NO_FILTER} from "../../const.js";
+import NameSpace from "../name-space";
+import {NO_FILTER} from "../../const";
 
 
 const NAME_SPACE = NameSpace.STATE;

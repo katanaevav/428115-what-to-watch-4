@@ -1,11 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
-import ReviewsColumn from "../reviews-column/reviews-column.jsx";
-import {REVIEWS_COLUMNS_COUNT} from "../../const.js";
-import {COMMENT_PROP_TYPE} from "../../const.js";
+import * as React from "react";
+import ReviewsColumn from "../reviews-column/reviews-column";
+import {REVIEWS_COLUMNS_COUNT} from "../../const";
+import {Comment} from "../../types";
 
 
-const MovieReviews = (props) => {
+interface Props {
+  reviews: Array<Comment>,
+}
+
+
+const MovieReviews: React.FunctionComponent<Props> = (props: Props) => {
   const {reviews} = props;
   const firsColumnReviews = Math.ceil(reviews.length / REVIEWS_COLUMNS_COUNT);
 
@@ -17,11 +21,6 @@ const MovieReviews = (props) => {
       </div>
     </React.Fragment>
   );
-};
-
-
-MovieReviews.propTypes = {
-  reviews: PropTypes.arrayOf(COMMENT_PROP_TYPE).isRequired,
 };
 
 

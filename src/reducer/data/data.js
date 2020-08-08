@@ -1,6 +1,6 @@
-import {SavingStatus, AppRoute} from "../../const.js";
-import {createMovie, createMovies, createComments} from "../../adapter/films.js";
-import {getMovies, getPromoMovie, getMyMovies} from "./selectors.js";
+import {SavingStatus, AppRoute} from "../../const";
+import {createMovie, createMovies, createComments} from "../../adapter/films";
+import {getMovies, getPromoMovie, getMyMovies} from "./selectors";
 
 
 const initialState = {

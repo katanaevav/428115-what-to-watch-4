@@ -1,12 +1,33 @@
-import React, {PureComponent} from 'react';
-import PropTypes from "prop-types";
-import {SavingStatus} from "../../const.js";
-import history from "../../history.js";
-import {AppRoute} from "../../const.js";
+import * as React from 'react';
+import {SavingStatus} from "../../const";
+import history from "../../history";
+import {AppRoute} from "../../const";
+import {Movie} from "../../types";
+
+interface Comment {
+  mark: number,
+  text: string,
+  movieId: number,
+}
+
+interface Props {
+  movie: Movie,
+  onSaveComment: (
+    comment: Comment,
+    action: (() => void),
+  ) => void,
+  savingMovieCommentStatus?: string,
+}
+
+interface State {
+  disableForm: boolean,
+  selectedMark: number,
+  errorSaving: string,
+}
 
 
 const withNewReview = (Component) => {
-  class WithNewReview extends PureComponent {
+  class WithNewReview extends React.PureComponent<Props, State> {
     constructor(props) {
       super(props);
 
@@ -66,7 +87,6 @@ const withNewReview = (Component) => {
         top: `90px`,
         left: `10px`,
         display: `inline-block`,
-        position: `absolute`,
         zIndex: 2,
         color: `red`,
         backgroundColor: `white`,
@@ -89,13 +109,6 @@ const withNewReview = (Component) => {
       );
     }
   }
-
-
-  WithNewReview.propTypes = {
-    movie: PropTypes.object.isRequired,
-    onSaveComment: PropTypes.func.isRequired,
-    savingMovieCommentStatus: PropTypes.string,
-  };
 
   return WithNewReview;
 };

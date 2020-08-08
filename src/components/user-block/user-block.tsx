@@ -1,11 +1,16 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
-import {AuthorizationStatus} from "../../const.js";
+import * as React from "react";
+import {AuthorizationStatus} from "../../const";
 import {Link} from "react-router-dom";
-import {AppRoute} from "../../const.js";
+import {AppRoute} from "../../const";
 
 
-class UserBlock extends PureComponent {
+interface Props {
+  authorizationStatus: string,
+  avatarUrl?: string,
+}
+
+
+class UserBlock extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
   }
@@ -41,12 +46,6 @@ class UserBlock extends PureComponent {
     );
   }
 }
-
-
-UserBlock.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  avatarUrl: PropTypes.string,
-};
 
 
 export default UserBlock;

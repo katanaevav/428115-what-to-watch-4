@@ -1,5 +1,10 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
+
+
+interface Props {
+  currentProgress: number,
+  duration: number,
+}
 
 
 const SECONDS_IN_HOUR = 3600;
@@ -8,7 +13,7 @@ const SECONDS_IN_MINUTE = 60;
 const MAX_DURATION_IN_PERCENT = 100;
 
 
-class VideoProgress extends PureComponent {
+class VideoProgress extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
   }
@@ -41,12 +46,6 @@ class VideoProgress extends PureComponent {
     );
   }
 }
-
-
-VideoProgress.propTypes = {
-  currentProgress: PropTypes.number.isRequired,
-  duration: PropTypes.number.isRequired,
-};
 
 
 export default VideoProgress;

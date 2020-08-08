@@ -1,10 +1,28 @@
-import React, {PureComponent} from 'react';
-import VideoPlayer from '../../components/video-player/video-player.jsx';
-import {MIN_VOLUME, NO_FULLSCREEN} from "../../const.js";
+import * as React from 'react';
+import VideoPlayer from '../../components/video-player/video-player';
+import {MIN_VOLUME, NO_FULLSCREEN} from "../../const";
+import {Subtract} from "utility-types";
+
+
+interface Props {}
+
+interface InjectedProps {
+  authorizationStatus: string,
+  onMovieMouseOver: () => void,
+  onMovieMouseOut: () => void,
+}
+
+interface State {
+  isPlaying: boolean,
+  isPaused: boolean,
+}
 
 
 const withSmallVideoPlayer = (Component) => {
-  class WithSmallVideoPlayer extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Props & Subtract<P, InjectedProps>;
+
+  class WithSmallVideoPlayer extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
@@ -15,8 +33,16 @@ const withSmallVideoPlayer = (Component) => {
     }
 
     render() {
+      const {movieId, movieSmallPoster, movieTitle, preview, onMovieMouseOut, onMovieMouseOver} = this.props;
+
       return <Component
-        {...this.props}
+
+        movieId = {movieId}
+        movieSmallPoster = {movieSmallPoster}
+        movieTitle = {movieTitle}
+        preview = {preview}
+        onMovieMouseOut = {onMovieMouseOut}
+        onMovieMouseOver = {onMovieMouseOver}
 
         renderPlayer = {(preview, poster, onMovieMouseOver, onMovieMouseOut) => {
           const {isPlaying, isPaused} = this.state;
@@ -58,9 +84,6 @@ const withSmallVideoPlayer = (Component) => {
       />;
     }
   }
-
-
-  WithSmallVideoPlayer.propTypes = {};
 
   return WithSmallVideoPlayer;
 };

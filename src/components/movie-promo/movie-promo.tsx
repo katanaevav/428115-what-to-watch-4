@@ -1,15 +1,29 @@
-import React from "react";
-import PropTypes from "prop-types";
-import UserBlock from "../user-block/user-block.jsx";
-import Logo from "../logo/logo.jsx";
-import withAddToFavoriteButton from "../../hoc/with-add-to-favorite-button/with-add-to-favorite-button.js";
-import MovieButtons from "../movie-buttons/movie-buttons.jsx";
+import * as React from "react";
+import UserBlock from "../user-block/user-block";
+import Logo from "../logo/logo";
+import withAddToFavoriteButton from "../../hoc/with-add-to-favorite-button/with-add-to-favorite-button";
+import MovieButtons from "../movie-buttons/movie-buttons";
+
+
+interface Props {
+  authorizationStatus: string,
+  avatarUrl?: string,
+  promoMovieTitle: string,
+  promoMovieGenre: string,
+  promoMovieYear: number,
+  movieId: number,
+  isFavorite: boolean,
+  cover: string,
+  bigPoster: string,
+  savingMovieFavoriteStatus?: string,
+  setFavoriteStatus: () => void,
+}
 
 
 const MovieButtonsWrapper = withAddToFavoriteButton(MovieButtons);
 
 
-const MoviePromo = (props) => {
+const MoviePromo: React.FunctionComponent<Props> = (props: Props) => {
   const {
     authorizationStatus,
     avatarUrl,
@@ -63,21 +77,6 @@ const MoviePromo = (props) => {
       </div>
     </section>
   );
-};
-
-
-MoviePromo.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  avatarUrl: PropTypes.string,
-  promoMovieTitle: PropTypes.string.isRequired,
-  promoMovieGenre: PropTypes.string.isRequired,
-  promoMovieYear: PropTypes.number.isRequired,
-  movieId: PropTypes.number.isRequired,
-  isFavorite: PropTypes.bool.isRequired,
-  cover: PropTypes.string.isRequired,
-  bigPoster: PropTypes.string.isRequired,
-  savingMovieFavoriteStatus: PropTypes.string,
-  setFavoriteStatus: PropTypes.func.isRequired,
 };
 
 

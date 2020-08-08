@@ -1,13 +1,25 @@
-import React from "react";
-import PropTypes from "prop-types";
-import MoviesList from "../movies-list/movies-list.jsx";
-import GenreList from "../genre-list/genre-list.jsx";
-import MoviePromo from "../movie-promo/movie-promo.jsx";
-import Logo from "../logo/logo.jsx";
-import {MOVIE_PROP_TYPE} from "../../const.js";
+import * as React from "react";
+import MoviesList from "../movies-list/movies-list";
+import GenreList from "../genre-list/genre-list";
+import MoviePromo from "../movie-promo/movie-promo";
+import Logo from "../logo/logo";
+import {Movie} from "../../types";
 
 
-const Main = (props) => {
+interface Props {
+  authorizationStatus: string,
+  avatarUrl?: string,
+  promoMovie: Movie,
+  genres: Array<string>,
+  movies: Array<Movie>,
+  currentGenreFilter: string,
+  onMovieFilterClick: () => void;
+  savingMovieFavoriteStatus?: string,
+  setFavoriteStatus: () => void,
+}
+
+
+const Main: React.FunctionComponent<Props> = (props: Props) => {
   const {authorizationStatus, avatarUrl, promoMovie, genres, movies, currentGenreFilter, onMovieFilterClick, savingMovieFavoriteStatus, setFavoriteStatus} = props;
   const {title, genre, year, cover, bigPoster, isFavorite, id} = promoMovie;
 
@@ -55,19 +67,6 @@ const Main = (props) => {
       </div>
     </React.Fragment>
   );
-};
-
-
-Main.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  avatarUrl: PropTypes.string,
-  promoMovie: MOVIE_PROP_TYPE.isRequired,
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  movies: PropTypes.arrayOf(MOVIE_PROP_TYPE).isRequired,
-  currentGenreFilter: PropTypes.string.isRequired,
-  onMovieFilterClick: PropTypes.func.isRequired,
-  savingMovieFavoriteStatus: PropTypes.string,
-  setFavoriteStatus: PropTypes.func.isRequired,
 };
 
 

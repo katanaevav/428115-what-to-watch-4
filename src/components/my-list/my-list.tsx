@@ -1,12 +1,18 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Logo from "../logo/logo.jsx";
-import MoviesList from "../movies-list/movies-list.jsx";
-import UserBlock from "../user-block/user-block.jsx";
-import {MOVIE_PROP_TYPE} from "../../const.js";
+import * as React from "react";
+import Logo from "../logo/logo";
+import MoviesList from "../movies-list/movies-list";
+import UserBlock from "../user-block/user-block";
+import {Movie} from "../../types";
 
 
-const MyList = (props) => {
+interface Props {
+  myMovies: Array<Movie>,
+  authorizationStatus: string,
+  avatarUrl?: string,
+}
+
+
+const MyList: React.FunctionComponent<Props> = (props: Props) => {
   const {myMovies, authorizationStatus, avatarUrl} = props;
   return (
     <div className="user-page">
@@ -35,13 +41,6 @@ const MyList = (props) => {
       </footer>
     </div>
   );
-};
-
-
-MyList.propTypes = {
-  myMovies: PropTypes.arrayOf(MOVIE_PROP_TYPE).isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
-  avatarUrl: PropTypes.string,
 };
 
 

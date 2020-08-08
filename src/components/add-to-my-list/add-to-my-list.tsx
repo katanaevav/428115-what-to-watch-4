@@ -1,8 +1,13 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 
 
-class AddToMyList extends PureComponent {
+interface Props {
+  isFavorite: boolean,
+  onButtonClick: () => void;
+}
+
+
+class AddToMyList extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
   }
@@ -38,12 +43,6 @@ class AddToMyList extends PureComponent {
     );
   }
 }
-
-
-AddToMyList.propTypes = {
-  isFavorite: PropTypes.bool.isRequired,
-  onButtonClick: PropTypes.func.isRequired,
-};
 
 
 export default AddToMyList;

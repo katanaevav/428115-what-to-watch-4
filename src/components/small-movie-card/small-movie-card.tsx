@@ -1,10 +1,25 @@
-import React from "react";
-import PropTypes from "prop-types";
-import {AppRoute} from "../../const.js";
+import * as React from "react";
+import {AppRoute} from "../../const";
 import {Link} from "react-router-dom";
 
 
-const SmallMovieCard = (props) => {
+interface Props {
+  movieId: number,
+  movieTitle: string,
+  movieSmallPoster: string,
+  preview: string,
+  onMovieMouseOver: () => {},
+  onMovieMouseOut: () => {},
+  renderPlayer: (
+    preview: string,
+    movieSmallPoster: string,
+    onMovieMouseOver: () => {},
+    onMovieMouseOut: () => {},
+  ) => {},
+}
+
+
+const SmallMovieCard: React.FunctionComponent<Props> = (props: Props) => {
   const {movieId, movieTitle, renderPlayer, movieSmallPoster, preview, onMovieMouseOver, onMovieMouseOut} = props;
 
   return (
@@ -24,17 +39,6 @@ const SmallMovieCard = (props) => {
       </h3>
     </article>
   );
-};
-
-
-SmallMovieCard.propTypes = {
-  movieId: PropTypes.number.isRequired,
-  movieTitle: PropTypes.string.isRequired,
-  movieSmallPoster: PropTypes.string.isRequired,
-  preview: PropTypes.string.isRequired,
-  onMovieMouseOver: PropTypes.func.isRequired,
-  onMovieMouseOut: PropTypes.func.isRequired,
-  renderPlayer: PropTypes.func.isRequired,
 };
 
 

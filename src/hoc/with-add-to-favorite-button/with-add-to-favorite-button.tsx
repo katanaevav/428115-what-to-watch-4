@@ -1,11 +1,39 @@
-import React, {PureComponent} from 'react';
-import PropTypes from "prop-types";
-import {SavingStatus, AppRoute, AuthorizationStatus} from "../../const.js";
-import history from "../../history.js";
+import * as React from 'react';
+import {SavingStatus, AppRoute, AuthorizationStatus} from "../../const";
+import history from "../../history";
+import {Subtract} from "utility-types";
+
+
+interface Props {
+  authorizationStatus: string,
+  savingMovieFavoriteStatus?: string,
+  setFavoriteStatus: (
+    favoriteStatus: {
+      isFavorite: boolean,
+      movieId: number,
+    },
+    action: (resonse: {isFavorite: boolean}) => void,
+  ) => void,
+  movieId: number,
+  isFavorite: boolean,
+}
+
+interface InjectedProps {
+  isMainScreen: boolean,
+  movieId: number,
+}
+
+interface State {
+  isFavorite: boolean,
+  errorSaving: string,
+}
 
 
 const withAddToFavoriteButton = (Component) => {
-  class WithAddToFavoriteButton extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Props & Subtract<P, InjectedProps>;
+
+  class WithAddToFavoriteButton extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
@@ -42,6 +70,7 @@ const withAddToFavoriteButton = (Component) => {
 
     render() {
       const {errorSaving, isFavorite} = this.state;
+      const {isMainScreen, movieId} = this.props;
       const pStyle = {
         margin: 0,
         marginLeft: `auto`,
@@ -49,7 +78,6 @@ const withAddToFavoriteButton = (Component) => {
         top: `90px`,
         left: `10px`,
         display: `inline-block`,
-        position: `absolute`,
         zIndex: 2,
         color: `red`,
         backgroundColor: `white`,
@@ -59,9 +87,10 @@ const withAddToFavoriteButton = (Component) => {
         <div>
           {errorSaving === SavingStatus.FAIL ? <p style = {pStyle}>{`Can't save review to this movie! Please? try again later.`}</p> : ``}
           <Component
-            {...this.props}
+            // {...this.props}
+            movieId = {movieId}
+            isMainScreen = {isMainScreen}
             isFavorite = {isFavorite}
-
             onFavoriteButtonClick = {this._favoriteButtonClickHandler}
           >
           </Component>
@@ -69,15 +98,6 @@ const withAddToFavoriteButton = (Component) => {
       );
     }
   }
-
-
-  WithAddToFavoriteButton.propTypes = {
-    authorizationStatus: PropTypes.string.isRequired,
-    savingMovieFavoriteStatus: PropTypes.string,
-    setFavoriteStatus: PropTypes.func.isRequired,
-    movieId: PropTypes.number.isRequired,
-    isFavorite: PropTypes.bool.isRequired,
-  };
 
   return WithAddToFavoriteButton;
 };

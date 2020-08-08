@@ -1,25 +1,44 @@
-import React, {PureComponent} from "react";
+import * as React from "react";
 import {Switch, Route, Router, Redirect} from "react-router-dom";
-import PropTypes from "prop-types";
-import Main from "../main/main.jsx";
-import MoviePage from "../movie-page/movie-page.jsx";
-import SignIn from "../sign-in/sign-in.jsx";
+import Main from "../main/main";
+import MoviePage from "../movie-page/movie-page";
+import SignIn from "../sign-in/sign-in";
 import {connect} from "react-redux";
-import {ActionCreator} from "../../reducer/state/state.js";
-import {MAX_SIMILAR_MOVIES_COUNT, AppRoute, AuthorizationStatus, MOVIE_PROP_TYPE, COMMENT_PROP_TYPE} from "../../const.js";
-import withMovieTabs from "../../hoc/with-movie-tabs/with-movie-tabs.js";
-import withNewReview from "../../hoc/with-new-review/with-new-review.js";
-import CinemaScreen from "../cinema-screen/cinema-screen.jsx";
-import withCinemaVideoPlayer from "../../hoc/with-cinema-video-player/with-cinema-video-player.js";
-import {getCurrentGenreFilter, getFilteredMovies} from "../../reducer/state/selectors.js";
-import {getMovies, getPromoMovie, getGenres, getMovieComments, getSavingMovieCommentStatus, getSavingMovieFavoriteStatus, getMyMovies} from "../../reducer/data/selectors.js";
-import {getAuthorizationStatus, getAvatarUrl} from "../../reducer/user/selectors.js";
-import {Operation as UserOperation} from "../../reducer/user/user.js";
-import {Operation as DataOperation} from "../../reducer/data/data.js";
-import AddReview from "../add-review/add-review.jsx";
-import history from "../../history.js";
-import MyList from "../my-list/my-list.jsx";
-import PrivateRoute from "../private-route/private-route.jsx";
+import {ActionCreator} from "../../reducer/state/state";
+import {MAX_SIMILAR_MOVIES_COUNT, AppRoute, AuthorizationStatus} from "../../const";
+import withMovieTabs from "../../hoc/with-movie-tabs/with-movie-tabs";
+import withNewReview from "../../hoc/with-new-review/with-new-review";
+import CinemaScreen from "../cinema-screen/cinema-screen";
+import withCinemaVideoPlayer from "../../hoc/with-cinema-video-player/with-cinema-video-player";
+import {getCurrentGenreFilter, getFilteredMovies} from "../../reducer/state/selectors";
+import {getMovies, getPromoMovie, getGenres, getMovieComments, getSavingMovieCommentStatus, getSavingMovieFavoriteStatus, getMyMovies} from "../../reducer/data/selectors";
+import {getAuthorizationStatus, getAvatarUrl} from "../../reducer/user/selectors";
+import {Operation as UserOperation} from "../../reducer/user/user";
+import {Operation as DataOperation} from "../../reducer/data/data";
+import AddReview from "../add-review/add-review";
+import history from "../../history";
+import MyList from "../my-list/my-list";
+import PrivateRoute from "../private-route/private-route";
+import {Movie, Comment} from "../../types";
+
+
+interface Props {
+  authorizationStatus: string,
+  login: () => void;
+  avatarUrl?: string,
+  savingMovieCommentStatus?: string,
+  savingMovieFavoriteStatus?: string,
+  promoMovie: Movie,
+  movies: Array<Movie>,
+  myMovies?: Array<Movie>,
+  genres: Array<string>,
+  currentGenreFilter: string,
+  onMovieFilterClick: () => void;
+  movieComments: Array<Comment>,
+  getComments: () => void;
+  saveComment: () => void;
+  setFavoriteStatus: () => void;
+}
 
 
 const CinemaScreenWrapped = withCinemaVideoPlayer(CinemaScreen);
@@ -27,7 +46,7 @@ const AddReviewWrapped = withNewReview(AddReview);
 const MoviePageWrapper = withMovieTabs(MoviePage);
 
 
-class App extends PureComponent {
+class App extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
 
@@ -164,24 +183,6 @@ class App extends PureComponent {
   }
 }
 
-
-App.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  login: PropTypes.func.isRequired,
-  avatarUrl: PropTypes.string,
-  savingMovieCommentStatus: PropTypes.string,
-  savingMovieFavoriteStatus: PropTypes.string,
-  promoMovie: MOVIE_PROP_TYPE.isRequired,
-  movies: PropTypes.arrayOf(MOVIE_PROP_TYPE).isRequired,
-  myMovies: PropTypes.arrayOf(MOVIE_PROP_TYPE),
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
-  currentGenreFilter: PropTypes.string.isRequired,
-  onMovieFilterClick: PropTypes.func.isRequired,
-  movieComments: PropTypes.arrayOf(COMMENT_PROP_TYPE),
-  getComments: PropTypes.func.isRequired,
-  saveComment: PropTypes.func.isRequired,
-  setFavoriteStatus: PropTypes.func.isRequired,
-};
 
 const mapStateToProps = (state) => ({
   authorizationStatus: getAuthorizationStatus(state),

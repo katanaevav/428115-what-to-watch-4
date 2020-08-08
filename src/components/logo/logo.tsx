@@ -1,9 +1,15 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 import {Link} from 'react-router-dom';
-import {AppRoute} from "../../const.js";
+import {AppRoute} from "../../const";
 
-class Logo extends PureComponent {
+
+interface Props {
+  light?: boolean,
+  isMainScreen?: boolean,
+}
+
+
+class Logo extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
 
@@ -57,9 +63,5 @@ class Logo extends PureComponent {
   }
 }
 
-Logo.propTypes = {
-  light: PropTypes.bool,
-  isMainScreen: PropTypes.bool,
-};
 
 export default Logo;

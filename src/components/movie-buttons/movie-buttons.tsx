@@ -1,12 +1,20 @@
-import React from "react";
-import PropTypes from "prop-types";
-import AddToMyList from "../add-to-my-list/add-to-my-list.jsx";
+import * as React from "react";
+import AddToMyList from "../add-to-my-list/add-to-my-list";
 import {Link} from 'react-router-dom';
-import {AppRoute} from "../../const.js";
+import {AppRoute} from "../../const";
 
 
-const MovieButtons = (props) => {
-  const {movieId, authorizationStatus, isFavorite, onFavoriteButtonClick, isMainScreen} = props;
+interface Props {
+  isMainScreen: boolean,
+  movieId: number,
+  // authorizationStatus: string,
+  isFavorite: boolean,
+  onFavoriteButtonClick: () => void,
+}
+
+
+const MovieButtons: React.FunctionComponent<Props> = (props: Props) => {
+  const {movieId, isFavorite, onFavoriteButtonClick, isMainScreen} = props;
 
   return (
     <div className="movie-card__buttons">
@@ -23,7 +31,7 @@ const MovieButtons = (props) => {
       <AddToMyList
         isFavorite = {isFavorite}
         onButtonClick = {onFavoriteButtonClick}
-        authorizationStatus = {authorizationStatus}
+        // authorizationStatus = {authorizationStatus}
       />
       {!isMainScreen ?
         <Link
@@ -35,15 +43,6 @@ const MovieButtons = (props) => {
       }
     </div>
   );
-};
-
-
-MovieButtons.propTypes = {
-  isMainScreen: PropTypes.bool.isRequired,
-  movieId: PropTypes.number.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
-  isFavorite: PropTypes.bool.isRequired,
-  onFavoriteButtonClick: PropTypes.func.isRequired,
 };
 
 

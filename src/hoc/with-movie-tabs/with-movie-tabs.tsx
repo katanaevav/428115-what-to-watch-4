@@ -1,10 +1,33 @@
-import React, {PureComponent} from 'react';
-import MovieTabs from "../../components/movie-tabs/movie-tabs.jsx";
-import {Tabs} from "../../const.js";
+import * as React from 'react';
+import MovieTabs from "../../components/movie-tabs/movie-tabs";
+import {Tabs} from "../../const";
+import {Subtract} from "utility-types";
+import {Movie, Comment} from "../../types";
+
+
+interface Props {}
+
+interface InjectedProps {
+  authorizationStatus: string,
+  avatarUrl?: string,
+  comments: Array<Comment>,
+  getComments: () => void,
+  movie: Movie,
+  savingMovieFavoriteStatus: string,
+  setFavoriteStatus: () => void,
+  similarMovies: Array<Movie>,
+}
+
+interface State {
+  currentTab: number,
+}
 
 
 const withMovieTabs = (Component) => {
-  class WithMovieTabs extends PureComponent {
+  type P = React.ComponentProps<typeof Component>;
+  type T = Props & Subtract<P, InjectedProps>;
+
+  class WithMovieTabs extends React.PureComponent<T, State> {
     constructor(props) {
       super(props);
 
@@ -23,9 +46,26 @@ const withMovieTabs = (Component) => {
 
     render() {
       const {currentTab} = this.state;
+      const {
+        authorizationStatus,
+        avatarUrl,
+        comments,
+        getComments,
+        movie,
+        savingMovieFavoriteStatus,
+        setFavoriteStatus,
+        similarMovies,
+      } = this.props;
 
       return <Component
-        {...this.props}
+        avatarUrl = {avatarUrl}
+        comments = {comments}
+        getComments = {getComments}
+        movie = {movie}
+        savingMovieFavoriteStatus = {savingMovieFavoriteStatus}
+        setFavoriteStatus = {setFavoriteStatus}
+        similarMovies = {similarMovies}
+        authorizationStatus = {authorizationStatus}
         currentTab = {currentTab}
         renderTabs = {() => {
           return (
@@ -40,8 +80,6 @@ const withMovieTabs = (Component) => {
       </Component>;
     }
   }
-
-  WithMovieTabs.propTypes = {};
 
   return WithMovieTabs;
 };

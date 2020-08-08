@@ -1,6 +1,18 @@
-import React, {PureComponent, createRef} from "react";
-import PropTypes from "prop-types";
-import Logo from "../logo/logo.jsx";
+import * as React from "react";
+import Logo from "../logo/logo";
+
+
+interface AuthData {
+  login: string,
+  password: string,
+}
+
+interface Props {
+  onSubmit: (
+    authData: AuthData,
+    action: (text: any, hightlightEmail?: boolean) => void
+  ) => void,
+}
 
 
 const EMAIL_VALIDATION_CHECK_ERROR = `Please enter a valid email address`;
@@ -8,14 +20,19 @@ const EMAIL_VALIDATION_CLASS_ERROR = `sign-in__field sign-in__field--error`;
 const EMAIL_VALIDATION_CLASS = `sign-in__field`;
 
 
-class SignIn extends PureComponent {
+class SignIn extends React.PureComponent<Props, {}> {
+  private emailRef: React.RefObject<HTMLInputElement>;
+  private passwordRef: React.RefObject<HTMLInputElement>;
+  private messageRef: React.RefObject<HTMLInputElement>;
+  private emailContainerRef: React.RefObject<HTMLInputElement>;
+
   constructor(props) {
     super(props);
 
-    this.emailRef = createRef();
-    this.passwordRef = createRef();
-    this.messageRef = createRef();
-    this.emailContainerRef = createRef();
+    this.emailRef = React.createRef();
+    this.passwordRef = React.createRef();
+    this.messageRef = React.createRef();
+    this.emailContainerRef = React.createRef();
 
     this._setMessageText = this._setMessageText.bind(this);
     this._submitHandler = this._submitHandler.bind(this);
@@ -113,11 +130,6 @@ class SignIn extends PureComponent {
     );
   }
 }
-
-
-SignIn.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
 
 
 export default SignIn;

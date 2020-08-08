@@ -1,9 +1,18 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
-import {MOVIE_PROP_TYPE} from "../../const.js";
+import * as React from "react";
+import {Movie} from "../../types";
 
 
-class CinemaScreen extends PureComponent {
+interface Props {
+  movie: Movie,
+  renderPlayer: (video: string, cover: string) => void;
+  renderProgress: () => void;
+  renderPlayButton: () => void;
+  onFullScreenButtonClick: () => void;
+  onExitVideoPlayer: () => void;
+}
+
+
+class CinemaScreen extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
 
@@ -46,16 +55,6 @@ class CinemaScreen extends PureComponent {
     );
   }
 }
-
-
-CinemaScreen.propTypes = {
-  movie: MOVIE_PROP_TYPE.isRequired,
-  renderPlayer: PropTypes.func.isRequired,
-  renderProgress: PropTypes.func.isRequired,
-  renderPlayButton: PropTypes.func.isRequired,
-  onFullScreenButtonClick: PropTypes.func.isRequired,
-  onExitVideoPlayer: PropTypes.func.isRequired,
-};
 
 
 export default CinemaScreen;

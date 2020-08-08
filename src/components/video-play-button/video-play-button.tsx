@@ -1,8 +1,13 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 
 
-class VideoPlayButton extends PureComponent {
+interface Props {
+  onPlayButtonClick: () => void,
+  isPlaying: boolean,
+}
+
+
+class VideoPlayButton extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
 
@@ -44,12 +49,6 @@ class VideoPlayButton extends PureComponent {
     );
   }
 }
-
-
-VideoPlayButton.propTypes = {
-  onPlayButtonClick: PropTypes.func.isRequired,
-  isPlaying: PropTypes.bool.isRequired,
-};
 
 
 export default VideoPlayButton;

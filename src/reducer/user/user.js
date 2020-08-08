@@ -1,5 +1,5 @@
-import {AuthorizationStatus, Url, AppRoute} from "../../const.js";
-import {Operation as DataOperation} from "../data/data.js";
+import {AuthorizationStatus, Url, AppRoute} from "../../const";
+import {Operation as DataOperation} from "../data/data";
 
 
 const AUTH_ERROR_TEXT = `We can’t recognize this email and password combination. Please try again.`;

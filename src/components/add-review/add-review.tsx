@@ -1,16 +1,26 @@
-import React, {PureComponent, createRef} from "react";
-import PropTypes from "prop-types";
-import Logo from "../logo/logo.jsx";
-import UserBlock from "../user-block/user-block.jsx";
-import {Link} from 'react-router-dom';
-import {AppRoute, MOVIE_PROP_TYPE} from "../../const.js";
+import * as React from "react";
+import Logo from "../logo/logo";
+import UserBlock from "../user-block/user-block";
+import {Link} from "react-router-dom";
+import {AppRoute, MOVIE_PROP_TYPE} from "../../const";
+import {Movie} from "../../types";
 
+interface Props {
+  movie: Movie,
+  authorizationStatus: string,
+  avatarUrl?: string,
+  disableForm: boolean,
+  onPostButtonClick: (string) => void;
+  onMarkChange: () => void;
+}
 
-class AddReview extends PureComponent {
+class AddReview extends React.PureComponent<Props, {}> {
+  private reviewTextRef: React.RefObject<HTMLTextAreaElement>;
+
   constructor(props) {
     super(props);
 
-    this._reviewTextRef = createRef();
+    this.reviewTextRef = React.createRef();
 
     this._postButtonClickHandler = this._postButtonClickHandler.bind(this);
   }
@@ -18,11 +28,11 @@ class AddReview extends PureComponent {
   _postButtonClickHandler(evt) {
     evt.preventDefault();
 
-    if (this._reviewTextRef.current.value.length < 14) {
-      this._reviewTextRef.current.style.border = `2px solid red`;
+    if (this.reviewTextRef.current.value.length < 14) {
+      this.reviewTextRef.current.style.border = `2px solid red`;
     } else {
-      this._reviewTextRef.current.style.border = `none`;
-      this.props.onPostButtonClick(this._reviewTextRef.current.value);
+      this.reviewTextRef.current.style.border = `none`;
+      this.props.onPostButtonClick(this.reviewTextRef.current.value);
     }
   }
 
@@ -94,10 +104,9 @@ class AddReview extends PureComponent {
                 className="add-review__textarea"
                 name="review-text" id="review-text"
                 placeholder="Review text"
-                ref = {this._reviewTextRef}
+                ref = {this.reviewTextRef}
                 disabled = {disableForm}
-                maxLength="400"
-                onChange = {this._reviewTextChangeHandler}
+                maxLength = {400}
               ></textarea>
               <div className="add-review__submit">
                 <button
@@ -116,16 +125,6 @@ class AddReview extends PureComponent {
     );
   }
 }
-
-
-AddReview.propTypes = {
-  movie: MOVIE_PROP_TYPE.isRequired,
-  authorizationStatus: PropTypes.string.isRequired,
-  avatarUrl: PropTypes.string,
-  disableForm: PropTypes.bool.isRequired,
-  onPostButtonClick: PropTypes.func.isRequired,
-  onMarkChange: PropTypes.func.isRequired,
-};
 
 
 export default AddReview;

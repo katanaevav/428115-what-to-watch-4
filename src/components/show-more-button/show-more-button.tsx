@@ -1,8 +1,12 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
+import * as React from "react";
 
 
-class ShowMoreButton extends PureComponent {
+interface Props {
+  onShowMoreButtonClick: () => void,
+}
+
+
+class ShowMoreButton extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
 
@@ -25,11 +29,6 @@ class ShowMoreButton extends PureComponent {
     );
   }
 }
-
-
-ShowMoreButton.propTypes = {
-  onShowMoreButtonClick: PropTypes.func.isRequired,
-};
 
 
 export default ShowMoreButton;

@@ -1,9 +1,16 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
-import {MONTH_NAMES} from "../../const.js";
+import * as React from "react";
+import {MONTH_NAMES} from "../../const";
 
 
-class Review extends PureComponent {
+interface Props {
+  text: string,
+  author: string,
+  date: number,
+  mark: number,
+}
+
+
+class Review extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
   }
@@ -41,14 +48,6 @@ class Review extends PureComponent {
     );
   }
 }
-
-
-Review.propTypes = {
-  text: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  date: PropTypes.number.isRequired,
-  mark: PropTypes.number.isRequired,
-};
 
 
 export default Review;

@@ -1,11 +1,23 @@
-import React, {PureComponent} from "react";
-import VideoPlayer from "../../components/video-player/video-player.jsx";
-import VideoProgress from "../../components/video-progress/video-progress.jsx";
-import VideoPlayButton from "../../components/video-play-button/video-play-button.jsx";
+import * as React from "react";
+import VideoPlayer from "../../components/video-player/video-player";
+import VideoProgress from "../../components/video-progress/video-progress";
+import VideoPlayButton from "../../components/video-play-button/video-play-button";
+
+
+interface Props {}
+
+interface State {
+  isPlaying: boolean,
+  isPaused: boolean,
+  progress: number,
+  duration: number,
+  isFullScreen: boolean,
+}
+
 
 
 const withCinemaVideoPlayer = (Component) => {
-  class WithCinemaVideoPlayer extends PureComponent {
+  class WithCinemaVideoPlayer extends React.PureComponent<Props, State> {
     constructor(props) {
       super(props);
 
@@ -119,9 +131,6 @@ const withCinemaVideoPlayer = (Component) => {
       />;
     }
   }
-
-
-  WithCinemaVideoPlayer.propTypes = {};
 
   return WithCinemaVideoPlayer;
 };

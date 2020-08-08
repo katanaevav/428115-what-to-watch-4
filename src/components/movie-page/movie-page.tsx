@@ -1,20 +1,34 @@
-import React, {PureComponent} from "react";
-import PropTypes from "prop-types";
-import MovieOverview from "../movie-overview/movie-overview.jsx";
-import MovieDetails from "../movie-details/movie-details.jsx";
-import MovieReviews from "../movie-reviews/movie-reviews.jsx";
-import MoviesList from "../movies-list/movies-list.jsx";
-import UserBlock from "../user-block/user-block.jsx";
-import Logo from "../logo/logo.jsx";
-import withAddToFavoriteButton from "../../hoc/with-add-to-favorite-button/with-add-to-favorite-button.js";
-import MovieButtons from "../movie-buttons/movie-buttons.jsx";
-import {MOVIE_PROP_TYPE, COMMENT_PROP_TYPE, Tabs} from "../../const.js";
+import * as React from "react";
+import MovieOverview from "../movie-overview/movie-overview";
+import MovieDetails from "../movie-details/movie-details";
+import MovieReviews from "../movie-reviews/movie-reviews";
+import MoviesList from "../movies-list/movies-list";
+import UserBlock from "../user-block/user-block";
+import Logo from "../logo/logo";
+import withAddToFavoriteButton from "../../hoc/with-add-to-favorite-button/with-add-to-favorite-button";
+import MovieButtons from "../movie-buttons/movie-buttons";
+import {MOVIE_PROP_TYPE, COMMENT_PROP_TYPE, Tabs} from "../../const";
+import {Movie, Comment} from "../../types";
+
+
+interface Props {
+  authorizationStatus: string,
+  avatarUrl?: string,
+  movie: Movie,
+  comments?: Array<Comment>,
+  similarMovies?: Array<Movie>,
+  renderTabs: () => void,
+  currentTab: number,
+  savingMovieFavoriteStatus?: string,
+  setFavoriteStatus: () => void,
+  getComments: (number) => void,
+}
 
 
 const MovieButtonsWrapper = withAddToFavoriteButton(MovieButtons);
 
 
-class MoviePage extends PureComponent {
+class MoviePage extends React.PureComponent<Props, {}> {
   constructor(props) {
     super(props);
 
@@ -143,20 +157,6 @@ class MoviePage extends PureComponent {
     );
   }
 }
-
-
-MoviePage.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
-  avatarUrl: PropTypes.string,
-  movie: MOVIE_PROP_TYPE.isRequired,
-  comments: PropTypes.arrayOf(COMMENT_PROP_TYPE),
-  similarMovies: PropTypes.arrayOf(MOVIE_PROP_TYPE),
-  renderTabs: PropTypes.func.isRequired,
-  currentTab: PropTypes.number.isRequired,
-  savingMovieFavoriteStatus: PropTypes.string,
-  setFavoriteStatus: PropTypes.func.isRequired,
-  getComments: PropTypes.func.isRequired,
-};
 
 
 export default MoviePage;
