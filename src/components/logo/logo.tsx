@@ -4,8 +4,8 @@ import {AppRoute} from "../../const";
 
 
 interface Props {
-  light?: boolean,
-  isMainScreen?: boolean,
+  light?: boolean;
+  isMainScreen?: boolean;
 }
 
 

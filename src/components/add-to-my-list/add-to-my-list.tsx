@@ -2,7 +2,7 @@ import * as React from "react";
 
 
 interface Props {
-  isFavorite: boolean,
+  isFavorite: boolean;
   onButtonClick: () => void;
 }
 

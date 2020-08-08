@@ -2,14 +2,14 @@ import * as React from "react";
 import Logo from "../logo/logo";
 import UserBlock from "../user-block/user-block";
 import {Link} from "react-router-dom";
-import {AppRoute, MOVIE_PROP_TYPE} from "../../const";
+import {AppRoute} from "../../const";
 import {Movie} from "../../types";
 
 interface Props {
-  movie: Movie,
-  authorizationStatus: string,
-  avatarUrl?: string,
-  disableForm: boolean,
+  movie: Movie;
+  authorizationStatus: string;
+  avatarUrl?: string;
+  disableForm: boolean;
   onPostButtonClick: (string) => void;
   onMarkChange: () => void;
 }

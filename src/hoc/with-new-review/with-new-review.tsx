@@ -5,24 +5,24 @@ import {AppRoute} from "../../const";
 import {Movie} from "../../types";
 
 interface Comment {
-  mark: number,
-  text: string,
-  movieId: number,
+  mark: number;
+  text: string;
+  movieId: number;
 }
 
 interface Props {
-  movie: Movie,
+  movie: Movie;
   onSaveComment: (
     comment: Comment,
     action: (() => void),
-  ) => void,
-  savingMovieCommentStatus?: string,
+  ) => void;
+  savingMovieCommentStatus?: string;
 }
 
 interface State {
-  disableForm: boolean,
-  selectedMark: number,
-  errorSaving: string,
+  disableForm: boolean;
+  selectedMark: number;
+  errorSaving: string;
 }
 
 

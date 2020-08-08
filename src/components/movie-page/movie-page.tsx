@@ -7,21 +7,21 @@ import UserBlock from "../user-block/user-block";
 import Logo from "../logo/logo";
 import withAddToFavoriteButton from "../../hoc/with-add-to-favorite-button/with-add-to-favorite-button";
 import MovieButtons from "../movie-buttons/movie-buttons";
-import {MOVIE_PROP_TYPE, COMMENT_PROP_TYPE, Tabs} from "../../const";
+import {Tabs} from "../../const";
 import {Movie, Comment} from "../../types";
 
 
 interface Props {
-  authorizationStatus: string,
-  avatarUrl?: string,
-  movie: Movie,
-  comments?: Array<Comment>,
-  similarMovies?: Array<Movie>,
-  renderTabs: () => void,
-  currentTab: number,
-  savingMovieFavoriteStatus?: string,
-  setFavoriteStatus: () => void,
-  getComments: (number) => void,
+  authorizationStatus: string;
+  avatarUrl?: string;
+  movie: Movie;
+  comments?: Array<Comment>;
+  similarMovies?: Array<Movie>;
+  renderTabs: () => void;
+  currentTab: number;
+  savingMovieFavoriteStatus?: string;
+  setFavoriteStatus: () => void;
+  getComments: (number) => void;
 }
 
 

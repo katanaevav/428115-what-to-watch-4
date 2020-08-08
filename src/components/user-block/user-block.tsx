@@ -5,8 +5,8 @@ import {AppRoute} from "../../const";
 
 
 interface Props {
-  authorizationStatus: string,
-  avatarUrl?: string,
+  authorizationStatus: string;
+  avatarUrl?: string;
 }
 
 

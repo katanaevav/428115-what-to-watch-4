@@ -2,8 +2,8 @@ import * as React from "react";
 import {TABS_NAMES} from "../../const";
 
 interface Props {
-  currentTab: number,
-  onMovieTabClick: (evt: Event) => void,
+  currentTab: number;
+  onMovieTabClick: (evt: Event) => void;
 }
 
 class MovieTabs extends React.PureComponent<Props, {}> {

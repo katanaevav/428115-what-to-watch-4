@@ -5,11 +5,10 @@ import {AppRoute} from "../../const";
 
 
 interface Props {
-  isMainScreen: boolean,
-  movieId: number,
-  // authorizationStatus: string,
-  isFavorite: boolean,
-  onFavoriteButtonClick: () => void,
+  isMainScreen: boolean;
+  movieId: number;
+  isFavorite: boolean;
+  onFavoriteButtonClick: () => void;
 }
 
 
@@ -31,7 +30,6 @@ const MovieButtons: React.FunctionComponent<Props> = (props: Props) => {
       <AddToMyList
         isFavorite = {isFavorite}
         onButtonClick = {onFavoriteButtonClick}
-        // authorizationStatus = {authorizationStatus}
       />
       {!isMainScreen ?
         <Link

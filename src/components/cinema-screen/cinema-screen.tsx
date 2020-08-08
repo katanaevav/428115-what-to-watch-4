@@ -3,7 +3,7 @@ import {Movie} from "../../types";
 
 
 interface Props {
-  movie: Movie,
+  movie: Movie;
   renderPlayer: (video: string, cover: string) => void;
   renderProgress: () => void;
   renderPlayButton: () => void;

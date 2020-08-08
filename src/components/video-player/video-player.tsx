@@ -2,14 +2,14 @@ import * as React from "react";
 
 
 interface Props {
-  poster: string,
-  src: string,
-  volume: number,
-  isPlaying: boolean,
-  isPaused: boolean,
-  onUpdateTime: (currentTime: number, movieDuration: number) => void,
-  onSetFullScreen: (fullScreenStatus: boolean) => void,
-  isFullScreen: boolean,
+  poster: string;
+  src: string;
+  volume: number;
+  isPlaying: boolean;
+  isPaused: boolean;
+  onUpdateTime: (currentTime: number, movieDuration: number) => void;
+  onSetFullScreen: (fullScreenStatus: boolean) => void;
+  isFullScreen: boolean;
 }
 
 

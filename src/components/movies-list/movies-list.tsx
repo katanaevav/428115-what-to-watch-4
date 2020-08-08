@@ -10,10 +10,10 @@ import {Movie} from "../../types";
 
 
 interface Props {
-  movies: Array<Movie>,
-  renderedMoviesCount: number,
-  setRenderedMoviesCount: (number) => void,
-  showAll?: boolean,
+  movies: Array<Movie>;
+  renderedMoviesCount: number;
+  setRenderedMoviesCount: (number) => void;
+  showAll?: boolean;
 }
 
 
@@ -59,7 +59,7 @@ class MoviesList extends React.PureComponent<Props, {}> {
 
   _showMoreButtonClickHandler() {
     const {movies, renderedMoviesCount, setRenderedMoviesCount} = this.props;
-    let newMoviesCount = movies.length < (renderedMoviesCount + MAX_RENDERED_MOVIES_AT_TIME) ? movies.length : renderedMoviesCount + MAX_RENDERED_MOVIES_AT_TIME;
+    const newMoviesCount = movies.length < (renderedMoviesCount + MAX_RENDERED_MOVIES_AT_TIME) ? movies.length : renderedMoviesCount + MAX_RENDERED_MOVIES_AT_TIME;
 
     setRenderedMoviesCount(newMoviesCount);
   }
@@ -74,6 +74,7 @@ class MoviesList extends React.PureComponent<Props, {}> {
         movieId = {movie.id}
         movieTitle = {movie.title}
         movieSmallPoster = {movie.smallPoster}
+
         preview = {movie.preview}
         onMovieMouseOver = {this._movieMouseOverHandler}
         onMovieMouseOut = {this._movieMouseOutHandler}

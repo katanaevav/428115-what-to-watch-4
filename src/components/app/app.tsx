@@ -23,18 +23,18 @@ import {Movie, Comment} from "../../types";
 
 
 interface Props {
-  authorizationStatus: string,
+  authorizationStatus: string;
   login: () => void;
-  avatarUrl?: string,
-  savingMovieCommentStatus?: string,
-  savingMovieFavoriteStatus?: string,
-  promoMovie: Movie,
-  movies: Array<Movie>,
-  myMovies?: Array<Movie>,
-  genres: Array<string>,
-  currentGenreFilter: string,
+  avatarUrl?: string;
+  savingMovieCommentStatus?: string;
+  savingMovieFavoriteStatus?: string;
+  promoMovie: Movie;
+  movies: Array<Movie>;
+  myMovies?: Array<Movie>;
+  genres: Array<string>;
+  currentGenreFilter: string;
   onMovieFilterClick: () => void;
-  movieComments: Array<Comment>,
+  movieComments: Array<Comment>;
   getComments: () => void;
   saveComment: () => void;
   setFavoriteStatus: () => void;

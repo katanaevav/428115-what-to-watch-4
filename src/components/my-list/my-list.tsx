@@ -6,9 +6,9 @@ import {Movie} from "../../types";
 
 
 interface Props {
-  myMovies: Array<Movie>,
-  authorizationStatus: string,
-  avatarUrl?: string,
+  myMovies: Array<Movie>;
+  authorizationStatus: string;
+  avatarUrl?: string;
 }
 
 

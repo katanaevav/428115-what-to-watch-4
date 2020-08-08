@@ -4,18 +4,18 @@ import {Link} from "react-router-dom";
 
 
 interface Props {
-  movieId: number,
-  movieTitle: string,
-  movieSmallPoster: string,
-  preview: string,
-  onMovieMouseOver: () => {},
-  onMovieMouseOut: () => {},
+  movieId: number;
+  movieTitle: string;
+  movieSmallPoster: string;
+  preview: string;
+  onMovieMouseOver: () => {};
+  onMovieMouseOut: () => {};
   renderPlayer: (
     preview: string,
     movieSmallPoster: string,
-    onMovieMouseOver: () => {},
-    onMovieMouseOut: () => {},
-  ) => {},
+    onMouseOver: () => {},
+    onMouseOut: () => {},
+  ) => {};
 }
 
 

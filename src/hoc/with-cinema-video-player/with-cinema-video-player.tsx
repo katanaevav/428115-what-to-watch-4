@@ -4,20 +4,17 @@ import VideoProgress from "../../components/video-progress/video-progress";
 import VideoPlayButton from "../../components/video-play-button/video-play-button";
 
 
-interface Props {}
-
 interface State {
-  isPlaying: boolean,
-  isPaused: boolean,
-  progress: number,
-  duration: number,
-  isFullScreen: boolean,
+  isPlaying: boolean;
+  isPaused: boolean;
+  progress: number;
+  duration: number;
+  isFullScreen: boolean;
 }
 
 
-
 const withCinemaVideoPlayer = (Component) => {
-  class WithCinemaVideoPlayer extends React.PureComponent<Props, State> {
+  class WithCinemaVideoPlayer extends React.PureComponent<{}, State> {
     constructor(props) {
       super(props);
 

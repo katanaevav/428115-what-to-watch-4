@@ -2,8 +2,8 @@ import * as React from "react";
 
 
 interface Props {
-  onPlayButtonClick: () => void,
-  isPlaying: boolean,
+  onPlayButtonClick: () => void;
+  isPlaying: boolean;
 }
 
 

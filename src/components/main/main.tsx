@@ -7,15 +7,15 @@ import {Movie} from "../../types";
 
 
 interface Props {
-  authorizationStatus: string,
-  avatarUrl?: string,
-  promoMovie: Movie,
-  genres: Array<string>,
-  movies: Array<Movie>,
-  currentGenreFilter: string,
+  authorizationStatus: string;
+  avatarUrl?: string;
+  promoMovie: Movie;
+  genres: Array<string>;
+  movies: Array<Movie>;
+  currentGenreFilter: string;
   onMovieFilterClick: () => void;
-  savingMovieFavoriteStatus?: string,
-  setFavoriteStatus: () => void,
+  savingMovieFavoriteStatus?: string;
+  setFavoriteStatus: () => void;
 }
 
 

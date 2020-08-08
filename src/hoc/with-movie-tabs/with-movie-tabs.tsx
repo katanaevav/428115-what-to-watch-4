@@ -1,33 +1,27 @@
 import * as React from 'react';
 import MovieTabs from "../../components/movie-tabs/movie-tabs";
 import {Tabs} from "../../const";
-import {Subtract} from "utility-types";
 import {Movie, Comment} from "../../types";
 
 
-interface Props {}
-
-interface InjectedProps {
-  authorizationStatus: string,
-  avatarUrl?: string,
-  comments: Array<Comment>,
-  getComments: () => void,
-  movie: Movie,
-  savingMovieFavoriteStatus: string,
-  setFavoriteStatus: () => void,
-  similarMovies: Array<Movie>,
+interface Props {
+  authorizationStatus: string;
+  avatarUrl?: string;
+  comments: Array<Comment>;
+  getComments: () => void;
+  movie: Movie;
+  savingMovieFavoriteStatus: string;
+  setFavoriteStatus: () => void;
+  similarMovies: Array<Movie>;
 }
 
 interface State {
-  currentTab: number,
+  currentTab: number;
 }
 
 
 const withMovieTabs = (Component) => {
-  type P = React.ComponentProps<typeof Component>;
-  type T = Props & Subtract<P, InjectedProps>;
-
-  class WithMovieTabs extends React.PureComponent<T, State> {
+  class WithMovieTabs extends React.PureComponent<Props, State> {
     constructor(props) {
       super(props);
 

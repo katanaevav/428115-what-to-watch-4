@@ -2,11 +2,11 @@ import * as React from "react";
 
 
 interface Props {
-  runTime: number,
-  genre: string,
-  year: number,
-  directors: Array<string>,
-  starrings: Array<string>,
+  runTime: number;
+  genre: string;
+  year: number;
+  directors: Array<string>;
+  starrings: Array<string>;
 }
 
 

@@ -2,8 +2,8 @@ import * as React from "react";
 
 
 interface Props {
-  currentProgress: number,
-  duration: number,
+  currentProgress: number;
+  duration: number;
 }
 
 

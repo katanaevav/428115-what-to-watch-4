@@ -3,15 +3,15 @@ import Logo from "../logo/logo";
 
 
 interface AuthData {
-  login: string,
-  password: string,
+  login: string;
+  password: string;
 }
 
 interface Props {
   onSubmit: (
     authData: AuthData,
-    action: (text: any, hightlightEmail?: boolean) => void
-  ) => void,
+    action: (text: string, hightlightEmail?: boolean) => void
+  ) => void;
 }
 
 

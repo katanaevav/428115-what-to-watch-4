@@ -6,17 +6,17 @@ import MovieButtons from "../movie-buttons/movie-buttons";
 
 
 interface Props {
-  authorizationStatus: string,
-  avatarUrl?: string,
-  promoMovieTitle: string,
-  promoMovieGenre: string,
-  promoMovieYear: number,
-  movieId: number,
-  isFavorite: boolean,
-  cover: string,
-  bigPoster: string,
-  savingMovieFavoriteStatus?: string,
-  setFavoriteStatus: () => void,
+  authorizationStatus: string;
+  avatarUrl?: string;
+  promoMovieTitle: string;
+  promoMovieGenre: string;
+  promoMovieYear: number;
+  movieId: number;
+  isFavorite: boolean;
+  cover: string;
+  bigPoster: string;
+  savingMovieFavoriteStatus?: string;
+  setFavoriteStatus: () => void;
 }
 
 

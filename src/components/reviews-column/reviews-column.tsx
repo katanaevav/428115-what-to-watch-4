@@ -4,7 +4,7 @@ import {Comment} from "../../types";
 
 
 interface Props {
-  reviews: Array<Comment>,
+  reviews: Array<Comment>;
 }
 
 

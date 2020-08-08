@@ -5,27 +5,27 @@ import {Subtract} from "utility-types";
 
 
 interface Props {
-  authorizationStatus: string,
-  savingMovieFavoriteStatus?: string,
+  authorizationStatus: string;
+  savingMovieFavoriteStatus?: string;
   setFavoriteStatus: (
     favoriteStatus: {
-      isFavorite: boolean,
-      movieId: number,
+      isFavorite: boolean;
+      movieId: number;
     },
     action: (resonse: {isFavorite: boolean}) => void,
-  ) => void,
-  movieId: number,
-  isFavorite: boolean,
+  ) => void;
+  movieId: number;
+  isFavorite: boolean;
 }
 
 interface InjectedProps {
-  isMainScreen: boolean,
-  movieId: number,
+  isMainScreen: boolean;
+  movieId: number;
 }
 
 interface State {
-  isFavorite: boolean,
-  errorSaving: string,
+  isFavorite: boolean;
+  errorSaving: string;
 }
 
 

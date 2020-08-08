@@ -7,10 +7,10 @@ import {getAuthorizationStatus} from "../../reducer/user/selectors";
 
 
 interface Props {
-  authorizationStatus: string,
-  exact?: boolean,
-  path: string,
-  render: (props: Props) => void,
+  authorizationStatus: string;
+  exact?: boolean;
+  path: string;
+  render: (props: Props) => void;
 }
 
 

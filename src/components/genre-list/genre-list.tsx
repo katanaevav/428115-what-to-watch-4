@@ -2,8 +2,8 @@ import * as React from "react";
 
 
 interface Props {
-  currentGenre: string,
-  genres: Array<string>,
+  currentGenre: string;
+  genres: Array<string>;
   onGenreClick: (evt: Event) => void;
 }
 

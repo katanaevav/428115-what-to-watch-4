@@ -3,10 +3,10 @@ import {MONTH_NAMES} from "../../const";
 
 
 interface Props {
-  text: string,
-  author: string,
-  date: number,
-  mark: number,
+  text: string;
+  author: string;
+  date: number;
+  mark: number;
 }
 
 
