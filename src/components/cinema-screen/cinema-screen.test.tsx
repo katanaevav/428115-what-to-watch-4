@@ -29,6 +29,7 @@ const movie: Movie = {
   ],
 };
 
+
 it(`Render cinema screen`, () => {
   const tree = renderer.create(
       <CinemaScreen

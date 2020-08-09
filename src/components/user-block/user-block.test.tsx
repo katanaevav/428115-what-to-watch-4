@@ -5,6 +5,7 @@ import {AuthorizationStatus} from "../../const";
 import {Router} from "react-router-dom";
 import history from "../../history";
 
+
 it(`Render user block element for not authorized user`, () => {
   const tree = renderer.create(
       <Router history = {history}>

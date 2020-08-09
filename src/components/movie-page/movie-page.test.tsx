@@ -9,6 +9,7 @@ import configureStore from "redux-mock-store";
 import NameSpace from "../../reducer/name-space";
 import {Movie} from "../../types";
 
+
 const mockStore = configureStore([]);
 
 const Movies: Array<Movie> = [
@@ -58,8 +59,8 @@ const Movies: Array<Movie> = [
   },
 ];
 
-it(`Render MoviePage`, () => {
 
+it(`Render MoviePage`, () => {
   const store = mockStore({
     [NameSpace.STATE]: {
       renderedMoviesCount: 2,

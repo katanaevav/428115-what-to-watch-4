@@ -5,9 +5,11 @@ import {PrivateRoute} from './private-route';
 import {MemoryRouter} from 'react-router';
 import {AuthorizationStatus, AppRoute} from '../../const';
 
+
 configure({
   adapter: new Adapter()
 });
+
 
 const MockComponent = () => <div />;
 const props = {

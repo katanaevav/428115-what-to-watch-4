@@ -3,9 +3,11 @@ import {configure, mount} from "enzyme";
 import * as Adapter from "enzyme-adapter-react-16";
 import ShowMoreButton from "./show-more-button";
 
+
 configure({
   adapter: new Adapter(),
 });
+
 
 it(`Should pressed on tabs in movie page`, () => {
   const onShowMoreButtonClick = jest.fn();

@@ -5,6 +5,7 @@ import {Router} from "react-router-dom";
 import history from "../../history";
 import {emptyFunction} from "../../utils";
 
+
 it(`Should MovieButtons component render correctly`, () => {
   const tree = renderer.create(
       <Router history = {history}>

@@ -4,6 +4,7 @@ import Logo from "./logo";
 import {Router} from "react-router-dom";
 import history from "../../history";
 
+
 it(`Render logo element`, () => {
   const tree = renderer.create(
       <Router history = {history}>

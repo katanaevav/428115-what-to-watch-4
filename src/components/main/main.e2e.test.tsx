@@ -5,6 +5,12 @@ import Main from "./main";
 import {AuthorizationStatus} from "../../const";
 import {Movie} from "../../types";
 
+
+configure({
+  adapter: new Adapter(),
+});
+
+
 const NO_FILTER = `All genres`;
 
 const GENRES: Array<string> = [`Drama`, `Fantasy`];
@@ -73,9 +79,6 @@ const Movies: Array<Movie> = [
   },
 ];
 
-configure({
-  adapter: new Adapter(),
-});
 
 it(`Should filter be pressed`, () => {
   const onMovieFilterClick = jest.fn();

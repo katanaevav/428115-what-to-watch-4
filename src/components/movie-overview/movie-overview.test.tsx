@@ -3,6 +3,7 @@ import * as renderer from "react-test-renderer";
 import MovieOverview from "./movie-overview";
 import {Movie} from "../../types";
 
+
 const movie: Movie = {
   id: 2,
   title: `Johnny english`,
@@ -26,6 +27,7 @@ const movie: Movie = {
     `Фильм начинается, когда герой находится на крайне низком моральном уровне, пока ему не дают ещё один шанс. Британская разведка МИ-7 снова нуждается в нём и ей надо вернуть агента, чтобы тот сорвал заговор группы киллеров, планирующих убить китайского премьер-министра.`,
   ],
 };
+
 
 it(`Render MovieOverview`, () => {
   const tree = renderer.create(

@@ -3,13 +3,16 @@ import {configure, mount} from "enzyme";
 import * as Adapter from "enzyme-adapter-react-16";
 import GenreList from "./genre-list";
 
+
 configure({
   adapter: new Adapter(),
 });
 
+
 const CURRENT_GENRE = `Fantasy`;
 
 const GENRES: Array<string> = [`Drama`, `Fantasy`];
+
 
 it(`Should pressed on genre button`, () => {
   const onGenreTabClick = jest.fn();

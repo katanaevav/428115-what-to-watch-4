@@ -4,11 +4,14 @@ import * as Adapter from "enzyme-adapter-react-16";
 import withAddToFavoriteButton from "./with-add-to-favorite-button";
 import {AuthorizationStatus} from "../../const.js";
 
+
 configure({adapter: new Adapter()});
+
 
 interface AddReviewProps {
   onFavoriteButtonClick: () => void;
 }
+
 
 const AddReview = (props: AddReviewProps) => {
   const {onFavoriteButtonClick} = props;
@@ -20,6 +23,7 @@ const AddReview = (props: AddReviewProps) => {
 };
 
 const MockComponentWrapped = withAddToFavoriteButton(AddReview);
+
 
 it(`Should withAddToFavoriteButton`, () => {
   const onSetFavoriteStatusClick = jest.fn();

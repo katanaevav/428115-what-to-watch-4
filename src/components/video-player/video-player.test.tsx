@@ -4,11 +4,13 @@ import VideoPlayer from "./video-player";
 import {Movie} from "../../types";
 import {emptyFunction} from "../../utils";
 
+
 interface MoviePlayerState {
   IS_PLAYING: boolean;
   IS_PAUSED: boolean;
   VOLUME: number;
 }
+
 
 const playerState: MoviePlayerState = {
   IS_PLAYING: true,
@@ -35,6 +37,7 @@ const movie: Movie = {
   starrings: [`Рами Малек, Люси Бойнтон, Гвилим Ли, Бен Харди, Джозеф Маццелло, Эйдан Гиллен, Аллен Лич, Том Холландер, Майк Майерс, Аарон МакКаскер и другие`],
   descriptions: [`Чествование группы Queen, их музыки и их выдающегося вокалиста Фредди Меркьюри, который бросил вызов стереотипам и победил условности, чтобы стать одним из самых любимых артистов на планете. Фильм прослеживает головокружительный путь группы к успеху благодаря их культовым песням и революционному звуку, практически распад коллектива, поскольку образ жизни Меркьюри выходит из-под контроля, и их триумфальное воссоединение накануне концерта Live Aid, ставшим одним из величайших выступлений в истории рок-музыки.`],
 };
+
 
 it(`Render video player`, () => {
   const tree = renderer.create(

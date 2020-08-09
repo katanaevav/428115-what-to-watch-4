@@ -3,6 +3,7 @@ import * as renderer from "react-test-renderer";
 import ReviewsColumn from "./reviews-column";
 import {Comment} from "../../types";
 
+
 const Reviews: Array<Comment> = [
   {
     id: 0,
@@ -26,6 +27,7 @@ const Reviews: Array<Comment> = [
     mark: 4,
   },
 ];
+
 
 it(`Render ReviewsColumn`, () => {
   const tree = renderer.create(

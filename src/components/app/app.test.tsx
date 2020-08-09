@@ -9,6 +9,7 @@ import NameSpace from "../../reducer/name-space";
 import {Movie} from "../../types";
 import {emptyFunction} from "../../utils";
 
+
 const mockStore = configureStore([]);
 
 const PromoMovie: Movie = {
@@ -108,6 +109,7 @@ const MyMovies: Array<Movie> = [
       `Фильм прослеживает головокружительный путь группы к успеху благодаря их культовым песням и революционному звуку, практически распад коллектива, поскольку образ жизни Меркьюри выходит из-под контроля, и их триумфальное воссоединение накануне концерта Live Aid, ставшим одним из величайших выступлений в истории рок-музыки.`,
     ],
   }];
+
 
 it(`Render App with Main screen`, () => {
 

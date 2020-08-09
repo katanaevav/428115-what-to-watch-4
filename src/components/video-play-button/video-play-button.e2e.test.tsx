@@ -3,9 +3,11 @@ import {configure, shallow} from "enzyme";
 import * as Adapter from "enzyme-adapter-react-16";
 import VideoPlayButton from "./video-play-button";
 
+
 configure({
   adapter: new Adapter(),
 });
+
 
 it(`Should pressed on play button`, () => {
   const onPlayButtonClick = jest.fn();

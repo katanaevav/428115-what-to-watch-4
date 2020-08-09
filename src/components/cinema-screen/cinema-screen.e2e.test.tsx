@@ -5,9 +5,11 @@ import CinemaScreen from "./cinema-screen";
 import {Movie} from "../../types";
 import {emptyFunction} from "../../utils";
 
+
 configure({
   adapter: new Adapter(),
 });
+
 
 const movie: Movie = {
   id: 0,
@@ -32,6 +34,7 @@ const movie: Movie = {
     `Деньги жгут сердце Хьюза, они не дают ему покоя, а душа его рвется ввысь. Только там, на высоте нескольких тысяч метров он счастлив по-настоящему. Только там, где все решает лишь мастерство пилота и Бог, ничто не ценится так дорого, как верность и честь.`
   ],
 };
+
 
 it(`Should pressed on exit button in cinema video player`, () => {
   const onExitVideoPlayer = jest.fn();

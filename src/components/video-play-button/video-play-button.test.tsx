@@ -3,6 +3,7 @@ import * as renderer from "react-test-renderer";
 import VideoPlayButton from "./video-play-button";
 import {emptyFunction} from "../../utils";
 
+
 it(`Render video play button`, () => {
   const tree = renderer.create(
       <VideoPlayButton

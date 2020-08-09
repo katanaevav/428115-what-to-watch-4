@@ -3,6 +3,7 @@ import * as renderer from "react-test-renderer";
 import MovieReviews from "./movie-reviews";
 import {Comment} from "../../types";
 
+
 const Comments: Array<Comment> = [
   {
     id: 0,
@@ -26,6 +27,7 @@ const Comments: Array<Comment> = [
     mark: 4,
   },
 ];
+
 
 it(`Render MovieReviews`, () => {
   const tree = renderer.create(

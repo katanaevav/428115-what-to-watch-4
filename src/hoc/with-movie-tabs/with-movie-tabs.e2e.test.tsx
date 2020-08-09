@@ -6,6 +6,10 @@ import {AuthorizationStatus} from "../../const";
 import {emptyFunction} from "../../utils";
 import {Movie} from "../../types";
 
+
+configure({adapter: new Adapter()});
+
+
 const movie: Movie = {
   id: 0,
   title: `Bohemian rhapsody`,
@@ -26,10 +30,10 @@ const movie: Movie = {
   descriptions: [`Чествование группы Queen, их музыки и их выдающегося вокалиста Фредди Меркьюри, который бросил вызов стереотипам и победил условности, чтобы стать одним из самых любимых артистов на планете. Фильм прослеживает головокружительный путь группы к успеху благодаря их культовым песням и революционному звуку, практически распад коллектива, поскольку образ жизни Меркьюри выходит из-под контроля, и их триумфальное воссоединение накануне концерта Live Aid, ставшим одним из величайших выступлений в истории рок-музыки.`],
 };
 
-configure({adapter: new Adapter()});
-
 const MockComponent = () => <div />;
+
 const MockComponentWrapped = withMovieTabs(MockComponent);
+
 
 it(`Should return correct state`, () => {
   const wrapper = mount(

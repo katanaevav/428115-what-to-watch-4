@@ -7,6 +7,7 @@ import history from "../../history";
 import {emptyFunction} from "../../utils";
 import {Movie} from "../../types";
 
+
 const movie: Movie = {
   id: 0,
   title: `Bohemian rhapsody`,
@@ -29,6 +30,7 @@ const movie: Movie = {
     `Фильм прослеживает головокружительный путь группы к успеху благодаря их культовым песням и революционному звуку, практически распад коллектива, поскольку образ жизни Меркьюри выходит из-под контроля, и их триумфальное воссоединение накануне концерта Live Aid, ставшим одним из величайших выступлений в истории рок-музыки.`,
   ],
 };
+
 
 it(`Render cinema screen`, () => {
   const tree = renderer.create(
