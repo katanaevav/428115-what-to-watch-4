@@ -1,5 +1,5 @@
 import axios from "axios";
-import {Url} from "./const.js";
+import {Url} from "./const";
 
 
 const Error = {

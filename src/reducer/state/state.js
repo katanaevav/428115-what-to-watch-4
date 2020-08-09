@@ -1,4 +1,4 @@
-import {NO_FILTER, MAX_RENDERED_MOVIES_AT_TIME} from "../../const.js";
+import {NO_FILTER, MAX_RENDERED_MOVIES_AT_TIME} from "../../const";
 
 
 const initialState = {
