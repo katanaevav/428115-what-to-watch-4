@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`Render video player 1`] = `
-<video
-  className="player__video"
-  poster="img/aviator.jpg"
-  preload="metadata"
-/>
-`;
